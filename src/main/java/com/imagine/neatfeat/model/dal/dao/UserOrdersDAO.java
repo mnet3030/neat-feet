@@ -10,6 +10,7 @@ import java.util.List;
 
 public class UserOrdersDAO implements DAO<UserOrders> {
     Session session;
+
     public UserOrdersDAO(Session session) {
         this.session = session;
     }
@@ -35,8 +36,8 @@ public class UserOrdersDAO implements DAO<UserOrders> {
     }
 
     public List<UserOrders> getAll() throws SQLException {
-        Criteria critera = session.createCriteria(UserOrders.class);
-        List<UserOrders> allUserOrders = critera.list();
+        Criteria criteria = session.createCriteria(UserOrders.class);
+        List<UserOrders> allUserOrders = criteria.list();
         return allUserOrders;
     }
 
