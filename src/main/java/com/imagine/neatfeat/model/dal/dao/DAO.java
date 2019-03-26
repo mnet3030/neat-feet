@@ -7,8 +7,10 @@ package com.imagine.neatfeat.model.dal.dao;
 
 import com.imagine.neatfeat.model.dal.entity.Entity;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -17,8 +19,8 @@ import java.util.List;
 public interface DAO<T extends Entity> {
     public void persist(T entity) throws SQLException;
     public void update(T entity) throws SQLException;
-    public void delete(List<Object> primaryKey) throws SQLException;
-    public T getByPrimaryKey(List<Object> primaryKeys) throws SQLException;
+    public void delete(Serializable primaryKey) throws SQLException;
+    public T getByPrimaryKey(Serializable primaryKey) throws SQLException;
     public List<T> getAll() throws SQLException;
-    public List<T> getByColumnNames(List<String> columnNames, List<Object> columnValues) throws SQLException;
+    public List<T> getByColumnNames(Map<String, Object> columnsWithValues) throws SQLException;
 }
