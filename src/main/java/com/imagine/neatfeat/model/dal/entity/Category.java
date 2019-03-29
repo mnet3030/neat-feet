@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name="category"
     ,catalog="\"e-commerce\""
-    , uniqueConstraints = @UniqueConstraint(columnNames="description") 
+    , uniqueConstraints = @UniqueConstraint(columnNames={"category_id", "id"})
 )
 public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
@@ -54,7 +54,7 @@ public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="category_id")
     public Category getCategory() {
         return this.category;
@@ -74,7 +74,7 @@ public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
         this.description = description;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="category")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="category")
     public Set<Category> getCategories() {
         return this.categories;
     }
@@ -83,7 +83,7 @@ public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
         this.categories = categories;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="category")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="category")
     public Set<Product> getProducts() {
         return this.products;
     }
@@ -91,10 +91,6 @@ public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
-
-
-
-
 }
 
 
