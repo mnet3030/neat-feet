@@ -75,7 +75,7 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
         this.datePurchased = datePurchased;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="userOrders")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="userOrders")
     public Set<OrderProducts> getOrderProductses() {
         return this.orderProductses;
     }
@@ -84,7 +84,7 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
         this.orderProductses = orderProductses;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="userOrders")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="userOrders")
     public Set<UserReviews> getUserReviewses() {
         return this.userReviewses;
     }

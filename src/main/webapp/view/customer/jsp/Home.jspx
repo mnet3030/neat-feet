@@ -1,0 +1,44 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: Mahmoud Shereif
+  Date: 3/28/2019
+  Time: 7:12 PM
+  To change this template use File | Settings | File Templates.
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <html>
+    /*Mahmoud Shereif*/
+
+    /*Amr El Kady*/
+
+    /*Alia Mahmoud*/
+
+    /*Amer Salah*/
+
+    /*Nouran Habib*/
+
+    <head><title>Title</title></head>
+    <body>
+    /*Mahmoud Shereif*/
+
+    /*Amr El Kady*/
+
+    /*Alia Mahmoud*/
+
+    /*Amer Salah*/
+
+    /*Nouran Habib*/
+
+    </body>
+    /*Mahmoud Shereif*/
+
+    /*Amr El Kady*/
+
+    /*Alia Mahmoud*/
+
+    /*Amer Salah*/
+
+    /*Nouran Habib*/
+
+    </html>
+</jsp:root>
