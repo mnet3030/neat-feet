@@ -25,7 +25,9 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
     @Override
     public void persist(T entity) throws SQLException {
+        session.beginTransaction();
         session.persist(entity);
+        session.getTransaction().commit();
     }
 
     @Override
