@@ -35,22 +35,15 @@ public class Registration extends  HttpServlet {
         Session session = sessionFactory.openSession();
         //----------------------------------------------------------------------
 
-        try {
-            CountryDAO dao = new CountryDAO(session);
-            List allCountries = dao.getAll();
-            //--------------------------------------------------------
-            request.setAttribute("allCountries" ,allCountries);
-            request.getServletContext()
-                    .getRequestDispatcher("/view/customer/html/Registration.jsp")
-                    .forward(request,response);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            session.close();
-            sessionFactory.close();
-        }
+
+        CountryDAO dao = new CountryDAO(session);
+        List allCountries = dao.getAll();
+        //--------------------------------------------------------
+        request.setAttribute("allCountries" ,allCountries);
+        request.getServletContext()
+                .getRequestDispatcher("/view/customer/html/Registration.jsp")
+                .forward(request,response);
+
         /*Amer Salah*/
 
         /*Nouran Habib*/

@@ -16,16 +16,9 @@ public class FasadProductDao {
         SessionFactory factory =  new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
         Session session = factory.openSession();
 
-        try {
-            ProductDAO productDAO = new ProductDAO(session);
+        ProductDAO productDAO = new ProductDAO(session);
 
-            newProduct = productDAO.getByPrimaryKey(productID);
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        newProduct = productDAO.getByPrimaryKey(productID);
 
         return newProduct;
     }

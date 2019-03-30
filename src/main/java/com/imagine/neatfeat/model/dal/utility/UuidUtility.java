@@ -1,4 +1,4 @@
-package com.imagine.neatfeat.model.utility;
+package com.imagine.neatfeat.model.dal.utility;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;

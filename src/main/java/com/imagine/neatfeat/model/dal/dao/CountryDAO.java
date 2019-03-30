@@ -14,7 +14,7 @@ import org.hibernate.Session;
  */
 public class CountryDAO extends GenericDAO<Country> {
 
-    public CountryDAO(Session session) throws ClassNotFoundException {
-        super(session);
+    public CountryDAO(Session session) {
+        super(session, Country.class);
     }
 }

@@ -51,18 +51,11 @@ public class RegisterServlet extends HttpServlet {
         Country userCountry = new Country();
 
         //----------------------------------------------------------------------
-        try {
-            UserDAO dao = new UserDAO(session);
-            dao.persist(user);
-            response.sendRedirect("view/customer/html/Login.jsp");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            session.close();
-            sessionFactory.close();
-        }
+
+        UserDAO dao = new UserDAO(session);
+        dao.persist(user);
+        response.sendRedirect("view/customer/html/Login.jsp");
+
 
         /*Amer Salah*/
 

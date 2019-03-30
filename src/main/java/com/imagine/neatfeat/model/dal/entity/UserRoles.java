@@ -2,10 +2,12 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 28, 2019 9:52:28 PM by Hibernate Tools 4.3.1
 
 
+import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import javax.persistence.*;
 import javax.persistence.Entity;
 
@@ -14,28 +16,30 @@ import javax.persistence.Entity;
  */
 @Entity
 @Table(name="user_roles"
-    ,catalog="\"e-commerce\""
-    , uniqueConstraints = @UniqueConstraint(columnNames="description") 
+        ,catalog="\"e-commerce\""
+        , uniqueConstraints = @UniqueConstraint(columnNames="description")
 )
 public class UserRoles  implements java.io.Serializable {
 
 
-     private byte[] id;
-     private String description;
-     private Set<User> users = new HashSet<User>(0);
+    private byte[] id;
+    private String description;
+    private Set<User> users = new HashSet<User>(0);
+
+    private UUID uuid;
 
     public UserRoles() {
     }
 
-	
+
     public UserRoles(byte[] id, String description) {
         this.id = id;
         this.description = description;
     }
     public UserRoles(byte[] id, String description, Set<User> users) {
-       this.id = id;
-       this.description = description;
-       this.users = users;
+        this.id = id;
+        this.description = description;
+        this.users = users;
     }
 
     @Id
@@ -45,17 +49,17 @@ public class UserRoles  implements java.io.Serializable {
     public byte[] getId() {
         return this.id;
     }
-    
+
     public void setId(byte[] id) {
         this.id = id;
     }
 
-    
+
     @Column(name="description", unique=true, nullable=false, length=45)
     public String getDescription() {
         return this.description;
     }
-    
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -64,12 +68,25 @@ public class UserRoles  implements java.io.Serializable {
     public Set<User> getUsers() {
         return this.users;
     }
-    
+
     public void setUsers(Set<User> users) {
         this.users = users;
     }
 
 
+    @Transient
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    @PostLoad
+    public void setUUIDFromId(){
+        uuid = UuidUtility.getUUIDFromBytes(getId());
+    }
 
 
 }
