@@ -36,4 +36,9 @@ public class JspHtmlFilter extends HttpFilter {
         /*Nouran Habib*/
 
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

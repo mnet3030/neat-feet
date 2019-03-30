@@ -4,7 +4,7 @@ function displayTable() {
     for (var i = 0; i < products.length; i++)
     {
         table += "<tr class=\"rem" + (i + 1) + "\"><td class=\"invert\">" + (i + 1) + "</td>\n\
-<td class=\"invert-image\"><a href=\"product.jspx\"><img src=\"images/s1.jpg\" alt=\" \" class=\"img-responsive\"></a></td>\n\
+<td class=\"invert-image\"><a href=\"product.jsp\"><img src=\"images/s1.jpg\" alt=\" \" class=\"img-responsive\"></a></td>\n\
 <td class=\"invert\"> <div class=\"quantity\"><div class=\"quantity-select\">\n\
 <div class=\"entry value-minus\">&nbsp;</div>\n\
 <div class=\"entry value\"><span>" + products[i].quantity + "</span></div>\n\
