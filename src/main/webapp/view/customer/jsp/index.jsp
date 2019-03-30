@@ -219,7 +219,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<input type="hidden" name="cmd" value="_cart">
 													<input type="hidden" name="productID" value="${product.uuid}">
 													<input type="hidden" name="add" value="1">
-													<input type="hidden" name="shoe_item" value="Bella Toes">
+													<input type="hidden" name="shoe_item" value="${product.description}">
 													<input type="hidden" name="amount" value="${product.price}">
 													<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 													<a href="#" data-toggle="modal" data-target="#myModal1"></a>

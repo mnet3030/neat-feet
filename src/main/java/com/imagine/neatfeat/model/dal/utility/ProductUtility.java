@@ -1,4 +1,4 @@
-package com.imagine.neatfeat.model.utility;
+package com.imagine.neatfeat.model.dal.utility;
 
 import com.imagine.neatfeat.model.dal.dao.ProductDAO;
 import com.imagine.neatfeat.model.dal.entity.Product;
