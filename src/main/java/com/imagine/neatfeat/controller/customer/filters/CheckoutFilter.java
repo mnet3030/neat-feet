@@ -36,4 +36,9 @@ public class CheckoutFilter extends HttpFilter {
         /*Nouran Habib*/
 
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }
