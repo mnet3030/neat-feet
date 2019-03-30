@@ -14,6 +14,5 @@ public class ResultDao {
         List<Product> products = productDAO.getAll();
         Collections.shuffle(products);
         return products;
-
     }
 }
