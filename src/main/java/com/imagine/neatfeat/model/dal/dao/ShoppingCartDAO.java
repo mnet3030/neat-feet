@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 public class ShoppingCartDAO extends GenericDAO<ShoppingCart> {
 
-    public ShoppingCartDAO(Session session) throws ClassNotFoundException {
-        super(session);
+    public ShoppingCartDAO(Session session) {
+        super(session, ShoppingCart.class);
     }
 }

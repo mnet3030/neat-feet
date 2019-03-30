@@ -14,7 +14,7 @@ import org.hibernate.Session;
  */
 public class CategoryDAO extends GenericDAO<Category> {
 
-    public CategoryDAO(Session session) throws ClassNotFoundException {
-        super(session);
+    public CategoryDAO(Session session) {
+        super(session, Category.class);
     }
 }

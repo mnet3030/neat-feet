@@ -2,11 +2,13 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 28, 2019 9:52:28 PM by Hibernate Tools 4.3.1
 
 
+import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import javax.persistence.*;
 import javax.persistence.Entity;
 
@@ -38,6 +40,9 @@ public class User  implements com.imagine.neatfeat.model.dal.entity.Entity {
     private Set<UserVisitProducts> userVisitProductses = new HashSet<UserVisitProducts>(0);
     private Set<UserOrders> userOrderses = new HashSet<UserOrders>(0);
     private Set<WishingList> wishingLists = new HashSet<WishingList>(0);
+
+
+    private UUID uuid;
 
     public User() {
     }
@@ -242,6 +247,19 @@ public class User  implements com.imagine.neatfeat.model.dal.entity.Entity {
     }
 
 
+    @Transient
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    @PostLoad
+    public void setUUIDFromId(){
+        uuid = UuidUtility.getUUIDFromBytes(getId());
+    }
 
 
 }
