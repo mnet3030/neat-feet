@@ -23,7 +23,7 @@
 <body>
 <div class="wrapper">
     <div class="inner">
-        <form action="register" method="post" class="validate-form">
+        <form action="register" method="post" class="validate-form" enctype="multipart/form-data">
             <h2>Create a new account</h2>
             <!--==================================================================================-->
             <div class="form-row">
@@ -83,8 +83,8 @@
             <!--==================================================================================-->
             <div class="form-row">
                 <div class="form-wrapper">
-                    <label for="photoUrl">Photo</label>
-                    <input type="file" name="photoUrl" id="photoUrl" class="form-control">
+                    <label for="image">Photo</label>
+                    <input type="file" name="image" id="image" accept=".jpg,.png,.svg" class="form-control">
                 </div>
                 <div class="form-wrapper validate-input" data-validate="Birth date is required">
                     <label for="dp1">Birth Date *</label>
