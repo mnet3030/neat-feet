@@ -11,8 +11,7 @@
     <!-- MATERIAL DESIGN ICONIC FONT -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/view/customer/html/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="${pageContext.request.contextPath}/view/customer/html/text/css"
-          href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- DATE-PICKER -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/view/customer/html/css/vendor_R/date-picker/css/datepicker.min.css">
@@ -25,6 +24,9 @@
     <div class="inner">
         <form action="register" method="post" class="validate-form" enctype="multipart/form-data">
             <h2>Create a new account</h2>
+            <c:if test="${alreadyRegistered != null}">
+                <h1>This email is already registered</h1>
+            </c:if>
             <!--==================================================================================-->
             <div class="form-row">
                 <div class="form-wrapper validate-input" data-validate="Name is required">
