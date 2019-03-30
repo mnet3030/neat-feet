@@ -53,26 +53,22 @@ public class RegisterServlet extends HttpServlet {
 
 
         //----------------------------------------------------------------------
-        try {
-            UserDAO dao = new UserDAO(session);
-            User checkUser = dao.getUserByEmail(user.getEmail());
-            if(checkUser==null){
+
+        UserDAO dao = new UserDAO(session);
+        User checkUser = dao.getUserByEmail(user.getEmail());
+        if(checkUser==null){
             dao.persist(user);
             response.sendRedirect("view/customer/html/Login.jsp");
-            }else {
-                request.setAttribute("alreadyRegistered","true");
-                request.getServletContext()
-                        .getNamedDispatcher("Registration")
-                        .include(request,response);
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }  catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-            sessionFactory.close();
+        }else {
+            request.setAttribute("alreadyRegistered","true");
+            request.getServletContext()
+                    .getNamedDispatcher("Registration")
+                    .include(request,response);
         }
+
+        session.close();
+        sessionFactory.close();
+
 
         /*Amer Salah*/
 

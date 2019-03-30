@@ -14,8 +14,8 @@ import org.hibernate.Session;
  */
 public class UserDAO extends GenericDAO<User>{
 
-    public UserDAO(Session session) throws ClassNotFoundException {
-        super(session);
+    public UserDAO(Session session) {
+        super(session, User.class);
     }
     public User getUserByEmail(String uemail){
         User user = (User)session.createQuery( "from User where email = ?1")

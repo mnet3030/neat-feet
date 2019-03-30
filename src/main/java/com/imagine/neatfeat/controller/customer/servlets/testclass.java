@@ -1,8 +1,8 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.entity.Product;
-import com.imagine.neatfeat.model.utility.ProductUtility;
-import com.imagine.neatfeat.model.utility.UuidUtility;
+import com.imagine.neatfeat.model.dal.utility.ProductUtility;
+import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 
 import java.nio.ByteBuffer;
 import java.util.List;

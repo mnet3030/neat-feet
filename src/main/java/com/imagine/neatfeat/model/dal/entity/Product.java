@@ -2,6 +2,7 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 23, 2019 1:16:22 AM by Hibernate Tools 4.3.1
 
 
+import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Table(name="product"
         ,catalog="\"e-commerce\""
 )
-public class Product  implements com.imagine.neatfeat.model.dal.entity.Entity {
+public class Product implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
     private byte[] id;
@@ -226,6 +227,11 @@ public class Product  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    @PostLoad
+    public void setUUIDFromId(){
+        uuid = UuidUtility.getUUIDFromBytes(getId());
     }
 
 }

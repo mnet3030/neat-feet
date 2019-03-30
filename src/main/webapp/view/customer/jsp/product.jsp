@@ -170,10 +170,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="color-quality-right">
                     <h5>Quality :</h5>
                     <select id="country1" onchange="change_country(this.value)" class="frm-field required sect q_test">
-                        <option value="null">5 Qty</option>
-                        <option value="null">6 Qty</option>
-                        <option value="null">7 Qty</option>
-                        <option value="null">10 Qty</option>
+                        <c:forEach begin="1" end="${product.quantity}" var="i">
+                        <option value="null">${i} Qty</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div><br>
@@ -183,7 +182,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <form action="#" method="post">
                         <input type="hidden" name="cmd" value="_cart">
                         <input type="hidden" name="add" value="1">
-                        <input type="hidden" name="shoe_item" value="Chikku Loafers">
+                        <input type="hidden" name="shoe_item" value="${product.description}">
                         <input type="hidden" name="amount" value="${product.price}">
                         <input type="hidden" name="productid" value="${product.id}">
                         <input type="submit" name="submit" value="Add to cart" class="button add">
@@ -231,6 +230,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="new_arrivals">
             <h3>Featured Products</h3>
             <!-- /womens -->
+            <c:forEach begin="1" end="4" var="product" items="${sessionScope.allProducts}" >
             <div class="col-md-3 product-men women_two">
                 <div class="product-shoe-info shoe">
                     <div class="men-pro-item">
@@ -245,13 +245,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div class="item-info-product">
                             <h4>
-                                <a href="product.jsp">Shuberry Heels </a>
+                                <a href="product?productid=${product.uuid}"><c:out value="${product.description}" /> </a>
                             </h4>
                             <div class="info-product-price">
                                 <div class="grid_meta">
                                     <div class="product_price">
                                         <div class="grid-price ">
-                                            <span class="money ">$575.00</span>
+                                            <span class="money "><c:out value="${product.price} EGP" /></span>
                                         </div>
                                     </div>
 
@@ -274,135 +274,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 product-men women_two">
-                <div class="product-shoe-info shoe">
-                    <div class="men-pro-item">
-                        <div class="men-thumb-item">
-                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s5.jpg" alt="">
-                            <div class="men-cart-pro">
-                                <div class="inner-men-cart-pro">
-                                    <a href="product.jsp" class="link-product-add-cart">Quick View</a>
-                                </div>
-                            </div>
-                            <span class="product-new-top">New</span>
-                        </div>
-                        <div class="item-info-product">
-                            <h4>
-                                <a href="product.jsp">Red Bellies </a>
-                            </h4>
-                            <div class="info-product-price">
-                                <div class="grid_meta">
-                                    <div class="product_price">
-                                        <div class="grid-price ">
-                                            <span class="money ">$325.00</span>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="shoe single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="cmd" value="_cart">
-                                        <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="shoe_item" value="Red Bellies">
-                                        <input type="hidden" name="amount" value="325.00">
-                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-                                        <a href="#" data-toggle="modal" data-target="#myModal1"></a>
-                                    </form>
-
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men women_two">
-                <div class="product-shoe-info shoe">
-                    <div class="men-pro-item">
-                        <div class="men-thumb-item">
-                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s7.jpg" alt="">
-                            <div class="men-cart-pro">
-                                <div class="inner-men-cart-pro">
-                                    <a href="product.jsp" class="link-product-add-cart">Quick View</a>
-                                </div>
-                            </div>
-                            <span class="product-new-top">New</span>
-                        </div>
-                        <div class="item-info-product">
-                            <h4>
-                                <a href="product.jsp">Running Shoes</a>
-                            </h4>
-                            <div class="info-product-price">
-                                <div class="grid_meta">
-                                    <div class="product_price">
-                                        <div class="grid-price ">
-                                            <span class="money ">$875.00</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="shoe single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="cmd" value="_cart">
-                                        <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="shoe_item" value="Running Shoes">
-                                        <input type="hidden" name="amount" value="875.00">
-                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-                                        <a href="#" data-toggle="modal" data-target="#myModal1"></a>
-                                    </form>
-
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men women_two">
-                <div class="product-shoe-info shoe">
-                    <div class="men-pro-item">
-                        <div class="men-thumb-item">
-                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s8.jpg" alt="">
-                            <div class="men-cart-pro">
-                                <div class="inner-men-cart-pro">
-                                    <a href="product.jsp" class="link-product-add-cart">Quick View</a>
-                                </div>
-                            </div>
-                            <span class="product-new-top">New</span>
-                        </div>
-                        <div class="item-info-product">
-                            <h4>
-                                <a href="product.jsp">Sukun Casuals</a>
-                            </h4>
-                            <div class="info-product-price">
-                                <div class="grid_meta">
-                                    <div class="product_price">
-                                        <div class="grid-price ">
-                                            <span class="money ">$505.00</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="shoe single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="cmd" value="_cart">
-                                        <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="shoe_item" value="Sukun Casuals">
-                                        <input type="hidden" name="amount" value="505.00">
-                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-                                        <a href="#" data-toggle="modal" data-target="#myModal1"></a>
-                                    </form>
-
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
 
             <!-- //womens -->
             <div class="clearfix"></div>
