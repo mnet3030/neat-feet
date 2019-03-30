@@ -1,6 +1,7 @@
-package com.imagine.neatfeat.controller.customer.servlets;
+package com.imagine.neatfeat.view.controller;
 
 import com.imagine.neatfeat.model.dal.Convertors.UserConvertor;
+import com.imagine.neatfeat.model.dal.dao.CountryDAO;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Country;
 import com.imagine.neatfeat.model.dal.entity.User;
@@ -13,10 +14,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
-public class RegisterServlet extends HttpServlet {
+public class Registration extends  HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*Mahmoud Shereif*/
@@ -25,6 +29,28 @@ public class RegisterServlet extends HttpServlet {
 
         /*Alia Mahmoud*/
 
+        //----------------------------------------------------------------------
+        SessionFactory sessionFactory = new Configuration()
+                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        //----------------------------------------------------------------------
+
+        try {
+            CountryDAO dao = new CountryDAO(session);
+            List allCountries = dao.getAll();
+            //--------------------------------------------------------
+            request.setAttribute("allCountries" ,allCountries);
+            request.getServletContext()
+                    .getRequestDispatcher("/view/customer/html/Registration.jsp")
+                    .forward(request,response);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            session.close();
+            sessionFactory.close();
+        }
         /*Amer Salah*/
 
         /*Nouran Habib*/
@@ -39,28 +65,6 @@ public class RegisterServlet extends HttpServlet {
 
         /*Alia Mahmoud*/
 
-        //----------------------------------------------------------------------
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        //----------------------------------------------------------------------
-        UserBean userBean = (UserBean) request.getAttribute("UserData");
-        User user = UserConvertor.covertUserBeanToUser(userBean);
-        Country userCountry = new Country();
-
-        //----------------------------------------------------------------------
-        try {
-            UserDAO dao = new UserDAO(session);
-            dao.persist(user);
-            response.sendRedirect("view/customer/html/Login.jsp");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            session.close();
-            sessionFactory.close();
-        }
 
         /*Amer Salah*/
 
