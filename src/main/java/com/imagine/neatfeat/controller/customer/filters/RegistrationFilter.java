@@ -7,15 +7,26 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import  com.imagine.neatfeat.model.dal.servletDAO.UserBean;
+import org.apache.commons.beanutils.BeanUtils;
 
-public class CheckoutFilter extends HttpFilter {
+public class RegistrationFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         /*Mahmoud Shereif*/
-        chain.doFilter(req, res);
+
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/
+        UserBean bean=new UserBean();
+        try{
+            BeanUtils.populate(bean, req.getParameterMap());
+            req.setAttribute("UserData",bean);
+            chain.doFilter(req, res);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
 
         /*Amer Salah*/
 
@@ -34,11 +45,6 @@ public class CheckoutFilter extends HttpFilter {
         /*Amer Salah*/
 
         /*Nouran Habib*/
-
-    }
-
-    @Override
-    public void destroy() {
 
     }
 }
