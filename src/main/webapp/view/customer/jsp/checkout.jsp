@@ -141,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <c:set var="count" value="${count + 1}" scope="page"/>
                         <tr class="rem1">
                             <td class="invert"><c:out value="${count}" /></td>
-                            <td class="invert-image"><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" alt=" " class="img-responsive"></a></td>
+                            <td class="invert-image"><a href="product?productid=${product.id}"><img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" alt=" " class="img-responsive"></a></td>
                             <td class="invert">
                                 <div class="quantity">
                                     <div class="quantity-select">

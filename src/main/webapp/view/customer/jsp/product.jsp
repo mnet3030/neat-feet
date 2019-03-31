@@ -126,14 +126,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="flexslider">
 
                     <ul class="slides">
-                        <li data-thumb="images/d2.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d2.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="/images/d1.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d1.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="images/d3.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d3.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
