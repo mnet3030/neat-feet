@@ -30,7 +30,7 @@ public class ProductUtility {
         List<Product> allProduct=null;
 
         allProduct= productDAO.getAll();
-        allProduct.forEach(product -> product.setUuid(UuidUtility.getUUIDFromBytes(product.getId())));
+
 
         return allProduct;
     }
