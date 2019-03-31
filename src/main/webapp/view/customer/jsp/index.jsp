@@ -188,14 +188,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" alt="no image avalible">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="product?productid=${product.uuid}" class="link-product-add-cart">Quick View</a>
+												<a href="product?productid=${product.id}" class="link-product-add-cart">Quick View</a>
 											</div>
 										</div>
 										<span class="product-new-top">New</span>
 									</div>
 									<div class="item-info-product">
 										<h4>
-											<a href="product?productid=${product.uuid}"><c:out value="${product.description}" /></a>
+											<a href="product?productid=${product.id}"><c:out value="${product.description}" /></a>
 										</h4>
 										<div class="info-product-price">
 											<div class="grid_meta">
@@ -217,7 +217,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="shoe single-item hvr-outline-out">
 												<form action="#" method="post">
 													<input type="hidden" name="cmd" value="_cart">
-													<input type="hidden" name="productID" value="${product.uuid}">
+													<input type="hidden" name="productID" value="${product.id}">
 													<input type="hidden" name="add" value="1">
 													<input type="hidden" name="shoe_item" value="Bella Toes">
 													<input type="hidden" name="amount" value="${product.price}">

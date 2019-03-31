@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 21, 2019 12:44:38 AM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -21,7 +20,7 @@ import java.util.UUID;
 public class OrderProducts  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private Coupon coupon;
     private DeliveryStatus deliveryStatus;
     private Product product;
@@ -37,7 +36,7 @@ public class OrderProducts  implements com.imagine.neatfeat.model.dal.entity.Ent
     }
 
 
-    public OrderProducts(byte[] id, DeliveryStatus deliveryStatus, Product product, UserOrders userOrders, int quantity, int priceBeforeDiscount) {
+    public OrderProducts(UUID id, DeliveryStatus deliveryStatus, Product product, UserOrders userOrders, int quantity, int priceBeforeDiscount) {
         this.id = id;
         this.deliveryStatus = deliveryStatus;
         this.product = product;
@@ -45,7 +44,7 @@ public class OrderProducts  implements com.imagine.neatfeat.model.dal.entity.Ent
         this.quantity = quantity;
         this.priceBeforeDiscount = priceBeforeDiscount;
     }
-    public OrderProducts(byte[] id, Coupon coupon, DeliveryStatus deliveryStatus, Product product, UserOrders userOrders, int quantity, int priceBeforeDiscount, Short totalDiscount, Set<UserReviews> userReviewses) {
+    public OrderProducts(UUID id, Coupon coupon, DeliveryStatus deliveryStatus, Product product, UserOrders userOrders, int quantity, int priceBeforeDiscount, Short totalDiscount, Set<UserReviews> userReviewses) {
         this.id = id;
         this.coupon = coupon;
         this.deliveryStatus = deliveryStatus;
@@ -61,11 +60,11 @@ public class OrderProducts  implements com.imagine.neatfeat.model.dal.entity.Ent
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -146,22 +145,6 @@ public class OrderProducts  implements com.imagine.neatfeat.model.dal.entity.Ent
 
     public void setUserReviewses(Set<UserReviews> userReviewses) {
         this.userReviewses = userReviewses;
-    }
-
-
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
     }
 
 }

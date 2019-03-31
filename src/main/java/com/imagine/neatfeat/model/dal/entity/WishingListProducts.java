@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 21, 2019 12:44:38 AM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -20,7 +19,7 @@ import java.util.UUID;
 public class WishingListProducts  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private Product product;
     private WishingList wishingList;
     private int priceBeforeDiscount;
@@ -34,13 +33,13 @@ public class WishingListProducts  implements com.imagine.neatfeat.model.dal.enti
     }
 
 
-    public WishingListProducts(byte[] id, Product product, WishingList wishingList, int priceBeforeDiscount) {
+    public WishingListProducts(UUID id, Product product, WishingList wishingList, int priceBeforeDiscount) {
         this.id = id;
         this.product = product;
         this.wishingList = wishingList;
         this.priceBeforeDiscount = priceBeforeDiscount;
     }
-    public WishingListProducts(byte[] id, Product product, WishingList wishingList, int priceBeforeDiscount, Short discount) {
+    public WishingListProducts(UUID id, Product product, WishingList wishingList, int priceBeforeDiscount, Short discount) {
         this.id = id;
         this.product = product;
         this.wishingList = wishingList;
@@ -52,11 +51,11 @@ public class WishingListProducts  implements com.imagine.neatfeat.model.dal.enti
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -100,20 +99,6 @@ public class WishingListProducts  implements com.imagine.neatfeat.model.dal.enti
         this.discount = discount;
     }
 
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
-    }
 
 }
 

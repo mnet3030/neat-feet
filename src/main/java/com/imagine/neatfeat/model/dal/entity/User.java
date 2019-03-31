@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 28, 2019 9:52:28 PM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
@@ -23,7 +22,7 @@ import javax.persistence.Entity;
 public class User  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private Country country;
     private UserRoles userRoles;
     private String email;
@@ -48,7 +47,7 @@ public class User  implements com.imagine.neatfeat.model.dal.entity.Entity {
     }
 
 
-    public User(byte[] id, UserRoles userRoles, String email, String password, String name, Date birthdate, boolean gender, int creditLimit) {
+    public User(UUID id, UserRoles userRoles, String email, String password, String name, Date birthdate, boolean gender, int creditLimit) {
         this.id = id;
         this.userRoles = userRoles;
         this.email = email;
@@ -58,7 +57,7 @@ public class User  implements com.imagine.neatfeat.model.dal.entity.Entity {
         this.gender = gender;
         this.creditLimit = creditLimit;
     }
-    public User(byte[] id, Country country, UserRoles userRoles, String email, String password, String name, Date birthdate, boolean gender, int creditLimit, String job, String address, String phone, String photoUrl, Set<ShoppingCart> shoppingCarts, Set<UserVisitProducts> userVisitProductses, Set<UserOrders> userOrderses, Set<WishingList> wishingLists) {
+    public User(UUID id, Country country, UserRoles userRoles, String email, String password, String name, Date birthdate, boolean gender, int creditLimit, String job, String address, String phone, String photoUrl, Set<ShoppingCart> shoppingCarts, Set<UserVisitProducts> userVisitProductses, Set<UserOrders> userOrderses, Set<WishingList> wishingLists) {
         this.id = id;
         this.country = country;
         this.userRoles = userRoles;
@@ -82,11 +81,11 @@ public class User  implements com.imagine.neatfeat.model.dal.entity.Entity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -244,21 +243,6 @@ public class User  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
     public void setWishingLists(Set<WishingList> wishingLists) {
         this.wishingLists = wishingLists;
-    }
-
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
     }
 
 

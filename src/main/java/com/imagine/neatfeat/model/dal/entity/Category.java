@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 21, 2019 12:44:38 AM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -22,7 +21,7 @@ import java.util.UUID;
 public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private Category category;
     private String description;
     private Set<Category> categories = new HashSet<Category>(0);
@@ -34,11 +33,11 @@ public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
     }
 
 
-    public Category(byte[] id, String description) {
+    public Category(UUID id, String description) {
         this.id = id;
         this.description = description;
     }
-    public Category(byte[] id, Category category, String description, Set<Category> categories, Set<Product> products) {
+    public Category(UUID id, Category category, String description, Set<Category> categories, Set<Product> products) {
         this.id = id;
         this.category = category;
         this.description = description;
@@ -50,11 +49,11 @@ public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -94,20 +93,6 @@ public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
-    }
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
     }
 }
 

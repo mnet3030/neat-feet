@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 28, 2019 9:52:28 PM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.HashSet;
@@ -22,7 +21,7 @@ import javax.persistence.Entity;
 public class UserRoles  implements java.io.Serializable {
 
 
-    private byte[] id;
+    private UUID id;
     private String description;
     private Set<User> users = new HashSet<User>(0);
 
@@ -32,11 +31,11 @@ public class UserRoles  implements java.io.Serializable {
     }
 
 
-    public UserRoles(byte[] id, String description) {
+    public UserRoles(UUID id, String description) {
         this.id = id;
         this.description = description;
     }
-    public UserRoles(byte[] id, String description, Set<User> users) {
+    public UserRoles(UUID id, String description, Set<User> users) {
         this.id = id;
         this.description = description;
         this.users = users;
@@ -46,11 +45,11 @@ public class UserRoles  implements java.io.Serializable {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -72,22 +71,6 @@ public class UserRoles  implements java.io.Serializable {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
-    }
-
 
 }
 

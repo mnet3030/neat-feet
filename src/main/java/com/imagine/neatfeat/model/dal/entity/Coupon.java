@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 21, 2019 12:44:38 AM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -23,7 +22,7 @@ import java.util.UUID;
 public class Coupon  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private String code;
     private short discount;
     private Date startDate;
@@ -37,14 +36,14 @@ public class Coupon  implements com.imagine.neatfeat.model.dal.entity.Entity {
     }
 
 
-    public Coupon(byte[] id, String code, short discount, Date startDate, Date endDate) {
+    public Coupon(UUID id, String code, short discount, Date startDate, Date endDate) {
         this.id = id;
         this.code = code;
         this.discount = discount;
         this.startDate = startDate;
         this.endDate = endDate;
     }
-    public Coupon(byte[] id, String code, short discount, Date startDate, Date endDate, Set<ShoppingCartProducts> shoppingCartProductses, Set<OrderProducts> orderProductses) {
+    public Coupon(UUID id, String code, short discount, Date startDate, Date endDate, Set<ShoppingCartProducts> shoppingCartProductses, Set<OrderProducts> orderProductses) {
         this.id = id;
         this.code = code;
         this.discount = discount;
@@ -58,11 +57,11 @@ public class Coupon  implements com.imagine.neatfeat.model.dal.entity.Entity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -123,23 +122,6 @@ public class Coupon  implements com.imagine.neatfeat.model.dal.entity.Entity {
     public void setOrderProductses(Set<OrderProducts> orderProductses) {
         this.orderProductses = orderProductses;
     }
-
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
-    }
-
-
 }
 
 

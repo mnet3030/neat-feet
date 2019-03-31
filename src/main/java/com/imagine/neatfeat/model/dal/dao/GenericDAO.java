@@ -3,9 +3,13 @@ package com.imagine.neatfeat.model.dal.dao;
 import com.imagine.neatfeat.model.dal.entity.Entity;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Conjunction;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +27,14 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         session.beginTransaction();
         session.persist(entity);
         session.getTransaction().commit();
+    }
+
+    @Override
+    public T merge(T entity) {
+        session.beginTransaction();
+        T returnedEntity = (T)session.merge(entity);
+        session.getTransaction().commit();
+        return returnedEntity;
     }
 
     @Override
@@ -44,8 +56,8 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
     @Override
     public List<T> getAll() {
-        Criteria critera = session.createCriteria(tClass);
-        List<T> allEntities = critera.list();
+        Criteria criteria = session.createCriteria(tClass);
+        List<T> allEntities = criteria.list();
         return allEntities;
     }
 
@@ -57,5 +69,124 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         }
         List<T> neededEntities = criteria.list();
         return neededEntities;
+    }
+
+    @Override
+    public List<T> getByColumnNamesWithLike(Map<String, Object> columnsWithValues) {
+        Criteria criteria = session.createCriteria(tClass);
+        Disjunction disjunction = Restrictions.or();
+        for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
+            disjunction.add(Restrictions.like(entry.getKey(), "%" + entry.getValue() + "%"));
+        }
+        criteria = criteria.add(disjunction);
+        List<T> neededEntities = criteria.list();
+        return neededEntities;
+    }
+
+    @Override
+    public Map<String, Object> getAllPaged(int pageNumber, int itemsPerPage) {
+        int firstItemInPage;
+        int totalNoOfItems;
+        int noOfPages;
+        Criteria rowCountCriteria = session.createCriteria(tClass)
+                .setProjection(Projections.rowCount());
+        totalNoOfItems = Integer.parseInt(rowCountCriteria.list().get(0).toString());
+
+        noOfPages = (int)Math.ceil((totalNoOfItems/1.0) / (itemsPerPage/1.0));
+
+        if(pageNumber > noOfPages)
+            firstItemInPage = (noOfPages - 1) * itemsPerPage;
+        else
+            firstItemInPage = (pageNumber - 1) * itemsPerPage;
+
+        Criteria resultCriteria = session.createCriteria(tClass);
+
+        resultCriteria.setFirstResult(firstItemInPage);
+        resultCriteria.setMaxResults(itemsPerPage);
+        List<T> pageEntities = resultCriteria.list();
+
+        Map<String, Object> entitiesWithNoOfPages = new HashMap<>();
+        entitiesWithNoOfPages.put("entities", pageEntities);
+        entitiesWithNoOfPages.put("noOfPages", noOfPages);
+        return entitiesWithNoOfPages;
+    }
+
+    @Override
+    public Map<String, Object> getPageByColumnNames(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) {
+        int firstItemInPage;
+        int totalNoOfItems;
+        int noOfPages;
+
+        Conjunction conjunction = Restrictions.and();
+        for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
+            conjunction.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+        }
+
+        Criteria rowCountCriteria = session.createCriteria(tClass)
+                .add(conjunction)
+                .setProjection(Projections.rowCount());
+
+        totalNoOfItems = Integer.parseInt(rowCountCriteria.list().get(0).toString());
+
+        noOfPages = (int)Math.ceil((totalNoOfItems/1.0) / (itemsPerPage/1.0));
+
+        if(pageNumber > noOfPages)
+            firstItemInPage = (noOfPages - 1) * itemsPerPage;
+        else
+            firstItemInPage = (pageNumber - 1) * itemsPerPage;
+
+        Criteria resultCriteria = session.createCriteria(tClass)
+                .add(conjunction);
+        if(firstItemInPage > 0)
+            resultCriteria.setFirstResult(firstItemInPage);
+        else
+            resultCriteria.setFirstResult(0);
+        resultCriteria.setMaxResults(itemsPerPage);
+        List<T> pageEntities = resultCriteria.list();
+
+        Map<String, Object> entitiesWithNoOfPages = new HashMap<>();
+        entitiesWithNoOfPages.put("entities", pageEntities);
+        entitiesWithNoOfPages.put("noOfPages", noOfPages);
+        return entitiesWithNoOfPages;
+    }
+
+    @Override
+    public Map<String, Object> getPageByColumnNamesWithLike(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) {
+        int firstItemInPage;
+        int totalNoOfItems;
+        int noOfPages;
+
+        Disjunction disjunction = Restrictions.or();
+        for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
+            disjunction.add(Restrictions.like(entry.getKey(), "%" + entry.getValue() + "%"));
+        }
+
+        Criteria rowCountCriteria = session.createCriteria(tClass)
+                .add(disjunction)
+                .setProjection(Projections.rowCount());
+
+        totalNoOfItems = Integer.parseInt(rowCountCriteria.list().get(0).toString());
+
+        noOfPages = (int)Math.ceil((totalNoOfItems/1.0) / (itemsPerPage/1.0));
+
+        if(pageNumber > noOfPages)
+            firstItemInPage = (noOfPages - 1) * itemsPerPage;
+        else
+            firstItemInPage = (pageNumber - 1) * itemsPerPage;
+
+        Criteria resultCriteria = session.createCriteria(tClass)
+                .add(disjunction);
+
+        if(firstItemInPage > 0)
+            resultCriteria.setFirstResult(firstItemInPage);
+        else
+            resultCriteria.setFirstResult(0);
+        resultCriteria.setMaxResults(itemsPerPage);
+        List<T> pageEntities = resultCriteria.list();
+
+        Map<String, Object> entitiesWithNoOfPages = new HashMap<>();
+        entitiesWithNoOfPages.put("entities", pageEntities);
+        entitiesWithNoOfPages.put("noOfPages", noOfPages);
+        return entitiesWithNoOfPages;
     }
 }

@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 21, 2019 12:44:38 AM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -22,7 +21,7 @@ import java.util.UUID;
 public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private User user;
     private Date datePurchased;
     private Set<OrderProducts> orderProductses = new HashSet<OrderProducts>(0);
@@ -36,12 +35,12 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
     }
 
 
-    public UserOrders(byte[] id, User user, Date datePurchased) {
+    public UserOrders(UUID id, User user, Date datePurchased) {
         this.id = id;
         this.user = user;
         this.datePurchased = datePurchased;
     }
-    public UserOrders(byte[] id, User user, Date datePurchased, Set<OrderProducts> orderProductses, Set<UserReviews> userReviewses) {
+    public UserOrders(UUID id, User user, Date datePurchased, Set<OrderProducts> orderProductses, Set<UserReviews> userReviewses) {
         this.id = id;
         this.user = user;
         this.datePurchased = datePurchased;
@@ -53,11 +52,11 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -98,22 +97,6 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
     public void setUserReviewses(Set<UserReviews> userReviewses) {
         this.userReviewses = userReviewses;
     }
-
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
-    }
-
 
 }
 
