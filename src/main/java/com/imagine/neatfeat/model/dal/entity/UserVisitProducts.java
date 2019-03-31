@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 21, 2019 12:44:38 AM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -20,7 +19,7 @@ import java.util.UUID;
 public class UserVisitProducts  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private Product product;
     private User user;
     private int visitCount;
@@ -30,7 +29,7 @@ public class UserVisitProducts  implements com.imagine.neatfeat.model.dal.entity
     public UserVisitProducts() {
     }
 
-    public UserVisitProducts(byte[] id, Product product, User user, int visitCount) {
+    public UserVisitProducts(UUID id, Product product, User user, int visitCount) {
         this.id = id;
         this.product = product;
         this.user = user;
@@ -41,11 +40,11 @@ public class UserVisitProducts  implements com.imagine.neatfeat.model.dal.entity
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -79,20 +78,6 @@ public class UserVisitProducts  implements com.imagine.neatfeat.model.dal.entity
         this.visitCount = visitCount;
     }
 
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
-    }
 
 }
 

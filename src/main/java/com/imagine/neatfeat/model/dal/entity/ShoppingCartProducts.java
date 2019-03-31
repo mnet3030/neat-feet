@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 21, 2019 12:44:38 AM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -20,7 +19,7 @@ import java.util.UUID;
 public class ShoppingCartProducts  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private Coupon coupon;
     private Product product;
     private ShoppingCart shoppingCart;
@@ -37,14 +36,14 @@ public class ShoppingCartProducts  implements com.imagine.neatfeat.model.dal.ent
     }
 
 
-    public ShoppingCartProducts(byte[] id, Product product, ShoppingCart shoppingCart, int quantity, int priceBeforeDiscount) {
+    public ShoppingCartProducts(UUID id, Product product, ShoppingCart shoppingCart, int quantity, int priceBeforeDiscount) {
         this.id = id;
         this.product = product;
         this.shoppingCart = shoppingCart;
         this.quantity = quantity;
         this.priceBeforeDiscount = priceBeforeDiscount;
     }
-    public ShoppingCartProducts(byte[] id, Coupon coupon, Product product, ShoppingCart shoppingCart, int quantity, int priceBeforeDiscount, Short productDiscount, Short couponDiscount, Short totalDiscount) {
+    public ShoppingCartProducts(UUID id, Coupon coupon, Product product, ShoppingCart shoppingCart, int quantity, int priceBeforeDiscount, Short productDiscount, Short couponDiscount, Short totalDiscount) {
         this.id = id;
         this.coupon = coupon;
         this.product = product;
@@ -60,11 +59,11 @@ public class ShoppingCartProducts  implements com.imagine.neatfeat.model.dal.ent
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -147,22 +146,6 @@ public class ShoppingCartProducts  implements com.imagine.neatfeat.model.dal.ent
     public void setTotalDiscount(Short totalDiscount) {
         this.totalDiscount = totalDiscount;
     }
-
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
-    }
-
 
 }
 

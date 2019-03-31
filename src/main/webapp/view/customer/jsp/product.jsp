@@ -483,6 +483,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //end-smoth-scrolling -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/test.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
 
 
 </body>

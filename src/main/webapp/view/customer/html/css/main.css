@@ -148,6 +148,12 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
 
+#errormsg{
+  width: 100%;
+  color: red;
+  font-size: 18px;
+  text-align: center;
+}
 .limiter {
   width: 100%;
   margin: 0 auto;

@@ -188,14 +188,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" alt="no image avalible">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="product?productid=${product.uuid}" class="link-product-add-cart">Quick View</a>
+												<a href="product?productid=${product.id}" class="link-product-add-cart">Quick View</a>
 											</div>
 										</div>
 										<span class="product-new-top">New</span>
 									</div>
 									<div class="item-info-product">
 										<h4>
-											<a href="product?productid=${product.uuid}"><c:out value="${product.description}" /></a>
+											<a href="product?productid=${product.id}"><c:out value="${product.description}" /></a>
 										</h4>
 										<div class="info-product-price">
 											<div class="grid_meta">
@@ -217,11 +217,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="shoe single-item hvr-outline-out">
 												<form action="#" method="post">
 													<input type="hidden" name="cmd" value="_cart">
-													<input type="hidden" name="productID" value="${product.uuid}">
+													<input type="hidden" name="productID" value="${product.id}">
 													<input type="hidden" name="add" value="1">
 													<input type="hidden" name="shoe_item" value="${product.description}">
 													<input type="hidden" name="amount" value="${product.price}">
-													<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+													<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)" ><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 													<a href="#" data-toggle="modal" data-target="#myModal1"></a>
 												</form>
 
@@ -439,7 +439,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/cartdemo.js"></script>
-
+    <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
 
 </body>
 

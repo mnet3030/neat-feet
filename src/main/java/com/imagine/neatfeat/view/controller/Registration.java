@@ -1,11 +1,7 @@
 package com.imagine.neatfeat.view.controller;
 
-import com.imagine.neatfeat.model.dal.Convertors.UserConvertor;
+
 import com.imagine.neatfeat.model.dal.dao.CountryDAO;
-import com.imagine.neatfeat.model.dal.dao.UserDAO;
-import com.imagine.neatfeat.model.dal.entity.Country;
-import com.imagine.neatfeat.model.dal.entity.User;
-import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -35,7 +31,6 @@ public class Registration extends  HttpServlet {
         Session session = sessionFactory.openSession();
         //----------------------------------------------------------------------
 
-
         CountryDAO dao = new CountryDAO(session);
         List allCountries = dao.getAll();
         //--------------------------------------------------------
@@ -43,6 +38,9 @@ public class Registration extends  HttpServlet {
         request.getServletContext()
                 .getRequestDispatcher("/view/customer/html/Registration.jsp")
                 .forward(request,response);
+
+        session.close();
+        sessionFactory.close();
 
         /*Amer Salah*/
 

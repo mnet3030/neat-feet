@@ -2,7 +2,6 @@ package com.imagine.neatfeat.model.dal.entity;
 // Generated Mar 21, 2019 12:44:38 AM by Hibernate Tools 4.3.1
 
 
-import com.imagine.neatfeat.model.dal.utility.UuidUtility;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -22,7 +21,7 @@ import java.util.UUID;
 public class Country  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private String name;
     private Set<User> users = new HashSet<User>(0);
 
@@ -33,11 +32,11 @@ public class Country  implements com.imagine.neatfeat.model.dal.entity.Entity {
     }
 
 
-    public Country(byte[] id, String name) {
+    public Country(UUID id, String name) {
         this.id = id;
         this.name = name;
     }
-    public Country(byte[] id, String name, Set<User> users) {
+    public Country(UUID id, String name, Set<User> users) {
         this.id = id;
         this.name = name;
         this.users = users;
@@ -47,11 +46,11 @@ public class Country  implements com.imagine.neatfeat.model.dal.entity.Entity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -72,21 +71,6 @@ public class Country  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }
-
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @PostLoad
-    public void setUUIDFromId(){
-        uuid = UuidUtility.getUUIDFromBytes(getId());
     }
 
 
