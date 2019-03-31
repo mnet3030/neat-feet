@@ -21,7 +21,7 @@ public class CheckoutUtility {
 
         List<Item> newCart=new ArrayList<>();
             for(Item item:myCart) {
-                if (item.getProduct().getUuid().equals(id)) {
+                if (item.getProduct().getId().equals(id)) {
                     if (op.equals("+")) {
                         if(item.getProduct().getQuantity()>item.getQuantity()) {
                             item.setQuantity(item.getQuantity() + 1);

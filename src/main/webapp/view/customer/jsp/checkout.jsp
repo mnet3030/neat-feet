@@ -145,7 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <td class="invert">
                                 <div class="quantity">
                                     <div class="quantity-select">
-                                        <input type="hidden" name="id" class="productid" value="${item.product.uuid}">
+                                        <input type="hidden" name="id" class="productid" value="${item.product.id}">
                                         <div class="entry value-minus" onclick="minus(this)">&nbsp;</div>
                                         <input readonly class="entry value" value="${item.quantity}"></input>
                                         <div class="entry value-plus active" onclick="pluse(this)">&nbsp;</div>

@@ -238,14 +238,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <img src="${pageContext.request.contextPath}/view/customer/html/images/s4.jpg" alt="">
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
-                                    <a href="product.jsp" class="link-product-add-cart">Quick View</a>
+                                    <a href="product?productid=${product.id}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
                             <span class="product-new-top">New</span>
                         </div>
                         <div class="item-info-product">
                             <h4>
-                                <a href="product?productid=${product.uuid}"><c:out value="${product.description}" /> </a>
+                                <a href="product?productid=${product.id}"><c:out value="${product.description}" /> </a>
                             </h4>
                             <div class="info-product-price">
                                 <div class="grid_meta">

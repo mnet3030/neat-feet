@@ -41,7 +41,7 @@ public class ShoppingCart extends HttpServlet {
         ByteBuffer byteBuffer = ByteBuffer.wrap(new byte[16]);
         byteBuffer.putLong(productuuid.getMostSignificantBits());
         byteBuffer.putLong(productuuid.getLeastSignificantBits());
-        product = productDao.getProductByID(byteBuffer.array());
+        product = productDao.getProductByID(productuuid);
 
 
         cartProducts.add(new Item(product , 1));

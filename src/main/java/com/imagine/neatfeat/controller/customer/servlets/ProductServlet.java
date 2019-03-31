@@ -32,7 +32,7 @@ public class ProductServlet extends HttpServlet {
         ByteBuffer byteBuffer = ByteBuffer.wrap(new byte[16]);
         byteBuffer.putLong(uuid.getMostSignificantBits());
         byteBuffer.putLong(uuid.getLeastSignificantBits());
-        product = productDao.getProductByID(byteBuffer.array());
+        product = productDao.getProductByID(uuid);
 
 
         request.setAttribute("product" , product);
