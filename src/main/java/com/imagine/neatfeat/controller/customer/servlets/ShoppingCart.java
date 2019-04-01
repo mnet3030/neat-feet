@@ -38,10 +38,8 @@ public class ShoppingCart extends HttpServlet {
 
         String productId = req.getParameter("productID");
         UUID productuuid = UUID.fromString(productId);
-        ByteBuffer byteBuffer = ByteBuffer.wrap(new byte[16]);
-        byteBuffer.putLong(productuuid.getMostSignificantBits());
-        byteBuffer.putLong(productuuid.getLeastSignificantBits());
-        product = productDao.getProductByID(byteBuffer.array());
+
+        product = productDao.getProductByID(productuuid);
 
 
         cartProducts.add(new Item(product , 1));
@@ -55,7 +53,6 @@ public class ShoppingCart extends HttpServlet {
         {
             System.out.println((cartProducts.get(i).getProduct().getDescription()));
         }
-
 
     }
 }

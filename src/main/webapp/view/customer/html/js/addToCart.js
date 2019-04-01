@@ -1,18 +1,17 @@
 
 
-function addItemToCart(r)
+function addItemToCart(node)
 {
     alert("dfdfjk");
 
-    var productid = r.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.value;
+    var productid = node.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.value;
     alert(productid);
     $.post('cart', {
-        "productID" : productid,
-        "check" : "buy"
+        "productID" : productid
 
-    }, function( qunatity) {
+    }, function() {
 
-        alert(qunatity);
+        alert("Done ISA");
 
     });
 

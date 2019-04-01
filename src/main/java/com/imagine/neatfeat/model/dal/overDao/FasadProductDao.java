@@ -7,10 +7,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class FasadProductDao {
 
-    public Product getProductByID(byte[] productID)
+    public Product getProductByID(UUID uuid)
     {
         Product newProduct = new Product();
         SessionFactory factory =  new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
@@ -18,7 +19,7 @@ public class FasadProductDao {
 
         ProductDAO productDAO = new ProductDAO(session);
 
-        newProduct = productDAO.getByPrimaryKey(productID);
+        newProduct = productDAO.getByPrimaryKey(uuid);
 
         return newProduct;
     }
