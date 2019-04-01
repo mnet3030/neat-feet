@@ -126,14 +126,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="flexslider">
 
                     <ul class="slides">
-                        <li data-thumb="images/d2.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d2.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="/images/d1.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d1.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="images/d3.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d3.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -239,14 +239,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <img src="${pageContext.request.contextPath}/view/customer/html/images/s4.jpg" alt="">
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
-                                    <a href="product.jsp" class="link-product-add-cart">Quick View</a>
+                                    <a href="product?productid=${product.id}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
                             <span class="product-new-top">New</span>
                         </div>
                         <div class="item-info-product">
                             <h4>
-                                <a href="product?productid=${product.uuid}"><c:out value="${product.description}" /> </a>
+                                <a href="product?productid=${product.id}"><c:out value="${product.description}" /> </a>
                             </h4>
                             <div class="info-product-price">
                                 <div class="grid_meta">
