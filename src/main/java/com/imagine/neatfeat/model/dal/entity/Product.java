@@ -17,10 +17,10 @@ import java.util.UUID;
 @Table(name="product"
         ,catalog="\"e-commerce\""
 )
-public class Product  implements com.imagine.neatfeat.model.dal.entity.Entity {
+public class Product implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
-    private byte[] id;
+    private UUID id;
     private Brand brand;
     private Category category;
     private String description;
@@ -43,7 +43,7 @@ public class Product  implements com.imagine.neatfeat.model.dal.entity.Entity {
     }
 
 
-    public Product(byte[] id, Brand brand, Category category, String description, String detailedDescription, int price, int quantity, int buyingCount, String mainPhotoUrl) {
+    public Product(UUID id, Brand brand, Category category, String description, String detailedDescription, int price, int quantity, int buyingCount, String mainPhotoUrl) {
         this.id = id;
         this.brand = brand;
         this.category = category;
@@ -54,7 +54,7 @@ public class Product  implements com.imagine.neatfeat.model.dal.entity.Entity {
         this.buyingCount = buyingCount;
         this.mainPhotoUrl = mainPhotoUrl;
     }
-    public Product(byte[] id, Brand brand, Category category, String description, String detailedDescription, int price, int quantity, int buyingCount, String mainPhotoUrl, Short discount, Set<WishingListProducts> wishingListProductses, Set<ShoppingCartProducts> shoppingCartProductses, Set<ProductMedia> productMedias, Set<UserVisitProducts> userVisitProductses, Set<OrderProducts> orderProductses) {
+    public Product(UUID id, Brand brand, Category category, String description, String detailedDescription, int price, int quantity, int buyingCount, String mainPhotoUrl, Short discount, Set<WishingListProducts> wishingListProductses, Set<ShoppingCartProducts> shoppingCartProductses, Set<ProductMedia> productMedias, Set<UserVisitProducts> userVisitProductses, Set<OrderProducts> orderProductses) {
         this.id = id;
         this.brand = brand;
         this.category = category;
@@ -76,11 +76,11 @@ public class Product  implements com.imagine.neatfeat.model.dal.entity.Entity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(byte[] id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -217,15 +217,6 @@ public class Product  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
     public void setOrderProductses(Set<OrderProducts> orderProductses) {
         this.orderProductses = orderProductses;
-    }
-
-    @Transient
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
     }
 
 }

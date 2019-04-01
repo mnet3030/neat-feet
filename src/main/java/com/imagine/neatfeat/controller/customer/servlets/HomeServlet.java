@@ -2,7 +2,6 @@ package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.utility.ProductUtility;
-import com.imagine.neatfeat.model.dal.utility.ProductUtility;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

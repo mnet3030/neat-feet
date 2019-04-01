@@ -14,7 +14,7 @@ import org.hibernate.Session;
  */
 public class BrandDAO extends GenericDAO<Brand> {
 
-    public BrandDAO(Session session) throws ClassNotFoundException {
-        super(session);
+    public BrandDAO(Session session) {
+        super(session, Brand.class);
     }
 }

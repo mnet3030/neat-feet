@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import javax.servlet.Registration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @MultipartConfig
 public class RegisterServlet extends HttpServlet {
@@ -48,21 +50,25 @@ public class RegisterServlet extends HttpServlet {
         //----------------------------------------------------------------------
         UserBean userBean = (UserBean) request.getAttribute("UserData");
         User user = UserConvertor.covertUserBeanToUser(userBean);
-        Country userCountry = new Country();
+
 
         //----------------------------------------------------------------------
-        try {
-            UserDAO dao = new UserDAO(session);
+
+        UserDAO dao = new UserDAO(session);
+        User checkUser = dao.getUserByEmail(user.getEmail());
+        if(checkUser==null){
             dao.persist(user);
             response.sendRedirect("view/customer/html/Login.jsp");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            session.close();
-            sessionFactory.close();
+        }else {
+            request.setAttribute("alreadyRegistered","true");
+            request.getServletContext()
+                    .getNamedDispatcher("Registration")
+                    .include(request,response);
         }
+
+        session.close();
+        sessionFactory.close();
+
 
         /*Amer Salah*/
 

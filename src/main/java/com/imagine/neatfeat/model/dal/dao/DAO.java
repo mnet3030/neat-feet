@@ -18,9 +18,14 @@ import java.util.Map;
  */
 public interface DAO<T extends Entity> {
     public void persist(T entity) throws SQLException;
+    public T merge(T entity);
     public void update(T entity) throws SQLException;
     public void delete(Serializable primaryKey) throws SQLException;
     public T getByPrimaryKey(Serializable primaryKey) throws SQLException;
     public List<T> getAll() throws SQLException;
     public List<T> getByColumnNames(Map<String, Object> columnsWithValues) throws SQLException;
+    public List<T> getByColumnNamesWithLike(Map<String, Object> columnsWithValues) throws SQLException;
+    public Map<String, Object> getAllPaged(int pageNumber, int itemsPerPage) throws SQLException;
+    public Map<String, Object> getPageByColumnNames(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) throws SQLException;
+    public Map<String, Object> getPageByColumnNamesWithLike(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) throws SQLException;
 }

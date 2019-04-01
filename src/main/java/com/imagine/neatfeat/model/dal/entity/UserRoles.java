@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import javax.persistence.*;
 import javax.persistence.Entity;
 
@@ -14,48 +15,50 @@ import javax.persistence.Entity;
  */
 @Entity
 @Table(name="user_roles"
-    ,catalog="\"e-commerce\""
-    , uniqueConstraints = @UniqueConstraint(columnNames="description") 
+        ,catalog="\"e-commerce\""
+        , uniqueConstraints = @UniqueConstraint(columnNames="description")
 )
 public class UserRoles  implements java.io.Serializable {
 
 
-     private byte[] id;
-     private String description;
-     private Set<User> users = new HashSet<User>(0);
+    private UUID id;
+    private String description;
+    private Set<User> users = new HashSet<User>(0);
+
+    private UUID uuid;
 
     public UserRoles() {
     }
 
-	
-    public UserRoles(byte[] id, String description) {
+
+    public UserRoles(UUID id, String description) {
         this.id = id;
         this.description = description;
     }
-    public UserRoles(byte[] id, String description, Set<User> users) {
-       this.id = id;
-       this.description = description;
-       this.users = users;
+    public UserRoles(UUID id, String description, Set<User> users) {
+        this.id = id;
+        this.description = description;
+        this.users = users;
     }
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
-    public byte[] getId() {
+    public UUID getId() {
         return this.id;
     }
-    
-    public void setId(byte[] id) {
+
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    
+
     @Column(name="description", unique=true, nullable=false, length=45)
     public String getDescription() {
         return this.description;
     }
-    
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -64,13 +67,10 @@ public class UserRoles  implements java.io.Serializable {
     public Set<User> getUsers() {
         return this.users;
     }
-    
+
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-
-
-
 
 }
 

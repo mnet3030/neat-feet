@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 public class UserOrdersDAO extends GenericDAO<UserOrders> {
 
-    public UserOrdersDAO(Session session) throws ClassNotFoundException {
-        super(session);
+    public UserOrdersDAO(Session session) {
+        super(session, UserOrders.class);
     }
 }
