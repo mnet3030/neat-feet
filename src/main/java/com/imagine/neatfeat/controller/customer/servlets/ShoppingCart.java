@@ -27,20 +27,15 @@ public class ShoppingCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        /*Mahmoud Shereif*/
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        /*Amr El Kady*/
 
         Product product = new Product();
         FasadProductDao productDao =  new FasadProductDao();
 
         String productId = req.getParameter("productID");
         UUID productuuid = UUID.fromString(productId);
-        ByteBuffer byteBuffer = ByteBuffer.wrap(new byte[16]);
-        byteBuffer.putLong(productuuid.getMostSignificantBits());
-        byteBuffer.putLong(productuuid.getLeastSignificantBits());
         product = productDao.getProductByID(productuuid);
 
 
@@ -49,7 +44,6 @@ public class ShoppingCart extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("cartProduct" , cartProducts);
 
-        PrintWriter out = resp.getWriter();
 
         for(int i =0 ;i <cartProducts.size() ; i++)
         {
@@ -57,5 +51,44 @@ public class ShoppingCart extends HttpServlet {
         }
 
 
+        /*Alia Mahmoud*/
+
+        /*Amer Salah*/
+
+        /*Nouran Habib*/
+
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        /*Mahmoud Shereif*/
+
+        /*Amr El Kady*/
+
+        /*Alia Mahmoud*/
+
+        /*Amer Salah*/
+
+        Product product = new Product();
+        FasadProductDao productDao =  new FasadProductDao();
+
+        String productId = req.getParameter("productID");
+        UUID productuuid = UUID.fromString(productId);
+        product = productDao.getProductByID(productuuid);
+
+
+        cartProducts.add(new Item(product , 1));
+
+        HttpSession session = req.getSession();
+        session.setAttribute("cartProduct" , cartProducts);
+
+
+
+        /*Nouran Habib*/
+
+    }
+
+
+
 }

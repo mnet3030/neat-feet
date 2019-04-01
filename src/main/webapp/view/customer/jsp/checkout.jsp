@@ -1,6 +1,6 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.imagine.neatfeat.model.dal.entity.Product" %>
-<%@page import="com.imagine.neatfeat.model.dal.utility.Item" %>
+<%@page import="com.imagine.neatfeat.model.dal.utilityPojos.Item" %>
 
 <!--
 author: W3layouts
@@ -137,26 +137,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <tbody  id= "drawid"class="draw">
 
                     <c:set var="count" value="0" scope="page" />
-                    <c:forEach items="${sessionScope.cart}" var="item" >
+                    <c:forEach items="${sessionScope.cartProduct}" var="item" >
                         <c:set var="count" value="${count + 1}" scope="page"/>
                         <tr class="rem1">
                             <td class="invert"><c:out value="${count}" /></td>
-                            <td class="invert-image"><a href="product?productid=${product.id}"><img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" alt=" " class="img-responsive"></a></td>
+                            <td class="invert-image"><a href="product?productid=${item.product.id}"><img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" alt=" " class="img-responsive"></a></td>
                             <td class="invert">
                                 <div class="quantity">
                                     <div class="quantity-select">
                                         <input type="hidden" name="id" class="productid" value="${item.product.id}">
                                         <div class="entry value-minus" onclick="minus(this)">&nbsp;</div>
-                                        <input readonly class="entry value" value="${item.quantity}"></input>
+                                        <input readonly class="entry value" value="${item.quantity}"  max="${item.product.quantity}">
                                         <div class="entry value-plus active" onclick="pluse(this)">&nbsp;</div>
                                     </div>
                                 </div>
                             </td>
-                            <td class="invert"><c:out value="${item.product.description}" /></td>
+                            <td class="invert">
+                                <c:choose>
+                                    <c:when test="${item.product.quantity!=0}" >
+                                        <div><c:out value="${item.product.description}" /></div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <del><c:out value="${item.product.description}" /></del>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </td>
                             <td class="invert"><c:out value="${item.product.price * item.quantity} EGP" /></td>
                             <td class="invert">
                                 <div class="rem">
-                                    <div class="close"> </div>
+                                    <div class="close" onclick="remove('${item.product.id}')"> </div>
                                 </div>
                             </td>
                         </tr>
@@ -174,9 +184,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h4>Continue to basket</h4>
                     <ul>
 
-                        <li>Total  <i>-</i> <span id="totalprice" >$405.00 </span></li>
-                        <li>Total Service Charges <i>-</i> <span>55.00 EGP</span></li>
-                        <li>Total Price <i>-</i> <span>1405.00 EGP</span></li>
+                        <li>Total  <i>-</i> <span id="totalprice" ><c:out value="${sessionScope.totalPrice} EGP" /> </span></li>
+                        <li>Total Price <i>-</i> <span id="afterAddServices"><c:out value="${sessionScope.totalPrice} EGP" /></span></li>
                     </ul>
                 </div>
                 <div class="col-md-8 address_form">
@@ -371,15 +380,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
     $('.value-plus').on('click', function () {
         var divUpd = $(this).parent().find('.value'),
-            newVal = parseInt(divUpd.text(), 10) + 1;
-        divUpd.text(newVal);
+            newVal = parseInt(divUpd.val(), 10) + 1;
+        if(divUpd.attr("max")>=newVal) {
+            divUpd.val(newVal);
+        }
 
     });
 
     $('.value-minus').on('click', function () {
         var divUpd = $(this).parent().find('.value'),
-            newVal = parseInt(divUpd.text(), 10) - 1;
-        if (newVal >= 1) divUpd.text(newVal);
+            newVal = parseInt(divUpd.val(), 10) - 1;
+        if (newVal >= 1) divUpd.val(newVal);
     });
 </script>
 <!--quantity-->
