@@ -181,14 +181,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="shoe single-item single_page_b">
                     <form action="#" method="post">
                         <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="productid" value="${product.id}">
                         <input type="hidden" name="add" value="1">
                         <input type="hidden" name="shoe_item" value="${product.description}">
                         <input type="hidden" name="amount" value="${product.price}">
-                        <input type="hidden" name="productid" value="${product.id}">
-                        <input type="submit" name="submit" value="Add to cart" class="button add">
+                        <input type="submit" name="submit" value="Add to cart" class="button add" onclick="addItemToCart(this)">
 
                         <a href="#" data-toggle="modal" data-target="#myModal1"></a>
                     </form>
+
 
                 </div>
 
@@ -259,10 +260,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="shoe single-item hvr-outline-out">
                                     <form action="#" method="post">
                                         <input type="hidden" name="cmd" value="_cart">
+                                        <input type="hidden" name="productID" value="${product.id}">
                                         <input type="hidden" name="add" value="1">
                                         <input type="hidden" name="shoe_item" value="Shuberry Heels">
                                         <input type="hidden" name="amount" value="575.00">
-                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
                                         <a href="#" data-toggle="modal" data-target="#myModal1"></a>
                                     </form>
