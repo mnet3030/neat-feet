@@ -1,3 +1,4 @@
+
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.entity.Product;
@@ -28,10 +29,8 @@ public class ShoppingCart extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean found = false;
+        int quantity = 0;
 
         Product product = new Product();
         FasadProductDao productDao =  new FasadProductDao();
@@ -42,17 +41,41 @@ public class ShoppingCart extends HttpServlet {
         product = productDao.getProductByID(productuuid);
 
 
-        cartProducts.add(new Item(product , 1));
-
-        HttpSession session = req.getSession();
-        session.setAttribute("cartProduct" , cartProducts);
-
-        PrintWriter out = resp.getWriter();
-
-        for(int i =0 ;i <cartProducts.size() ; i++)
+        for(int i=0 ; i<cartProducts.size() ; i++)
         {
-            System.out.println((cartProducts.get(i).getProduct().getDescription()));
+            if(cartProducts.get(i).getProduct().getId().equals(product.getId()))
+            {
+                quantity = cartProducts.get(i).getQuantity()+1;
+                cartProducts.get(i).setQuantity(quantity);
+                HttpSession session = req.getSession();
+                session.setAttribute("cartProduct" , cartProducts);
+                found=true;
+                break;
+
+            }
         }
+
+
+        if(found==false)
+        {
+            cartProducts.add(new Item(product , 1));
+            HttpSession session = req.getSession();
+            session.setAttribute("cartProduct" , cartProducts);
+        }
+
+        //PrintWriter out = resp.getWriter();
+
+        //for(int i =0 ;i <cartProducts.size() ; i++)
+        //{
+          //  System.out.println((cartProducts.get(i).getProduct().getDescription() +"    "+cartProducts.get(i).getQuantity()));
+        //}
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        doGet(req , resp);
 
     }
 }
