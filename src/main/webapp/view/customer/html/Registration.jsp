@@ -25,34 +25,44 @@
         <form action="register" method="post" class="validate-form" enctype="multipart/form-data">
             <h2>Create a new account</h2>
             <c:if test="${alreadyRegistered != null}">
-                <h1>This email is already registered</h1>
+                <font color="red" size="5">THIS EMAIL IS ALREADY REGISTERED</font>
             </c:if>
             <!--==================================================================================-->
             <div class="form-row">
                 <div class="form-wrapper validate-input" data-validate="Name is required">
                     <label for="name">Name *</label>
-                    <input type="text" name="name" id="name" class="form-control input100" placeholder="Your Name">
+                    <input type="text" name="name" id="name" class="form-control input100" placeholder="Your Name"
+                    <c:if test="${alreadyRegistered != null}">
+                           value="${bean.getName()}"
+                    </c:if>
+                    >
                     <span class="focus-input100"></span>
                 </div>
                 <div class="form-wrapper validate-input" data-validate="Email is not valid">
                     <label for="email">Email *</label>
-                    <input type="text" name="email" id="email" class="form-control input100" placeholder="Your Email">
+                    <input type="text" name="email" id="email" class="form-control input100" placeholder="Your Email"
+                    <c:if test="${alreadyRegistered != null}">
+                           value="${bean.getEmail()}"
+                    </c:if>
+                    >
                     <span class="focus-input100"></span>
 
                 </div>
             </div>
             <!--==================================================================================-->
             <div class="form-row">
-                <div class="form-wrapper validate-input" data-validate="Enter a valid matching password">
+                <div class="form-wrapper validate-input" data-validate="required">
                     <label for="password">Password *</label>
                     <input type="password" name="password" id="password" class="form-control input100"
                            placeholder="Your Password">
                     <span class="focus-input100"></span>
 
                 </div>
-                <div class="form-wrapper">
+                <div class="form-wrapper validate-input" data-validate="not matching">
                     <label for="passwordconfirm">Confirm Password *</label>
-                    <input type="password" class="form-control" id="passwordconfirm" placeholder="Confirm Password">
+                    <input type="password" class="form-control input100" id="passwordconfirm" name="passwordconfirm"
+                           placeholder="Confirm Password">
+                    <span class="focus-input100"></span>
                 </div>
             </div>
             <!--==================================================================================-->
@@ -60,24 +70,40 @@
                 <div class="form-wrapper validate-input" data-validate="Credit limit is required & greater than 0">
                     <label for="creditLimit">Credit limit *</label>
                     <input type="number" name="creditLimit" id="creditLimit" class="form-control input100"
-                           placeholder="Your Credit limit">
+                           placeholder="Your Credit limit"
+                    <c:if test="${alreadyRegistered != null}">
+                           value="${bean.getCreditLimit()}"
+                    </c:if>
+                    >
                     <span class="focus-input100"></span>
 
                 </div>
                 <div class="form-wrapper">
                     <label for="job">Job</label>
-                    <input type="text" name="job" id="job" class="form-control" placeholder="Your Job">
+                    <input type="text" name="job" id="job" class="form-control" placeholder="Your Job"
+                    <c:if test="${alreadyRegistered != null}">
+                           value="${bean.getJob()}"
+                    </c:if>
+                    >
                 </div>
             </div>
             <!--==================================================================================-->
             <div class="form-row">
                 <div class="form-wrapper">
                     <label for="address">Address</label>
-                    <input type="text" name="address" id="address" class="form-control" placeholder="Your Address">
+                    <input type="text" name="address" id="address" class="form-control" placeholder="Your Address"
+                    <c:if test="${alreadyRegistered != null}">
+                           value="${bean.getAddress()}"
+                    </c:if>
+                    >
                 </div>
                 <div class="form-wrapper validate-input" data-validate="Enter a valid phone number">
                     <label for="phone">Phone *</label>
-                    <input type="number" name="phone" id="phone" class="form-control input100" placeholder="Phone">
+                    <input type="number" name="phone" id="phone" class="form-control input100" placeholder="Phone"
+                    <c:if test="${alreadyRegistered != null}">
+                           value="${bean.getPhone()}"
+                    </c:if>
+                    >
                     <span class="focus-input100"></span>
 
                 </div>
@@ -92,7 +118,11 @@
                     <label for="dp1">Birth Date *</label>
                     <span class="lnr lnr-calendar-full"></span>
                     <input type="text" class="form-control datepicker-here input100" name="birthdate"
-                           data-language='en' data-date-format="dd M yyyy" id="dp1">
+                           data-language='en' data-date-format="dd M yyyy" id="dp1"
+                    <c:if test="${alreadyRegistered != null}">
+                           value="${bean.getBirthdate()}"
+                    </c:if>
+                    >
                     <span class="focus-input100"></span>
 
                 </div>
@@ -101,7 +131,11 @@
             <div class="form-row last">
                 <div class="form-wrapper">
                     <label for="gender">Gender *</label>
-                    <select name="gender" id="gender" class="form-control">
+                    <select name="gender" id="gender" class="form-control"
+                            <c:if test="${alreadyRegistered != null}">
+                                value="${bean}"
+                            </c:if>
+                    >
                         <option value="true">Male</option>
                         <option value="false">Female</option>
                     </select>
@@ -109,7 +143,11 @@
                 </div>
                 <div class="form-wrapper">
                     <label for="country">Country</label>
-                    <select name="country" id="country" class="form-control">
+                    <select name="country" id="country" class="form-control"
+                            <c:if test="${alreadyRegistered != null}">
+                                value="${bean}"
+                            </c:if>
+                    >
                         <c:if test="${allCountries != null}">
                             <c:forEach items="${allCountries}" var="current">
                                 <option value="${current.name}"><c:out value="${current.name}"/></option>
@@ -120,13 +158,8 @@
                 </div>
             </div>
             <!--==================================================================================-->
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"> Agree to privacy policy
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <button data-text="Yalla" onclick="validatevalues()">
+
+            <button data-text="Register" onclick="validatevalues()">
                 <span>Register</span>
             </button>
         </form>

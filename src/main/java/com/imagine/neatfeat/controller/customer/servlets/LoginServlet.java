@@ -41,24 +41,23 @@ public class LoginServlet extends HttpServlet {
         //------------------------------------------------------------------
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        try {
-            UserDAO dao = new UserDAO(session);
-            User user  = dao.athunticateUser(email,password);
-            if(user != null){
-                HttpSession userSession = request.getSession(true);
-                userSession.setAttribute("user", user);
-               response.sendRedirect("home");
-            }
-            else{
-                request.setAttribute("mail",email);
-                request.setAttribute("invalid","invalid");
-                request.getServletContext()
-                        .getRequestDispatcher("/view/customer/html/Login.jsp")
-                        .forward(request,response);
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+
+        UserDAO dao = new UserDAO(session);
+        User user  = dao.athunticateUser(email,password);
+        if(user != null){
+            HttpSession userSession = request.getSession(true);
+            userSession.setAttribute("user", user);
+            response.sendRedirect(request.getContextPath()+"/home");
         }
+        else{
+            request.setAttribute("mail",email);
+            request.setAttribute("invalid","invalid");
+            request.getServletContext()
+                    .getRequestDispatcher("/view/customer/html/Login.jsp")
+                    .forward(request,response);
+        }
+        session.close();
+        sessionFactory.close();
 
         /*Amer Salah*/
 
