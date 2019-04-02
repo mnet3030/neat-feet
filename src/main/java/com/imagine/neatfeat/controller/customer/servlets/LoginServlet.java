@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
             request.getServletContext()
                     .getRequestDispatcher("/view/customer/html/Login.jsp")
                     .forward(request,response);
+
         }
         session.close();
         sessionFactory.close();

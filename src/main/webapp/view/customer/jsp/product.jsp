@@ -126,14 +126,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="flexslider">
 
                     <ul class="slides">
-                        <li data-thumb="images/d2.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d2.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="/images/d1.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d1.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="images/d3.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d3.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -181,14 +181,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="shoe single-item single_page_b">
                     <form action="#" method="post">
                         <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="productid" value="${product.id}">
                         <input type="hidden" name="add" value="1">
                         <input type="hidden" name="shoe_item" value="${product.description}">
                         <input type="hidden" name="amount" value="${product.price}">
-                        <input type="hidden" name="productid" value="${product.id}">
-                        <input type="submit" name="submit" value="Add to cart" class="button add">
+                        <input type="submit" name="submit" value="Add to cart" class="button add" onclick="addItemToCart(this)">
 
                         <a href="#" data-toggle="modal" data-target="#myModal1"></a>
                     </form>
+
 
                 </div>
 
@@ -238,14 +239,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <img src="${pageContext.request.contextPath}/view/customer/html/images/s4.jpg" alt="">
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
-                                    <a href="product.jsp" class="link-product-add-cart">Quick View</a>
+                                    <a href="product?productid=${product.id}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
                             <span class="product-new-top">New</span>
                         </div>
                         <div class="item-info-product">
                             <h4>
-                                <a href="product?productid=${product.uuid}"><c:out value="${product.description}" /> </a>
+                                <a href="product?productid=${product.id}"><c:out value="${product.description}" /> </a>
                             </h4>
                             <div class="info-product-price">
                                 <div class="grid_meta">
@@ -259,10 +260,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="shoe single-item hvr-outline-out">
                                     <form action="#" method="post">
                                         <input type="hidden" name="cmd" value="_cart">
+                                        <input type="hidden" name="productID" value="${product.id}">
                                         <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="shoe_item" value="Shuberry Heels">
-                                        <input type="hidden" name="amount" value="575.00">
-                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="shoe_item" value="${product.description}">
+                                        <input type="hidden" name="amount" value="${product.price}">
+                                        <button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
                                         <a href="#" data-toggle="modal" data-target="#myModal1"></a>
                                     </form>
@@ -482,7 +484,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- //end-smoth-scrolling -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/test.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
 
 
 </body>
