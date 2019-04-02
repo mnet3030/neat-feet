@@ -56,7 +56,9 @@ public class CheckoutUtility {
     public int totalPrice(List<Item> myCart){
 
         total=0;
-        myCart.forEach(item -> total+=(item.getQuantity()*item.getProduct().getPrice()));
+        if(myCart!=null) {
+            myCart.forEach(item -> total += (item.getQuantity() * item.getProduct().getPrice()));
+        }
         //System.out.println(total);
         return total;
 

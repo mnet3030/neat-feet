@@ -163,7 +163,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </c:choose>
 
                             </td>
-                            <td class="invert"><c:out value="${item.product.price * item.quantity} EGP" /></td>
+                            <td class="invert productPrice">
+                                <div class="priceOfUnit"><c:out value="${item.product.price} EGP" /></div>
+                                <div class="quantityOfUnit" ><c:out value="* ${item.quantity}" /></div>
+                                <div class="totalPriceOfUint" ><c:out value="= ${item.quantity*item.product.price} EGP" /></div>
+                            </td>
                             <td class="invert">
                                 <div class="rem">
                                     <div class="close" onclick="remove('${item.product.id}')"> </div>
@@ -383,6 +387,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             newVal = parseInt(divUpd.val(), 10) + 1;
         if(divUpd.attr("max")>=newVal) {
             divUpd.val(newVal);
+            $(this).parents('tr').find('.quantityOfUnit').text(" * " +newVal);
+            var price=$(this).parents('tr').find('.priceOfUnit').text().split(" ");
+            $(this).parents('tr').find('.totalPriceOfUint').text("= " +(newVal*price[0])+" EGP");
         }
 
     });
@@ -390,7 +397,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     $('.value-minus').on('click', function () {
         var divUpd = $(this).parent().find('.value'),
             newVal = parseInt(divUpd.val(), 10) - 1;
-        if (newVal >= 1) divUpd.val(newVal);
+        if (newVal >= 1) {
+            divUpd.val(newVal);
+            $(this).parents('tr').find('.quantityOfUnit').text(" * " +newVal)
+            var price=$(this).parents('tr').find('.priceOfUnit').text().split(" ");
+            $(this).parents('tr').find('.totalPriceOfUint').text("= " +(newVal*price[0])+" EGP");
+
+        }
+        totalPriceOfUint
     });
 </script>
 <!--quantity-->

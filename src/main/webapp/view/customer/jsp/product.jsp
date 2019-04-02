@@ -262,8 +262,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <input type="hidden" name="cmd" value="_cart">
                                         <input type="hidden" name="productID" value="${product.id}">
                                         <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="shoe_item" value="Shuberry Heels">
-                                        <input type="hidden" name="amount" value="575.00">
+                                        <input type="hidden" name="shoe_item" value="${product.description}">
+                                        <input type="hidden" name="amount" value="${product.price}">
                                         <button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
                                         <a href="#" data-toggle="modal" data-target="#myModal1"></a>
@@ -484,7 +484,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- //end-smoth-scrolling -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/test.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
 
 
