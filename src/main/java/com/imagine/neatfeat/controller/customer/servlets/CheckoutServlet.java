@@ -1,7 +1,7 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
-import com.imagine.neatfeat.model.dal.utility.Item;
+import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +13,17 @@ import java.util.List;
 public class CheckoutServlet extends HttpServlet {
 
 
-    CheckoutUtility checkoutUtility=new CheckoutUtility();
-    List<Item> cart;
+    private CheckoutUtility checkoutUtility ;
+    private List<Item> cart;
+    private List<Item> newCart;
+    private int newTotalPrice;
+
+    @Override
+    public void init() throws ServletException {
+        checkoutUtility=new CheckoutUtility();
+    }
+
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,10 +33,13 @@ public class CheckoutServlet extends HttpServlet {
 
 
 
-         cart= checkoutUtility.getCart();
-         request.getSession().setAttribute("cart",cart);
-         request.getServletContext().getRequestDispatcher("/view/customer/jsp/checkout.jsp")
-                 .forward(request,response);
+
+        cart= (List<Item>) request.getSession().getAttribute("cartProduct");
+        newTotalPrice=checkoutUtility.totalPrice(cart);
+        request.getSession().setAttribute("totalPrice",newTotalPrice);
+        request.getServletContext().getRequestDispatcher("/view/customer/jsp/checkout.jsp")
+                .forward(request,response);
+
         /*Alia Mahmoud*/
 
         /*Amer Salah*/
@@ -41,26 +53,41 @@ public class CheckoutServlet extends HttpServlet {
         /*Mahmoud Shereif*/
 
         /*Amr El Kady*/
+
+        cart= (List<Item>) request.getSession().getAttribute("cartProduct");
+        newTotalPrice=checkoutUtility.totalPrice(cart);
+        request.getSession().setAttribute("totalPrice",newTotalPrice);
+
         String action =request.getParameter("action");
-        if(action.equals("increse")){
+        if(action.equals("increase")){
 
-            List<Item> newCart=checkoutUtility.changeQuantity(request.getParameter("productid"),"+");
-            request.getSession().setAttribute("cart",newCart);
+            newCart=checkoutUtility.changeQuantity(request.getParameter("productid"),"+",cart);
+            request.getSession().setAttribute("cartProduct",newCart);
 
-            int newTotalPrice=checkoutUtility.totalPrice();
+            int newTotalPrice=checkoutUtility.totalPrice(cart);
+            request.getSession().setAttribute("totalPrice",newTotalPrice);
             response.getWriter().println(newTotalPrice);
 
         }else if(action.equals("decrease")){
 
-            List<Item> newCart=checkoutUtility.changeQuantity(request.getParameter("productid"),"-");
-            request.getSession().setAttribute("cart",newCart);
+            newCart=checkoutUtility.changeQuantity(request.getParameter("productid"),"-",cart);
+            request.getSession().setAttribute("cartProduct",newCart);
 
-            int newTotalPrice=checkoutUtility.totalPrice();
+            int newTotalPrice=checkoutUtility.totalPrice(cart);
+            request.getSession().setAttribute("totalPrice",newTotalPrice);
             response.getWriter().println(newTotalPrice);
 
-        }else if(action.equals("remove")){
+        }else if(action.equals("delete")){
+
+            newCart=checkoutUtility.removeFromCart(request.getParameter("productid"),cart);
+            request.getSession().setAttribute("cartProduct",newCart);
+
+            int newTotalPrice=checkoutUtility.totalPrice(cart);
+            request.getSession().setAttribute("totalPrice",newTotalPrice);
+            response.getWriter().println(newTotalPrice);
 
         }
+
         /*Alia Mahmoud*/
 
         /*Amer Salah*/
