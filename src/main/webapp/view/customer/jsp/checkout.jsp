@@ -75,11 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="shoecart shoecart2 cart cart box_1">
-                    <form action="#" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-                    </form>
+
                 </div>
             </div>
         </div>
@@ -98,6 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </form>
         </div>
     </div>
+
     <!-- //search -->
     <div class="clearfix"></div>
     <!-- /banner_inner -->
@@ -287,6 +284,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><a href="404.html">Services</a></li>
                             <li><a href="404.html">Short Codes</a></li>
                             <li><a href="contact.html">Contact</a></li>
+                            <li><a href="404.html">Edit profile</a></li>
+                            <li><a href="contact.html">Logout</a></li>
                         </ul>
                     </div>
 
