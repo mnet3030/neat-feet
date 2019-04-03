@@ -1,5 +1,6 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
+import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import org.hibernate.Session;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class ResultServlet extends HttpServlet {
     @Override
@@ -25,47 +27,52 @@ public class ResultServlet extends HttpServlet {
         List<Product> products = null;
         Integer noOfPages = null;
         Session session = (Session)getServletContext().getAttribute("session");
+        Integer pageNumber = null;
 
-        if(searchByCatString != null)
+
+        Map resultMap = null;
+        pageNumber = null;
+        if(pageNo != null) {
+            pageNumber = Integer.parseInt(pageNo);
+        }
+        else
         {
-            Map resultMap = null;
-            Integer pageNumber = null;
-            if(pageNo != null) {
-                pageNumber = Integer.parseInt(pageNo);
-            }
-            else
-            {
-                pageNumber = 1;
-            }
-            resultMap = resultDao.getProductsPageByCategory(session, searchByCatString, pageNumber, 9);
+            pageNumber = 1;
+        }
+
+        {
+            if(searchByCatString != null)
+                resultMap = resultDao.getProductsPageByCategory(session, searchByCatString, pageNumber, 9);
 
             products = (List<Product>) resultMap.get("entities");
             noOfPages = (int) resultMap.get("noOfPages");
+
+            Map<String, Object> categoryDetails = resultDao.getCategoryDetailsWithParentsAndChilds(session, UUID.fromString(searchByCatString));
+            request.setAttribute("categoryDetails", categoryDetails);
         }
         else if(searchString != null)
         {
-            Map resultMap = null;
-            Integer pageNumber = null;
-            if(pageNo != null) {
-                pageNumber = Integer.parseInt(pageNo);
-            }
-            else
-            {
-                pageNumber = 1;
-            }
-
             resultMap = resultDao.getProductsPageBySearchString(session, searchString, pageNumber, 9);
 
             products = (List<Product>) resultMap.get("entities");
             noOfPages = (int) resultMap.get("noOfPages");
+
+            List<Category> mainCategories = resultDao.getMainCategories(session);
+            request.setAttribute("mainCategories", mainCategories);
         }
-        if(products != null)
+        else
         {
-            request.setAttribute("products", products);
-            request.setAttribute("noOfPages", noOfPages);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/customer/jsp/result.jsp");
-            requestDispatcher.include(request, response);
+            List<Category> mainCategories = resultDao.getMainCategories(session);
+            request.setAttribute("mainCategories", mainCategories);
         }
+
+        request.setAttribute("products", products);
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("pageNo", pageNumber);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/customer/jsp/result.jsp");
+        requestDispatcher.include(request, response);
+
+
 
 
 
