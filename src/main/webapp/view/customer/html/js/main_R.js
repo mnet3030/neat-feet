@@ -1,8 +1,8 @@
-$(function(){
-	var dp1 = $('#dp1').datepicker().data('datepicker');
-	dp1.selectDate(new Date());
-	//var dp2 = $('#dp2').datepicker().data('datepicker');
-	// dp2.selectDate(new Date());
+$(function () {
+    var dp1 = $('#dp1').datepicker().data('datepicker');
+    dp1.selectDate(new Date());
+    //var dp2 = $('#dp2').datepicker().data('datepicker');
+    // dp2.selectDate(new Date());
 })
 //-----------------------------------------------
 
@@ -72,20 +72,20 @@ function validateMobile(mobile){
 //=====================================================================================================================================
 //=====================================================================================================================================
 
-function validatevalues(){
+function validatevalues() {
     "use strict";
 
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
 
-    $('.validate-form').on('submit',function(){
+    $('.validate-form').on('submit', function () {
         var check = true;
 
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
+        for (var i = 0; i < input.length; i++) {
+            if (validate(input[i]) == false) {
                 showValidate(input[i]);
-                check=false;
+                check = false;
             }
         }
 
@@ -93,36 +93,41 @@ function validatevalues(){
     });
 
 
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
+    $('.validate-form .input100').each(function () {
+        $(this).focus(function () {
+            hideValidate(this);
         });
     });
 
-    function validate (input) {
-        if($(input).attr('name') == 'email') {
-            var regex =/.*@.*(.com)$/;
-			if(regex.test($(input).val()) == false){
-				return false;
-			}
-        }else if($(input).attr('name') == 'phonenumber') {
-        	var regex =/^(01)(0|1|2)\d{8}$/;
-			if(regex.test($(input).val()) == false){
-				return false ;
-			}
-        }else if($(input).attr('type') == 'password' || $(input).attr('name') == 'password'){
-        	var confirmpassword = $("#passwordconfirm").val();
-        	console.log(confirmpassword);
-        	if($(input).val() != confirmpassword || $(input).val() ==""){
-        		return false ;
-        	}
-        }else if($(input).attr('name') == 'creditLimit'){
-        	if($(input).val() <0 || $(input).val() == "" ){
-        		return false ;
-        	}
-        }
-        else {
-            if($(input).val().trim() == ''){
+    function validate(input) {
+        if ($(input).attr('name') == 'email') {
+            var regex = /.*@.*(.com)$/;
+            if (regex.test($(input).val()) == false) {
+                return false;
+            }
+        } else if ($(input).attr('name') == 'phonenumber') {
+            var regex = /^(01)(0|1|2)\d{8}$/;
+            if (regex.test($(input).val()) == false) {
+                return false;
+            }
+        } else if ($(input).attr('type') == 'password' && $(input).attr('name') == 'password') {
+
+            if ($(input).val() == "") {
+                return false;
+            }
+        } else if ($(input).attr('type') == 'password' && $(input).attr('name') == 'passwordconfirm')  {
+            var confirmpassword = $("#password").val();
+            console.log(confirmpassword);
+            if ($(input).val() != confirmpassword || $(input).val() == "") {
+                return false;
+            }
+
+        } else if ($(input).attr('name') == 'creditLimit') {
+            if ($(input).val() < 0 || $(input).val() == "") {
+                return false;
+            }
+        } else {
+            if ($(input).val().trim() == '') {
                 return false;
             }
         }
@@ -139,7 +144,6 @@ function validatevalues(){
 
         $(thisAlert).removeClass('alert-validate');
     }
-    
-    
+
 
 }

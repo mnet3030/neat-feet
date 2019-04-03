@@ -20,6 +20,7 @@ public class RegistrationFilter extends HttpFilter {
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/
+        /*
         UserBean bean=new UserBean();
         try{
             BeanUtils.populate(bean, req.getParameterMap());
@@ -29,8 +30,9 @@ public class RegistrationFilter extends HttpFilter {
         }catch(Exception e)
         {
             e.printStackTrace();
-        }
+        }*/
 
+        chain.doFilter(req, res);
         /*Amer Salah*/
 
         /*Nouran Habib*/

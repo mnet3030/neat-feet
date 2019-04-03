@@ -40,9 +40,9 @@ public class ResultServlet extends HttpServlet {
             pageNumber = 1;
         }
 
+        if(searchByCatString != null)
         {
-            if(searchByCatString != null)
-                resultMap = resultDao.getProductsPageByCategory(session, searchByCatString, pageNumber, 9);
+            resultMap = resultDao.getProductsPageByCategory(session, searchByCatString, pageNumber, 9);
 
             products = (List<Product>) resultMap.get("entities");
             noOfPages = (int) resultMap.get("noOfPages");

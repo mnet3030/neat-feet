@@ -25,22 +25,7 @@ public class Registration extends  HttpServlet {
 
         /*Alia Mahmoud*/
 
-        //----------------------------------------------------------------------
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        //----------------------------------------------------------------------
-
-        CountryDAO dao = new CountryDAO(session);
-        List allCountries = dao.getAll();
-        //--------------------------------------------------------
-        request.setAttribute("allCountries" ,allCountries);
-        request.getServletContext()
-                .getRequestDispatcher("/view/customer/html/Registration.jsp")
-                .forward(request,response);
-
-        session.close();
-        sessionFactory.close();
+        loadCoutries(request,response);
 
         /*Amer Salah*/
 
@@ -56,10 +41,29 @@ public class Registration extends  HttpServlet {
 
         /*Alia Mahmoud*/
 
+        loadCoutries(request,response);
 
         /*Amer Salah*/
 
         /*Nouran Habib*/
 
+    }
+    private void loadCoutries(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        SessionFactory sessionFactory = new Configuration()
+                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        //----------------------------------------------------------------------
+
+        CountryDAO dao = new CountryDAO(session);
+        List allCountries = dao.getAll();
+        //--------------------------------------------------------
+        request.setAttribute("allCountries" ,allCountries);
+        request.getServletContext()
+                .getRequestDispatcher("/view/customer/html/Registration.jsp")
+                .forward(request,response);
+
+        session.close();
+        sessionFactory.close();
     }
 }

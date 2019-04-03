@@ -41,12 +41,13 @@ public class LoginServlet extends HttpServlet {
         //------------------------------------------------------------------
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
         UserDAO dao = new UserDAO(session);
         User user  = dao.athunticateUser(email,password);
         if(user != null){
             HttpSession userSession = request.getSession(true);
             userSession.setAttribute("user", user);
-            response.sendRedirect("home");
+            response.sendRedirect(request.getContextPath()+"/home");
         }
         else{
             request.setAttribute("mail",email);
@@ -54,7 +55,10 @@ public class LoginServlet extends HttpServlet {
             request.getServletContext()
                     .getRequestDispatcher("/view/customer/html/Login.jsp")
                     .forward(request,response);
+
         }
+        session.close();
+        sessionFactory.close();
 
         /*Amer Salah*/
 

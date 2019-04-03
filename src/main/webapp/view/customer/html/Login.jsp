@@ -29,7 +29,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('${pageContext.request.contextPath}/view/customer/html/images/shoeleg.jpg');">
 			<div class="wrap-login100 p-t-190 p-b-30">
-				<form class="login100-form validate-form" action="login" method="post">
+				<form class="login100-form validate-form" action= "${pageContext.request.contextPath}/login" method="post">
 					<c:if test="${invalid != null}">
 						<div id="errormsg">The email or password is incorrect</div>
 					</c:if>

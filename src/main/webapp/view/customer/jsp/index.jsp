@@ -170,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- tittle heading -->
 			<!-- //product left -->
 			<!-- product right -->
-			<div class="left-ads-display col-md-9" id="right">
+			<div class="left-ads-display col-md-12">
 				<div class="wrapper_top_shop">
 					<div class="clearfix"></div>
 					<!-- product-sec1 -->
@@ -221,7 +221,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<input type="hidden" name="add" value="1">
 													<input type="hidden" name="shoe_item" value="${product.description}">
 													<input type="hidden" name="amount" value="${product.price}">
-													<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+													<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)" ><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 													<a href="#" data-toggle="modal" data-target="#myModal1"></a>
 												</form>
 
@@ -439,7 +439,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/cartdemo.js"></script>
-
+    <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
 
 </body>
 

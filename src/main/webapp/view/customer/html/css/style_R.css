@@ -15,11 +15,13 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+
+
 body {
   font-family: "Poppins-Regular";
   font-size: 13px;
   margin: 0;
-  color: #999; }
+  color: red; }
 
 input, textarea, select {
   font-family: "Muli-Regular";
@@ -372,5 +374,10 @@ button {
   padding-left: 23px;
 }
 
-
+#errormsg{
+  width: 100%;
+  color: red;
+  font-size: 18px;
+  text-align: center;
+}
 /*------------------------------------------------------------------
