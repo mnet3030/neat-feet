@@ -33,6 +33,17 @@
 body, html {
 	height: 100%;
 	font-family: Montserrat-Regular, sans-serif;
+
+
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-family: 'Open Sans', sans-serif;
+  background-image: url('../images/loginBG.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 }
 
 /*---------------------------------------------*/
@@ -157,6 +168,8 @@ iframe {
 .limiter {
   width: 100%;
   margin: 0 auto;
+  margin-top: -150px;
+
 }
 
 .container-login100 {
@@ -188,11 +201,6 @@ iframe {
   height: 100%;
   top: 0;
   left: 0;
-  background: #005bea;
-  background: -webkit-linear-gradient(bottom, #005bea, #00c6fb);
-  background: -o-linear-gradient(bottom, #005bea, #00c6fb);
-  background: -moz-linear-gradient(bottom, #005bea, #00c6fb);
-  background: linear-gradient(bottom, #005bea, #00c6fb);
   opacity: 0.2;
 }
 
@@ -378,11 +386,11 @@ iframe {
   border-radius: 25px;
   top: 0;
   left: 0;
-  background: #005bea;
-  background: -webkit-linear-gradient(left, #005bea, #00c6fb);
-  background: -o-linear-gradient(left, #005bea, #00c6fb);
-  background: -moz-linear-gradient(left, #005bea, #00c6fb);
-  background: linear-gradient(left, #005bea, #00c6fb);
+  /*background: #005bea;*/
+  /*background: -webkit-linear-gradient(left, #005bea, #00c6fb);*/
+  /*background: -o-linear-gradient(left, #005bea, #00c6fb);*/
+  /*background: -moz-linear-gradient(left, #005bea, #00c6fb);*/
+  /*background: linear-gradient(left, #005bea, #00c6fb);*/
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
