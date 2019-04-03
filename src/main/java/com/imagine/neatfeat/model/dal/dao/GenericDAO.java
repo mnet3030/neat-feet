@@ -73,10 +73,30 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
     }
 
     @Override
-    public List<T> getPageByColumnNamesNotEq(Map<String, Object> columnsWithValues) {
+    public List<T> getByColumnNamesNotEq(Map<String, Object> columnsWithValues) {
         Criteria criteria = session.createCriteria(tClass);
         for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
-            criteria = criteria.add(Restrictions.not(Restrictions.ne(entry.getKey(), entry.getValue())));
+            criteria = criteria.add(Restrictions.not(Restrictions.eq(entry.getKey(), entry.getValue())));
+        }
+        List<T> neededEntities = criteria.list();
+        return neededEntities;
+    }
+
+    @Override
+    public List<T> getByColumnNamesWithNull(List<String> columnNames) {
+        Criteria criteria = session.createCriteria(tClass);
+        for (String column : columnNames) {
+            criteria = criteria.add(Restrictions.isNull(column));
+        }
+        List<T> neededEntities = criteria.list();
+        return neededEntities;
+    }
+
+    @Override
+    public List<T> getByColumnNamesWithNotNull(List<String> columnNames) {
+        Criteria criteria = session.createCriteria(tClass);
+        for (String column : columnNames) {
+            criteria = criteria.add(Restrictions.isNotNull(column));
         }
         List<T> neededEntities = criteria.list();
         return neededEntities;

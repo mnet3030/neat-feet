@@ -40,6 +40,9 @@ public class ResultServlet extends HttpServlet {
             pageNumber = 1;
         }
 
+        List<Category> mainCategories = resultDao.getMainCategories(session);
+        request.setAttribute("mainCategories", mainCategories);
+
         if(searchByCatString != null)
         {
             resultMap = resultDao.getProductsPageByCategory(session, searchByCatString, pageNumber, 9);
@@ -56,14 +59,6 @@ public class ResultServlet extends HttpServlet {
 
             products = (List<Product>) resultMap.get("entities");
             noOfPages = (int) resultMap.get("noOfPages");
-
-            List<Category> mainCategories = resultDao.getMainCategories(session);
-            request.setAttribute("mainCategories", mainCategories);
-        }
-        else
-        {
-            List<Category> mainCategories = resultDao.getMainCategories(session);
-            request.setAttribute("mainCategories", mainCategories);
         }
 
         request.setAttribute("products", products);

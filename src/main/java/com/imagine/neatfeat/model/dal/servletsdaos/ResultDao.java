@@ -53,10 +53,10 @@ public class ResultDao {
 
     public List<Category> getMainCategories(Session session){
         CategoryDAO categoryDAO = new CategoryDAO(session);
-        Map<String, Object> map = new HashMap<>();
-        map.put("category", null);
+        List<String> list = new ArrayList<>();
+        list.add("category");
 
-        List<Category> mainCategories = categoryDAO.getPageByColumnNamesNotEq(map);
+        List<Category> mainCategories = categoryDAO.getByColumnNamesWithNull(list);
         return mainCategories;
     }
 }

@@ -100,9 +100,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- /banner_inner -->
 	<div class="services-breadcrumb_w3ls_agileinfo">
 		<div class="inner_breadcrumb_agileits_w3">
-
 			<ul class="short">
 				<li><a href="index.jsp">Home</a></li>
+				<c:if test="${requestScope.mainCategories != null}">
+					<c:forEach items="${requestScope.mainCategories}" var="mainCategory">
+						<li>
+							<a href = "${pageContext.request.contextPath}${"/result?cat="}${mainCategory.id}">${mainCategory.description}</a>
+						</li>
+					</c:forEach>
+				</c:if>
 			</ul>
 		</div>
 	</div>
@@ -156,15 +162,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</li>
 						</c:forEach>
 
-					</ul>
-				</c:if>
-				<c:if test="${requestScope.mainCategories != null}">
-					<ul>
-						<c:forEach items="${requestScope.mainCategories}" var="mainCategory">
-							<li>
-								<a href = "${pageContext.request.contextPath}${"/result?cat="}${mainCategory.id}">&lt; ${mainCategory.description}</a>
-							</li>
-						</c:forEach>
 					</ul>
 				</c:if>
 			</div>
