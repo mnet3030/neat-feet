@@ -9,6 +9,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,6 +67,16 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         Criteria criteria = session.createCriteria(tClass);
         for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
             criteria = criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+        }
+        List<T> neededEntities = criteria.list();
+        return neededEntities;
+    }
+
+    @Override
+    public List<T> getPageByColumnNamesNotEq(Map<String, Object> columnsWithValues) {
+        Criteria criteria = session.createCriteria(tClass);
+        for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
+            criteria = criteria.add(Restrictions.not(Restrictions.ne(entry.getKey(), entry.getValue())));
         }
         List<T> neededEntities = criteria.list();
         return neededEntities;

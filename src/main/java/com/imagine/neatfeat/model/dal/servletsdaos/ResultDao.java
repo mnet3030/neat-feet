@@ -1,6 +1,8 @@
 package com.imagine.neatfeat.model.dal.servletsdaos;
 
+import com.imagine.neatfeat.model.dal.dao.CategoryDAO;
 import com.imagine.neatfeat.model.dal.dao.ProductDAO;
+import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import org.hibernate.Session;
 
@@ -30,5 +32,31 @@ public class ResultDao {
 
         Map resultMap = productDAO.getPageByColumnNames(columnsNamesValues, pageNumber, itemsPerPage);
         return resultMap;
+    }
+    public Map<String, Object> getCategoryDetailsWithParentsAndChilds(Session session, UUID currentUuid)
+    {
+
+        CategoryDAO categoryDAO = new CategoryDAO(session);
+        Category neededCategory = categoryDAO.getByPrimaryKey(currentUuid);
+        List<Category> ancestorCategories = categoryDAO.getAllAncestors(currentUuid);
+        Collections.reverse(ancestorCategories);
+        Set<Category> childCategories = neededCategory.getCategories();
+
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("neededCategory", neededCategory);
+        resultMap.put("ancestors", ancestorCategories);
+        resultMap.put("childs", childCategories);
+
+        return resultMap;
+    }
+
+    public List<Category> getMainCategories(Session session){
+        CategoryDAO categoryDAO = new CategoryDAO(session);
+        Map<String, Object> map = new HashMap<>();
+        map.put("category", null);
+
+        List<Category> mainCategories = categoryDAO.getPageByColumnNamesNotEq(map);
+        return mainCategories;
     }
 }
