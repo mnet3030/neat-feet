@@ -170,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- tittle heading -->
 			<!-- //product left -->
 			<!-- product right -->
-			<div class="left-ads-display col-md-9" id="right">
+			<div class="left-ads-display col-md-12">
 				<div class="wrapper_top_shop">
 					<div class="clearfix"></div>
 					<!-- product-sec1 -->
