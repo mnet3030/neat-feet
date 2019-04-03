@@ -25,16 +25,12 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
     @Override
     public void persist(T entity) {
-        session.beginTransaction();
         session.persist(entity);
-        session.getTransaction().commit();
     }
 
     @Override
     public T merge(T entity) {
-        session.beginTransaction();
         T returnedEntity = (T)session.merge(entity);
-        session.getTransaction().commit();
         return returnedEntity;
     }
 

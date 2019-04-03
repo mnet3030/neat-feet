@@ -1,8 +1,13 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
+import com.imagine.neatfeat.model.dal.dao.ProductDAO;
+import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
+import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.servletsdaos.CheckoutDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
+import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
 
 import javax.servlet.RequestDispatcher;
@@ -11,9 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class ResultServlet extends HttpServlet {
     @Override
@@ -66,10 +69,6 @@ public class ResultServlet extends HttpServlet {
         request.setAttribute("pageNo", pageNumber);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/customer/jsp/result.jsp");
         requestDispatcher.include(request, response);
-
-
-
-
 
         /*Amr El Kady*/
 
