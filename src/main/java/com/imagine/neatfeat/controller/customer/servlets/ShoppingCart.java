@@ -45,12 +45,26 @@ public class ShoppingCart extends HttpServlet {
         {
             if(cartProducts.get(i).getProduct().getId().equals(product.getId()))
             {
-                quantity = cartProducts.get(i).getQuantity()+1;
-                cartProducts.get(i).setQuantity(quantity);
-                HttpSession session = req.getSession();
-                session.setAttribute("cartProduct" , cartProducts);
-                found=true;
-                break;
+
+                if(cartProducts.get(i).getQuantity() >= product.getQuantity())
+                {
+                    cartProducts.get(i).setQuantity(product.getQuantity());
+                    HttpSession session = req.getSession();
+                    session.setAttribute("cartProduct" , cartProducts);
+                    found=true;
+                    break;
+                }
+
+                else
+                {
+                    quantity = cartProducts.get(i).getQuantity()+1;
+                    cartProducts.get(i).setQuantity(quantity);
+                    HttpSession session = req.getSession();
+                    session.setAttribute("cartProduct" , cartProducts);
+                    found=true;
+                    break;
+                }
+
 
             }
         }
