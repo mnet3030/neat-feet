@@ -65,6 +65,7 @@ public class ShoppingCart extends HttpServlet {
 
         //PrintWriter out = resp.getWriter();
 
+
         //for(int i =0 ;i <cartProducts.size() ; i++)
         //{
           //  System.out.println((cartProducts.get(i).getProduct().getDescription() +"    "+cartProducts.get(i).getQuantity()));
