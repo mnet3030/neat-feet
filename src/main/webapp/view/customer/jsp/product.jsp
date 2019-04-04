@@ -24,7 +24,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
+
+    <!-- number of item in cart  -->
+    <script type='text/javascript' >
+        var items = 0;
+    </script>
+
     <!-- //custom-theme -->
+    <link href="${pageContext.request.contextPath}/view/customer/html/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
+
     <link href="${pageContext.request.contextPath}/view/customer/html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/css/shop.css" type="text/css" media="screen" property="" />
     <link href="${pageContext.request.contextPath}/view/customer/html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
@@ -74,14 +82,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
 
             <!-- cart details -->
-            <div class=" top_nav_right ">
-                <div class="shoecart shoecart2 cart cart box_1 ">
-                    <form action="#" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class=" top_shoe_cart " type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down " aria-hidden="true"></i></button>
-                    </form>
+            <div class="top_nav_right">
+                <div class="shoecart shoecart2 cart cart box_1">
+                    <a href="checkout" class="notification">
+                        <form action="checkout" method="post" class="last">
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="display" value="1">
+                            <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                        </form>
+                        <span class="badge">0</span>
+                    </a>
                 </div>
+
             </div>
         </div>
     </div>
