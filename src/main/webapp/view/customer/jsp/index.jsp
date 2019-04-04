@@ -67,10 +67,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="result.jsp" class="active">Men</a></li>
 							<li><a href="result.jsp" class="active">Women</a></li>
 							<li><a href="result.jsp" class="active">Kids</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.html">About</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.html">Contact</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.html">Edit Profile</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.html">Logout</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">Edit Profile</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
 
 						</ul>
 					</nav>
@@ -99,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input type="hidden" name="display" value="1">
 							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 						</form>
-							<span class="badge">0</span>
+							<span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
 						</a>
 					</div>
 
@@ -324,10 +324,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h4>Our <span>Information</span> </h4>
 						<ul>
 							<li><a href="index.jsp">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.html">About</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/404.html">Services</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/404.html">Short Codes</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.html">Contact</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/404.jsp">Services</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/404.jsp">Short Codes</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
 						</ul>
 					</div>
 

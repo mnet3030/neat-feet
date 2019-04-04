@@ -3,6 +3,7 @@ package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.overDao.FasadProductDao;
+import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 
 import javax.servlet.ServletException;
@@ -40,6 +41,8 @@ public class ShoppingCart extends HttpServlet {
 
         product = productDao.getProductByID(productuuid);
 
+        updateCartSize(req,resp);
+
 
         for(int i=0 ; i<cartProducts.size() ; i++)
         {
@@ -51,6 +54,7 @@ public class ShoppingCart extends HttpServlet {
                     cartProducts.get(i).setQuantity(product.getQuantity());
                     HttpSession session = req.getSession();
                     session.setAttribute("cartProduct" , cartProducts);
+                    updateCartSize(req,resp);
                     found=true;
                     break;
                 }
@@ -61,6 +65,7 @@ public class ShoppingCart extends HttpServlet {
                     cartProducts.get(i).setQuantity(quantity);
                     HttpSession session = req.getSession();
                     session.setAttribute("cartProduct" , cartProducts);
+                    updateCartSize(req,resp);
                     found=true;
                     break;
                 }
@@ -75,15 +80,15 @@ public class ShoppingCart extends HttpServlet {
             cartProducts.add(new Item(product , 1));
             HttpSession session = req.getSession();
             session.setAttribute("cartProduct" , cartProducts);
+            updateCartSize(req,resp);
+
+
         }
 
-        //PrintWriter out = resp.getWriter();
+        PrintWriter out = resp.getWriter();
+        out.print(req.getSession().getAttribute("sizeCart"));
 
 
-        //for(int i =0 ;i <cartProducts.size() ; i++)
-        //{
-          //  System.out.println((cartProducts.get(i).getProduct().getDescription() +"    "+cartProducts.get(i).getQuantity()));
-        //}
 
     }
 
@@ -92,5 +97,14 @@ public class ShoppingCart extends HttpServlet {
 
         doGet(req , resp);
 
+    }
+
+    public int  updateCartSize(HttpServletRequest req, HttpServletResponse resp){
+
+        List<Item> cart= (List<Item>) req.getSession().getAttribute("cartProduct");
+        CheckoutUtility checkoutUtility=new CheckoutUtility();
+        int sizeCart=checkoutUtility.sizeCart(cart);
+        req.getSession().setAttribute("sizeCart",sizeCart);
+        return sizeCart;
     }
 }

@@ -5,10 +5,14 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
+
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="zxx">
 
 <head>
-	<title>Downy Shoes an Ecommerce Category Bootstrap Responsive Website Template | Contact :: w3layouts</title>
+	<title>Neat-Feet | About :: w3layouts</title>
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -24,10 +28,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<!-- //custom-theme -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/about.css" type="text/css" media="screen" property="" />
 	<link rel="stylesheet" href="css/shop.css" type="text/css" media="screen" property="" />
 	<link href="css/style7.css" rel="stylesheet" type="text/css" media="all" />
-	<!-- Owl-carousel-CSS -->
-	<link rel="stylesheet" type="text/css" href="css/contact.css">
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- font-awesome-icons -->
 	<link href="css/font-awesome.css" rel="stylesheet">
@@ -51,29 +54,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<nav>
 						<ul>
 							<li><a href="../jsp/index.jsp" class="active">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="404.html">Team</a></li>
+							<li><a href="about.jsp">About</a></li>
+							<li><a href="404.jsp">Team</a></li>
 							<li><a href="../jsp/result.jsp">Shop Now</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="contact.jsp">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
 				<div class="mobile-nav-button">
 					<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
 				</div>
+
 				<div class="w3l_login">
 					<a href="Login.html" data-toggle="Login.html" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
 				</div>
+				
 				<!-- cart details -->
-				<div class="top_nav_right">
-					<div class="shoecart shoecart2 cart cart box_1">
-						<form action="#" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
-							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</form>
-					</div>
-				</div>
+                <div class="top_nav_right">
+                    <div class="shoecart shoecart2 cart cart box_1">
+                        <a href="checkout" class="notification">
+                            <form action="checkout" method="post" class="last">
+                                <input type="hidden" name="cmd" value="_cart">
+                                <input type="hidden" name="display" value="1">
+                                <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                            </form>
+                            <span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
+                        </a>
+                    </div>
+
+                </div>
+
 			</div>
 		</div>
 		<!-- //cart details -->
@@ -98,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<ul class="short">
 					<li><a href="../jsp/index.jsp">Home</a><i>|</i></li>
-					<li>Contact</li>
+					<li>About</li>
 				</ul>
 			</div>
 		</div>
@@ -109,98 +119,139 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- top Products -->
 	<div class="ads-grid_shop">
 		<div class="shop_inner_inf">
-			<h3 class="head">Contact Us</h3>
+			<h3 class="head">About Us</h3>
 			<p class="head_para">Add Some Description</p>
 			<div class="inner_section_w3ls">
-				<div class="col-md-7 contact_grid_right">
-					<h6>Please fill this form to contact with us.</h6>
-					<form action="#" method="post">
-						<div class="col-md-6 col-sm-6 contact_left_grid">
-							<input type="text" name="Name" placeholder="Name" required="">
-							<input type="email" name="Email" placeholder="Email" required="">
-						</div>
-						<div class="col-md-6 col-sm-6 contact_left_grid">
-							<input type="text" name="Telephone" placeholder="Telephone" required="">
-							<input type="text" name="Subject" placeholder="Subject" required="">
-						</div>
-						<div class="clearfix"> </div>
-						<textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
-						<input type="submit" value="Submit">
-						<input type="reset" value="Clear">
-					</form>
+				<div class="col-md-6 news-left">
+					<img src="images/ab.jpg" alt=" " class="img-responsive">
 				</div>
-				<div class="col-md-5 contact-left">
-					<h6>Contact Info</h6>
-					<div class="visit">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-home" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Visit us</h4>
-							<p>Parma Via Modena,BO, Italy</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="mail-us">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-envelope" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Mail us</h4>
-							<p><a href="mailto:info@example.com">info@example.com</a></p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="call">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-phone" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Call us</h4>
-							<p>+18044261149</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="visit">
-						<div class="col-md-2 col-sm-2 col-xs-2 contact-icon">
-							<span class="fa fa-fax" aria-hidden="true"></span>
-						</div>
-						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
-							<h4>Fax</h4>
-							<p>+1804426349</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+				<div class="col-md-6 news-right">
+					<h4>Welcome to our Downy Shoes</h4>
+					<p class="sub_p">Etiam faucibus viverra libero vel efficitur. Ut semper nisl ut laoreet ultrices. Maecenas dictum arcu purus, sit amet
+						volutpat purus viverra sit amet. Quisque lacinia quam sed tortor interdum, malesuada congue nunc ornare. Cum sociis
+						In semper lorem eget tortor pulvinar ultricies.
+					</p>
+					<p>Etiam faucibus viverra libero vel efficitur. Ut semper nisl ut laoreet ultrices. Maecenas dictum arcu purus, sit amet
+						volutpat purus viverra sit amet. Quisque lacinia quam sed tortor interdum, malesuada congue nunc ornare. Cum sociis
+						. In semper lorem eget tortor pulvinar ultricies.
+					</p>
 				</div>
 				<div class="clearfix"> </div>
+			</div>
+		</div>
 
+	</div>
+	<div class="mid_services">
+		<div class="col-md-6 according_inner_grids">
+			<h3 class="heading two">Who We Are</h3>
+			<div class="according_info">
+				<div class="panel-group about_panel" id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingOne">
+							<h4 class="panel-title asd">
+								<a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+								    aria-controls="collapseOne">
+							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>assumenda est cliche voluptate
+							</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+							<div class="panel-body panel_text">
+								Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+								cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingTwo">
+							<h4 class="panel-title asd">
+								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+								    aria-controls="collapseTwo">
+							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>Itaque earum rerum
+							</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+							<div class="panel-body panel_text">
+								Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+								cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingThree">
+							<h4 class="panel-title asd">
+								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+								    aria-controls="collapseThree">
+							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>autem accusamus terry qui
+							</a>
+							</h4>
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+							<div class="panel-body panel_text">
+								Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+								cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingThree">
+							<h4 class="panel-title asd">
+								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+								    aria-controls="collapseThree">
+							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>autem accusamus terry qui
+							</a>
+							</h4>
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+							<div class="panel-body panel_text">
+								Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+								cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 
-			<div class="clearfix"></div>
+		</div>
+		<div class="col-md-6 mid_services_img">
+			<div class="bar-grids">
+				<h3 class="heading two three">Our Skills</h3>
+				<div class="skill_info">
+					<h6>Development<span> 95% </span></h6>
+					<div class="progress">
+						<div class="progress-bar progress-bar-striped active" style="width: 95%">
+						</div>
+					</div>
+					<h6>Pricing<span> 85% </span></h6>
+					<div class="progress">
+						<div class="progress-bar progress-bar-striped active" style="width: 85%">
+						</div>
+					</div>
+					<h6>Production <span>90% </span></h6>
+					<div class="progress">
+						<div class="progress-bar progress-bar-striped active" style="width: 90%">
+						</div>
+					</div>
+					<h6>Advertising <span>86% </span></h6>
+					<div class="progress prgs-last">
+						<div class="progress-bar progress-bar-striped active" style="width: 86%">
+						</div>
+					</div>
+				</div>
+			</div>
 
 		</div>
+		<div class="clearfix"> </div>
 	</div>
-	<div class="contact-map">
-
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100949.24429313939!2d-122.44206553967531!3d37.75102885910819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1472190196783"
-		    class="map" style="border:0" allowfullscreen=""></iframe>
-	</div>
+	<!-- /Properties -->
+	
+	<!--//banner -->
 
 	<!-- /newsletter-->
-	<div class="newsletter_w3layouts_agile">
-		<div class="col-sm-6 newsleft">
-			<h3>Sign up for Newsletter !</h3>
-		</div>
-		<div class="col-sm-6 newsright">
-			<form action="#" method="post">
-				<input type="email" placeholder="Enter your email..." name="email" required="">
-				<input type="submit" value="Submit">
-			</form>
-		</div>
-
-		<div class="clearfix"></div>
-	</div>
+	
 	<!-- //newsletter-->
+
 	<!-- footer -->
 	<div class="footer_agileinfo_w3">
 		<div class="footer_inner_info_w3ls_agileits">
@@ -240,10 +291,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h4>Our <span>Information</span> </h4>
 						<ul>
 							<li><a href="../jsp/index.jsp">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="404.html">Services</a></li>
-							<li><a href="404.html">Short Codes</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="about.jsp">About</a></li>
+							<li><a href="404.jsp">Services</a></li>
+							<li><a href="404.jsp">Short Codes</a></li>
+							<li><a href="contact.jsp">Contact</a></li>
 						</ul>
 					</div>
 
@@ -308,7 +359,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	</div>
 	<!-- //footer -->
-
+<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	<!-- js -->
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<!-- //js -->
@@ -333,6 +384,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="js/classie.js"></script>
 	<script src="js/demo1.js"></script>
 	<!-- //nav -->
+	<!-- cart-js -->
+	<script src="js/minicart.js"></script>
+	<script>
+		shoe.render();
+
+		shoe.cart.on('shoe_checkout', function (evt) {
+			var items, len, i;
+
+			if (this.subtotal() > 0) {
+				items = this.items();
+
+				for (i = 0, len = items.length; i < len; i++) {}
+			}
+		});
+	</script>
+	<!-- //cart-js -->
 	<!-- script for responsive tabs -->
 	<script src="js/easy-responsive-tabs.js"></script>
 	<script>

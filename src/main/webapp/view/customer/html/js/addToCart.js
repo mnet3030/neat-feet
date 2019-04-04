@@ -1,6 +1,4 @@
 
-
-$('.badge').text(parseInt(item));
 function addItemToCart(node)
 {
 
@@ -10,12 +8,12 @@ function addItemToCart(node)
     $.post('cart', {
         "productID" : productid
 
-    }, function() {
+    }, function(data,state) {
 
         //do something
 
-        $('.badge').text((parseInt($('.badge').text())+1));
-        items=(parseInt($('.badge').text())+1);
+        $('.badge').text(data);
+       // items=(parseInt($('.badge').text())+1);
 
     });
 
