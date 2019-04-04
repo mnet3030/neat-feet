@@ -52,6 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="logo">
 					<h1><a class="navbar-brand" href="index.jsp"><span>Neat</span> <i>Feet</i></a></h1>
 				</div>
+
 				<div class="overlay overlay-contentpush">
 					<button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
 
@@ -63,6 +64,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="result.jsp" class="active">Kids</a></li>
 							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.html">About</a></li>
 							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.html">Contact</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.html">Edit Profile</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.html">Logout</a></li>
+
 						</ul>
 					</nav>
 				</div>
@@ -81,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				
 				<!-- cart details -->
-				<!--
+
 				<div class="top_nav_right">
 					<div class="shoecart shoecart2 cart cart box_1">
 						<form action="#" method="post" class="last">
@@ -91,10 +95,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</form>
 					</div>
 
-				</div>-->
+				</div>
 				<!-- //cart details -->
 				<!-- search -->
-				<!--<div class="search_w3ls_agileinfo">
+				<div class="search_w3ls_agileinfo">
 					<div class="cd-main-header">
 						<ul class="cd-header-buttons">
 							<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
@@ -106,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</form>
 					</div>
 				</div> 
-			-->
+
 				<!-- //search -->
 
 				<div class="clearfix"></div>
@@ -176,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- tittle heading -->
 			<!-- //product left -->
 			<!-- product right -->
-			<div class="left-ads-display col-md-9" id="right">
+			<div class="left-ads-display col-md-12">
 				<div class="wrapper_top_shop">
 					<div class="clearfix"></div>
 					<!-- product-sec1 -->

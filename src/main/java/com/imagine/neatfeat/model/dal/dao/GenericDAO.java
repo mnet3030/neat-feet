@@ -9,6 +9,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,16 +25,12 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
     @Override
     public void persist(T entity) {
-        session.beginTransaction();
         session.persist(entity);
-        session.getTransaction().commit();
     }
 
     @Override
     public T merge(T entity) {
-        session.beginTransaction();
         T returnedEntity = (T)session.merge(entity);
-        session.getTransaction().commit();
         return returnedEntity;
     }
 
@@ -68,6 +65,36 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         Criteria criteria = session.createCriteria(tClass);
         for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
             criteria = criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+        }
+        List<T> neededEntities = criteria.list();
+        return neededEntities;
+    }
+
+    @Override
+    public List<T> getByColumnNamesNotEq(Map<String, Object> columnsWithValues) {
+        Criteria criteria = session.createCriteria(tClass);
+        for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
+            criteria = criteria.add(Restrictions.not(Restrictions.eq(entry.getKey(), entry.getValue())));
+        }
+        List<T> neededEntities = criteria.list();
+        return neededEntities;
+    }
+
+    @Override
+    public List<T> getByColumnNamesWithNull(List<String> columnNames) {
+        Criteria criteria = session.createCriteria(tClass);
+        for (String column : columnNames) {
+            criteria = criteria.add(Restrictions.isNull(column));
+        }
+        List<T> neededEntities = criteria.list();
+        return neededEntities;
+    }
+
+    @Override
+    public List<T> getByColumnNamesWithNotNull(List<String> columnNames) {
+        Criteria criteria = session.createCriteria(tClass);
+        for (String column : columnNames) {
+            criteria = criteria.add(Restrictions.isNotNull(column));
         }
         List<T> neededEntities = criteria.list();
         return neededEntities;

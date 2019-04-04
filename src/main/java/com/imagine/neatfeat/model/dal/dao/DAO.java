@@ -24,7 +24,10 @@ public interface DAO<T extends Entity> {
     public T getByPrimaryKey(Serializable primaryKey) throws SQLException;
     public List<T> getAll() throws SQLException;
     public List<T> getByColumnNames(Map<String, Object> columnsWithValues) throws SQLException;
+    public List<T> getByColumnNamesNotEq(Map<String, Object> columnsWithValues) throws SQLException;
     public List<T> getByColumnNamesWithLike(Map<String, Object> columnsWithValues) throws SQLException;
+    public List<T> getByColumnNamesWithNotNull(List<String> columnNames) throws SQLException;
+    public List<T> getByColumnNamesWithNull(List<String> columnNames) throws SQLException;
     public Map<String, Object> getAllPaged(int pageNumber, int itemsPerPage) throws SQLException;
     public Map<String, Object> getPageByColumnNames(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) throws SQLException;
     public Map<String, Object> getPageByColumnNamesWithLike(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) throws SQLException;
