@@ -303,6 +303,8 @@ p.sbmincart-empty-text {
 }
 .product-men {
     padding-left: 0;
+	/*Added by Mahmoud Shereif*/
+	margin: 0.55em 0;
 }
 /*-- Model-Slider --*/
 /*-- effect on products --*/
@@ -564,8 +566,8 @@ ul.stars li a:hover {
     color: #c4c4c4;
     letter-spacing: 1px;
 }
-
-.search-hotel form input[type="submit"] {
+/*Edited By Mahmoud Shereif*/
+.search-hotel input[type="submit"] {
     background: url(../images/search.png) no-repeat 7px 6px #151414;
     width: 44px;
     height: 39px;
@@ -657,10 +659,11 @@ input#amount1 {
     top: 38%;
     left: 12%;
 }
+/*Commented By Mahmoud Shereif*/
 /*-- //Slider range --*/
-.product-men.women_two {
+/*.product-men.women_two {
     margin: 1.1em 0;
-}
+}*/
 
 /*-- check input --*/
 

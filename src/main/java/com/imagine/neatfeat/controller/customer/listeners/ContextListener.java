@@ -16,7 +16,6 @@ public class ContextListener implements ServletContextListener {
         Session session = sessionFactory.openSession();
         sce.getServletContext().setAttribute("session", session);
 
-
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/

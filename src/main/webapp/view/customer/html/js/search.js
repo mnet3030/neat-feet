@@ -9,7 +9,7 @@ jQuery(document).ready(function($){
 
 	//mobile - open lateral menu clicking on the menu icon
 	$('.cd-nav-trigger').on('click', function(event){
-		event.preventDefault();
+		//event.preventDefault();
 		if( $('.cd-main-content').hasClass('nav-is-visible') ) {
 			closeNav();
 			$('.cd-overlay').removeClass('is-visible');
@@ -56,12 +56,27 @@ jQuery(document).ready(function($){
 	}
 
 	function toggleSearch(type) {
+		var page = $("html, body");
 		if(type=="close") {
 			//close serach 
 			$('.cd-search').removeClass('is-visible');
 			$('.cd-search-trigger').removeClass('search-is-visible');
 			$('.cd-overlay').removeClass('search-is-visible');
 		} else {
+
+			/*Added by Mahmoud Shereif*/
+
+			page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
+				page.stop();
+			});
+
+			page.animate({
+				scrollTop: 0
+			}, 1000, function(){
+				page.off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove")
+			});
+			/*Added by Mahmoud Shereif*/
+
 			//toggle search visibility
 			$('.cd-search').toggleClass('is-visible');
 			$('.cd-search-trigger').toggleClass('search-is-visible');

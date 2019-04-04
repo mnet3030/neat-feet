@@ -244,7 +244,9 @@ li.dropdown.act a.w3_icons_act {
 /*-- /search --*/
 
 .cd-header-buttons {
-    position: absolute;
+	/*Edited by Mahmoud Shereif*/
+    position: fixed;
+
     display: inline-block;
     top: 47px;
     right: 196px;
