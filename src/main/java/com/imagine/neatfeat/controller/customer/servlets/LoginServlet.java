@@ -22,6 +22,7 @@ public class LoginServlet extends HttpServlet {
 
         /*Alia Mahmoud*/
 
+        response.sendRedirect(request.getContextPath()+"/view/customer/html/Login.jsp");
         /*Amer Salah*/
 
         /*Nouran Habib*/
@@ -45,15 +46,18 @@ public class LoginServlet extends HttpServlet {
         UserDAO dao = new UserDAO(session);
         User user  = dao.athunticateUser(email,password);
         if(user != null){
+            String alia ="";
+            alia.equals("");
             HttpSession userSession = request.getSession(true);
             userSession.setAttribute("user", user);
+            userSession.setAttribute("loggedin","ture");
             response.sendRedirect(request.getContextPath()+"/home");
         }
         else{
             request.setAttribute("mail",email);
             request.setAttribute("invalid","invalid");
             request.getServletContext()
-                    .getRequestDispatcher("/view/customer/html/Login.jsp")
+                    .getRequestDispatcher(request.getContextPath()+"/view/customer/html/Login.jsp")
                     .forward(request,response);
 
         }

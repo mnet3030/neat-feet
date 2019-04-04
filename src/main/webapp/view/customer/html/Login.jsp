@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="text-center w-full">
-						<a class="txt1" href="Registration">
+						<a class="txt1" href="${pageContext.request.contextPath}/Registration">
 							Create new account
 							<i class="fa fa-long-arrow-right"></i>						
 						</a>
