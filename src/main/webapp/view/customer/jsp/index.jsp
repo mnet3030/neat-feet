@@ -29,7 +29,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			window.scrollTo(0, 1);
 		}
 	</script>
+
+	<script type='text/javascript' >
+		var items = 0;
+	</script>
 	<!-- //custom-theme -->
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="${pageContext.request.contextPath}/view/customer/html/css/nn.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="${pageContext.request.contextPath}/view/customer/html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/css/shop.css" type="text/css" media="screen" property="" />
@@ -75,18 +80,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				
 				<div class="w3l_login">
-					<a href="${pageContext.request.contextPath}/view/customer/html/Login.html" data-toggle="Login.html" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+					<c:if test="${loggedin != null}">
+						<a href="${pageContext.request.contextPath}/showProfile" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+					</c:if>
+					<c:if test="${loggedin == null}">
+						<a href="${pageContext.request.contextPath}/view/customer/html/Login.jsp" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+					</c:if>
+
 				</div>
 				
 				<!-- cart details -->
 
 				<div class="top_nav_right">
 					<div class="shoecart shoecart2 cart cart box_1">
-						<form action="#" method="post" class="last">
+						<a href="checkout" class="notification">
+						<form action="checkout" method="post" class="last">
 							<input type="hidden" name="cmd" value="_cart">
 							<input type="hidden" name="display" value="1">
 							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 						</form>
+							<span class="badge">0</span>
+						</a>
 					</div>
 
 				</div>
@@ -185,7 +199,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- start of product -->
 						<c:forEach items="${sessionScope.allProducts}" var="product" >
 
-						<div class="col-md-4 product-men">
+						<div class="col-md-4 product-men" style="margin-top: 35px;">
 							<div class="product-shoe-info shoe">
 								<div class="men-pro-item">
 									<div class="men-thumb-item">

@@ -1114,7 +1114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				scrollTop: $(this.hash).offset().top
 			}, 1000);
 		});
-		<c:if test="${requestScope.noOfPages != null && requestScope.noOfPages > 1}">
+		<c:if test="${requestScope.noOfPages != null && requestScope.noOfPages > 0}">
 		$('#pagination-container').pagination({
 			pages:${requestScope.noOfPages},
 			displayedPages:8,

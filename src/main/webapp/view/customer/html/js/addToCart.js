@@ -1,5 +1,6 @@
 
 
+$('.badge').text(parseInt(item));
 function addItemToCart(node)
 {
 
@@ -12,6 +13,9 @@ function addItemToCart(node)
     }, function() {
 
         //do something
+
+        $('.badge').text((parseInt($('.badge').text())+1));
+        items=(parseInt($('.badge').text())+1);
 
     });
 

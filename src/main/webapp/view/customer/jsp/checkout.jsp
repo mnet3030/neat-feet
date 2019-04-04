@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-    <title>Downy Shoes an Ecommerce Category Bootstrap Responsive Website Template | Check Out :: w3layouts</title>
+    <title>Neat-Feet | Check Out </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -191,7 +191,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="col-md-8 address_form">
                     <h4>Add a new Details</h4>
-                    <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+                    <form action="checkout?action=buy" method="post" class="creditly-card-form agileinfo_form">
                         <section class="creditly-wrapper wrapper">
                             <div class="information-wrapper">
                                 <div class="first-row form-group">
@@ -220,7 +220,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
 
                                 </div>
-                                <BR><button class="submit check_out">Delivery to this Address</button>
+                                <BR><button type="submit" class="submit check_out">Delivery to this Address</button>
                             </div>
                         </section>
                     </form>
