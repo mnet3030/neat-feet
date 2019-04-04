@@ -60,6 +60,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="result.jspx" class="active">Kids</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/html/about.html">About</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.html">Contact</a></li>
+                        <li><a href="404.html">Edit profile</a></li>
+                        <li><a href="contact.html">Logout</a></li>
                     </ul>
                 </nav>
                 <!-- //menu -->
