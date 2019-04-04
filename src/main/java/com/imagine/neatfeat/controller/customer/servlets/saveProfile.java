@@ -2,7 +2,6 @@ package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.Convertors.UserConvertor;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
-import com.imagine.neatfeat.model.dal.entity.Country;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
 import org.apache.commons.beanutils.BeanUtils;
@@ -10,18 +9,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import javax.servlet.Registration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 
 @MultipartConfig
-public class RegisterServlet extends HttpServlet {
+public class saveProfile  extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*Mahmoud Shereif*/
@@ -44,9 +41,9 @@ public class RegisterServlet extends HttpServlet {
 
         /*Alia Mahmoud*/
 
-        UserBean bean=new UserBean();
+        UserBean userDataBean=new UserBean();
         try{
-            BeanUtils.populate(bean, request.getParameterMap());
+            BeanUtils.populate(userDataBean, request.getParameterMap());
         }catch(Exception e)
         {
             e.printStackTrace();
@@ -56,30 +53,29 @@ public class RegisterServlet extends HttpServlet {
                 .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
         Session session = sessionFactory.openSession();
         //----------------------------------------------------------------------
-        User user = UserConvertor.covertUserBeanToUser(bean);
-        //----------------------------------------------------------------------
+        HttpSession userSession = request.getSession(true);
+        User user = (User)userSession.getAttribute("user");
+        //-----------------------------------------------------------------------
         UserDAO dao = new UserDAO(session);
-        User checkUser = dao.getUserByEmail(user.getEmail());
-        if(checkUser==null){
-            User addedUser = dao.merge(user);
-            //--------------------------------------------
-            request.setAttribute("user" , addedUser);
-            request.getServletContext()
-                    .getRequestDispatcher("/getimageurl")
-                    .include(request,response);
-            //----------------------------------------------
-            addedUser = (User)request.getAttribute("user");
-            dao.update(addedUser);
-            response.sendRedirect( request.getContextPath() + "/view/customer/html/Login.jsp");
-        }else {
-            request.setAttribute("alreadyRegistered","true");
-            request.setAttribute("bean",bean);
-            request.getServletContext()
-                    .getRequestDispatcher("/Registration")
-                    .include(request,response);
-        }
+        //-----------------------------------------------------------------------
+
+        user.setName(userDataBean.getName());
+        user.setCreditLimit(userDataBean.getCreditLimit());
+        user.setPhone(userDataBean.getPhone());
+        user.setAddress(userDataBean.getAddress());
+        user.setJob(userDataBean.getJob());
+        //----------------------------------------------------------------------
+        request.setAttribute("user" , user);
+        request.getServletContext()
+                .getRequestDispatcher("/getimageurl")
+                .include(request,response);
+        //----------------------------------------------
+        user = (User)request.getAttribute("user");
+        dao.update(user);
+        //-----------------------------------------------------------------------
         session.close();
         sessionFactory.close();
+        response.sendRedirect(request.getContextPath()+"/showProfile");
         /*Amer Salah*/
 
         /*Nouran Habib*/

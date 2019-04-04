@@ -6,10 +6,7 @@ import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.*;
 import java.util.UUID;
 
@@ -22,6 +19,7 @@ public class ImageSaving extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //--------get the image part ----------------------------------
         final Part imagePart = req.getPart("image");
+
         //-----------get user to get user ID --------------------------
         //--------to be used as image name-----------------------------
         User user = (User) req.getAttribute("user");
@@ -29,8 +27,9 @@ public class ImageSaving extends HttpServlet {
         String userID = userUUID.toString() ;
         String imageName = "user" + userID + ".jpg";
         //---------define path where images will be saved--------------
+
         String appPath = req.getServletContext().getRealPath("");
-        String savePath =appPath+ File.separator + "UsersImages";
+        String savePath =appPath+File.separator+"NewUserIamges";
         //--------------------------------------------------------------
         OutputStream out = null;
         InputStream imageContent = null;
@@ -39,7 +38,7 @@ public class ImageSaving extends HttpServlet {
             if (!imageSaveDirectory.exists()) {
                 imageSaveDirectory.mkdir();
             }
-            out = new FileOutputStream(new File(savePath + File.separator
+            out = new FileOutputStream(new File(savePath +File.separator
                     + imageName));
             imageContent = imagePart.getInputStream();
             int read = 0;
@@ -47,7 +46,8 @@ public class ImageSaving extends HttpServlet {
             while ((read = imageContent.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
             }
-            user.setPhotoUrl(File.separator + "UsersImages"+File.separator+imageName);
+            user.setPhotoUrl(imageName);
+            req.setAttribute("user",user);
         } catch (FileNotFoundException fne) {
             fne.printStackTrace();
         } finally {

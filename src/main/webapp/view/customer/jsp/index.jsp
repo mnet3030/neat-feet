@@ -80,7 +80,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				
 				<div class="w3l_login">
-					<a href="${pageContext.request.contextPath}/view/customer/html/Login.html" data-toggle="Login.html" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+					<c:if test="${loggedin != null}">
+						<a href="${pageContext.request.contextPath}/showProfile" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+					</c:if>
+					<c:if test="${loggedin == null}">
+						<a href="${pageContext.request.contextPath}/view/customer/html/Login.jsp" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+					</c:if>
+
 				</div>
 				
 				<!-- cart details -->
