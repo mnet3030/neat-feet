@@ -81,7 +81,7 @@
 	<div class="wrapper_top_w3layouts">
 		<div class="header_agileits">
 			<div class="logo inner_page_log">
-				<h1><a class="navbar-brand" href="${pageContext.request.contextPath}/view/customer/jsp/index.jsp"><span>Neat</span> <i>Feet</i></a></h1>
+				<h1><a class="navbar-brand" href="href="${pageContext.request.contextPath}/home"><span>Neat</span> <i>Feet</i></a></h1>
 			</div>
 
 			<div class="overlay overlay-contentpush">
@@ -89,12 +89,15 @@
 
 				<nav>
 					<ul>
-						<li><a href="index.html" class="active">Home</a></li>
-						<li><a href="shop.html" class="active">Men</a></li>
-						<li><a href="shop.html" class="active">Women</a></li>
-						<li><a href="shop.html" class="active">Kids</a></li>
-						<li><a href="about.jsp">About</a></li>
-						<li><a href="contact.jsp">Contact</a></li>
+						<li><a href="${pageContext.request.contextPath}/home" class="active">Home</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Men</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Women</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Kids</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">Edit Profile</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
+
 					</ul>
 				</nav>
 			</div>
@@ -142,7 +145,7 @@
 		<div class="inner_breadcrumb_agileits_w3">
 
 			<ul class="short">
-				<li><a href="${pageContext.request.contextPath}/view/customer/jsp/index.jsp"></a><i></i></li>
+				<li><a href="href="${pageContext.request.contextPath}/home""></a><i></i></li>
 				<li></li>
 			</ul>
 		</div>

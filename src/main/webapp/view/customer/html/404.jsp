@@ -43,18 +43,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="wrapper_top_w3layouts">
 			<div class="header_agileits">
 				<div class="logo inner_page_log">
-					<h1><a class="navbar-brand" href="../jsp/index.jsp"><span>Neat</span> <i>Feet</i></a></h1>
+					<h1><a class="navbar-brand" href="${pageContext.request.contextPath}/home"><span>Neat</span> <i>Feet</i></a></h1>
 				</div>
 				<div class="overlay overlay-contentpush">
 					<button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
 
 					<nav>
 						<ul>
-							<li><a href="../jsp/index.jsp" class="active">Home</a></li>
-							<li><a href="about.jsp">About</a></li>
-							<li><a href="404.jsp">Team</a></li>
-							<li><a href="../jsp/result.jsp">Shop Now</a></li>
-							<li><a href="contact.jsp">Contact</a></li>
+							<li><a href="${pageContext.request.contextPath}/home" class="active">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Men</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Women</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Kids</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">Edit Profile</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
+
 						</ul>
 					</nav>
 				</div>
@@ -101,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="inner_breadcrumb_agileits_w3">
 
 				<ul class="short">
-					<li><a href="../jsp/index.jsp">Home</a><i>|</i></li>
+					<li><a href="${pageContext.request.contextPath}/home">Home</a><i>|</i></li>
 					<li>Contact</li>
 				</ul>
 			</div>
@@ -142,7 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</li>
 
 				</ul>
-				<a class="b-home" href="../jsp/index.jsp">Back to Home</a>
+				<a class="b-home" href="${pageContext.request.contextPath}/home">Back to Home</a>
 			</div>
 		</div>
 	</div>
@@ -184,7 +188,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col-md-4 sign-gd">
 						<h4>Our <span>Information</span> </h4>
 						<ul>
-							<li><a href="../jsp/index.jsp">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
 							<li><a href="about.jsp">About</a></li>
 							<li><a href="404.jsp">Services</a></li>
 							<li><a href="404.jsp">Short Codes</a></li>

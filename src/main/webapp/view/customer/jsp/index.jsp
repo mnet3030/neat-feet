@@ -14,7 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-	<title>Downy Shoes an Ecommerce Category Bootstrap Responsive Website Template | Home :: w3layouts</title>
+	<title>Neat - Feet | Home :: w3layouts</title>
 	<!-- custom-theme -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class="header_agileits">
 				<div class="logo">
-					<h1><a class="navbar-brand" href="index.jsp"><span>Neat</span> <i>Feet</i></a></h1>
+					<h1><a class="navbar-brand" href="${pageContext.request.contextPath}/home"><span>Neat</span> <i>Feet</i></a></h1>
 				</div>
 
 				<div class="overlay overlay-contentpush">
@@ -63,10 +63,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<nav>
 						<ul>
-							<li><a href="index.jsp" class="active">Home</a></li>
-							<li><a href="result.jsp" class="active">Men</a></li>
-							<li><a href="result.jsp" class="active">Women</a></li>
-							<li><a href="result.jsp" class="active">Kids</a></li>
+							<li><a href="${pageContext.request.contextPath}/home" class="active">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Men</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Women</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Kids</a></li>
 							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
 							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
 							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">Edit Profile</a></li>
