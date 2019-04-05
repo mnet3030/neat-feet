@@ -68,16 +68,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- cart details -->
 			<!--Commented By Mahmoud Shereif*/-->
-			<!--
+			<!-- edit by Amr Elkady -->
+
 			<div class="top_nav_right">
 				<div class="shoecart shoecart2 cart cart box_1">
-					<form action="#" method="post" class="last">
-						<input type="hidden" name="cmd" value="_cart">
-						<input type="hidden" name="display" value="1">
-						<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form>
+					<a href="checkout" class="notification">
+						<form action="checkout" method="post" class="last">
+							<input type="hidden" name="cmd" value="_cart">
+							<input type="hidden" name="display" value="1">
+							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+						</form>
+						<span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
+					</a>
 				</div>
-			</div>-->
+
+			</div>
+
 		</div>
 	</div>
 	<!-- //cart details -->

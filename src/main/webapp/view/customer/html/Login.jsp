@@ -93,8 +93,8 @@
 						<li><a href="shop.html" class="active">Men</a></li>
 						<li><a href="shop.html" class="active">Women</a></li>
 						<li><a href="shop.html" class="active">Kids</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="about.jsp">About</a></li>
+						<li><a href="contact.jsp">Contact</a></li>
 					</ul>
 				</nav>
 			</div>

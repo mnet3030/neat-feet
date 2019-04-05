@@ -1,7 +1,9 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.entity.Product;
+import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utility.ProductUtility;
+import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,6 +34,18 @@ public class HomeServlet extends HttpServlet {
         //allProduct.forEach();
         Collections.shuffle(allProduct,new Random());
         request.getSession().setAttribute("allProducts",allProduct);
+
+
+        List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
+        CheckoutUtility checkoutUtility=new CheckoutUtility();
+
+        if(cart != null) {
+            int sizeCart = checkoutUtility.sizeCart(cart);
+            request.getSession().setAttribute("sizeCart", sizeCart);
+        }else{
+            request.getSession().setAttribute("sizeCart", 0);
+        }
+
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/index.jsp");
         dispatcher.forward(request, response);

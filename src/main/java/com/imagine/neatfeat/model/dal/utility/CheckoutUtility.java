@@ -14,6 +14,7 @@ public class CheckoutUtility {
     /*Amr El Kady*/
 
     int total;
+    int cartSize=0;
     public List<Item> changeQuantity(String uuid,String op,List<Item> myCart){
         UUID id=UUID.fromString(uuid);
         //System.out.println("here>>>>>>>>>>>>>>");
@@ -61,6 +62,15 @@ public class CheckoutUtility {
         }
         //System.out.println(total);
         return total;
+
+    }
+
+    public int sizeCart(List<Item> cart){
+        cartSize=0;
+        if(cart != null) {
+            cart.forEach(item -> cartSize += item.getQuantity());
+        }
+        return cartSize;
 
     }
 
