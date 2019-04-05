@@ -4,8 +4,10 @@ author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -24,15 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
-
-    <!-- number of item in cart  -->
-    <script type='text/javascript' >
-        var items = 0;
-    </script>
-
     <!-- //custom-theme -->
-    <link href="${pageContext.request.contextPath}/view/customer/html/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
-
     <link href="${pageContext.request.contextPath}/view/customer/html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/css/shop.css" type="text/css" media="screen" property="" />
     <link href="${pageContext.request.contextPath}/view/customer/html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
@@ -55,50 +49,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="wrapper_top_w3layouts">
         <div class="header_agileits">
             <div class="logo inner_page_log">
-                <h1><a class="navbar-brand" href="index.jspx"><span>Neat</span> <i>Feet</i></a></h1>
+                <h1><a class="navbar-brand" href="index.html"><span>Neat</span> <i>Feat</i></a></h1>
             </div>
             <div class="overlay overlay-contentpush">
                 <button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
-                <!-- menu -->
+
                 <nav>
                     <ul>
-                        <li><a href="index.jspx" class="active">Home</a></li>
-                        <li><a href="result.jspx" class="active">Men</a></li>
-                        <li><a href="result.jspx" class="active">Women</a></li>
-                        <li><a href="result.jspx" class="active">Kids</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.html">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.html">Contact</a></li>
-                        <li><a href="404.html">Edit profile</a></li>
-                        <li><a href="contact.html">Logout</a></li>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="404.html">Team</a></li>
+                        <li><a href="shop.html">Shop Now</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
-                <!-- //menu -->
             </div>
             <div class="mobile-nav-button">
                 <button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
             </div>
-            <div class="w3l_login">
-                <a href="#" data-toggle="Login.html" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-            </div>
-
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="shoecart shoecart2 cart cart box_1">
-                    <a href="checkout" class="notification">
-                        <form action="checkout" method="post" class="last">
-                            <input type="hidden" name="cmd" value="_cart">
-                            <input type="hidden" name="display" value="1">
-                            <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-                        </form>
-                        <span class="badge">0</span>
-                    </a>
+                    <form action="#" method="post" class="last">
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="display" value="1">
+                        <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                    </form>
                 </div>
-
             </div>
         </div>
     </div>
     <!-- //cart details -->
-
     <!-- search -->
     <div class="search_w3ls_agileinfo">
         <div class="cd-main-header">
@@ -113,16 +94,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!-- //search -->
-
-
     <div class="clearfix"></div>
     <!-- /banner_inner -->
     <div class="services-breadcrumb_w3ls_agileinfo">
         <div class="inner_breadcrumb_agileits_w3">
 
             <ul class="short">
-                <li><a href="index.jspx">Home</a><i>|</i></li>
-                <li>Single</li>
+                <li><a href="index.html">Home</a><i>|</i></li>
+                <c:if test="${requestScope.mainCategories != null}">
+                    <c:forEach items="${requestScope.mainCategories}" var="mainCategory">
+                        <li>
+                            <a href = "${pageContext.request.contextPath}/result?cat=${mainCategory.id}">${mainCategory.description}</a><i>|</i>
+                        </li>
+                    </c:forEach>
+                </c:if>
+                <!--<li>Single</li>-->
             </ul>
         </div>
     </div>
@@ -130,8 +116,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 
 <!-- //banner -->
-
-
 <!-- top Products -->
 <div class="ads-grid_shop">
     <div class="shop_inner_inf">
@@ -140,14 +124,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="flexslider">
 
                     <ul class="slides">
-                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/d2.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d2.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/d1.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d1.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/d3.jpg">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d3.jpg" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -155,55 +139,73 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
         <div class="col-md-8 single-right-left simpleCart_shelfItem">
-            <h3 class="product_name"><c:out value="${product.description}"/></h3>
-            <p><span class="item_price"><c:out value="${product.price}"/></span>
-                <del>$1,199</del>
+            <h3>${product.description}</h3>
+            <p><span class="item_price">EGP${product.price}</span>
+                <del>EGP1,199</del>
             </p>
 
-            <div class="description">
-                <div class="responsive_tabs">
-                    <div id="horizontalTab">
-                        <ul class="resp-tabs-list">
-                            <li>Description</li>
-                        </ul>
-                        <div class="resp-tabs-container">
-                            <!--/tab_one-->
-                            <div class="tab1">
+            <!--Added By Mahmoud Shereif-->
+            <p>${product.shortLinedDescription}</p>
 
-                                <div class="single_page">
-                                    <h6>description here </h6>
-                                    <p><c:out value="${product.detailedDescription}"/></p>
-                                </div>
-                            </div>
-                            <!--//tab_one-->
-                        </div>
-                    </div>
-                </div>
+
+            <div class="rating1">
+                <ul class="stars">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+
+            <!--Commented By Mahmoud Shereif*/-->
+            <!--
+            <div class="description">
+                <h5>Check delivery, payment options and charges at your location</h5>
+                <form action="#" method="post">
+                    <input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}"
+                           required="">
+                    <input type="submit" value="Check">
+                </form>
             </div>
             <div class="color-quality">
                 <div class="color-quality-right">
                     <h5>Quality :</h5>
-                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect q_test">
-                        <c:forEach begin="1" end="${product.quantity}" var="i">
-                        <option value="null">${i} Qty</option>
-                        </c:forEach>
+                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
+                        <option value="null">5 Qty</option>
+                        <option value="null">6 Qty</option>
+                        <option value="null">7 Qty</option>
+                        <option value="null">10 Qty</option>
                     </select>
                 </div>
-            </div><br>
+            </div>
+            <div class="occasional">
+                <h5>Types :</h5>
+                <div class="colr ert">
+                    <label class="radio"><input type="radio" name="radio" checked=""><i></i>Casual Shoes</label>
+                </div>
+                <div class="colr">
+                    <label class="radio"><input type="radio" name="radio"><i></i>Sneakers </label>
+                </div>
+                <div class="colr">
+                    <label class="radio"><input type="radio" name="radio"><i></i>Formal Shoes</label>
+                </div>
+                <div class="clearfix"> </div>
+            </div>-->
+
+
 
             <div class="occasion-cart">
                 <div class="shoe single-item single_page_b">
                     <form action="#" method="post">
                         <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="productid" value="${product.id}">
                         <input type="hidden" name="add" value="1">
-                        <input type="hidden" name="shoe_item" value="${product.description}">
-                        <input type="hidden" name="amount" value="${product.price}">
-                        <input type="submit" name="submit" value="Add to cart" class="button add" onclick="addItemToCart(this)">
+                        <input type="hidden" name="shoe_item" value="Chikku Loafers">
+                        <input type="hidden" name="amount" value="405.00">
+                        <input type="submit" name="submit" value="Add to cart" class="button add">
 
                         <a href="#" data-toggle="modal" data-target="#myModal1"></a>
                     </form>
-
 
                 </div>
 
@@ -239,46 +241,179 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="clearfix"> </div>
         <!--/tabs-->
+        <div class="responsive_tabs">
+            <div id="horizontalTab">
+                <ul class="resp-tabs-list">
+                    <li>Description</li>
+                    <li>Reviews</li>
+                    <li>Information</li>
+                </ul>
+                <div class="resp-tabs-container">
+                    <!--/tab_one-->
+                    <div class="tab1">
 
+                        <div class="single_page">
+
+                            <p>${product.detailedDescription}</p>
+                            <!--Commented By Mahmoud Shereif*/-->
+                            <!--<h6>Lorem ipsum dolor sit amet</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
+                                blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
+                                magna aliqua.</p>
+                            <p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
+                                blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
+                                magna aliqua.</p>-->
+                        </div>
+                    </div>
+                    <!--//tab_one-->
+                    <div class="tab2">
+
+                        <div class="single_page">
+                            <div class="bootstrap-tab-text-grids">
+                                <div class="bootstrap-tab-text-grid">
+                                    <div class="bootstrap-tab-text-grid-left">
+                                        <img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive">
+                                    </div>
+                                    <div class="bootstrap-tab-text-grid-right">
+                                        <ul>
+                                            <li><a href="#">Admin</a></li>
+                                            <li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</a></li>
+                                        </ul>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget.Ut enim ad minima veniam,
+                                            quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
+                                            autem vel eum iure reprehenderit.</p>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="add-review">
+                                    <h4>add a review</h4>
+                                    <form action="#" method="post">
+                                        <input type="text" name="Name" required="Name">
+                                        <input type="email" name="Email" required="Email">
+                                        <textarea name="Message" required=""></textarea>
+                                        <input type="submit" value="SEND">
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab3">
+
+                        <div class="single_page">
+                            <h6>Shoe Rock Vision(SRV) Sneakers (Blue)</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
+                                blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
+                                magna aliqua.</p>
+                            <p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
+                                blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
+                                magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--//tabs-->
         <!-- /new_arrivals -->
         <div class="new_arrivals">
             <h3>Featured Products</h3>
             <!-- /womens -->
-            <c:forEach begin="1" end="4" var="product" items="${sessionScope.allProducts}" >
-            <div class="col-md-3 product-men women_two">
+            <c:if test="${requestScope.allProducts != null}">
+                <c:forEach begin="1" end="4" var="product" items="${requestScope.allProducts}" >
+                    <div class="col-md-3 product-men">
+                        <div class="product-shoe-info shoe">
+                            <div class="men-pro-item">
+                                <div class="men-thumb-item">
+                                    <img src="${pageContext.request.contextPath}/view/customer/html/images/s4.jpg" alt="">
+                                    <div class="men-cart-pro">
+                                        <div class="inner-men-cart-pro">
+                                            <a href="product?id=${product.id}" class="link-product-add-cart">Quick View</a>
+                                        </div>
+                                    </div>
+                                    <span class="product-new-top">New</span>
+                                </div>
+                                <div class="item-info-product">
+                                    <h4>
+                                        <a href="product?id=${product.id}">${product.description}</a>
+                                    </h4>
+                                    <div class="info-product-price">
+                                        <div class="grid_meta">
+                                            <div class="product_price">
+                                                <div class="grid-price ">
+                                                    <span class="money ">EGP${product.price}</span>
+                                                </div>
+                                            </div>
+                                            <ul class="stars">
+                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="shoe single-item hvr-outline-out">
+                                            <form action="#" method="post">
+                                                <input type="hidden" name="cmd" value="_cart">
+                                                <input type="hidden" name="add" value="1">
+                                                <input type="hidden" name="shoe_item" value="Shuberry Heels">
+                                                <input type="hidden" name="amount" value="575.00">
+                                                <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+
+                                                <a href="#" data-toggle="modal" data-target="#myModal1"></a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </c:if>
+
+            <!--Commented By Mahmoud Shereif-->
+            <!--<div class="col-md-3 product-men women_two">
                 <div class="product-shoe-info shoe">
                     <div class="men-pro-item">
                         <div class="men-thumb-item">
-                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s4.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s5.jpg" alt="">
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
-                                    <a href="product?productid=${product.id}" class="link-product-add-cart">Quick View</a>
+                                    <a href="single.html" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
                             <span class="product-new-top">New</span>
                         </div>
                         <div class="item-info-product">
                             <h4>
-                                <a href="product?productid=${product.id}"><c:out value="${product.description}" /> </a>
+                                <a href="single.html">Red Bellies </a>
                             </h4>
                             <div class="info-product-price">
                                 <div class="grid_meta">
                                     <div class="product_price">
                                         <div class="grid-price ">
-                                            <span class="money "><c:out value="${product.price} EGP" /></span>
+                                            <span class="money ">$325.00</span>
                                         </div>
                                     </div>
-
+                                    <ul class="stars">
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                    </ul>
                                 </div>
                                 <div class="shoe single-item hvr-outline-out">
                                     <form action="#" method="post">
                                         <input type="hidden" name="cmd" value="_cart">
-                                        <input type="hidden" name="productID" value="${product.id}">
                                         <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="shoe_item" value="${product.description}">
-                                        <input type="hidden" name="amount" value="${product.price}">
-                                        <button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="shoe_item" value="Red Bellies">
+                                        <input type="hidden" name="amount" value="325.00">
+                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
                                         <a href="#" data-toggle="modal" data-target="#myModal1"></a>
                                     </form>
@@ -290,8 +425,104 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
             </div>
+            <div class="col-md-3 product-men women_two">
+                <div class="product-shoe-info shoe">
+                    <div class="men-pro-item">
+                        <div class="men-thumb-item">
+                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s7.jpg" alt="">
+                            <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
+                                    <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                </div>
+                            </div>
+                            <span class="product-new-top">New</span>
+                        </div>
+                        <div class="item-info-product">
+                            <h4>
+                                <a href="single.html">Running Shoes</a>
+                            </h4>
+                            <div class="info-product-price">
+                                <div class="grid_meta">
+                                    <div class="product_price">
+                                        <div class="grid-price ">
+                                            <span class="money ">$875.00</span>
+                                        </div>
+                                    </div>
+                                    <ul class="stars">
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="shoe single-item hvr-outline-out">
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="cmd" value="_cart">
+                                        <input type="hidden" name="add" value="1">
+                                        <input type="hidden" name="shoe_item" value="Running Shoes">
+                                        <input type="hidden" name="amount" value="875.00">
+                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
-            </c:forEach>
+                                        <a href="#" data-toggle="modal" data-target="#myModal1"></a>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 product-men women_two">
+                <div class="product-shoe-info shoe">
+                    <div class="men-pro-item">
+                        <div class="men-thumb-item">
+                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s8.jpg" alt="">
+                            <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
+                                    <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                </div>
+                            </div>
+                            <span class="product-new-top">New</span>
+                        </div>
+                        <div class="item-info-product">
+                            <h4>
+                                <a href="single.html">Sukun Casuals</a>
+                            </h4>
+                            <div class="info-product-price">
+                                <div class="grid_meta">
+                                    <div class="product_price">
+                                        <div class="grid-price ">
+                                            <span class="money ">$505.00</span>
+                                        </div>
+                                    </div>
+                                    <ul class="stars">
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="shoe single-item hvr-outline-out">
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="cmd" value="_cart">
+                                        <input type="hidden" name="add" value="1">
+                                        <input type="hidden" name="shoe_item" value="Sukun Casuals">
+                                        <input type="hidden" name="amount" value="505.00">
+                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+
+                                        <a href="#" data-toggle="modal" data-target="#myModal1"></a>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
 
             <!-- //womens -->
             <div class="clearfix"></div>
@@ -302,17 +533,124 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!-- //top products -->
+<div class="mid_slider_w3lsagile">
+    <div class="col-md-3 mid_slider_text">
+        <h5>Some More Shoes</h5>
+    </div>
+    <div class="col-md-9 mid_slider_info">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+                <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g3.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item active">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g5.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g6.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g3.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g3.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/view/customer/html/images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="fa fa-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            <!-- The Modal -->
 
+        </div>
+    </div>
+
+    <div class="clearfix"> </div>
+</div>
 <!-- /newsletter-->
 
+<!--Commented By Mahmoud Shereif*/-->
+<!--<div class="newsletter_w3layouts_agile">
+    <div class="col-sm-6 newsleft">
+        <h3>Sign up for Newsletter !</h3>
+    </div>
+    <div class="col-sm-6 newsright">
+        <form action="#" method="post">
+            <input type="email" placeholder="Enter your email..." name="email" required="">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="clearfix"></div>
+</div>-->
+
+
 <!-- //newsletter-->
-
-
 <!-- footer -->
 <div class="footer_agileinfo_w3">
     <div class="footer_inner_info_w3ls_agileits">
         <div class="col-md-3 footer-left">
-            <h2><a href="index.jspx"><span>N</span>eat Feet </a></h2>
+            <h2><a href="index.html"><span>N</span>eat Feat </a></h2>
             <p>Lorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
             <ul class="social-nav model-3d-0 footer-social social two">
                 <li>
@@ -346,11 +684,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-4 sign-gd">
                     <h4>Our <span>Information</span> </h4>
                     <ul>
-                        <li><a href="index.jspx">Home</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.html">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/404.html">Services</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/404.html">Short Codes</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.html">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="404.html">Services</a></li>
+                        <li><a href="404.html">Short Codes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
 
@@ -394,15 +732,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 sign-gd flickr-post">
                     <h4>Flickr <span>Posts</span></h4>
                     <ul>
-                        <li><a href="product.jsp"><img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="product.jsp"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="product.jsp"><img src="${pageContext.request.contextPath}/view/customer/html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="product.jsp"><img src="${pageContext.request.contextPath}/view/customer/html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="product.jsp"><img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="product.jsp"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="product.jsp"><img src="${pageContext.request.contextPath}/view/customer/html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="product.jsp"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                        <li><a href="product.jsp"><img src="${pageContext.request.contextPath}/view/customer/html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                        <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -498,7 +836,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- //end-smoth-scrolling -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
 
 
 </body>
