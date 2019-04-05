@@ -1,5 +1,5 @@
 package com.imagine.neatfeat.model.dal.entity;
-// Generated Apr 3, 2019 4:51:42 PM by Hibernate Tools 4.3.1
+// Generated Apr 5, 2019 12:34:23 PM by Hibernate Tools 4.3.1
 
 
 import org.hibernate.annotations.GenericGenerator;
@@ -16,6 +16,7 @@ import javax.persistence.Entity;
 @Entity
 @Table(name="order_products"
         ,catalog="\"e-commerce\""
+        ,uniqueConstraints = @UniqueConstraint(columnNames={"user_orders_id", "product_id"})
 )
 public class OrderProducts  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
