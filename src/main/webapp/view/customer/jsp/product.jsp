@@ -12,7 +12,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-    <title>Downy Shoes an Ecommerce Category Bootstrap Responsive Website Template | Single :: w3layouts</title>
+    <title>Neat - Feet | Product </title>
+    <link href="${pageContext.request.contextPath}/view/customer/html/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -70,12 +72,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- cart details -->
             <div class="top_nav_right">
                 <div class="shoecart shoecart2 cart cart box_1">
-                    <form action="#" method="post" class="last">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="display" value="1">
-                        <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-                    </form>
+                    <a href="checkout" class="notification">
+                        <form action="checkout" method="post" class="last">
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="display" value="1">
+                            <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                        </form>
+                        <span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
+                    </a>
                 </div>
+
             </div>
         </div>
     </div>
