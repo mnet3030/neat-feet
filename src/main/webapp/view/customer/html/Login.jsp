@@ -5,24 +5,24 @@
 	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/view/customer/html/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/vendor/animate/animate.css">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/util.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/main.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 
 
 
@@ -77,7 +77,7 @@
 </head>
 <body  style="background-image: url('${pageContext.request.contextPath}/view/customer/html/images/loginBG.jpg');">
 
-<div class="XXbanner_top XXinnerpage" id="home">
+ <div class="XXbanner_top XXinnerpage" id="home">
 	<div class="wrapper_top_w3layouts">
 		<div class="header_agileits">
 			<div class="logo inner_page_log">
@@ -124,20 +124,20 @@
 	</div>
 	<!-- //cart details -->
 	<!-- search -->
-    <!--
-	<div class="search_w3ls_agileinfo">
-		<div class="cd-main-header">
-			<ul class="cd-header-buttons">
-				<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-			</ul>
-		</div>
-		<div id="cd-search" class="cd-search">
-			<form action="#" method="post">
-				<input name="Search" type="search" placeholder="Click enter after typing...">
-			</form>
-		</div>
-	</div>
-	-->
+	<!--
+    <div class="search_w3ls_agileinfo">
+        <div class="cd-main-header">
+            <ul class="cd-header-buttons">
+                <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+            </ul>
+        </div>
+        <div id="cd-search" class="cd-search">
+            <form action="#" method="post">
+                <input name="Search" type="search" placeholder="Click enter after typing...">
+            </form>
+        </div>
+    </div>
+    -->
 	<!-- //search -->
 	<div class="clearfix"></div>
 	<!-- /banner_inner -->
@@ -154,57 +154,57 @@
 </div>
 
 
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-t-190 p-b-30">
-				<form class="login100-form validate-form" action= "${pageContext.request.contextPath}/login" method="post">
+
+<div class="limiter">
+	<div class="container-login100">
+		<div class="wrap-login100 p-t-190 p-b-30">
+			<form class="login100-form validate-form" action= "${pageContext.request.contextPath}/login" method="post">
+				<c:if test="${invalid != null}">
+					<div id="errormsg">The email or password is incorrect</div>
+				</c:if>
+				<div class="wrap-input100 validate-input m-b-10" data-validate = "Email is invalid">
+					<input class="input100" type="text" name="email" placeholder="Email"
 					<c:if test="${invalid != null}">
-						<div id="errormsg">The email or password is incorrect</div>
+						   value="${mail}"
 					</c:if>
-					<div class="wrap-input100 validate-input m-b-10" data-validate = "Email is invalid">
-						<input class="input100" type="text" name="email" placeholder="Email"
-						<c:if test="${invalid != null}">
-							value="${mail}"
-						</c:if>
-						>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
+					>
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
 							<i class="fa fa-user"></i>
 						</span>
-					</div>
+				</div>
 
-					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder="Password">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
+				<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+					<input class="input100" type="password" name="password" placeholder="Password">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
 						</span>
-					</div>
+				</div>
 
-					<div class="container-login100-form-btn p-t-10">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
+				<div class="container-login100-form-btn p-t-10">
+					<button class="login100-form-btn">
+						Login
+					</button>
+				</div>
 
-					<div class="text-center w-full p-t-25 p-b-230">
-						<a href="#" class="txt1">
-							Forgot Username / Password?
-						</a>
-                        <br><br>
-                        <a class="txt1" href="Registration">
-                            Create new account
-                            <i class="fa fa-long-arrow-right"></i>
-                        </a>
-					</div>
+				<div class="text-center w-full p-t-25 p-b-230">
+					<a href="#" class="txt1">
+						Forgot Username / Password?
+					</a>
+					<br><br>
+					<a class="txt1" href="Registration">
+						Create new account
+						<i class="fa fa-long-arrow-right"></i>
+					</a>
+				</div>
 
-					<div class="text-center w-full">
-					</div>
-				</form>
-			</div>
+				<div class="text-center w-full">
+				</div>
+			</form>
 		</div>
 	</div>
+</div>
 
 
 
@@ -240,18 +240,18 @@
 <!-- //nav -->
 <!--search-bar-->
 <script src="${pageContext.request.contextPath}/view/customer/html/js/search.js"></script>
-	
 
-	
-<!--===============================================================================================-->	
-	<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/jquery/jquery-3.2.1.min.js"></script>
+
+
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/bootstrap/js/popper.js"></script>
-	<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/select2/select2.min.js"></script>
+<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/bootstrap/js/popper.js"></script>
+<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="${pageContext.request.contextPath}/view/customer/html/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="${pageContext.request.contextPath}/view/customer/html/js/main.js"></script>
 
 </body>
 </html>

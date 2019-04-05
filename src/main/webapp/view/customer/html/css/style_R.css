@@ -21,7 +21,15 @@ body {
   font-family: "Poppins-Regular";
   font-size: 13px;
   margin: 0;
-  color: red; }
+  color: red;
+  background-image: url("../images/regBG.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  height: 100% !important;
+  width: 100% !important;
+
+
+}
 
 input, textarea, select {
   font-family: "Muli-Regular";
@@ -47,7 +55,6 @@ a {
 .wrapper {
   min-height: 140vh;
   position: relative;
-  background: url("../images/shoeleg.jpg") no-repeat right center;
   background-size: cover; }
 
 .inner {
