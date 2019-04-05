@@ -7,6 +7,7 @@ import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.servletsdaos.CheckoutDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
+import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
 
@@ -62,6 +63,16 @@ public class ResultServlet extends HttpServlet {
 
             products = (List<Product>) resultMap.get("entities");
             noOfPages = (int) resultMap.get("noOfPages");
+        }
+
+        List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
+        CheckoutUtility checkoutUtility=new CheckoutUtility();
+
+        if(cart != null) {
+            int sizeCart = checkoutUtility.sizeCart(cart);
+            request.getSession().setAttribute("sizeCart", sizeCart);
+        }else{
+            request.getSession().setAttribute("sizeCart", 0);
         }
 
         request.setAttribute("products", products);

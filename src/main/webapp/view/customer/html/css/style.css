@@ -243,16 +243,63 @@ li.dropdown.act a.w3_icons_act {
 /*-- //menu --*/
 /*-- /search --*/
 
-.cd-header-buttons {
-	/*Edited by Mahmoud Shereif*/
+/*Commented by Mahmoud Shereif*/
+/*.cd-header-buttons {
     position: fixed;
 
     display: inline-block;
     top: 47px;
     right: 196px;
     z-index: 99;
+}*/
+
+/*Added by Mahmoud Shereif*/
+.cd-header-buttons1 {
+	position: fixed;
+
+	display: inline-block;
+	top: 47px;
+	right: 196px;
+	z-index: 99;
 }
-.cd-header-buttons li {
+
+/*Added by Mahmoud Shereif*/
+.cd-header-buttons2 {
+	position: fixed;
+
+	display: inline-block;
+	top: 47px;
+	right: 153px;
+	z-index: 99;
+}
+
+/*Added by Mahmoud Shereif*/
+.cd-header-buttons3 {
+	position: fixed;
+
+	display: inline-block;
+	top: 47px;
+	right: 110px;
+	z-index: 99;
+}
+
+/*Added by Mahmoud Shereif*/
+.cd-header-buttons4 {
+	position: absolute;
+
+	display: inline-block;
+	top: 47px;
+	right: 67px;
+	z-index: 99;
+}
+
+/*Commented by Mahmoud Shereif*/
+/*.cd-header-buttons li {
+	display: inline-block;
+}*/
+
+/*Added by Mahmoud Shereif*/
+.cd-header-buttons1 li, .cd-header-buttons2 li, .cd-header-buttons3 li, .cd-header-buttons4 li {
 	display: inline-block;
 }
 
@@ -851,19 +898,21 @@ li.dropdown.act a.w3_icons_act {
 .shop-button.two a {
     background: #fb383b;
 }
+/*Edited by Mahmoud Shereif*/
 button.top_shoe_cart {
-    font-size: 1.2em;
-    color: #fff;
-    border: none;
-    text-align: center;
-    background: none;
-    width: 36px;
-    height: 36px;
-    background: rgba(27, 25, 25, 0.27);
-    border: 1px solid rgba(27, 25, 25, 0.27);
-    position: fixed;
+	font-size: 1.2em;
+	color: #fff;
+	border: none;
+	text-align: center;
+	background: none;
+	width: 36px;
+	height: 36px;
+	background: rgba(27, 25, 25, 0.27);
+	border: 1px solid rgba(27, 25, 25, 0.27);
+	position: relative;
 
 }
+
 .shop_inner_inf {
     width: 90%;
     margin: 0 auto;
@@ -1352,21 +1401,75 @@ p.head_para {
         padding: 7em 5em;
         height: 380px;
     }
-    .cd-header-buttons {
+	/*Commented by Mahmoud Shereif*/
+    /*.cd-header-buttons {
         top: 47px;
         right: 173px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 47px;
+		right: 173px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 47px;
+		right: 130px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 47px;
+		right: 87px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 47px;
+		right: 44px;
+	}
 }
 @media(max-width:1600px){
     .style-image-1_info {
         padding: 7em 5em;
         height: 400px;
     }
-    .cd-header-buttons {
-        top: 47px;
-        right: 171px;
 
-    }
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
+        top: 47px;
+        right: 173px;
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 47px;
+		right: 173px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 47px;
+		right: 128px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 47px;
+		right: 85px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 47px;
+		right: 42px;
+	}
+
+
+
+
     .top_nav_right {
         right: 0%;
     } 
@@ -1378,10 +1481,38 @@ p.head_para {
     }
 }
 @media(max-width:1599px){
-    .cd-header-buttons {
+
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
         top: 47px;
         right: 172px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 47px;
+		right: 172px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 47px;
+		right: 127px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 47px;
+		right: 84px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 47px;
+		right: 41px;
+	}
+
     .top_nav_right {
         right: -1%;
     }
@@ -1416,10 +1547,39 @@ p.head_para {
         right: 1%;
         margin-top: 48px;
     }
-    .cd-header-buttons {
+	/*Commented by Mahmoud Shereif*/
+    /*.cd-header-buttons {
         top: 47px;
         right: 158px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 47px;
+		right: 158px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 47px;
+		right: 115px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 47px;
+		right: 72px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 47px;
+		right: 29px;
+	}
+
+
+
+
     .banner-info-wthree    p {
        font-size: 1.1em;
     }
@@ -1443,10 +1603,37 @@ p.head_para {
         padding: 5em 5em;
         height: 340px;
     }
-    .cd-header-buttons {
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
         top: 47px;
         right: 146px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 47px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 47px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 47px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 47px;
+		right: 17px;
+	}
+
     .mid_slider_text h5 {
         font-size: 19px;
         margin-top: 117px;
@@ -1459,10 +1646,38 @@ p.head_para {
     }
 }
 @media(max-width:1080px){
-	.cd-header-buttons {
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
         top: 47px;
         right: 129px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 47px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 47px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 47px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 47px;
+		right: 17px;
+	}
+
+
     .top_nav_right {
         right: 2.5%;
         margin-top: 48px;
@@ -1562,10 +1777,38 @@ p.head_para {
     .style-grid-2-text_info h3 {
         font-size: 23px;
     }
-    .cd-header-buttons {
+
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
         top: 47px;
         right: 124px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 47px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 47px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 47px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 47px;
+		right: 17px;
+	}
+
     .banner-info-wthree    h3 {
         font-size: 7em;
     }
@@ -1624,10 +1867,36 @@ p.head_para {
         right:4.5%;
         margin-top: 48px;
     }
-    .cd-header-buttons {
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
         top: 47px;
         right: 112px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 47px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 47px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 47px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 47px;
+		right: 17px;
+	}
+
     .banner-top, .banner-top1, .banner-top2, .banner-top3 {
         min-height: 564px;
     }
@@ -1711,10 +1980,38 @@ p.head_para {
         right: 8%;
         margin-top: 48px;
     }
-    .cd-header-buttons {
+
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
         top: 47px;
         right: 106px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 47px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 47px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 47px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 47px;
+		right: 17px;
+	}
+
     .banner-top, .banner-top1, .banner-top2, .banner-top3 {
         min-height: 515px;
     }
@@ -1784,12 +2081,40 @@ p.head_para {
     }
     .mobile-nav-button {
         margin: 24px 0 0 0;
-        right: 3%;
+		/*Edited by Mahmoud Shereif*/
+        right: 12%;
     }
-    .cd-header-buttons {
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
         top: 24px;
         right: 61px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 24px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 24px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 24px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 24px;
+		right: 17px;
+	}
+
     .top_nav_right {
         right: 5.5%;
         margin-top: 25px;
@@ -1886,10 +2211,36 @@ p.head_para {
         right: 8.5%;
         margin-top: 25px;
     }
-    .cd-header-buttons {
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
         top: 24px;
         right: 57px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 24px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 24px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 24px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 24px;
+		right: 17px;
+	}
     .banner-top, .banner-top1, .banner-top2, .banner-top3 {
         min-height: 410px;
     }
@@ -1980,9 +2331,41 @@ p.head_para {
         top: 18px;
         right: 57px;
     }
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
+        top: 18px;
+        right: 57px;
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 18px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 18px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 18px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 18px;
+		right: 17px;
+	}
+
     .mobile-nav-button {
         margin: 18px 0 0 0;
-        right: 3%;
+		/*Edited by Mahmoud Shereif*/
+        right: 15%;
     }
     ul.top_icons {
         left: 38%;
@@ -2025,10 +2408,38 @@ p.head_para {
     }
 }
 @media(max-width:384px){
-	.cd-header-buttons {
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
         top: 18px;
         right: 51px;
-    }
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 18px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 18px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 18px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 18px;
+		right: 17px;
+	}
+
+
     .banner-top, .banner-top1, .banner-top2, .banner-top3 {
         min-height: 370px;
     }
@@ -2163,8 +2574,40 @@ p.head_para {
         top: 18px;
         right: 47px;
     }
-    .newsright input[type="email"] {
-        width: 62%;
+
+	/*Commented by Mahmoud Shereif*/
+	/*.cd-header-buttons {
+        top: 18px;
+        right: 47px;
+    }*/
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons1 {
+		top: 18px;
+		right: 146px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons2 {
+		top: 18px;
+		right: 103px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons3 {
+		top: 18px;
+		right: 60px;
+	}
+
+	/*Added by Mahmoud Shereif*/
+	.cd-header-buttons4 {
+		top: 18px;
+		right: 17px;
+	}
+
+
+	.newsright input[type="email"] {
+		width: 62%;
         letter-spacing: 1px;
     }
     #staplesbmincart .sbmincart-subtotal {
