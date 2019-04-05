@@ -1,10 +1,13 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
+import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.overDao.FasadProductDao;
+import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utility.ProductUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
+import org.hibernate.Session;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,11 +49,15 @@ public class ProductServlet extends HttpServlet {
 
             request.setAttribute("product", product);
 
+            List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
+            CheckoutUtility checkoutUtility=new CheckoutUtility();
 
-       List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
-        CheckoutUtility checkoutUtility=new CheckoutUtility();
-        int sizeCart=checkoutUtility.sizeCart(cart);
-        request.getSession().setAttribute("sizeCart",sizeCart);
+            if(cart != null) {
+                int sizeCart = checkoutUtility.sizeCart(cart);
+                request.getSession().setAttribute("sizeCart", sizeCart);
+            }else{
+                request.getSession().setAttribute("sizeCart", 0);
+            }
 
             List<Product> allProduct=productUtility.getAll();
             //allProduct.forEach();
@@ -59,6 +66,11 @@ public class ProductServlet extends HttpServlet {
 
 
         }
+        Session session = (Session)getServletContext().getAttribute("session");
+        ResultDao resultDao = new ResultDao();
+        List<Category> mainCategories = resultDao.getMainCategories(session);
+        request.setAttribute("mainCategories", mainCategories);
+
         RequestDispatcher rd = request.getRequestDispatcher("/view/customer/jsp/product.jsp");
         rd.forward(request, response);
 

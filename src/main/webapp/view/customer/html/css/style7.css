@@ -23,7 +23,7 @@
     color: #fb1100;
     border: 1px solid #dcddde;
 }
-
+/*Edited By Mahmoud Shereif*/
 button#trigger-overlay {
     outline: none;
     border: none;
@@ -32,6 +32,11 @@ button#trigger-overlay {
     color: #fbfdfb;
     font-size: 1.65em;
     padding: 0 8px;
+	height: 36px;
+	width: 36px;
+	background: rgba(27, 25, 25, 0.27);
+	/*border: 1px solid rgba(27, 25, 25, 0.27);*/
+
 }
 
 

@@ -69,43 +69,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</nav>
 			</div>
-			<div class="mobile-nav-button">
-				<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
-			</div>
 			<!-- cart details -->
-			<!--Commented By Mahmoud Shereif*/-->
-			<!-- edit by Amr Elkady -->
 
-			<div class="top_nav_right">
-				<div class="shoecart shoecart2 cart cart box_1">
-					<a href="checkout" class="notification">
-						<form action="checkout" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
+			<div class="search_w3ls_agileinfo">
+				<div class="cd-main-header">
+					<ul class="cd-header-buttons1">
+						<a href="checkout" class="notification">
 							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</form>
-						<span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
-					</a>
+							<span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
+						</a>
+					</ul>
 				</div>
+			</div>
 
+
+			<div class="search_w3ls_agileinfo">
+				<div class="cd-main-header">
+					<ul class="cd-header-buttons2">
+						<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+					</ul>
+				</div>
+				<div id="cd-search" class="cd-search">
+					<form action="#" method="post">
+						<input name="Search" type="search" placeholder="Click enter after typing...">
+					</form>
+				</div>
+			</div>
+
+			<div class="search_w3ls_agileinfo">
+				<div class="cd-main-header">
+					<ul class="cd-header-buttons3">
+						<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+					</ul>
+				</div>
+			</div>
+
+			<div class="search_w3ls_agileinfo">
+				<div class="cd-main-header">
+					<ul class="cd-header-buttons4">
+
+						<c:if test="${loggedin != null}">
+							<a href="${pageContext.request.contextPath}/showProfile">
+								<button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+							</a>
+						</c:if>
+						<c:if test="${loggedin == null}">
+							<a href="${pageContext.request.contextPath}/view/customer/html/Login.jsp">
+								<button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+							</a>
+						</c:if>
+					</ul>
+				</div>
 			</div>
 
 		</div>
 	</div>
 	<!-- //cart details -->
 	<!-- search -->
-	<div class="search_w3ls_agileinfo">
-		<div class="cd-main-header">
-			<ul class="cd-header-buttons">
-				<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-			</ul>
-		</div>
-		<div id="cd-search" class="cd-search">
-			<!--<form action="#" method="post">-->
-			<input name="Search" type="search" id="search" placeholder="Click enter after typing...">
-			<!--</form>-->
-		</div>
-	</div>
 	<!-- //search -->
 	<div class="clearfix"></div>
 	<!-- /banner_inner -->
