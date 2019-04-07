@@ -66,32 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </nav>
             </div>
-            <!-- cart details -->
-            <div class="search_w3ls_agileinfo">
-                <div class="cd-main-header">
-                    <ul class="cd-header-buttons1">
-                        <a href="checkout" class="notification">
-                            <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-                            <span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-
-
-            <div class="search_w3ls_agileinfo">
-                <div class="cd-main-header">
-                    <ul class="cd-header-buttons2">
-                        <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-                    </ul>
-                </div>
-                <div id="cd-search" class="cd-search">
-                    <form action="#" method="post">
-                        <input name="Search" type="search" placeholder="Click enter after typing...">
-                    </form>
-                </div>
-            </div>
-
+            <!--Added By Mahmoud Shereif*/-->
             <div class="search_w3ls_agileinfo">
                 <div class="cd-main-header">
                     <ul class="cd-header-buttons3">
@@ -117,11 +92,76 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </div>
             </div>
+            <!-- cart details -->
+
+            <div class="search_w3ls_agileinfo">
+                <div class="cd-main-header">
+                    <ul class="cd-header-buttons1">
+                        <a href="checkout" class="notification">
+                            <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                            <span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+
+            <!--Commented By Mahmoud Shereif*/-->
+            <!--<div class="top_nav_right">
+                <div class="shoecart shoecart2 cart cart box_1">
+                    <a href="checkout" class="notification">
+                        <form action="checkout" method="post" class="last">
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="display" value="1">
+                            <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                        </form>
+                        <span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
+                    </a>
+                </div>
+
+            </div>-->
         </div>
     </div>
     <!-- //cart details -->
+
     <!-- search -->
 
+    <div class="search_w3ls_agileinfo">
+        <div class="cd-main-header">
+            <ul class="cd-header-buttons2">
+                <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+            </ul>
+        </div>
+        <form action="#" method="post" id="main-search-form">
+            <div id="cd-search" class="cd-search">
+                <input name="search" type="text" id="search" placeholder="Click enter after typing..." required>
+                <button type="submit" style="visibility: hidden" id="mainSearchBtn"/>
+            </div>
+        </form>
+    </div>
+    <!--<div class="search_w3ls_agileinfo">
+        <div class="cd-main-header">
+            <ul class="cd-header-buttons2">
+                <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+            </ul>
+        </div>
+        <div id="cd-search" class="cd-search">
+                <input name="Search" type="search" id="search" placeholder="Click enter after typing...">
+        </div>
+    </div>-->
+
+    <!--Commented By Mahmoud Shereif*/-->
+    <!--<div class="search_w3ls_agileinfo">
+        <div class="cd-main-header">
+            <ul class="cd-header-buttons">
+                <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+            </ul>
+        </div>
+        <div id="cd-search" class="cd-search">
+            <form action="#" method="post">
+                <input name="Search" type="search" placeholder="Click enter after typing...">
+            </form>
+        </div>
+    </div>-->
     <!-- //search -->
     <div class="clearfix"></div>
     <!-- /banner_inner -->
@@ -226,15 +266,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="occasion-cart">
                 <div class="shoe single-item single_page_b">
-                    <form action="#" method="post">
+                    <!--<form action="#" method="post">-->
                         <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="productID" value="${product.id}">
                         <input type="hidden" name="add" value="1">
                         <input type="hidden" name="shoe_item" value="Chikku Loafers">
                         <input type="hidden" name="amount" value="405.00">
-                        <input type="submit" name="submit" value="Add to cart" class="button add">
+                        <input type="submit" name="submit" onclick="addItemToCart(this)" value="Add to cart" class="button add">
 
                         <a href="#" data-toggle="modal" data-target="#myModal1"></a>
-                    </form>
+                    <!--</form>-->
 
                 </div>
 
@@ -387,10 +428,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="shoe single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <input type="hidden" name="cmd" value="_cart">
+                                                <input type="hidden" name="productID" value="${product.id}">
                                                 <input type="hidden" name="add" value="1">
                                                 <input type="hidden" name="shoe_item" value="Shuberry Heels">
                                                 <input type="hidden" name="amount" value="575.00">
-                                                <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                                <button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
                                                 <a href="#" data-toggle="modal" data-target="#myModal1"></a>
                                             </form>
@@ -787,7 +829,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
 <!-- cart-js -->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/minicart.js"></script>
+<!--<script src="<%--${pageContext.request.contextPath}--%>/view/customer/html/js/minicart.js"></script>-->
 <script>
     shoe.render();
 
@@ -866,7 +908,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //end-smoth-scrolling -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
 
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
 </body>
 
 </html>
