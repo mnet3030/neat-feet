@@ -58,11 +58,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <nav>
                     <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="404.html">Team</a></li>
-                        <li><a href="shop.html">Shop Now</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/home">Home</a><i></i></li>
+                        <c:if test="${sessionScope.mainCategories != null}">
+                            <c:forEach items="${sessionScope.mainCategories}" var="mainCategory">
+                                <li>
+                                    <a href = "${pageContext.request.contextPath}/result?cat=${mainCategory.id}">${mainCategory.description}</a>
+                                </li>
+                            </c:forEach>
+                        </c:if>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
+
                     </ul>
                 </nav>
             </div>
