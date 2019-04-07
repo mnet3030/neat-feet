@@ -79,13 +79,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <nav>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/home" class="active">Home</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Men</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Women</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Kids</a></li>
+                        <li><a href="${pageContext.request.contextPath}/home">Home</a><i></i></li>
+                        <c:if test="${sessionScope.mainCategories != null}">
+                            <c:forEach items="${sessionScope.mainCategories}" var="mainCategory">
+                                <li>
+                                    <a href = "${pageContext.request.contextPath}/result?cat=${mainCategory.id}">${mainCategory.description}</a>
+                                </li>
+                            </c:forEach>
+                        </c:if>
                         <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">Edit Profile</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
 
                     </ul>

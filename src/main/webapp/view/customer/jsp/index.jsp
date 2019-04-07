@@ -62,17 +62,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
 
 				<nav>
-					<ul>
-						<li><a href="${pageContext.request.contextPath}/home" class="active">Home</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Men</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Women</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp" class="active">Kids</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">Edit Profile</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
+                    <ul>
+                        <li><a href="${pageContext.request.contextPath}/home">Home</a><i></i></li>
+                        <c:if test="${sessionScope.mainCategories != null}">
+                            <c:forEach items="${sessionScope.mainCategories}" var="mainCategory">
+                                <li>
+                                    <a href = "${pageContext.request.contextPath}/result?cat=${mainCategory.id}">${mainCategory.description}</a>
+                                </li>
+                            </c:forEach>
+                        </c:if>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
 
-					</ul>
+                    </ul>
 				</nav>
 			</div>
 
@@ -137,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 						</c:if>
 						<c:if test="${loggedin == null}">
-							<a href="${pageContext.request.contextPath}/view/customer/html/Login.jsp">
+							<a href="${pageContext.request.contextPath}/login">
 							<button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
 							</a>
 						</c:if>
@@ -269,7 +273,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)" ><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 													<a href="#" data-toggle="modal" data-target="#myModal1"></a>
 												</form>
-
 											</div>
 										</div>
 										<div class="clearfix"></div>
