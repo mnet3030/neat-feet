@@ -174,9 +174,9 @@
 <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form enctype="multipart/form-data" method="post" action="productServlet">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Employee</h4>
+                    <h4 class="modal-title">Add Product</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -191,13 +191,21 @@
                     <div class="form-group">
                         <label>Category</label>
                         <select name="category" class="form-control">
-
+                            <c:if test="${categories != null}">
+                                <c:forEach items="${categories}" var="current">
+                                    <option value="${current.id.toString()}"><c:out value="${current.description}"/></option>
+                                </c:forEach>
+                            </c:if>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Brand</label>
                         <select name="brand" class="form-control">
-
+                            <c:if test="${brands != null}">
+                                <c:forEach items="${brands}" var="current">
+                                    <option value="${current.id.toString()}"><c:out value="${current.description}"/></option>
+                                </c:forEach>
+                            </c:if>
                         </select>
                     </div>
                     <div class="form-group">
@@ -215,7 +223,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-success" value="Add">
+                    <input type="button" onclick="addRowToDB()" class="btn btn-success" value="Add">
                 </div>
             </form>
         </div>

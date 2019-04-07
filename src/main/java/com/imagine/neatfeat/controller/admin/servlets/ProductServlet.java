@@ -2,8 +2,12 @@ package com.imagine.neatfeat.controller.admin.servlets;
 
 import com.imagine.neatfeat.model.dal.Convertors.ProductConvertor;
 import com.imagine.neatfeat.model.dal.Convertors.UserConvertor;
+import com.imagine.neatfeat.model.dal.dao.BrandDAO;
+import com.imagine.neatfeat.model.dal.dao.CategoryDAO;
 import com.imagine.neatfeat.model.dal.dao.ProductDAO;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
+import com.imagine.neatfeat.model.dal.entity.Brand;
+import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 
 import javax.servlet.RequestDispatcher;
@@ -94,6 +98,22 @@ public class ProductServlet extends HttpServlet {
 
         List<Product> products=productUtility.getAll();
         request.getSession().setAttribute("products",products);
+
+        SessionFactory factory =  new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+        Session session = factory.openSession();
+
+        session.beginTransaction() ;
+        CategoryDAO categoryDAO = new CategoryDAO(session);
+        List<Category> categories = categoryDAO.getAll();
+        request.setAttribute("categories" , categories);
+
+        BrandDAO brandDAO =new BrandDAO(session);
+        List<Brand> brands = brandDAO.getAll();
+
+        request.setAttribute("brands" , brands);
+
+        session.getTransaction().commit();
+        session.close();
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
         dispatcher.forward(request, response);
