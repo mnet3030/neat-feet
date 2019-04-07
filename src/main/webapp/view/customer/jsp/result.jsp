@@ -73,33 +73,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</nav>
 			</div>
-			<!-- cart details -->
 
-			<div class="search_w3ls_agileinfo">
-				<div class="cd-main-header">
-					<ul class="cd-header-buttons1">
-						<a href="checkout" class="notification">
-							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-							<span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
-						</a>
-					</ul>
-				</div>
-			</div>
-
-
-			<div class="search_w3ls_agileinfo">
-				<div class="cd-main-header">
-					<ul class="cd-header-buttons2">
-						<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-					</ul>
-				</div>
-				<div id="cd-search" class="cd-search">
-					<form action="#" method="post">
-						<input name="Search" type="search" placeholder="Click enter after typing...">
-					</form>
-				</div>
-			</div>
-
+			<!--Added By Mahmoud Shereif*/-->
 			<div class="search_w3ls_agileinfo">
 				<div class="cd-main-header">
 					<ul class="cd-header-buttons3">
@@ -126,11 +101,68 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 
+			<!-- cart details -->
+
+			<div class="search_w3ls_agileinfo">
+				<div class="cd-main-header">
+					<ul class="cd-header-buttons1">
+						<a href="checkout" class="notification">
+							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+							<span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
+						</a>
+					</ul>
+				</div>
+			</div>
+
+			<!--Commented By Mahmoud Shereif*/-->
+			<!-- edit by Amr Elkady -->
+			<!--<div class="top_nav_right">
+				<div class="shoecart shoecart2 cart cart box_1">
+					<a href="checkout" class="notification">
+						<form action="checkout" method="post" class="last">
+							<input type="hidden" name="cmd" value="_cart">
+							<input type="hidden" name="display" value="1">
+							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+						</form>
+						<span class="badge"><%--<c:out value="${sessionScope.sizeCart}"></c:out>--%></span>
+					</a>
+				</div>
+
+			</div>-->
+
 		</div>
 	</div>
 	<!-- //cart details -->
+
 	<!-- search -->
+	<div class="search_w3ls_agileinfo">
+		<div class="cd-main-header">
+			<ul class="cd-header-buttons2">
+				<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+			</ul>
+		</div>
+		<form action="#" method="post" id="main-search-form">
+			<div id="cd-search" class="cd-search">
+				<input name="search" type="text" id="search" placeholder="Click enter after typing..." required>
+				<button type="submit" style="visibility: hidden" id="mainSearchBtn"/>
+			</div>
+		</form>
+	</div>
+	<!--Commented By Mahmoud Shereif*/-->
+	<!--<div class="search_w3ls_agileinfo">
+		<div class="cd-main-header">
+			<ul class="cd-header-buttons">
+				<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+			</ul>
+		</div>
+		<div id="cd-search" class="cd-search">
+			<form action="#" method="post">
+			<input name="Search" type="search" id="search" placeholder="Click enter after typing...">
+			</form>
+		</div>
+	</div>-->
 	<!-- //search -->
+
 	<div class="clearfix"></div>
 	<!-- /banner_inner -->
 	<div class="services-breadcrumb_w3ls_agileinfo">
@@ -163,13 +195,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="side-bar col-md-3">
 			<div class="search-hotel">
 				<h3 class="agileits-sear-head">Search Here..</h3>
-				<!--Commented By Mahmoud Shereif-->
-				<!--<form action="#" method="post">-->
-
-				<input type="search" placeholder="Product name..." name="search" required="" id="leftSearch">
-				<input type="submit" value=" " id="leftSearchBtn">
-
-				<!--</form>-->
+				<!--Edited By Mahmoud Shereif-->
+				<form action="#" method="post" id="left-search-form">
+					<input type="search" placeholder="Product name..." name="search" required="" id="leftSearch">
+					<button type="submit" value=" " id="leftSearchBtn"/>
+				</form>
 			</div>
 			<!-- price range -->
 			<div class="range">
@@ -427,15 +457,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													</ul>
 												</div>
 												<div class="shoe single-item hvr-outline-out">
-													<form action="#" method="post">
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="shoe_item" value="Bella Toes">
-														<input type="hidden" name="amount" value="675.00">
-														<button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+													<!--<form action="#" method="post">-->
+													<input type="hidden" name="cmd" value="_cart">
+													<input type="hidden" name="productID" value="${product.id}">
+													<input type="hidden" name="add" value="1">
+													<input type="hidden" name="shoe_item" value="Bella Toes">
+													<input type="hidden" name="amount" value="675.00">
+													<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
-														<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-													</form>
+													<a href="#" data-toggle="modal" data-target="#myModal1"></a>
+													<!--</form>-->
 
 												</div>
 											</div>
@@ -1173,24 +1204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 		</c:if>
 
-		$('#search').on("keypress", function (ev) {
-			if(ev.which == 13) {
-				var newHref = window.location.href.replace(new RegExp('\\?.+'), '');
-				window.location.href = newHref + '?search=' + $('#search').val();
-			}
-		});
 
-		$('#leftSearch').on("keypress", function (ev) {
-			if(ev.which == 13) {
-				var newHref = window.location.href.replace(new RegExp('\\?.+'), '');
-				window.location.href = newHref + '?search=' + $('#leftSearch').val();
-			}
-		});
-
-		$('#leftSearchBtn').on("click", function (ev) {
-			var newHref = window.location.href.replace(new RegExp('\\?.+'), '');
-			window.location.href = newHref + '?search=' + $('#leftSearch').val();
-		});
 
 	});
 </script>
@@ -1200,6 +1214,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/jquery.simplePagination.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/paginationScript.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/result.js"></script>
 </body>
 
 </html>

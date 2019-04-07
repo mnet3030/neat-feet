@@ -566,14 +566,17 @@ ul.stars li a:hover {
     color: #c4c4c4;
     letter-spacing: 1px;
 }
+
 /*Edited By Mahmoud Shereif*/
-.search-hotel input[type="submit"] {
+.search-hotel button[type="submit"] {
     background: url(../images/search.png) no-repeat 7px 6px #151414;
     width: 44px;
     height: 39px;
     border: none;
     padding: 0;
     margin-top: 0;
+	top: 16px;
+	position: relative;
 }
 
 .search-grid-left {

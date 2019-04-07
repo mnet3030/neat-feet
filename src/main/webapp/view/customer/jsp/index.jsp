@@ -117,9 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div id="cd-search" class="cd-search">
-					<form action="#" method="post">
-						<input name="Search" type="search" placeholder="Click enter after typing...">
-					</form>
+						<input name="Search" type="search" id="search" placeholder="Click enter after typing...">
 				</div>
 			</div>
 
@@ -432,7 +430,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="${pageContext.request.contextPath}/view/customer/html/js/demo1.js"></script>
 <!-- //nav -->
 <!-- cart-js -->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/minicart.js"></script>
+<%--<script src="${pageContext.request.contextPath}/view/customer/html/js/minicart.js"></script>--%>
 <script>
 	shoe.render();
 
@@ -486,7 +484,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/cartdemo.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
 
 </body>

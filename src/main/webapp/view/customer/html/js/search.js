@@ -31,6 +31,23 @@ jQuery(document).ready(function($){
 		closeNav();
 	});
 
+	/*Added By Mahmoud Shereif*/
+
+	$('#main-search-form').on('submit', submitSearchForm1);
+
+	$('#search').on("keypress", function (ev) {
+		if(ev.which == 13) {
+			$('#mainSearchBtn').click();
+		}
+	});
+
+	function submitSearchForm1() {
+		window.location.href ='result?search=' + $('#search').val();
+		return false;
+	}
+
+
+
 	
 	
 	
