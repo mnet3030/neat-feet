@@ -85,13 +85,7 @@ public class ProductServlet extends HttpServlet {
 
             session.close();
             sessionFactory.close();
-
         }
-
-
-
-
-
 
     }
 
