@@ -48,7 +48,7 @@ public class HomeServlet extends HttpServlet {
 
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/index.jsp");
-        dispatcher.forward(request, response);
+        dispatcher.include(request, response);
 
 
         /*Alia Mahmoud*/

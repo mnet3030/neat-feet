@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 
         /*Alia Mahmoud*/
 
-        response.sendRedirect(request.getContextPath()+"/view/customer/html/Login.jsp");
+        request.getRequestDispatcher("/view/customer/html/Login.jsp").include(request, response);
         /*Amer Salah*/
 
         /*Nouran Habib*/
@@ -36,9 +36,8 @@ public class LoginServlet extends HttpServlet {
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
+
+        Session session = (Session)getServletContext().getAttribute("session");
         //------------------------------------------------------------------
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -46,23 +45,18 @@ public class LoginServlet extends HttpServlet {
         UserDAO dao = new UserDAO(session);
         User user  = dao.athunticateUser(email,password);
         if(user != null){
-            String alia ="";
-            alia.equals("");
             HttpSession userSession = request.getSession(true);
             userSession.setAttribute("user", user);
-            userSession.setAttribute("loggedin","ture");
-            response.sendRedirect(request.getContextPath()+"/home");
+            response.sendRedirect("home");
         }
         else{
             request.setAttribute("mail",email);
             request.setAttribute("invalid","invalid");
             request.getServletContext()
-                    .getRequestDispatcher(request.getContextPath()+"/view/customer/html/Login.jsp")
-                    .forward(request,response);
+                    .getRequestDispatcher("/view/customer/html/Login.jsp")
+                    .include(request,response);
 
         }
-        session.close();
-        sessionFactory.close();
 
         /*Amer Salah*/
 
