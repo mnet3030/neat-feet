@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
         /*Amr El Kady*/
 
         List<Category> mainCategories = resultDao.getMainCategories(session);
-        request.getSession().setAttribute("mainCategories", mainCategories);
+        request.setAttribute("mainCategories", mainCategories);
 
         /*Alia Mahmoud*/
 
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
         /*Amr El Kady*/
 
         List<Category> mainCategories = resultDao.getMainCategories(session);
-        request.getSession().setAttribute("mainCategories", mainCategories);
+        request.setAttribute("mainCategories", mainCategories);
         /*Alia Mahmoud*/
         SessionFactory sessionFactory = new Configuration()
                 .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
