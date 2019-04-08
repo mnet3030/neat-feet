@@ -63,10 +63,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                             </c:forEach>
                         </c:if>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Logout</a></li>
 
                     </ul>
                 </nav>
@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
 
             <div class="w3l_login">
-                <a href="${pageContext.request.contextPath}/view/customer/html/Login.jsp" data-toggle="Login.html" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                <a href="${pageContext.request.contextPath}/view/customer/jsp/Login.jsp" data-toggle="Login.html" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
             </div>
 
             <!-- cart details -->

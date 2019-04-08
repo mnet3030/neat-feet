@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 
         /*Alia Mahmoud*/
 
-        request.getRequestDispatcher("/view/customer/html/Login.jsp").include(request, response);
+        request.getRequestDispatcher("view/customer/jsp/Login.jsp").include(request, response);
         /*Amer Salah*/
 
         /*Nouran Habib*/
@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("mail",email);
             request.setAttribute("invalid","invalid");
             request.getServletContext()
-                    .getRequestDispatcher("/view/customer/html/Login.jsp")
+                    .getRequestDispatcher("/view/customer/jsp/Login.jsp")
                     .include(request,response);
 
         }

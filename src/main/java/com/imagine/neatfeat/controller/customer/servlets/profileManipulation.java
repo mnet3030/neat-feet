@@ -30,7 +30,7 @@ public class profileManipulation extends HttpServlet {
         HttpSession userSession = request.getSession(false);
         userSession.setAttribute("editProfile", "false");
         request.getServletContext()
-                .getRequestDispatcher("/view/customer/html/profile.jsp")
+                .getRequestDispatcher("/view/customer/jsp/profile.jsp")
                 .forward(request,response);
         /*Amer Salah*/
 
@@ -49,7 +49,7 @@ public class profileManipulation extends HttpServlet {
         HttpSession userSession = request.getSession(false);
         userSession.setAttribute("editProfile", "true");
         request.getServletContext()
-                .getRequestDispatcher("/view/customer/html/profile.jsp")
+                .getRequestDispatcher("/view/customer/jsp/profile.jsp")
                 .forward(request,response);
 
         /*Amer Salah*/

@@ -5,6 +5,7 @@ import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Country;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
+import com.imagine.neatfeat.model.dal.servletsdaos.RegisterDao;
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,13 +20,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 @MultipartConfig
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*Mahmoud Shereif*/
+        Session session = (Session)getServletContext().getAttribute("session");
+        RegisterDao registerDao = new RegisterDao();
+        List<Country> allCountries = registerDao.getAllCountries(session);
 
+        request.setAttribute("allCountries" ,allCountries);
+        request.getServletContext()
+                .getRequestDispatcher("/view/customer/jsp/register.jsp")
+                .include(request,response);
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/
@@ -52,9 +61,7 @@ public class RegisterServlet extends HttpServlet {
             e.printStackTrace();
         }
         //----------------------------------------------------------------------
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = (Session)getServletContext().getAttribute("session");
         //----------------------------------------------------------------------
         User user = UserConvertor.covertUserBeanToUser(bean);
         //----------------------------------------------------------------------
@@ -70,16 +77,14 @@ public class RegisterServlet extends HttpServlet {
             //----------------------------------------------
             addedUser = (User)request.getAttribute("user");
             dao.update(addedUser);
-            response.sendRedirect( request.getContextPath() + "/view/customer/html/Login.jsp");
+            response.sendRedirect( "login");
         }else {
             request.setAttribute("alreadyRegistered","true");
             request.setAttribute("bean",bean);
             request.getServletContext()
-                    .getRequestDispatcher("/Registration")
+                    .getRequestDispatcher("/register")
                     .include(request,response);
         }
-        session.close();
-        sessionFactory.close();
         /*Amer Salah*/
 
         /*Nouran Habib*/

@@ -27,13 +27,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	</script>
 	<!-- //custom-theme -->
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/about.css" type="text/css" media="screen" property="" />
-	<link rel="stylesheet" href="css/shop.css" type="text/css" media="screen" property="" />
-	<link href="css/style7.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="../html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="../html/css/about.css" type="text/css" media="screen" property="" />
+	<link rel="stylesheet" href="../html/css/shop.css" type="text/css" media="screen" property="" />
+	<link href="../html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="../html/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- font-awesome-icons -->
-	<link href="css/font-awesome.css" rel="stylesheet">
+	<link href="../html/css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	    rel="stylesheet">
@@ -46,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="wrapper_top_w3layouts">
 			<div class="header_agileits">
 				<div class="logo inner_page_log">
-					<h1><a class="navbar-brand" href="../jsp/index.jsp"><span>Neat</span> <i>Feet</i></a></h1>
+					<h1><a class="navbar-brand" href="index.jsp"><span>Neat</span> <i>Feet</i></a></h1>
 				</div>
 				<div class="overlay overlay-contentpush">
 					<button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -61,10 +61,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</li>
 								</c:forEach>
 							</c:if>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp>Contact</a></li>
 							<li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
+							<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp>Logout</a></li>
 
 						</ul>
 					</nav>
@@ -115,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="inner_breadcrumb_agileits_w3">
 
 				<ul class="short">
-					<li><a href="../jsp/index.jsp">Home</a><i>|</i></li>
+					<li><a href="index.jsp">Home</a><i>|</i></li>
 					<li>About</li>
 				</ul>
 			</div>
@@ -131,7 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<p class="head_para">Add Some Description</p>
 			<div class="inner_section_w3ls">
 				<div class="col-md-6 news-left">
-					<img src="images/ab.jpg" alt=" " class="img-responsive">
+					<img src="../html/images/ab.jpg" alt=" " class="img-responsive">
 				</div>
 				<div class="col-md-6 news-right">
 					<h4>Welcome to our Downy Shoes</h4>
@@ -264,7 +264,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="footer_agileinfo_w3">
 		<div class="footer_inner_info_w3ls_agileits">
 			<div class="col-md-3 footer-left">
-				<h2><a href="../jsp/index.jsp"><span>N</span>eat Feet </a></h2>
+				<h2><a href="index.jsp"><span>N</span>eat Feet </a></h2>
 				<p>Lorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
 				<ul class="social-nav model-3d-0 footer-social social two">
 					<li>
@@ -298,7 +298,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col-md-4 sign-gd">
 						<h4>Our <span>Information</span> </h4>
 						<ul>
-							<li><a href="../jsp/index.jsp">Home</a></li>
+							<li><a href="index.jsp">Home</a></li>
 							<li><a href="about.jsp">About</a></li>
 							<li><a href="404.jsp">Services</a></li>
 							<li><a href="404.jsp">Short Codes</a></li>
@@ -346,15 +346,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col-md-3 sign-gd flickr-post">
 						<h4>Flickr <span>Posts</span></h4>
 						<ul>
-							<li><a href="../jsp/product.jsp"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="../jsp/product.jsp"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="../jsp/product.jsp"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="../jsp/product.jsp"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="../jsp/product.jsp"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="../jsp/product.jsp"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="../jsp/product.jsp"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="../jsp/product.jsp"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-							<li><a href="../jsp/product.jsp"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="product.jsp"><img src="../html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="product.jsp"><img src="../html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="product.jsp"><img src="../html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="product.jsp"><img src="../html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="product.jsp"><img src="../html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="product.jsp"><img src="../html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="product.jsp"><img src="../html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="product.jsp"><img src="../html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+							<li><a href="product.jsp"><img src="../html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
 						</ul>
 					</div>
 					<div class="clearfix"></div>
@@ -369,10 +369,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //footer -->
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	<!-- js -->
-	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="../html/js/jquery-2.1.4.min.js"></script>
 	<!-- //js -->
 	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
+	<script src="../html/js/minicart.js"></script>
 	<script>
 		shoe.render();
 
@@ -388,12 +388,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<!-- //cart-js -->
 	<!-- /nav -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	<script src="js/classie.js"></script>
-	<script src="js/demo1.js"></script>
+	<script src="../html/js/modernizr-2.6.2.min.js"></script>
+	<script src="../html/js/classie.js"></script>
+	<script src="../html/js/demo1.js"></script>
 	<!-- //nav -->
 	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
+	<script src="../html/js/minicart.js"></script>
 	<script>
 		shoe.render();
 
@@ -409,7 +409,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<!-- //cart-js -->
 	<!-- script for responsive tabs -->
-	<script src="js/easy-responsive-tabs.js"></script>
+	<script src="../html/js/easy-responsive-tabs.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('#horizontalTab').easyResponsiveTabs({
@@ -433,11 +433,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	<!--search-bar-->
-	<script src="js/search.js"></script>
+	<script src="../html/js/search.js"></script>
 	<!--//search-bar-->
 	<!-- start-smoth-scrolling -->
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript" src="../html/js/move-top.js"></script>
+	<script type="text/javascript" src="../html/js/easing.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -449,7 +449,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	<!-- //end-smoth-scrolling -->
-	<script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+	<script type="text/javascript" src="../html/js/bootstrap-3.1.1.min.js"></script>
 
 
 </body>

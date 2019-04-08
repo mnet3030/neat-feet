@@ -87,16 +87,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                             </c:forEach>
                         </c:if>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp>About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp>Contact</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp>Logout</a></li>
 
                     </ul>
                 </nav>
             </div>
             <div class="mobile-nav-button">
-                <button id="trigger-overlay" type="button" style="padding: 0;margin-left: 11px;margin-top: -3px;width: 15px;"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                <button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
             </div>
 
             <!-- <div class="w3l_login">
@@ -156,7 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div class="wrapper">
     <div class="inner">
-        <form action="register" method="post" class="validate-form" enctype="multipart/form-data"  style="width: 112%">
+        <form action="register" method="post" class="validate-form" enctype="multipart/form-data">
             <h2>Create a new account</h2>
             <c:if test="${alreadyRegistered != null}">
                 <font color="red" size="5">THIS EMAIL IS ALREADY REGISTERED</font>
@@ -201,7 +201,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!--==================================================================================-->
             <div class="form-row">
-                <div class="form-wrapper validate-input" data-validate="Credit limit is required & greater than 0">
+                <div class="form-wrapper validate-input" data-validate="required & greater than 0">
                     <label for="creditLimit">Credit limit *</label>
                     <input type="number" name="creditLimit" id="creditLimit" class="form-control input100"
                            placeholder="Your Credit limit"
@@ -231,7 +231,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </c:if>
                     >
                 </div>
-                <div class="form-wrapper validate-input" data-validate="Enter a valid phone number">
+                <div class="form-wrapper validate-input" data-validate="Invalid phone number">
                     <label for="phone">Phone *</label>
                     <input type="number" name="phone" id="phone" class="form-control input100" placeholder="Phone"
                     <c:if test="${alreadyRegistered != null}">
@@ -246,7 +246,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="form-row">
                 <div class="form-wrapper">
                     <label for="image">Photo</label>
-                    <input type="file" name="image" id="image" accept=".jpg,.png,.svg" class="form-control">
+                    <input type="file" name="image" id="image" accept="image/*" class="form-control">
                 </div>
                 <div class="form-wrapper validate-input" data-validate="Birth date is required">
                     <label for="dp1">Birth Date *</label>

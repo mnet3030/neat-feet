@@ -71,10 +71,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                             </c:forEach>
                         </c:if>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Logout</a></li>
 
                     </ul>
 				</nav>
@@ -352,10 +352,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h4>Our <span>Information</span> </h4>
 					<ul>
 						<li><a href="index.jsp">Home</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/404.jsp">Services</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/404.jsp">Short Codes</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/404.jsp">Services</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/404.jsp">Short Codes</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
 					</ul>
 				</div>
 

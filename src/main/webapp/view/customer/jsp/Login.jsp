@@ -67,7 +67,7 @@
 	<!-- //end-smoth-scrolling -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
 
-	<script src="js/search.js"></script>
+	<script src="../html/js/search.js"></script>
 
 	<!-- //test bar -->
 
@@ -97,10 +97,10 @@
                                 </li>
                             </c:forEach>
                         </c:if>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/about.jsp">About</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Contact</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp>About</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp>Contact</a></li>
 						<li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/contact.jsp">Logout</a></li>
+						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp>Logout</a></li>
 
 					</ul>
 				</nav>
@@ -197,7 +197,7 @@
 						Forgot Username / Password?
 					</a>
 					<br><br>
-					<a class="txt1" href="Registration">
+					<a class="txt1" href="register">
 						Create new account
 						<i class="fa fa-long-arrow-right"></i>
 					</a>
