@@ -262,7 +262,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 											<!-- Cart -->
 											<div class="shoe single-item hvr-outline-out">
-												<form action="#" method="post">
+												<!--<form action="#" method="post">-->
 													<input type="hidden" name="cmd" value="_cart">
 													<input type="hidden" name="productID" value="${product.id}">
 													<input type="hidden" name="add" value="1">
@@ -270,7 +270,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<input type="hidden" name="amount" value="${product.price}">
 													<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)" ><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 													<a href="#" data-toggle="modal" data-target="#myModal1"></a>
-												</form>
+												<!--</form>-->
 											</div>
 										</div>
 										<div class="clearfix"></div>

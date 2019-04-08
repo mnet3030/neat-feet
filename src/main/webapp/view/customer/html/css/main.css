@@ -44,7 +44,6 @@ body, html {
   background-size: cover;
   background-position: center;
 }
-}
 
 /*---------------------------------------------*/
 a {
@@ -535,7 +534,8 @@ iframe {
 
 @media (max-width: 576px) {
   .wrap-login100 {
-    padding-top: 80px;
+    /*Commented By Mahmoud Shereif*/
+    /*padding-top: 80px;*/
     padding-left: 15px;
     padding-right: 15px;
   }

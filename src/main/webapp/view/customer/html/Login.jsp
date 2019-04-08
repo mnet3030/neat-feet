@@ -75,7 +75,7 @@
 
 
 </head>
-<body  style="background-image: url('${pageContext.request.contextPath}/view/customer/html/images/loginBG.jpg');">
+<body  style="background-image: url('${pageContext.request.contextPath}/view/customer/html/images/loginBG.jpg');background-size: cover;overflow: hidden;">
 
  <div class="XXbanner_top XXinnerpage" id="home">
 	<div class="wrapper_top_w3layouts">
@@ -216,7 +216,6 @@
 
 
 <!-- //footer -->
-<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- js -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->

@@ -88,8 +88,6 @@ public class ShoppingCart extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.print(req.getSession().getAttribute("sizeCart"));
 
-
-
     }
 
     @Override

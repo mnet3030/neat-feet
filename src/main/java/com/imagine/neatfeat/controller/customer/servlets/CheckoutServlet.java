@@ -141,5 +141,6 @@ public class CheckoutServlet extends HttpServlet {
         obj.put("totalPrice",newTotalPrice);
         response.getWriter().println(obj.toString());
 
+
     }
 }
