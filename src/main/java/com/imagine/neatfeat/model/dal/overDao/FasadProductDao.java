@@ -24,4 +24,16 @@ public class FasadProductDao {
         return newProduct;
     }
 
+    public void deleteProductByID(UUID uuid)
+    {
+        SessionFactory factory =  new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+        Session session = factory.openSession();
+
+        session.beginTransaction();
+        ProductDAO dao = new ProductDAO(session);
+        dao.delete(uuid);
+        session.getTransaction().commit();
+        session.close();
+
+    }
 }

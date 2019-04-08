@@ -26,6 +26,33 @@ function deleteRowFromDB(node)
 
 }
 
+function addRowToDB()
+{
+
+    var jsonOBJ = {"action" : "add"};
+
+    $.ajax({
+
+        url:"productServlet",
+        type:"POST",
+        data: jsonOBJ,
+        dataType: 'text',
+
+        success: function (data, textStatus, jqXHR) {
+
+            console.log("Done Ya Amer");
+
+        },
+
+        error: function (jqXHR, textStatus, errorThrown) {
+
+            console.log(errorThrown);
+        }
+    });
+
+}
+
+
 
 
 
