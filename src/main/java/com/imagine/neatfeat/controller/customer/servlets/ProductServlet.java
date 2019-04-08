@@ -22,9 +22,13 @@ import java.util.UUID;
 
 public class ProductServlet extends HttpServlet {
     ProductUtility productUtility;
+    ResultDao resultDao;
+    Session session;
     @Override
     public void init() throws ServletException {
         productUtility=new ProductUtility();
+        resultDao = new ResultDao();
+        session = (Session)getServletContext().getAttribute("session");
     }
 
     @Override

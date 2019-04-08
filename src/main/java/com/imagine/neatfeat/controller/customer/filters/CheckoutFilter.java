@@ -6,14 +6,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CheckoutFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         /*Mahmoud Shereif*/
-        chain.doFilter(req, res);
+
         /*Amr El Kady*/
+
+        HttpSession session=req.getSession(false);
+        if(session==null){
+            req.getRequestDispatcher("login").forward(req,res);
+        }else{
+            chain.doFilter(req, res);
+        }
+
 
         /*Alia Mahmoud*/
 
@@ -28,6 +37,8 @@ public class CheckoutFilter extends HttpFilter {
         /*Mahmoud Shereif*/
 
         /*Amr El Kady*/
+
+
 
         /*Alia Mahmoud*/
 

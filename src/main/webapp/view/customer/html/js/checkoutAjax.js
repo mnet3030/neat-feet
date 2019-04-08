@@ -29,6 +29,7 @@ function remove(id) {
 
     $.post("checkout?action=delete&productid="+id+"",
         function (data,state) {
+
             $("#totalprice").html(data.totalPrice+" EGP");
             $("#afterAddServices").html(data.totalPrice+" EGP");
             $('.badge').text(data.size);

@@ -1,8 +1,11 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.google.gson.Gson;
+import com.imagine.neatfeat.model.dal.entity.Category;
+import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
+import org.hibernate.Session;
 import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
@@ -16,6 +19,8 @@ public class CheckoutServlet extends HttpServlet {
 
 
     private CheckoutUtility checkoutUtility ;
+    ResultDao resultDao;
+    Session session;
     private List<Item> cart;
     private List<Item> newCart;
     private int newTotalPrice;
@@ -24,6 +29,8 @@ public class CheckoutServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         checkoutUtility=new CheckoutUtility();
+        resultDao = new ResultDao();
+        session = (Session)getServletContext().getAttribute("session");
     }
 
 
@@ -35,7 +42,8 @@ public class CheckoutServlet extends HttpServlet {
         /*Amr El Kady*/
 
 
-
+        List<Category> mainCategories = resultDao.getMainCategories(session);
+        request.setAttribute("mainCategories", mainCategories);
 
         cart= (List<Item>) request.getSession().getAttribute("cartProduct");
         newTotalPrice=checkoutUtility.totalPrice(cart);
@@ -62,10 +70,9 @@ public class CheckoutServlet extends HttpServlet {
 
         /*Amr El Kady*/
 
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-
-
 
         cart= (List<Item>) request.getSession().getAttribute("cartProduct");
         newTotalPrice=checkoutUtility.totalPrice(cart);
