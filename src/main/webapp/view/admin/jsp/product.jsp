@@ -174,7 +174,7 @@
 <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form enctype="multipart/form-data" method="post" action="productServlet">
+            <form enctype="multipart/form-data" method="POST" action="addition">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Product</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -193,7 +193,7 @@
                         <select name="category" class="form-control">
                             <c:if test="${categories != null}">
                                 <c:forEach items="${categories}" var="current">
-                                    <option value="${current.id.toString()}"><c:out value="${current.description}"/></option>
+                                    <option value="${current.id}"><c:out value="${current.description}"/></option>
                                 </c:forEach>
                             </c:if>
                         </select>
@@ -203,7 +203,7 @@
                         <select name="brand" class="form-control">
                             <c:if test="${brands != null}">
                                 <c:forEach items="${brands}" var="current">
-                                    <option value="${current.id.toString()}"><c:out value="${current.description}"/></option>
+                                    <option value="${current.id}"><c:out value="${current.description}"/></option>
                                 </c:forEach>
                             </c:if>
                         </select>
@@ -218,12 +218,12 @@
                     </div>
                     <div class="form-group">
                         <label>photo</label>
-                        <input type="file" name="mainPhotoUrl" id="image" accept=".jpg,.png,.svg" class="form-control">
+                        <input type="file" name="image" id="image" accept=".jpg,.png,.svg" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="button" onclick="addRowToDB()" class="btn btn-success" value="Add">
+                    <input type="submit"  class="btn btn-success" value="Add">
                 </div>
             </form>
         </div>

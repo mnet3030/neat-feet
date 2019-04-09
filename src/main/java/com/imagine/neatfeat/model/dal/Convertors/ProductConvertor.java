@@ -10,6 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class ProductConvertor {
@@ -22,14 +24,25 @@ public class ProductConvertor {
 
 
         Product product = new Product();
-        product.setQuantity(bean.getQuantity());
         UUID brandUUID = UUID.fromString(bean.getBrand());
-        UUID categoryUUID = UUID.fromString(bean.getCategory());
+       UUID categoryUUID = UUID.fromString(bean.getCategory());
 
+
+
+//
+//        String brandname = bean.getBrand();
+//        String categoryname  = bean.getCategory();
+//
+//        Map<String , Object>map = new HashMap<>();
+//        map.put("description" , categoryname);
+//
+//        Map<String , Object>map2 = new HashMap<>();
+//        map2.put("description" , brandname);
 
 
         BrandDAO brandDAO = new BrandDAO(session);
         Brand brand = brandDAO.getByPrimaryKey(brandUUID);
+
 
         CategoryDAO categoryDAO = new CategoryDAO(session);
         Category category = categoryDAO.getByPrimaryKey(categoryUUID);
@@ -38,10 +51,12 @@ public class ProductConvertor {
         product.setBrand(brand);
         product.setCategory(category);
 
+        product.setQuantity(bean.getQuantity());
         product.setDescription(bean.getDescription());
         product.setBuyingCount(0);
         product.setDetailedDescription(bean.getDetailedDescription());
         product.setPrice(bean.getPrice());
+        product.setMainPhotoUrl(".jpg");
 
         return product;
 

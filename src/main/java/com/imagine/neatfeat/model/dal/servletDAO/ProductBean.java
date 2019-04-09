@@ -14,7 +14,6 @@ public class ProductBean {
     private String detailedDescription;
     private int price;
     private int quantity;
-    private String mainPhotoUrl;
 
     public String getBrand() {
         return brand;
@@ -64,11 +63,4 @@ public class ProductBean {
         this.quantity = quantity;
     }
 
-    public String getMainPhotoUrl() {
-        return mainPhotoUrl;
-    }
-
-    public void setMainPhotoUrl(String mainPhotoUrl) {
-        this.mainPhotoUrl = mainPhotoUrl;
-    }
 }

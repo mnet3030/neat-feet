@@ -58,40 +58,7 @@ public class ProductServlet extends HttpServlet {
             FasadProductDao productDao = new FasadProductDao();
             productDao.deleteProductByID(uuid);
 
-        }else if(action.equals("add"))
-        {
-
-            ProductBean bean=new ProductBean();
-            try{
-                BeanUtils.populate(bean, request.getParameterMap());
-            }catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-            //----------------------------------------------------------------------
-            SessionFactory sessionFactory = new Configuration()
-                    .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-            Session session = sessionFactory.openSession();
-            //----------------------------------------------------------------------
-            Product product = ProductConvertor.converProductBeantoProduct(bean);
-            //----------------------------------------------------------------------
-            ProductDAO dao = new ProductDAO(session);
-
-                Product addedProduct = dao.merge(product);
-                //--------------------------------------------
-                request.setAttribute("product" , addedProduct);
-                request.getServletContext()
-                        .getRequestDispatcher("/saveproductimg")
-                        .include(request,response);
-                //----------------------------------------------
-            addedProduct = (Product) request.getAttribute("product");
-                dao.update(addedProduct);
-
-            session.close();
-            sessionFactory.close();
-
         }
-
 
 
 
