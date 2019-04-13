@@ -27,7 +27,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<!-- //custom-theme -->
 	<link href="${pageContext.request.contextPath}/view/customer/html/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
-
 	<link href="${pageContext.request.contextPath}/view/customer/html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/css/shop.css" type="text/css" media="screen" property="" />
 	<link href="${pageContext.request.contextPath}/view/customer/html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
@@ -478,6 +477,81 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</c:forEach>
 					</c:if>
 
+					<div style="margin:0px auto;">
+
+						<!-- Insert to your webpage where you want to display the carousel -->
+						<div id="amazingcarousel-container-1">
+							<div id="amazingcarousel-1" style="display:none;position:relative;width:100%;max-width:1200px;margin:0px auto 0px;">
+								<div class="amazingcarousel-list-container">
+									<ul class="amazingcarousel-list">
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/3-lightbox.jpeg" title="3"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/3.png"  alt="3" /></a></div>
+												<div class="amazingcarousel-title">3</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/ab-lightbox.jpg" title="ab"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/ab.png"  alt="ab" /></a></div>
+												<div class="amazingcarousel-title">ab</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b1-lightbox.jpg" title="b1"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b1.png"  alt="b1" /></a></div>
+												<div class="amazingcarousel-title">b1</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b2-lightbox.jpg" title="b2"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b2.png"  alt="b2" /></a></div>
+												<div class="amazingcarousel-title">b2</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b3-lightbox.jpg" title="b3"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b3.png"  alt="b3" /></a></div>
+												<div class="amazingcarousel-title">b3</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b4-lightbox.jpg" title="b4"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b4.png"  alt="b4" /></a></div>
+												<div class="amazingcarousel-title">b4</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner1-lightbox.jpg" title="banner1"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner1.png"  alt="banner1" /></a></div>
+												<div class="amazingcarousel-title">banner1</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner2-lightbox.jpg" title="banner2"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner2.png"  alt="banner2" /></a></div>
+												<div class="amazingcarousel-title">banner2</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner3-lightbox.jpg" title="banner3"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner3.png"  alt="banner3" /></a></div>
+												<div class="amazingcarousel-title">banner3</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+										<li class="amazingcarousel-item">
+											<div class="amazingcarousel-item-container">
+												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner4-lightbox.jpg" title="banner4"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner4.png"  alt="banner4" /></a></div>
+												<div class="amazingcarousel-title">banner4</div>
+												<div class="amazingcarousel-description"></div>                    </div>
+										</li>
+									</ul>
+									<div class="amazingcarousel-prev"></div>
+									<div class="amazingcarousel-next"></div>
+								</div>
+								<div class="amazingcarousel-nav"></div>
+							</div>
+						</div>
+					</div>
 
 					<!--Commented By Mahmoud Shereif-->
 					<!--<div class="col-md-4 product-men">
@@ -1215,6 +1289,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/paginationScript.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/addToCart.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/result.js"></script>
+
+<!--<script src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/jquery.js"></script>-->
+<script src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/amazingcarousel.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/initcarousel.css">
+<script src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/initcarousel.js"></script>
+
 </body>
 
 </html>
