@@ -1,18 +1,19 @@
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@page import="com.imagine.neatfeat.model.dal.entity.Product" %>
-<%@page import="com.imagine.neatfeat.model.dal.utilityPojos.Item" %>
-
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="htmlFullPath" value="${pageContext.request.contextPath}/view/customer/html" scope="page" />
+
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
-    <title>Neat-Feet | Check Out </title>
+    <title>Downy Shoes an Ecommerce Category Bootstrap Responsive Website Template | Check Out :: w3layouts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -27,14 +28,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
     </script>
     <!-- //custom-theme -->
-    <link href="${pageContext.request.contextPath}/view/customer/html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/css/shop.css" type="text/css" media="screen" property="" />
-    <link href="${pageContext.request.contextPath}/view/customer/html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="${htmlFullPath}/css/flextable.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="${htmlFullPath}/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="${htmlFullPath}/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="${htmlFullPath}/css/shop.css" type="text/css" media="screen" property="" />
+    <link href="${htmlFullPath}/css/style7.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Owl-carousel-CSS -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/checkout.css">
-    <link href="${pageContext.request.contextPath}/view/customer/html/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="${htmlFullPath}/css/checkout.css">
+    <link href="${htmlFullPath}/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- font-awesome-icons -->
-    <link href="${pageContext.request.contextPath}/view/customer/html/css/font-awesome.css" rel="stylesheet">
+    <link href="${htmlFullPath}/css/font-awesome.css" rel="stylesheet">
     <!-- //font-awesome-icons -->
     <link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
           rel="stylesheet">
@@ -47,42 +50,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="wrapper_top_w3layouts">
         <div class="header_agileits">
             <div class="logo inner_page_log">
-                <h1><a class="navbar-brand" href="${pageContext.request.contextPath}/home"><span>Neat</span> <i>Feet</i></a></h1>
+                <h1><a class="navbar-brand" href="index.html"><span>Neat</span> <i>Feat</i></a></h1>
             </div>
-
             <div class="overlay overlay-contentpush">
                 <button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
 
                 <nav>
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/home">Home</a><i></i></li>
-                        <c:if test="${requestScope.mainCategories != null}">
-                            <c:forEach items="${requestScope.mainCategories}" var="mainCategory">
-                                <li>
-                                    <a href = "${pageContext.request.contextPath}/result?cat=${mainCategory.id}">${mainCategory.description}</a>
-                                </li>
-                            </c:forEach>
-                        </c:if>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Logout</a></li>
-
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="404.html">Team</a></li>
+                        <li><a href="shop.html">Shop Now</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
             </div>
-            <div class="mobile-nav-button">
-                <button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+
+
+            <!--Added By Mahmoud Shereif*/-->
+            <div class="search_w3ls_agileinfo">
+                <div class="cd-main-header">
+                    <ul class="cd-header-buttons3">
+                        <button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                    </ul>
+                </div>
             </div>
 
-            <div class="w3l_login">
-                <a href="${pageContext.request.contextPath}/view/customer/jsp/Login.jsp" data-toggle="Login.html" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+            <div class="search_w3ls_agileinfo">
+                <div class="cd-main-header">
+                    <ul class="cd-header-buttons4">
+
+                        <c:if test="${loggedin != null}">
+                            <a href="${pageContext.request.contextPath}/showProfile">
+                                <button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+                            </a>
+                        </c:if>
+                        <c:if test="${loggedin == null}">
+                            <a href="${pageContext.request.contextPath}/login">
+                                <button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+                            </a>
+                        </c:if>
+                    </ul>
+                </div>
             </div>
 
             <!-- cart details -->
-            <div class="top_nav_right">
-                <div class="shoecart shoecart2 cart cart box_1">
-
+            <div class="search_w3ls_agileinfo">
+                <div class="cd-main-header">
+                    <ul class="cd-header-buttons1">
+                        <a href="checkout" class="notification">
+                            <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                            <span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
+                        </a>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -91,17 +111,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- search -->
     <div class="search_w3ls_agileinfo">
         <div class="cd-main-header">
-            <ul class="cd-header-buttons">
+            <ul class="cd-header-buttons2">
                 <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
             </ul>
         </div>
-        <div id="cd-search" class="cd-search">
-            <form action="#" method="post">
-                <input name="Search" type="search" placeholder="Click enter after typing...">
-            </form>
-        </div>
+        <form action="#" method="post" id="main-search-form">
+            <div id="cd-search" class="cd-search">
+                <input name="search" type="text" id="search" placeholder="Click enter after typing..." required>
+                <button type="submit" style="visibility: hidden" id="mainSearchBtn"/>
+            </div>
+        </form>
     </div>
-
     <!-- //search -->
     <div class="clearfix"></div>
     <!-- /banner_inner -->
@@ -110,7 +130,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <ul class="short">
                 <li><a href="${pageContext.request.contextPath}/home">Home</a><i>|</i></li>
-                <li>Check Out</li>
+                <c:if test="${requestScope.mainCategories != null}">
+                    <c:forEach items="${requestScope.mainCategories}" var="mainCategory">
+                        <li>
+                            <a href = "${pageContext.request.contextPath}/result?cat=${mainCategory.id}">${mainCategory.description}</a><i>|</i>
+                        </li>
+                    </c:forEach>
+                </c:if>
             </ul>
         </div>
     </div>
@@ -125,80 +151,167 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h3>Chec<span>kout</span></h3>
 
             <div class="checkout-right">
-                <!--<h4>Your shopping cart contains: <span>3 Products</span></h4> -->
-                <table class="timetable_sub">
+                <h4>Your shopping cart contains: <span>3 Products</span></h4>
+
+
+                <div class="Rtable Rtable--6cols Rtable--collapse">
+
+                    <div class="Rtable-cell-header" style="width: 5%;">SL No.</div>
+                    <div class="Rtable-cell-header" style="width: 38%;">Product</div>
+                    <div class="Rtable-cell-header" style="width: 17%;">Quantity</div>
+                    <div class="Rtable-cell-header" style="width: 12%;">Product Name</div>
+                    <div class="Rtable-cell-header" style="width: 6%;">Price</div>
+                    <div class="Rtable-cell-header Rtable-cell--foot" style="width: 7%;">Remove</div>
+
+                </div>
+
+
+                <c:set var="count" value="0" scope="page" />
+                <c:forEach items="${sessionScope.cartProduct}" var="item" >
+                    <c:set var="count" value="${count + 1}" scope="page"/>
+
+                    <div class="Rtable Rtable--6cols Rtable--collapse">
+
+                        <div class="Rtable-cell" style="width: 5%;"><h3><c:out value="${count}" /></h3></div>
+                        <div class="Rtable-cell" style="width: 38%;"><a href="product?productid=${item.product.id}"><img src="${htmlFullPath}/images/s1.jpg" alt=" " style="height: 20vh;" class="img-responsive"></a></div>
+                        <div class="Rtable-cell" style="width: 17%;">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <input type="hidden" name="id" class="productid" value="${item.product.id}">
+                                    <div class="entry value-minus" onclick="minus(this)">&nbsp;</div>
+                                    <input readonly class="entry value" value="${item.quantity}"  max="${item.product.quantity}">
+                                    <div class="entry value-plus active" onclick="pluse(this)">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Rtable-cell" style="width: 12%;">
+                            <c:choose>
+                                <c:when test="${item.product.quantity!=0}" >
+                                    <div><c:out value="${item.product.description}" /></div>
+                                </c:when>
+                                <c:otherwise>
+                                    <del><c:out value="${item.product.description}" /></del>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="Rtable-cell" style="width: 6%;">
+                            <div class="priceOfUnit"><c:out value="${item.product.price} EGP" /></div>
+                            <div class="quantityOfUnit" ><c:out value="* ${item.quantity}" /></div>
+                            <div class="totalPriceOfUint" ><c:out value="= ${item.quantity*item.product.price} EGP" /></div>
+                        </div>
+                        <div class="Rtable-cell Rtable-cell--foot" style="width: 7%;">
+                            <div class="rem">
+                                <div class="close1" onclick="remove('${item.product.id}')">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </c:forEach>
+
+
+                <!--<table class="timetable_sub">
                     <thead>
                     <tr>
                         <th>SL No.</th>
                         <th>Product</th>
-                        <th>Quantity</th>
+                        <th>Quality</th>
                         <th>Product Name</th>
 
-                        <th>Price($)</th>
+                        <th>Price</th>
                         <th>Remove</th>
                     </tr>
                     </thead>
-                    <tbody  id= "drawid"class="draw">
-
-                    <c:set var="count" value="0" scope="page" />
-                    <c:forEach items="${sessionScope.cartProduct}" var="item" >
-                        <c:set var="count" value="${count + 1}" scope="page"/>
-                        <tr class="rem1">
-                            <td class="invert"><c:out value="${count}" /></td>
-                            <td class="invert-image"><a href="product?productid=${item.product.id}"><img src="${pageContext.request.contextPath}/view/customer/html/images/soon.jpg" alt=" " class="img-responsive"></a></td>
-                            <td class="invert">
-                                <div class="quantity">
-                                    <div class="quantity-select">
-                                        <input type="hidden" name="id" class="productid" value="${item.product.id}">
-                                        <div class="entry value-minus" onclick="minus(this)">&nbsp;</div>
-                                        <input readonly class="entry value" value="${item.quantity}"  max="${item.product.quantity}">
-                                        <div class="entry value-plus active" onclick="pluse(this)">&nbsp;</div>
-                                    </div>
+                    <tbody>
+                    <tr class="rem1">
+                        <td class="invert">1</td>
+                        <td class="invert-image"><a href="single.html"><img src="${htmlFullPath}/images/s1.jpg" alt=" " class="img-responsive"></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value"><span>1</span></div>
+                                    <div class="entry value-plus active">&nbsp;</div>
                                 </div>
-                            </td>
-                            <td class="invert">
-                                <c:choose>
-                                    <c:when test="${item.product.quantity!=0}" >
-                                        <div><c:out value="${item.product.description}" /></div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <del><c:out value="${item.product.description}" /></del>
-                                    </c:otherwise>
-                                </c:choose>
+                            </div>
+                        </td>
+                        <td class="invert">Bella Toes</td>
 
-                            </td>
-                            <td class="invert productPrice">
-                                <div class="priceOfUnit"><c:out value="${item.product.price} EGP" /></div>
-                                <div class="quantityOfUnit" ><c:out value="* ${item.quantity}" /></div>
-                                <div class="totalPriceOfUint" ><c:out value="= ${item.quantity*item.product.price} EGP" /></div>
-                            </td>
-                            <td class="invert">
-                                <div class="rem">
-                                    <div class="close" onclick="remove('${item.product.id}')"> </div>
+                        <td class="invert">$675.00</td>
+                        <td class="invert">
+                            <div class="rem">
+                                <div class="close1"> </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr class="rem2">
+                        <td class="invert">2</td>
+                        <td class="invert-image"><a href="single.html"><img src="${htmlFullPath}/images/s5.jpg" alt=" " class="img-responsive"></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value"><span>1</span></div>
+                                    <div class="entry value-plus active">&nbsp;</div>
                                 </div>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                            </div>
+                        </td>
+                        <td class="invert">Red Bellies</td>
 
+                        <td class="invert">$325.00</td>
+                        <td class="invert">
+                            <div class="rem">
+                                <div class="close2"> </div>
+                            </div>
 
+                        </td>
+                    </tr>
+                    <tr class="rem3">
+                        <td class="invert">3</td>
+                        <td class="invert-image"><a href="single.html"><img src="${htmlFullPath}/images/s2.jpg" alt=" " class="img-responsive"></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value"><span>1</span></div>
+                                    <div class="entry value-plus active">&nbsp;</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert">Chikku Loafers</td>
 
+                        <td class="invert">$405.00</td>
+                        <td class="invert">
+                            <div class="rem">
+                                <div class="close3"> </div>
+                            </div>
 
+                        </td>
+                    </tr>
 
                     </tbody>
-                </table>
+                </table>-->
             </div>
             <div class="checkout-left">
                 <div class="col-md-4 checkout-left-basket">
                     <h4>Continue to basket</h4>
                     <ul>
+                        <!--<li>Product1 <i>-</i> <span>$675.00 </span></li>
+                        <li>Product2 <i>-</i> <span>$325.00 </span></li>
+                        <li>Product3 <i>-</i> <span>$405.00 </span></li>
+                        <li>Total Service Charges <i>-</i> <span>$55.00</span></li>
+                        <li>Total <i>-</i> <span>$1405.00</span></li>-->
 
                         <li>Total  <i>-</i> <span id="totalprice" ><c:out value="${sessionScope.totalPrice} EGP" /> </span></li>
                         <li>Total Price <i>-</i> <span id="afterAddServices"><c:out value="${sessionScope.totalPrice} EGP" /></span></li>
+
                     </ul>
                 </div>
                 <div class="col-md-8 address_form">
                     <h4>Add a new Details</h4>
-                    <form action="checkout?action=buy" method="post" class="creditly-card-form agileinfo_form">
+                    <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
                         <section class="creditly-wrapper wrapper">
                             <div class="information-wrapper">
                                 <div class="first-row form-group">
@@ -225,14 +338,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <label class="control-label">Town/City: </label>
                                         <input class="form-control" type="text" placeholder="Town/City">
                                     </div>
+                                    <div class="controls">
+                                        <label class="control-label">Address type: </label>
+                                        <select class="form-control option-w3ls">
+                                            <option>Office</option>
+                                            <option>Home</option>
+                                            <option>Commercial</option>
 
+                                        </select>
+                                    </div>
                                 </div>
-                                <BR><button type="submit" class="submit check_out">Delivery to this Address</button>
+                                <button class="submit check_out">Delivery to this Address</button>
                             </div>
                         </section>
                     </form>
                     <div class="checkout-right-basket">
-                        <!-- a href="payment.html">Buy Now</a -->
+                        <a href="payment.html">Make a Payment </a>
                     </div>
                 </div>
 
@@ -244,15 +365,107 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!-- //top products -->
+    <div class="mid_slider_w3lsagile">
+        <div class="col-md-3 mid_slider_text">
+            <h5>Some More Shoes</h5>
+        </div>
+        <div class="col-md-9 mid_slider_info">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+                    <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                    <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g3.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item active">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g5.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g6.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g3.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g1.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g2.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g3.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
+                                <div class="thumbnail"><img src="${htmlFullPath}/images/g4.jpg" alt="Image" style="max-width:100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="fa fa-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                <!-- The Modal -->
 
+            </div>
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
     <!-- /newsletter-->
-
     <!-- //newsletter-->
     <!-- footer -->
     <div class="footer_agileinfo_w3">
         <div class="footer_inner_info_w3ls_agileits">
             <div class="col-md-3 footer-left">
-                <h2><a href="${pageContext.request.contextPath}/home"><span>N</span>eat Feet </a></h2>
+                <h2><a href="index.html"><span>N</span>eat Feat </a></h2>
                 <p>Lorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
                 <ul class="social-nav model-3d-0 footer-social social two">
                     <li>
@@ -286,13 +499,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-4 sign-gd">
                         <h4>Our <span>Information</span> </h4>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+                            <li><a href="index.html">Home</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="404.html">Services</a></li>
                             <li><a href="404.html">Short Codes</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li><a href="404.html">Edit profile</a></li>
-                            <li><a href="contact.html">Logout</a></li>
                         </ul>
                     </div>
 
@@ -336,15 +547,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 sign-gd flickr-post">
                         <h4>Flickr <span>Posts</span></h4>
                         <ul>
-                            <li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${htmlFullPath}/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${htmlFullPath}/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${htmlFullPath}/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${htmlFullPath}/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${htmlFullPath}/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${htmlFullPath}/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${htmlFullPath}/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${htmlFullPath}/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${htmlFullPath}/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
                         </ul>
                     </div>
                     <div class="clearfix"></div>
@@ -359,12 +570,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //footer -->
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="${htmlFullPath}/js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
-
 <!-- cart-js -->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/minicart.js"></script>
-<script>
+<!--<script src="${htmlFullPath}/js/minicart.js"></script>-->
+<!--<script>
     shoe.render();
 
     shoe.cart.on('shoe_checkout', function (evt) {
@@ -373,18 +583,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         if (this.subtotal() > 0) {
             items = this.items();
 
-            for (i = 0, len = items.length; i < len; i++) {alert("ss")}
+            for (i = 0, len = items.length; i < len; i++) {}
         }
     });
-</script>
+</script>-->
 <!-- //cart-js -->
 <!-- /nav -->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/modernizr-2.6.2.min.js"></script>
-<script src="${pageContext.request.contextPath}/view/customer/html/js/classie.js"></script>
-<script src="${pageContext.request.contextPath}/view/customer/html/js/demo1.js"></script>
+<script src="${htmlFullPath}/js/modernizr-2.6.2.min.js"></script>
+<script src="${htmlFullPath}/js/classie.js"></script>
+<script src="${htmlFullPath}/js/demo1.js"></script>
 <!-- //nav -->
 <!--search-bar-->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/search.js"></script>
+<script src="${htmlFullPath}/js/search.js"></script>
 <!--//search-bar-->
 <!--quantity-->
 <script>
@@ -410,47 +620,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $(this).parents('tr').find('.totalPriceOfUint').text("= " +(newVal*price[0])+" EGP");
 
         }
-        totalPriceOfUint
     });
 </script>
 <!--quantity-->
-
-
 <script>
     $(document).ready(function (c) {
         $('.close1').on('click', function (c) {
-            $('.rem1').fadeOut('slow', function (c) {
-                $('.rem1').remove();
-            });
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function (c) {
-        $('.close').on('click', function (c) {
             $(this).parent().parent().parent().fadeOut('slow', function (c) {
                 $(this).remove();
             });
         });
     });
 </script>
-<script>
-    $(document).ready(function (c) {
-        $('.close3').on('click', function (c) {
-            $('.rem3').fadeOut('slow', function (c) {
-                $('.rem3').remove();
-            });
-        });
-    });
-
-</script>
-
-
 
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/move-top.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/easing.js"></script>
+<script type="text/javascript" src="${htmlFullPath}/js/move-top.js"></script>
+<script type="text/javascript" src="${htmlFullPath}/js/easing.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {
@@ -462,10 +647,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 </script>
 <!-- //end-smoth-scrolling -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
+<script type="text/javascript" src="${htmlFullPath}/js/bootstrap-3.1.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/checkoutAjax.js"></script>
-<!-- script type="text/javascript" src="js/checkdemo.js"></script -->
-
 
 </body>
 
