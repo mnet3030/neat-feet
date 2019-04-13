@@ -26,7 +26,7 @@ public class ProductServlet extends HttpServlet {
     Session session;
     @Override
     public void init() throws ServletException {
-        productUtility=new ProductUtility();
+        productUtility=new ProductUtility(session);
         resultDao = new ResultDao();
         session = (Session)getServletContext().getAttribute("session");
     }

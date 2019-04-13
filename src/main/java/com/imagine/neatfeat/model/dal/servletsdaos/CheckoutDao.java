@@ -4,6 +4,9 @@ import com.imagine.neatfeat.model.dal.dao.*;
 import com.imagine.neatfeat.model.dal.entity.*;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.stat.Statistics;
 
 import java.util.*;
 
@@ -11,7 +14,10 @@ public class CheckoutDao {
     private Session session;
     public String buyCart(List<Item> itemsToBeBuyed, Session session, User user)
     {
-        this.session = session;
+        SessionFactory factory =  new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+        Session sessionhi = factory.openSession();
+
+        this.session = sessionhi;
         String resultStatus = null;
         if(checkQuantity(itemsToBeBuyed))
         {
@@ -33,6 +39,12 @@ public class CheckoutDao {
                 UserDAO userDAO = new UserDAO(session);
 
                 userDAO.update(user);
+
+              //  SessionFactory sessionFactory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+                Statistics stats =  session.getSessionFactory().getStatistics();
+                stats.setStatisticsEnabled(true);
+                System.out.println(stats.getConnectCount());
+
 
                 updateProductQuantities(itemsToBeBuyed);
 
@@ -57,16 +69,18 @@ public class CheckoutDao {
             orderProduct.setUserOrders(userOrder);
             orderProductsDAO.persist(orderProduct);
         }
+
     }
 
     private void updateProductQuantities(List<Item> itemsToBeBuyed) {
         for (Item item : itemsToBeBuyed) {
+
             int buyedQuantity = item.getQuantity();
             Product neededProduct = item.getProduct();
             neededProduct.setQuantity(neededProduct.getQuantity() - buyedQuantity);
 
             ProductDAO productDAO = new ProductDAO(session);
-            productDAO.update(neededProduct);
+            productDAO.update(session.get(Product.class,neededProduct.getId()));
         }
     }
 

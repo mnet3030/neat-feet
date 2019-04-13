@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class ProductUtility {
@@ -16,13 +15,13 @@ public class ProductUtility {
     /*Amr El Kady*/
 
     ProductDAO productDAO;
-    public ProductUtility() {
-        SessionFactory sessionFactory=new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session=sessionFactory.openSession();
+    Session session;
+    public ProductUtility(Session session) {
         try {
+            this.session=session;
             this.productDAO = new ProductDAO(session);
         }catch (Exception ex){
-            System.out.println("error from product dao");
+            System.err.println("error from product dao");
         }
     }
 
@@ -30,7 +29,6 @@ public class ProductUtility {
         List<Product> allProduct=null;
 
         allProduct= productDAO.getAll();
-
 
         return allProduct;
     }

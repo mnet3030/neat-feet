@@ -52,7 +52,7 @@ public class ShoppingCart extends HttpServlet {
                 if(cartProducts.get(i).getQuantity() >= product.getQuantity())
                 {
                     cartProducts.get(i).setQuantity(product.getQuantity());
-                    HttpSession session = req.getSession();
+                    HttpSession session = req.getSession(false);
                     session.setAttribute("cartProduct" , cartProducts);
                     updateCartSize(req,resp);
                     found=true;
@@ -63,7 +63,7 @@ public class ShoppingCart extends HttpServlet {
                 {
                     quantity = cartProducts.get(i).getQuantity()+1;
                     cartProducts.get(i).setQuantity(quantity);
-                    HttpSession session = req.getSession();
+                    HttpSession session = req.getSession(false);
                     session.setAttribute("cartProduct" , cartProducts);
                     updateCartSize(req,resp);
                     found=true;
@@ -78,7 +78,7 @@ public class ShoppingCart extends HttpServlet {
         if(found==false)
         {
             cartProducts.add(new Item(product , 1));
-            HttpSession session = req.getSession();
+            HttpSession session = req.getSession(false);
             session.setAttribute("cartProduct" , cartProducts);
             updateCartSize(req,resp);
 
@@ -86,7 +86,7 @@ public class ShoppingCart extends HttpServlet {
         }
 
         PrintWriter out = resp.getWriter();
-        out.print(req.getSession().getAttribute("sizeCart"));
+        out.print(req.getSession(false).getAttribute("sizeCart"));
 
     }
 
@@ -102,7 +102,7 @@ public class ShoppingCart extends HttpServlet {
         List<Item> cart= (List<Item>) req.getSession().getAttribute("cartProduct");
         CheckoutUtility checkoutUtility=new CheckoutUtility();
         int sizeCart=checkoutUtility.sizeCart(cart);
-        req.getSession().setAttribute("sizeCart",sizeCart);
+        req.getSession(false).setAttribute("sizeCart",sizeCart);
         return sizeCart;
     }
 }
