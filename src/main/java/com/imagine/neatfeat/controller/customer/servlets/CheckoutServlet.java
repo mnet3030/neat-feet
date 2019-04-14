@@ -69,7 +69,6 @@ public class CheckoutServlet extends HttpServlet {
         HttpSession userSession=request.getSession(false);
         User user= (User) userSession.getAttribute("user");
         if(userSession!=null &&  user!= null) {
-
             cart=checkoutServices.getSessionAttr(request,response);
             String action = request.getParameter("action");
             checkoutServices.doAction(request,response,cart,action);

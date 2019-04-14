@@ -1,8 +1,8 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
+import com.imagine.neatfeat.model.dal.dao.ProductDAO;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
-import com.imagine.neatfeat.model.dal.overDao.FasadProductDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utility.ProductUtility;
@@ -45,10 +45,10 @@ public class ProductServlet extends HttpServlet {
 
             String productId = request.getParameter("id");
             Product product = new Product();
-            FasadProductDao productDao = new FasadProductDao();
+            ProductDAO productDao = new ProductDAO(session);
 
             UUID uuid = UUID.fromString(productId);
-            product = productDao.getProductByID(uuid);
+            product = productDao.getByPrimaryKey(uuid);
 
 
             request.setAttribute("product", product);

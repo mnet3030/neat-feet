@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class UserConvertor {
 
-    public static User covertUserBeanToUser(UserBean bean) {
+    public static User covertUserBeanToUser(UserBean bean, Session session) {
 
         User user = new User();
         user.setName(bean.getName());
@@ -26,9 +26,6 @@ public class UserConvertor {
         user.setPhone(bean.getPhone());
         user.setGender(bean.isGender());
         //-----------------------------------------------------------
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
         //--------user country--------------------------------------
         String countryname = bean.getCountry();
         Country country = (Country) session.createCriteria(Country.class)
@@ -54,9 +51,6 @@ public class UserConvertor {
             user.setPhotoUrl(bean.getPhotoUrl());
         if (bean.getJob() != null)
             user.setJob(bean.getJob());
-
-        session.close();
-        sessionFactory.close();
         return user;
     }
 }

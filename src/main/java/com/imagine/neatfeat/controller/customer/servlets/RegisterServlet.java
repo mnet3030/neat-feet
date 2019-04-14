@@ -63,7 +63,7 @@ public class RegisterServlet extends HttpServlet {
         //----------------------------------------------------------------------
         Session session = (Session)getServletContext().getAttribute("session");
         //----------------------------------------------------------------------
-        User user = UserConvertor.covertUserBeanToUser(bean);
+        User user = UserConvertor.covertUserBeanToUser(bean, session);
         //----------------------------------------------------------------------
         UserDAO dao = new UserDAO(session);
         User checkUser = dao.getUserByEmail(user.getEmail());

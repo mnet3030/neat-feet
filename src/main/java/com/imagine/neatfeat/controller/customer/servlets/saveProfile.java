@@ -49,9 +49,8 @@ public class saveProfile  extends HttpServlet {
             e.printStackTrace();
         }
         //----------------------------------------------------------------------
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = (Session)getServletContext().getAttribute("session");
+
         //----------------------------------------------------------------------
         HttpSession userSession = request.getSession(true);
         User user = (User)userSession.getAttribute("user");
@@ -73,8 +72,6 @@ public class saveProfile  extends HttpServlet {
         user = (User)request.getAttribute("user");
         dao.update(user);
         //-----------------------------------------------------------------------
-        session.close();
-        sessionFactory.close();
         response.sendRedirect(request.getContextPath()+"/showProfile");
         /*Amer Salah*/
 

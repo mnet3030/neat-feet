@@ -14,10 +14,7 @@ public class CheckoutDao {
     private Session session;
     public String buyCart(List<Item> itemsToBeBuyed, Session session, User user)
     {
-        SessionFactory factory =  new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session sessionhi = factory.openSession();
-
-        this.session = sessionhi;
+        this.session = session;
         String resultStatus = null;
         if(checkQuantity(itemsToBeBuyed))
         {
@@ -94,7 +91,7 @@ public class CheckoutDao {
 
         for (Item item : itemsToBeBuyed) {
             OrderProducts orderProduct = new OrderProducts();
-            orderProduct.setProduct(item.getProduct());
+            orderProduct.setProduct(session.get(Product.class,item.getProduct().getId()));
             orderProduct.setDeliveryStatus(deliveryStatus);
             orderProduct.setQuantity(item.getQuantity());
             orderProduct.setPriceBeforeDiscount(item.getProduct().getPrice());

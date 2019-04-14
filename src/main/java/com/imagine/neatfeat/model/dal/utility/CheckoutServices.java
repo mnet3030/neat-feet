@@ -88,8 +88,9 @@ public class CheckoutServices {
                 CheckoutDao checkoutDao=new CheckoutDao();
                 List<Item> mycart= (List<Item>) request.getSession(false).getAttribute("cartProduct");
                 User user= (User) request.getSession(false).getAttribute("user");
+                session.beginTransaction();
                 String result=checkoutDao.buyCart(mycart,session,user);
-                session.beginTransaction().commit();
+                session.getTransaction().commit();
                 switch (result){
                     case "success":
                         mycart=null;
