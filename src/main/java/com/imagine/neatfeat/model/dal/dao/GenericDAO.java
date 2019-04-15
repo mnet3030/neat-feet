@@ -2,11 +2,9 @@ package com.imagine.neatfeat.model.dal.dao;
 
 import com.imagine.neatfeat.model.dal.entity.Entity;
 import org.hibernate.Criteria;
+import org.hibernate.LockMode;
 import org.hibernate.Session;
-import org.hibernate.criterion.Conjunction;
-import org.hibernate.criterion.Disjunction;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -232,5 +230,15 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         entitiesWithNoOfPages.put("noOfPages", noOfPages);
         entitiesWithNoOfPages.put("pageNumber",pageNumber);
         return entitiesWithNoOfPages;
+    }
+
+    @Override
+    public List<T> getWithInByIdAndLockForUpdateOrdered(String columnName, List<Object> ids) {
+        Criteria criteria = session.createCriteria(tClass);
+        Restrictions.in(columnName, ids);
+        criteria.setLockMode(LockMode.UPGRADE);
+        criteria.addOrder(Order.asc("id"));
+        List<T> neededEntities = criteria.list();
+        return neededEntities;
     }
 }

@@ -6,8 +6,10 @@ import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutServices;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -66,19 +68,34 @@ public class CheckoutServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
+
+
         HttpSession userSession=request.getSession(false);
         User user= (User) userSession.getAttribute("user");
         if(userSession!=null &&  user!= null) {
-            CheckoutServices checkoutServices = new CheckoutServices(session);
-            List<Item> cart = checkoutServices.getSessionAttr(request,response);
-            String action = request.getParameter("action");
-            checkoutServices.doAction(request,response,cart,action);
+
+            Transaction tx = null;
+
+            try {
+                tx = session.beginTransaction();
+
+                CheckoutServices checkoutServices = new CheckoutServices(session);
+                List<Item> cart = checkoutServices.getSessionAttr(request,response);
+                String action = request.getParameter("action");
+                checkoutServices.doAction(request,response,cart,action);
+
+                tx.commit();
+
+            }catch (Exception ex) {
+                ex.printStackTrace();
+                tx.rollback();
+            }
+
+
 
         }else{
-           request.getRequestDispatcher("/login").forward(request,response);
+            request.getRequestDispatcher("/login").forward(request,response);
         }
-        session.getTransaction().commit();
 
 
 
