@@ -73,7 +73,7 @@ public class CheckoutDao {
         for (Item item : itemsToBeBuyed) {
 
             int buyedQuantity = item.getQuantity();
-            Product neededProduct = item.getProduct();
+            Product neededProduct = session.get(Product.class,item.getProductId());
             neededProduct.setQuantity(neededProduct.getQuantity() - buyedQuantity);
 
             ProductDAO productDAO = new ProductDAO(session);
@@ -91,10 +91,10 @@ public class CheckoutDao {
 
         for (Item item : itemsToBeBuyed) {
             OrderProducts orderProduct = new OrderProducts();
-            orderProduct.setProduct(session.get(Product.class,item.getProduct().getId()));
+            orderProduct.setProduct(session.get(Product.class,item.getProductId()));
             orderProduct.setDeliveryStatus(deliveryStatus);
             orderProduct.setQuantity(item.getQuantity());
-            orderProduct.setPriceBeforeDiscount(item.getProduct().getPrice());
+            orderProduct.setPriceBeforeDiscount(session.get(Product.class,item.getProductId()).getPrice());
             orderProduct.setTotalPrice(orderProduct.getQuantity() * orderProduct.getPriceBeforeDiscount());
             orderProducts.add(orderProduct);
         }
@@ -104,7 +104,7 @@ public class CheckoutDao {
     private int CheckCreditLimit(List<Item> itemsToBeBuyed, int creditLimit) {
         int totalPrice = 0;
         for (Item itemToBeBuyed : itemsToBeBuyed) {
-            totalPrice += itemToBeBuyed.getQuantity() * itemToBeBuyed.getProduct().getPrice();
+            totalPrice += itemToBeBuyed.getQuantity() * session.get(Product.class,itemToBeBuyed.getProductId()).getPrice();
         }
 
         if(totalPrice > creditLimit)
@@ -115,7 +115,7 @@ public class CheckoutDao {
 
     private boolean checkQuantity(List<Item> itemsToBeBuyed) {
         for (Item itemToBeBuyed : itemsToBeBuyed) {
-            Product currentProduct = session.get(Product.class, itemToBeBuyed.getProduct().getId());
+            Product currentProduct = session.get(Product.class, itemToBeBuyed.getProductId());
             if(itemToBeBuyed.getQuantity() > currentProduct.getQuantity()){
                 return false;
             }

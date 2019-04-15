@@ -2,22 +2,24 @@ package com.imagine.neatfeat.model.dal.utilityPojos;
 
 import com.imagine.neatfeat.model.dal.entity.Product;
 
+import java.util.UUID;
+
 public class Item {
 
-    private Product product;
+    private UUID pId;
     private int quantity;
 
-    public Item(Product product, int quantity) {
-        this.product = product;
+    public Item(UUID product, int quantity) {
+        this.pId = product;
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
-        return product;
+    public UUID getProductId() {
+        return pId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(UUID product) {
+        this.pId = product;
     }
 
     public int getQuantity() {

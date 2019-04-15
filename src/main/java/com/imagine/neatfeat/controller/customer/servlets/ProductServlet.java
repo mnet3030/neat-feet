@@ -50,8 +50,8 @@ public class ProductServlet extends HttpServlet {
 
             request.setAttribute("product", product);
 
-            List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
-            CheckoutUtility checkoutUtility=new CheckoutUtility();
+            List<Item> cart= (List<Item>) request.getSession(false).getAttribute("cartProduct");
+            CheckoutUtility checkoutUtility=new CheckoutUtility(session);
 
             if(cart != null) {
                 int sizeCart = checkoutUtility.sizeCart(cart);

@@ -50,7 +50,7 @@ public class ResultServlet extends HttpServlet {
 
 
         List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
-        CheckoutUtility checkoutUtility=new CheckoutUtility();
+        CheckoutUtility checkoutUtility=new CheckoutUtility(session);
 
         if(cart != null) {
             int sizeCart = checkoutUtility.sizeCart(cart);

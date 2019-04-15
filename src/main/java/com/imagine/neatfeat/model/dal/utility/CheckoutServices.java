@@ -23,7 +23,7 @@ public class CheckoutServices {
     public CheckoutServices(Session session){
         this.session=session;
         resultDao = new ResultDao();
-        checkoutUtility=new CheckoutUtility();
+        checkoutUtility=new CheckoutUtility(session);
     }
 
 

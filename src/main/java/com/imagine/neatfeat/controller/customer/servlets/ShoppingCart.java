@@ -52,12 +52,12 @@ public class ShoppingCart extends HttpServlet {
 
         product = productDao.getByPrimaryKey(productuuid);
 
-        updateCartSize(req,resp);
+        updateCartSize(req,resp,sessionHib);
 
 
         for(int i=0 ; i<cartProducts.size() ; i++)
         {
-            if(cartProducts.get(i).getProduct().getId().equals(product.getId()))
+            if(cartProducts.get(i).getProductId().equals(product.getId()))
             {
 
                 if(cartProducts.get(i).getQuantity() >= product.getQuantity())
@@ -65,7 +65,7 @@ public class ShoppingCart extends HttpServlet {
                     cartProducts.get(i).setQuantity(product.getQuantity());
                     HttpSession session = req.getSession(false);
                     session.setAttribute("cartProduct" , cartProducts);
-                    updateCartSize(req,resp);
+                    updateCartSize(req,resp,sessionHib);
                     found=true;
                     break;
                 }
@@ -76,7 +76,7 @@ public class ShoppingCart extends HttpServlet {
                     cartProducts.get(i).setQuantity(quantity);
                     HttpSession session = req.getSession(false);
                     session.setAttribute("cartProduct" , cartProducts);
-                    updateCartSize(req,resp);
+                    updateCartSize(req,resp,sessionHib);
                     found=true;
                     break;
                 }
@@ -88,10 +88,10 @@ public class ShoppingCart extends HttpServlet {
 
         if(found==false)
         {
-            cartProducts.add(new Item(product , 1));
+            cartProducts.add(new Item(productuuid , 1));
             HttpSession session = req.getSession(false);
             session.setAttribute("cartProduct" , cartProducts);
-            updateCartSize(req,resp);
+            updateCartSize(req,resp,sessionHib);
 
 
         }
@@ -109,12 +109,14 @@ public class ShoppingCart extends HttpServlet {
 
     }
 
-    public int updateCartSize(HttpServletRequest req, HttpServletResponse resp){
+    public int updateCartSize(HttpServletRequest req, HttpServletResponse resp,Session sessionHib){
+
 
         List<Item> cart= (List<Item>) req.getSession().getAttribute("cartProduct");
-        CheckoutUtility checkoutUtility=new CheckoutUtility();
+        CheckoutUtility checkoutUtility=new CheckoutUtility(sessionHib);
         int sizeCart=checkoutUtility.sizeCart(cart);
         req.getSession(false).setAttribute("sizeCart",sizeCart);
+
         return sizeCart;
     }
 }

@@ -14,6 +14,11 @@ public class CheckoutUtility {
 
     /*Amr El Kady*/
 
+    Session session;
+    public CheckoutUtility(Session session){
+        this.session=session;
+    }
+
     int total;
     int cartSize=0;
     public List<Item> changeQuantity(String uuid,String op,List<Item> myCart){
@@ -21,9 +26,9 @@ public class CheckoutUtility {
         //System.out.println("here>>>>>>>>>>>>>>");
             for(Item item:myCart) {
                //System.out.println(item.getProduct().getId()+"here>>>>>>>>>>>>>>"+id);
-                if (item.getProduct().getId().equals(id)) {
+                if (item.getProductId().equals(id)) {
                     if (op.equals("+")) {
-                        if(item.getProduct().getQuantity()>item.getQuantity()) {
+                        if(session.get(Product.class,item.getProductId()).getQuantity()>item.getQuantity()) {
                             item.setQuantity(item.getQuantity() + 1);
                            // System.out.println("here>>>>>>>>>>>>>>");
                             break;
@@ -47,7 +52,7 @@ public class CheckoutUtility {
         Item removedItem=null;
 
         for(Item item:myCart) {
-            if (item.getProduct().getId().equals(id)) {
+            if (item.getProductId().equals(id)) {
                     removedItem=item;
                         break;
                     }
@@ -61,7 +66,7 @@ public class CheckoutUtility {
         if(myCart!=null) {
 
             myCart.forEach(item -> {
-                Product newProduct = session.get(Product.class, item.getProduct().getId());
+                Product newProduct = session.get(Product.class, item.getProductId());
 
                 total += (item.getQuantity() * newProduct.getPrice());});
         }
