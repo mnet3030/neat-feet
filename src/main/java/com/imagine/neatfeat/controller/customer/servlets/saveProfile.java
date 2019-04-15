@@ -78,9 +78,10 @@ public class saveProfile  extends HttpServlet {
         //----------------------------------------------
         user = (User)request.getAttribute("user");
         dao.update(user);
+        session.getTransaction().commit();
         //-----------------------------------------------------------------------
         response.sendRedirect(request.getContextPath()+"/showProfile");
-        session.getTransaction().commit();
+
         /*Amer Salah*/
 
         /*Nouran Habib*/

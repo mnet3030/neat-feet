@@ -51,6 +51,7 @@ public class LoginServlet extends HttpServlet {
 
         LoginDao dao = new LoginDao();
         User user  = dao.AuthenticateUser(session, email, password);
+        session.getTransaction().commit();
         if(user != null){
             HttpSession userSession = request.getSession(true);
             userSession.setAttribute("user", user);
@@ -63,8 +64,6 @@ public class LoginServlet extends HttpServlet {
                     .getRequestDispatcher("/view/customer/jsp/Login.jsp")
                     .include(request,response);
         }
-
-        session.getTransaction().commit();
 
         /*Amer Salah*/
 

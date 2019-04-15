@@ -94,8 +94,6 @@ public class RegisterServlet extends HttpServlet {
                 request.getServletContext()
                         .getRequestDispatcher("/register")
                         .include(request,response);
-
-                session.getTransaction().commit();
             }
         }catch(Exception e)
         {

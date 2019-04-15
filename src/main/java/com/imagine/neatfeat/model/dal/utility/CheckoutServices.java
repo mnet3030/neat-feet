@@ -106,6 +106,7 @@ public class CheckoutServices {
                         response.getWriter().println("Error in quantity");
                         break;
                 }
+                session.beginTransaction();
                 break;
 
         }

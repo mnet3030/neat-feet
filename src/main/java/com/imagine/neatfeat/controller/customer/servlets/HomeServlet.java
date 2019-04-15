@@ -1,7 +1,6 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.entity.Category;
-import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
@@ -14,9 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class HomeServlet extends HttpServlet {
 
@@ -48,11 +45,12 @@ public class HomeServlet extends HttpServlet {
             request.getSession().setAttribute("sizeCart", 0);
         }
 
+        session.getTransaction().commit();
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/index.jsp");
         dispatcher.include(request, response);
 
-        session.getTransaction().commit();
+
 
         /*Alia Mahmoud*/
 

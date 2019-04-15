@@ -59,10 +59,12 @@ public class ResultServlet extends HttpServlet {
             request.getSession().setAttribute("sizeCart", 0);
         }
 
+        session.getTransaction().commit();
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/customer/jsp/result.jsp");
         requestDispatcher.include(request, response);
 
-        session.getTransaction().commit();
+
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/
