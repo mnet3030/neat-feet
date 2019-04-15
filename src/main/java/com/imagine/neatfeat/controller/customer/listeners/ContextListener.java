@@ -10,11 +10,10 @@ import javax.servlet.ServletContextListener;
 public class ContextListener implements ServletContextListener {
 
     @Override
-    public void contextInitialized(ServletContextEvent sce) {
+    public void contextInitialized(ServletContextEvent servletContextEvent) {
         /*Mahmoud Shereif*/
         SessionFactory sessionFactory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        sce.getServletContext().setAttribute("session", session);
+        servletContextEvent.getServletContext().setAttribute("sessionFactory", sessionFactory);
 
         /*Amr El Kady*/
 

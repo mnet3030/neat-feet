@@ -17,7 +17,7 @@ import java.util.List;
 public class CheckoutServices {
     Session session;
     ResultDao resultDao;
-    private CheckoutUtility checkoutUtility ;
+    private CheckoutUtility checkoutUtility;
 
 
     public CheckoutServices(Session session){
@@ -34,7 +34,7 @@ public class CheckoutServices {
         request.setAttribute("mainCategories", mainCategories);
 
        List<Item> cart = (List<Item>) request.getSession().getAttribute("cartProduct");
-       int  newTotalPrice = checkoutUtility.totalPrice(cart);
+       int  newTotalPrice = checkoutUtility.totalPrice(cart, session);
         request.getSession(false).setAttribute("totalPrice", newTotalPrice);
 
 
@@ -46,7 +46,7 @@ public class CheckoutServices {
     public void updateSessionAtt(HttpServletRequest request, HttpServletResponse response, List<Item> newCart) throws IOException {
 
         request.getSession(false).setAttribute("cartProduct", newCart);
-        int newTotalPrice=checkoutUtility.totalPrice(newCart);
+        int newTotalPrice=checkoutUtility.totalPrice(newCart, session);
         request.getSession(false).setAttribute("totalPrice",newTotalPrice);
 
 

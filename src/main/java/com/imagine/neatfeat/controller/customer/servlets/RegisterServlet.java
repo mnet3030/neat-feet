@@ -24,10 +24,18 @@ import java.util.List;
 
 @MultipartConfig
 public class RegisterServlet extends HttpServlet {
+    SessionFactory sessionFactory;
+
+    @Override
+    public void init() throws ServletException {
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*Mahmoud Shereif*/
-        Session session = (Session)getServletContext().getAttribute("session");
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         RegisterDao registerDao = new RegisterDao();
         List<Country> allCountries = registerDao.getAllCountries(session);
 
@@ -35,6 +43,8 @@ public class RegisterServlet extends HttpServlet {
         request.getServletContext()
                 .getRequestDispatcher("/view/customer/jsp/register.jsp")
                 .include(request,response);
+
+        session.getTransaction().commit();
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/
@@ -56,34 +66,40 @@ public class RegisterServlet extends HttpServlet {
         UserBean bean=new UserBean();
         try{
             BeanUtils.populate(bean, request.getParameterMap());
+
+            //----------------------------------------------------------------------
+            Session session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+            //----------------------------------------------------------------------
+            User user = UserConvertor.covertUserBeanToUser(bean, session);
+            //----------------------------------------------------------------------
+            RegisterDao registerDao = new RegisterDao();
+            User checkUser = registerDao.getUserByEmail(session, user.getEmail());
+            if(checkUser==null){
+                UserDAO userDAO = new UserDAO(session);
+                User addedUser = userDAO.merge(user);
+                //--------------------------------------------
+                request.setAttribute("user" , addedUser);
+                request.getServletContext()
+                        .getRequestDispatcher("/getimageurl")
+                        .include(request,response);
+                //----------------------------------------------
+                addedUser = (User)request.getAttribute("user");
+                userDAO.update(addedUser);
+                session.getTransaction().commit();
+                response.sendRedirect( "login");
+            }else {
+                request.setAttribute("alreadyRegistered","true");
+                request.setAttribute("bean",bean);
+                request.getServletContext()
+                        .getRequestDispatcher("/register")
+                        .include(request,response);
+
+                session.getTransaction().commit();
+            }
         }catch(Exception e)
         {
             e.printStackTrace();
-        }
-        //----------------------------------------------------------------------
-        Session session = (Session)getServletContext().getAttribute("session");
-        //----------------------------------------------------------------------
-        User user = UserConvertor.covertUserBeanToUser(bean, session);
-        //----------------------------------------------------------------------
-        UserDAO dao = new UserDAO(session);
-        User checkUser = dao.getUserByEmail(user.getEmail());
-        if(checkUser==null){
-            User addedUser = dao.merge(user);
-            //--------------------------------------------
-            request.setAttribute("user" , addedUser);
-            request.getServletContext()
-                    .getRequestDispatcher("/getimageurl")
-                    .include(request,response);
-            //----------------------------------------------
-            addedUser = (User)request.getAttribute("user");
-            dao.update(addedUser);
-            response.sendRedirect( "login");
-        }else {
-            request.setAttribute("alreadyRegistered","true");
-            request.setAttribute("bean",bean);
-            request.getServletContext()
-                    .getRequestDispatcher("/register")
-                    .include(request,response);
         }
         /*Amer Salah*/
 

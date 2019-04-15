@@ -1,4 +1,7 @@
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="htmlFullPath" value="${pageContext.request.contextPath}/view/customer/html" scope="page" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,22 +9,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/view/customer/html/images/icons/favicon.ico"/>
+	<script type="text/javascript" src="${htmlFullPath}/js/jquery-2.1.4.min.js"></script>
+	<link rel="icon" type="image/png" href="${htmlFullPath}/images/icons/favicon.ico"/>
 	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${htmlFullPath}/css/vendor/bootstrap/css/bootstrap.min.css">
 	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="${htmlFullPath}/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="${htmlFullPath}/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="${htmlFullPath}/css/vendor/animate/animate.css">
 	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="${htmlFullPath}/css/vendor/css-hamburgers/hamburgers.min.css">
 	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/util.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${htmlFullPath}/css/util.css">
+	<link rel="stylesheet" type="text/css" href="${htmlFullPath}/css/main.css">
 	<!--===============================================================================================-->
 
 
@@ -37,23 +39,19 @@
 		}
 	</script>
 	<!-- //custom-theme -->
-	<link href="${pageContext.request.contextPath}/view/customer/html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/css/shop.css" type="text/css" media="screen" property="" />
-	<link href="${pageContext.request.contextPath}/view/customer/html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="${htmlFullPath}/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="${htmlFullPath}/css/shop.css" type="text/css" media="screen" property="" />
+	<link href="${htmlFullPath}/css/style7.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- Owl-carousel-CSS -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/checkout.css">
-	<link href="${pageContext.request.contextPath}/view/customer/html/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="${htmlFullPath}/css/checkout.css">
+	<link href="${htmlFullPath}/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- font-awesome-icons -->
-	<link href="${pageContext.request.contextPath}/view/customer/html/css/font-awesome.css" rel="stylesheet">
+	<link href="${htmlFullPath}/css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 		  rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 
-
-	<!-- start-smoth-scrolling -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/move-top.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/easing.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -64,18 +62,9 @@
 			});
 		});
 	</script>
-	<!-- //end-smoth-scrolling -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
-
-	<script src="../html/js/search.js"></script>
-
-	<!-- //test bar -->
-
-
-
 
 </head>
-<body  style="background-image: url('${pageContext.request.contextPath}/view/customer/html/images/loginBG.jpg');background-size: cover;overflow: hidden;">
+<body  style="background-image: url('${htmlFullPath}/images/loginBG.jpg');background-size: cover;overflow: hidden;">
 
  <div class="XXbanner_top XXinnerpage" id="home">
 	<div class="wrapper_top_w3layouts">
@@ -99,7 +88,7 @@
                         </c:if>
 						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
 						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
+						<li><a href="${htmlFullPath}/showProfile">Edit Profile</a></li>
 						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Logout</a></li>
 
 					</ul>
@@ -109,40 +98,10 @@
 				<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
 			</div>
 
-			<!-- <div class="w3l_login">
-				<a href="${pageContext.request.contextPath}/view/customer/html/Login.jsp" data-toggle="Login.html" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-			</div> -->
-
-			<!-- cart details -->
-			<!-- <div class="top_nav_right">
-                 <div class="shoecart shoecart2 cart cart box_1">
-                     <form action="#" method="post" class="last">
-                         <input type="hidden" name="cmd" value="_cart">
-                         <input type="hidden" name="display" value="1">
-                         <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-                     </form>
-                 </div>
-             </div> -->
 
 		</div>
 	</div>
-	<!-- //cart details -->
-	<!-- search -->
-	<!--
-    <div class="search_w3ls_agileinfo">
-        <div class="cd-main-header">
-            <ul class="cd-header-buttons">
-                <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-            </ul>
-        </div>
-        <div id="cd-search" class="cd-search">
-            <form action="#" method="post">
-                <input name="Search" type="search" placeholder="Click enter after typing...">
-            </form>
-        </div>
-    </div>
-    -->
-	<!-- //search -->
+
 	<div class="clearfix"></div>
 	<!-- /banner_inner -->
 	<div class="services-breadcrumb_w3ls_agileinfo">
@@ -166,7 +125,7 @@
 				<c:if test="${invalid != null}">
 					<div id="errormsg">The email or password is incorrect</div>
 				</c:if>
-				<div class="wrap-input100 validate-input m-b-10" data-validate = "Email is invalid">
+				<div class="wrap-input100 validate-input m-b-10" data-validate = "Email is required">
 					<input class="input100" type="text" name="email" placeholder="Email"
 					<c:if test="${invalid != null}">
 						   value="${mail}"
@@ -210,51 +169,16 @@
 	</div>
 </div>
 
-
-
-
-
-
-<!-- //footer -->
-<!-- js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/jquery-2.1.4.min.js"></script>
-<!-- //js -->
-
-<!-- cart-js -->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/minicart.js"></script>
-<script>
-	shoe.render();
-
-	shoe.cart.on('shoe_checkout', function (evt) {
-		var items, len, i;
-
-		if (this.subtotal() > 0) {
-			items = this.items();
-
-			for (i = 0, len = items.length; i < len; i++) {alert("ss")}
-		}
-	});
-</script>
-<!-- //cart-js -->
 <!-- /nav -->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/modernizr-2.6.2.min.js"></script>
-<script src="${pageContext.request.contextPath}/view/customer/html/js/classie.js"></script>
-<script src="${pageContext.request.contextPath}/view/customer/html/js/demo1.js"></script>
+<script src="${htmlFullPath}/js/modernizr-2.6.2.min.js"></script>
+<script src="${htmlFullPath}/js/classie.js"></script>
+<script src="${htmlFullPath}/js/demo1.js"></script>
 <!-- //nav -->
-<!--search-bar-->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/search.js"></script>
 
 
-
-<!--===============================================================================================-->
-<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/bootstrap/js/popper.js"></script>
-<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="${pageContext.request.contextPath}/view/customer/html/css/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/main.js"></script>
+<script src="${htmlFullPath}/css/vendor/bootstrap/js/popper.js"></script>
+<script src="${htmlFullPath}/css/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="${htmlFullPath}/js/main.js"></script>
 
 </body>
 </html>

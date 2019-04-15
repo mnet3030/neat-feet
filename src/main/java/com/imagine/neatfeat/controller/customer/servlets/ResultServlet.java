@@ -1,15 +1,12 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
-import com.imagine.neatfeat.model.dal.dao.ProductDAO;
-import com.imagine.neatfeat.model.dal.dao.UserDAO;
+import com.imagine.neatfeat.controller.services.PaginationService;
 import com.imagine.neatfeat.model.dal.entity.Category;
-import com.imagine.neatfeat.model.dal.entity.Product;
-import com.imagine.neatfeat.model.dal.entity.User;
-import com.imagine.neatfeat.model.dal.servletsdaos.CheckoutDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,53 +14,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 public class ResultServlet extends HttpServlet {
+    SessionFactory sessionFactory;
+    @Override
+    public void init() throws ServletException {
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*Mahmoud Shereif*/
+
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         ResultDao resultDao = new ResultDao();
+
         String searchByCatString = request.getParameter("cat");
         String searchString = request.getParameter("search");
         String pageNo = request.getParameter("pageNo");
 
-        List<Product> products = null;
-        Integer noOfPages = null;
-        Session session = (Session)getServletContext().getAttribute("session");
-        Integer pageNumber = null;
-
-
-        Map resultMap = null;
-        pageNumber = null;
-        if(pageNo != null) {
-            pageNumber = Integer.parseInt(pageNo);
-        }
-        else
-        {
-            pageNumber = 1;
-        }
 
         List<Category> mainCategories = resultDao.getMainCategories(session);
+        PaginationService paginationService = new PaginationService();
+        Map paginationMap = paginationService.getProductsByParameters(session, searchString, searchByCatString, pageNo);
+
         request.setAttribute("mainCategories", mainCategories);
+        request.setAttribute("products", paginationMap.get("entities"));
+        request.setAttribute("noOfPages", paginationMap.get("noOfPages"));
+        request.setAttribute("pageNo", paginationMap.get("pageNumber"));
+        request.setAttribute("categoryDetails", paginationMap.get("categoryDetails"));
 
-        if(searchByCatString != null)
-        {
-            resultMap = resultDao.getProductsPageByCategory(session, searchByCatString, pageNumber, 9);
 
-            products = (List<Product>) resultMap.get("entities");
-            noOfPages = (int) resultMap.get("noOfPages");
-
-            Map<String, Object> categoryDetails = resultDao.getCategoryDetailsWithParentsAndChilds(session, UUID.fromString(searchByCatString));
-            request.setAttribute("categoryDetails", categoryDetails);
-        }
-        else if(searchString != null)
-        {
-            resultMap = resultDao.getProductsPageBySearchString(session, searchString, pageNumber, 9);
-
-            products = (List<Product>) resultMap.get("entities");
-            noOfPages = (int) resultMap.get("noOfPages");
-        }
 
         List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
         CheckoutUtility checkoutUtility=new CheckoutUtility();
@@ -75,12 +59,10 @@ public class ResultServlet extends HttpServlet {
             request.getSession().setAttribute("sizeCart", 0);
         }
 
-        request.setAttribute("products", products);
-        request.setAttribute("noOfPages", noOfPages);
-        request.setAttribute("pageNo", pageNumber);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/customer/jsp/result.jsp");
         requestDispatcher.include(request, response);
 
+        session.getTransaction().commit();
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/

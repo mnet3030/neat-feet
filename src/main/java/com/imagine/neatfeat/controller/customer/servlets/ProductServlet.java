@@ -5,7 +5,6 @@ import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
-import com.imagine.neatfeat.model.dal.utility.ProductUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
 
@@ -21,12 +20,10 @@ import java.util.Random;
 import java.util.UUID;
 
 public class ProductServlet extends HttpServlet {
-    ProductUtility productUtility;
     ResultDao resultDao;
     Session session;
     @Override
     public void init() throws ServletException {
-        productUtility=new ProductUtility(session);
         resultDao = new ResultDao();
         session = (Session)getServletContext().getAttribute("session");
     }
@@ -62,11 +59,6 @@ public class ProductServlet extends HttpServlet {
             }else{
                 request.getSession().setAttribute("sizeCart", 0);
             }
-
-            List<Product> allProduct=productUtility.getAll();
-            //allProduct.forEach();
-            Collections.shuffle(allProduct,new Random());
-            request.setAttribute("allProducts",allProduct);
 
 
         }

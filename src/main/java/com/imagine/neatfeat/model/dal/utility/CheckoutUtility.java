@@ -2,6 +2,7 @@ package com.imagine.neatfeat.model.dal.utility;
 
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
+import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,11 +55,15 @@ public class CheckoutUtility {
         myCart.remove(removedItem);
         return  myCart;
     }
-    public int totalPrice(List<Item> myCart){
+    public int totalPrice(List<Item> myCart, Session session){
 
         total=0;
         if(myCart!=null) {
-            myCart.forEach(item -> total += (item.getQuantity() * item.getProduct().getPrice()));
+
+            myCart.forEach(item -> {
+                Product newProduct = session.get(Product.class, item.getProduct().getId());
+
+                total += (item.getQuantity() * newProduct.getPrice());});
         }
         //System.out.println(total);
         return total;

@@ -7,6 +7,7 @@ import com.imagine.neatfeat.model.dal.utility.CheckoutServices;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,20 +18,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class CheckoutServlet extends HttpServlet {
-
-    ResultDao resultDao;
-    Session session;
-    private List<Item> cart;
-    private CheckoutServices checkoutServices;
+    SessionFactory sessionFactory;
 
     @Override
     public void init() throws ServletException {
-        resultDao = new ResultDao();
-        session = (Session)getServletContext().getAttribute("session");
-        checkoutServices=new CheckoutServices(session);
+
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+
     }
-
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,17 +33,21 @@ public class CheckoutServlet extends HttpServlet {
 
         /*Amr El Kady*/
 
+        ResultDao resultDao = new ResultDao();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        CheckoutServices checkoutServices=new CheckoutServices(session);
+
         HttpSession userSession=request.getSession(false);
         if(userSession!=null && userSession.getAttribute("user") != null) {
-
-            cart=checkoutServices.getSessionAttr(request,response);
+            checkoutServices.getSessionAttr(request,response);
             request.getServletContext().getRequestDispatcher("/view/customer/jsp/checkout.jsp")
                     .forward(request, response);
         }else{
             request.getServletContext().getRequestDispatcher("/login")
                     .forward(request, response);
         }
-
+        session.getTransaction().commit();
         /*Alia Mahmoud*/
 
         /*Amer Salah*/
@@ -66,16 +65,20 @@ public class CheckoutServlet extends HttpServlet {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         HttpSession userSession=request.getSession(false);
         User user= (User) userSession.getAttribute("user");
         if(userSession!=null &&  user!= null) {
-            cart=checkoutServices.getSessionAttr(request,response);
+            CheckoutServices checkoutServices = new CheckoutServices(session);
+            List<Item> cart = checkoutServices.getSessionAttr(request,response);
             String action = request.getParameter("action");
             checkoutServices.doAction(request,response,cart,action);
 
         }else{
            request.getRequestDispatcher("/login").forward(request,response);
         }
+        session.getTransaction().commit();
 
 
 

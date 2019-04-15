@@ -19,6 +19,12 @@ import java.io.IOException;
 
 @MultipartConfig
 public class saveProfile  extends HttpServlet {
+    SessionFactory sessionFactory;
+
+    @Override
+    public void init() throws ServletException {
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*Mahmoud Shereif*/
@@ -49,7 +55,8 @@ public class saveProfile  extends HttpServlet {
             e.printStackTrace();
         }
         //----------------------------------------------------------------------
-        Session session = (Session)getServletContext().getAttribute("session");
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
 
         //----------------------------------------------------------------------
         HttpSession userSession = request.getSession(true);
@@ -73,6 +80,7 @@ public class saveProfile  extends HttpServlet {
         dao.update(user);
         //-----------------------------------------------------------------------
         response.sendRedirect(request.getContextPath()+"/showProfile");
+        session.getTransaction().commit();
         /*Amer Salah*/
 
         /*Nouran Habib*/

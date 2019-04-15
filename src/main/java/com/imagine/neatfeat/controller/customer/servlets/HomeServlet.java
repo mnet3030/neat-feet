@@ -4,9 +4,9 @@ import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
-import com.imagine.neatfeat.model.dal.utility.ProductUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,16 +20,10 @@ import java.util.Random;
 
 public class HomeServlet extends HttpServlet {
 
-
-    ProductUtility productUtility;
-    ResultDao resultDao;
-    Session session;
+    SessionFactory sessionFactory;
     @Override
     public void init() throws ServletException {
-        session = (Session)getServletContext().getAttribute("session");
-       productUtility=new ProductUtility(session);
-        resultDao = new ResultDao();
-
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
     }
 
     @Override
@@ -37,18 +31,15 @@ public class HomeServlet extends HttpServlet {
         /*Mahmoud Shereif*/
 
         /*Amr El Kady*/
-
-        List<Product> allProduct=productUtility.getAll();
-        //allProduct.forEach();
-        Collections.shuffle(allProduct,new Random());
-        request.getSession().setAttribute("allProducts",allProduct);
-
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        ResultDao resultDao = new ResultDao();
         List<Category> mainCategories = resultDao.getMainCategories(session);
         request.setAttribute("mainCategories", mainCategories);
 
 
         List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
-        CheckoutUtility checkoutUtility=new CheckoutUtility();
+        CheckoutUtility checkoutUtility = new CheckoutUtility();
 
         if(cart != null) {
             int sizeCart = checkoutUtility.sizeCart(cart);
@@ -61,22 +52,7 @@ public class HomeServlet extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/index.jsp");
         dispatcher.include(request, response);
 
-
-        /*Alia Mahmoud*/
-
-        /*Amer Salah*/
-
-        /*Nouran Habib*/
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*Mahmoud Shereif*/
-
-        /*Amr El Kady*/
-
-
+        session.getTransaction().commit();
 
         /*Alia Mahmoud*/
 

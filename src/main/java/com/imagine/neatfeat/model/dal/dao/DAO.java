@@ -17,18 +17,19 @@ import java.util.Map;
  * @author Mahmoud Shereif
  */
 public interface DAO<T extends Entity> {
-    public void persist(T entity) throws SQLException;
+    public void persist(T entity) ;
     public T merge(T entity);
-    public void update(T entity) throws SQLException;
-    public void delete(Serializable primaryKey) throws SQLException;
-    public T getByPrimaryKey(Serializable primaryKey) throws SQLException;
-    public List<T> getAll() throws SQLException;
-    public List<T> getByColumnNames(Map<String, Object> columnsWithValues) throws SQLException;
-    public List<T> getByColumnNamesNotEq(Map<String, Object> columnsWithValues) throws SQLException;
-    public List<T> getByColumnNamesWithLike(Map<String, Object> columnsWithValues) throws SQLException;
-    public List<T> getByColumnNamesWithNotNull(List<String> columnNames) throws SQLException;
-    public List<T> getByColumnNamesWithNull(List<String> columnNames) throws SQLException;
-    public Map<String, Object> getAllPaged(int pageNumber, int itemsPerPage) throws SQLException;
-    public Map<String, Object> getPageByColumnNames(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) throws SQLException;
-    public Map<String, Object> getPageByColumnNamesWithLike(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) throws SQLException;
+    public void update(T entity) ;
+    public void delete(Serializable primaryKey) ;
+    public T getByPrimaryKey(Serializable primaryKey) ;
+    public List<T> getAll() ;
+    public List<T> getByColumnNames(Map<String, Object> columnsWithValues) ;
+    public List<T> getByColumnName(String columnName, Object columnValue) ;
+    public List<T> getByColumnNamesNotEq(Map<String, Object> columnsWithValues) ;
+    public List<T> getByColumnNamesWithLike(Map<String, Object> columnsWithValues) ;
+    public List<T> getByColumnNamesWithNotNull(List<String> columnNames) ;
+    public List<T> getByColumnNamesWithNull(List<String> columnNames) ;
+    public Map<String, Object> getAllPaged(int pageNumber, int itemsPerPage) ;
+    public Map<String, Object> getPageByColumnNames(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) ;
+    public Map<String, Object> getPageByColumnNamesWithLike(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) ;
 }

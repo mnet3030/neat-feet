@@ -6,6 +6,7 @@ import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +24,14 @@ import java.util.UUID;
 
 @WebServlet("/cart")
 public class ShoppingCart extends HttpServlet {
-
+    SessionFactory sessionFactory;
     List<Item> cartProducts = new ArrayList<>();
+    @Override
+    public void init() throws ServletException {
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+    }
+
+
 
 
     @Override
@@ -34,7 +41,8 @@ public class ShoppingCart extends HttpServlet {
         boolean found = false;
         int quantity = 0;
 
-        Session sessionHib = (Session)getServletContext().getAttribute("session");
+        Session sessionHib = sessionFactory.getCurrentSession();
+        sessionHib.beginTransaction();
 
         Product product = new Product();
         ProductDAO productDao = new ProductDAO(sessionHib);
@@ -91,6 +99,7 @@ public class ShoppingCart extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.print(req.getSession(false).getAttribute("sizeCart"));
 
+        sessionHib.getTransaction().commit();
     }
 
     @Override
@@ -100,7 +109,7 @@ public class ShoppingCart extends HttpServlet {
 
     }
 
-    public int  updateCartSize(HttpServletRequest req, HttpServletResponse resp){
+    public int updateCartSize(HttpServletRequest req, HttpServletResponse resp){
 
         List<Item> cart= (List<Item>) req.getSession().getAttribute("cartProduct");
         CheckoutUtility checkoutUtility=new CheckoutUtility();
