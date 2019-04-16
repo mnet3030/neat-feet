@@ -1,7 +1,5 @@
 package com.imagine.neatfeat.model.dal.utilityPojos;
 
-import com.imagine.neatfeat.model.dal.entity.Product;
-
 import java.util.UUID;
 
 public class Item {
