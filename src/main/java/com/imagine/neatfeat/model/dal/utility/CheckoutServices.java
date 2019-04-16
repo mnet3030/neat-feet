@@ -1,5 +1,7 @@
 package com.imagine.neatfeat.model.dal.utility;
 
+import com.imagine.neatfeat.model.dal.dao.ProductDAO;
+import com.imagine.neatfeat.model.dal.dto.CheckoutProduct;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.servletsdaos.CheckoutDao;
@@ -30,17 +32,26 @@ public class CheckoutServices {
     public List<Item> getSessionAttr(HttpServletRequest request, HttpServletResponse response) {
 
 
+
         List<Category> mainCategories = resultDao.getMainCategories(session);
         request.setAttribute("mainCategories", mainCategories);
 
-       List<Item> cart = (List<Item>) request.getSession().getAttribute("cartProduct");
-       int  newTotalPrice = checkoutUtility.totalPrice(cart, session);
+        List<Item> cart = (List<Item>) request.getSession().getAttribute("cartProduct");
+        List<CheckoutProduct> checkoutProducts = getCheckoutProductsFromCart(cart);
+        request.setAttribute("products", checkoutProducts);
+
+        int  newTotalPrice = checkoutUtility.totalPrice(cart, session);
         request.getSession(false).setAttribute("totalPrice", newTotalPrice);
 
 
-       int sizeCart = checkoutUtility.sizeCart(cart);
+        int sizeCart = checkoutUtility.sizeCart(cart);
         request.getSession(false).setAttribute("sizeCart", sizeCart);
         return cart;
+    }
+
+    private List<CheckoutProduct> getCheckoutProductsFromCart(List<Item> cart) {
+        CheckoutDao checkoutDao = new CheckoutDao();
+        return checkoutDao.getCheckoutProductsFromCart(session, cart);
     }
 
     public void updateSessionAtt(HttpServletRequest request, HttpServletResponse response, List<Item> newCart) throws IOException {

@@ -32,5 +32,5 @@ public interface DAO<T extends Entity> {
     public Map<String, Object> getAllPaged(int pageNumber, int itemsPerPage) ;
     public Map<String, Object> getPageByColumnNames(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) ;
     public Map<String, Object> getPageByColumnNamesWithLike(Map<String, Object> columnsWithValues, int pageNumber, int itemsPerPage) ;
-    public List<T> getWithInByIdAndLockForUpdateOrdered(String columnName, List<Object> ids);
+    public List<T> getWithInByIdAndLockForUpdateOrdered(String columnName, List<Object> ids, boolean lockedForUpdate);
 }

@@ -233,10 +233,11 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
     }
 
     @Override
-    public List<T> getWithInByIdAndLockForUpdateOrdered(String columnName, List<Object> ids) {
+    public List<T> getWithInByIdAndLockForUpdateOrdered(String columnName, List<Object> ids, boolean lockedForUpdate) {
         Criteria criteria = session.createCriteria(tClass);
         Restrictions.in(columnName, ids);
-        criteria.setLockMode(LockMode.UPGRADE);
+        if(lockedForUpdate)
+            criteria.setLockMode(LockMode.UPGRADE);
         criteria.addOrder(Order.asc("id"));
         List<T> neededEntities = criteria.list();
         return neededEntities;

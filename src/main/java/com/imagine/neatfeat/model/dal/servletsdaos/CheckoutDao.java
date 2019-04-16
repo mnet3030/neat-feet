@@ -1,6 +1,7 @@
 package com.imagine.neatfeat.model.dal.servletsdaos;
 
 import com.imagine.neatfeat.model.dal.dao.*;
+import com.imagine.neatfeat.model.dal.dto.CheckoutProduct;
 import com.imagine.neatfeat.model.dal.entity.*;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
@@ -70,7 +71,7 @@ public class CheckoutDao {
             uuids.add(item.getProductId());
         });
 
-        return productDAO.getWithInByIdAndLockForUpdateOrdered("id", uuids);
+        return productDAO.getWithInByIdAndLockForUpdateOrdered("id", uuids, true);
     }
 
     private void addOrderProducts(List<Item> itemsToBeBuyed, UserOrders userOrder, List<Product> products) {
@@ -141,5 +142,28 @@ public class CheckoutDao {
             i++;
         }
         return true;
+    }
+
+    public List<CheckoutProduct> getCheckoutProductsFromCart(Session session, List<Item> cart) {
+        this.session = session;
+        List<CheckoutProduct> checkoutProducts = new ArrayList<>();
+        ProductDAO productDAO = new ProductDAO(session);
+        for (Item item : cart) {
+            CheckoutProduct checkoutProduct = new CheckoutProduct();
+            Product product = productDAO.getByPrimaryKey(item.getProductId());
+            checkoutProduct.setProduct(product);
+            if(item.getQuantity() > product.getQuantity())
+            {
+                checkoutProduct.setDifferent(true);
+                checkoutProduct.setNeededQuantity(item.getQuantity());
+            }
+            else
+            {
+                checkoutProduct.setDifferent(false);
+            }
+            checkoutProducts.add(checkoutProduct);
+
+        }
+        return checkoutProducts;
     }
 }
