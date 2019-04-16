@@ -167,17 +167,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                 <c:set var="count" value="0" scope="page" />
-                <c:forEach items="${sessionScope.cartProduct}" var="item" >
+                <c:forEach items="${requestScope.products}" var="item" >
                     <c:set var="count" value="${count + 1}" scope="page"/>
 
                     <div class="Rtable Rtable--6cols Rtable--collapse">
 
                         <div class="Rtable-cell" style="width: 5%;"><h3><c:out value="${count}" /></h3></div>
-                        <div class="Rtable-cell" style="width: 38%;"><a href="product?productid=${item.product.id}"><img src="${htmlFullPath}/images/s1.jpg" alt=" " style="height: 20vh;" class="img-responsive"></a></div>
+                        <div class="Rtable-cell" style="width: 38%;"><a href="product?id=${item.product.id}"><img src="${htmlFullPath}/images/s1.jpg" alt=" " style="height: 20vh;" class="img-responsive"></a></div>
                         <div class="Rtable-cell" style="width: 17%;">
                             <div class="quantity">
                                 <div class="quantity-select">
                                     <input type="hidden" name="id" class="productid" value="${item.product.id}">
+
                                     <div class="entry value-minus" onclick="minus(this)">&nbsp;</div>
                                     <input readonly class="entry value" value="${item.quantity}"  max="${item.product.quantity}">
                                     <div class="entry value-plus active" onclick="pluse(this)">&nbsp;</div>
@@ -186,18 +187,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div class="Rtable-cell" style="width: 12%;">
                             <c:choose>
-                                <c:when test="${item.product.quantity!=0}" >
+                                <c:when test="${item.product.quantity!=0} && ${item.isDifferent==false}" >
                                     <div><c:out value="${item.product.description}" /></div>
+                                </c:when>
+                                <c:when test="${item.product.quantity!=0} && ${item.isDifferent==true}" >
+                                    <div><c:out value="${item.product.description}" /></div>
+                                    <div style="color: green"><c:out value="${item.product.quantity} only avalible in stock ... " /></div>
                                 </c:when>
                                 <c:otherwise>
                                     <del><c:out value="${item.product.description}" /></del>
+                                    <div style="color: red"><c:out value="*Not avalible in stock ... " /></div>
                                 </c:otherwise>
                             </c:choose>
                         </div>
                         <div class="Rtable-cell" style="width: 6%;">
                             <div class="priceOfUnit"><c:out value="${item.product.price} EGP" /></div>
-                            <div class="quantityOfUnit" ><c:out value="* ${item.quantity}" /></div>
-                            <div class="totalPriceOfUint" ><c:out value="= ${item.quantity*item.product.price} EGP" /></div>
+                            <div class="quantityOfUnit" ><c:out value="* ${item.neededQuantity}" /></div>
+                            <div class="totalPriceOfUint" ><c:out value="= ${item.neededQuantity*item.product.price} EGP" /></div>
                         </div>
                         <div class="Rtable-cell Rtable-cell--foot" style="width: 7%;">
                             <div class="rem">
