@@ -16,6 +16,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/main.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/userAjax.js"></script>
+
     <link href="${pageContext.request.contextPath}/view/admin/html/css/productTable.css" rel="stylesheet" type="text/css" media="all" />
     <%@page import="com.imagine.neatfeat.model.dal.entity.User"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -54,20 +57,21 @@
 
 
 
-            <c:forEach items="${searchResult}" var="current">
+            <c:forEach items="${sessionScope.users}" var="user">
 
             <tr>
 
+
+                <td><c:out value="${user.name}"></c:out></td>
+                <td><c:out value="${user.email}"></c:out></td>
+                <td><c:out value="${user.address}"></c:out></td>
+                <td><c:out value="${user.phone}"></c:out></td>
+
                 <td>
-                    <c:out value="${current[0]}"/>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">list</i></a>
-                    ></td>
+
+                    <button href="#editEmployeeModal" id="view-btn" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"  onclick=" getuserinfo('${user.id}')">list</i></button>
+              <!--  <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" id="view">list</i></a>-->
+                    </td>
             </tr>
 
 
@@ -137,35 +141,35 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" disabled="disabled" required>
+                        <input type="text" class="form-control" id="name" disabled="disabled" required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" disabled="disabled" required>
+                        <input type="email" class="form-control" id="email" disabled="disabled" required>
                     </div>
                     <div class="form-group">
                         <label>Birthdate</label>
-                        <input type="text" class="form-control" disabled="disabled" required>
+                        <input type="text" class="form-control" id="birthdate" disabled="disabled" required>
                     </div>
                     <div class="form-group">
                         <label>Gender</label>
-                        <input type="text" class="form-control" disabled="disabled" required>
+                        <input type="text" class="form-control" id="gender" disabled="disabled" required>
                     </div>
                     <div class="form-group">
                         <label>Job</label>
-                        <input type="text" class="form-control" disabled="disabled" required>
+                        <input type="text" class="form-control" id="job" disabled="disabled" required>
                     </div>
                     <div class="form-group">
                         <label>Address</label>
-                        <textarea class="form-control" disabled="disabled" required></textarea>
+                        <textarea class="form-control" id="address" disabled="disabled" required></textarea>
                     </div>
                     <div class="form-group">
                         <label>Phone</label>
-                        <input type="text" class="form-control" disabled="disabled" required>
+                        <input type="text" class="form-control" id="phone" disabled="disabled" required>
                     </div>
                     <div class="form-group">
                         <label>Country</label>
-                        <input type="text" class="form-control" disabled="disabled" required>
+                        <input type="text" class="form-control" id="country" disabled="disabled" required>
                     </div>
                     <br>
                 </div>
@@ -178,6 +182,7 @@
 <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
+
             <form>
                 <div class="modal-header">
                     <h4 class="modal-title">Delete Employee</h4>
@@ -195,6 +200,5 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/main.js"></script>
 </body>
 </html>

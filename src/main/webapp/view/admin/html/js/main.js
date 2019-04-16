@@ -1,5 +1,9 @@
+$(document).ready(function(){
+    var x=document .querySelector('.material-icons')[0];
+    var y=x.prev().prev().prev().innerHTML;
+    console.log(x);
+    console.log(y);
 
-    $(document).ready(function(){
         // Activate tooltip
         $('[data-toggle="tooltip"]').tooltip();
 
@@ -22,3 +26,27 @@
             }
         });
     });
+
+
+    $(document).ready(function(){
+
+
+        var x=document .querySelector('.material-icons')[0];
+        var y=x.prev().prev().prev().innerHTML;
+        console.log(x);
+        console.log(y);
+       // this.click(function(){
+       //      // if(!this.checked){
+       //      //     $("#").prop("checked", false);
+       //      // }
+       //     console.log(y)
+       //  });
+    });
+
+function userEmail(useremail){
+
+    console.log(useremail);
+
+
+}
+
