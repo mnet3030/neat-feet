@@ -4,15 +4,23 @@ import com.imagine.neatfeat.model.dal.entity.Product;
 
 public class CheckoutProduct {
     private Product product;
-    boolean isDifferent;
+    boolean different;
     int neededQuantity;
+
+    public boolean getDifferent() {
+        return different;
+    }
+
+    public void setDifferent(boolean different) {
+        different = different;
+    }
 
     public CheckoutProduct() {
     }
 
-    public CheckoutProduct(Product product, boolean isDifferent, int neededQuantity) {
+    public CheckoutProduct(Product product, boolean Different, int neededQuantity) {
         this.product = product;
-        this.isDifferent = isDifferent;
+        this.different = Different;
         this.neededQuantity = neededQuantity;
     }
 
@@ -24,13 +32,6 @@ public class CheckoutProduct {
         this.product = product;
     }
 
-    public boolean isDifferent() {
-        return isDifferent;
-    }
-
-    public void setDifferent(boolean different) {
-        isDifferent = different;
-    }
 
     public int getNeededQuantity() {
         return neededQuantity;

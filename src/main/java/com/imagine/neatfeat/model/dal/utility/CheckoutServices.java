@@ -94,14 +94,10 @@ public class CheckoutServices {
 
                 break;
             case "buy":
-
-                Session session= (Session) request.getServletContext().getAttribute("session");
                 CheckoutDao checkoutDao=new CheckoutDao();
                 List<Item> mycart= (List<Item>) request.getSession(false).getAttribute("cartProduct");
                 User user= (User) request.getSession(false).getAttribute("user");
-                session.beginTransaction();
                 String result=checkoutDao.buyCart(mycart,session,user);
-                session.getTransaction().commit();
                 switch (result){
                     case "success":
                         mycart=null;
@@ -117,7 +113,6 @@ public class CheckoutServices {
                         response.getWriter().println("Error in quantity");
                         break;
                 }
-                session.beginTransaction();
                 break;
 
         }

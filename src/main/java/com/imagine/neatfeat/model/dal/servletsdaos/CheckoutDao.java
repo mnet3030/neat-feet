@@ -160,6 +160,7 @@ public class CheckoutDao {
             else
             {
                 checkoutProduct.setDifferent(false);
+                checkoutProduct.setNeededQuantity(item.getQuantity());
             }
             checkoutProducts.add(checkoutProduct);
 

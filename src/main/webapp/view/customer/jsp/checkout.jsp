@@ -180,17 +180,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <input type="hidden" name="id" class="productid" value="${item.product.id}">
 
                                     <div class="entry value-minus" onclick="minus(this)">&nbsp;</div>
-                                    <input readonly class="entry value" value="${item.quantity}"  max="${item.product.quantity}">
+                                    <input readonly class="entry value" value="${item.neededQuantity}"  max="${item.product.quantity}">
                                     <div class="entry value-plus active" onclick="pluse(this)">&nbsp;</div>
                                 </div>
                             </div>
                         </div>
                         <div class="Rtable-cell" style="width: 12%;">
                             <c:choose>
-                                <c:when test="${item.product.quantity!=0} && ${item.isDifferent==false}" >
+                                <c:when test="${item.product.quantity!=0 && item.different==false}" >
                                     <div><c:out value="${item.product.description}" /></div>
                                 </c:when>
-                                <c:when test="${item.product.quantity!=0} && ${item.isDifferent==true}" >
+                                <c:when test="${item.product.quantity!=0 && item.different==true}" >
                                     <div><c:out value="${item.product.description}" /></div>
                                     <div style="color: green"><c:out value="${item.product.quantity} only avalible in stock ... " /></div>
                                 </c:when>
