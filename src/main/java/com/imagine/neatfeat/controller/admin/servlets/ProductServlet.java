@@ -87,7 +87,7 @@ public class ProductServlet extends HttpServlet {
 
         session.getTransaction().commit();
         session.close();
-
+        factory.close();
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
         dispatcher.forward(request, response);
 
