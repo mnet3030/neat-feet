@@ -10,9 +10,9 @@ function pluse(btn) {
 
             if(divUpd.attr("max")>=newVal) {
                 divUpd.val(newVal);
-                $(this).parents('tr').find('.quantityOfUnit').text(" * " +newVal);
-                var price=$(this).parents('tr').find('.priceOfUnit').text().split(" ");
-                $(this).parents('tr').find('.totalPriceOfUint').text("= " +(newVal*price[0])+" EGP");
+                $(btn).parents().eq(3).find('.quantityOfUnit').text(" * " +newVal)
+                var price=$(btn).parents().eq(3).find('.priceOfUnit').text().split(" ");
+                $(btn).parents().eq(3).find('.totalPriceOfUint').text("= " +(newVal*price[0])+" EGP");
             }
 
             $("#totalprice").html(data.totalPrice+" EGP");
@@ -43,9 +43,9 @@ function minus(btn) {
                 newVal = parseInt(divUpd.val(), 10) - 1;
             if (newVal >= 1) {
                 divUpd.val(newVal);
-                $(this).parents('tr').find('.quantityOfUnit').text(" * " +newVal)
-                var price=$(this).parents('tr').find('.priceOfUnit').text().split(" ");
-                $(this).parents('tr').find('.totalPriceOfUint').text("= " +(newVal*price[0])+" EGP");
+                $(btn).parents().eq(3).find('.quantityOfUnit').text(" * " +newVal)
+                var price=$(btn).parents().eq(3).find('.priceOfUnit').text().split(" ");
+                $(btn).parents().eq(3).find('.totalPriceOfUint').text("= " +(newVal*price[0])+" EGP");
 
             }
 
@@ -90,15 +90,15 @@ function remove(id) {
 function buy() {
     // alert("here")
     $.post("checkout?action=buy",
-        function (data,state) {
-            if(data=="success"){
+        function (data,state){
+            if(data.localeCompare("success")){
                 setTimeout(function(){
 
                     alertify.success('Successfull Operation.');
                 }, 1000);
 
                 sleep(3000).then(() => {
-                    window.location.href = "http://localhost:9050/neat_feet_war_exploded/login";
+                    window.location.href = "http://localhost:9050/neat_feet_war_exploded/home";
                 });
 
             }
