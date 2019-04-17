@@ -1,7 +1,9 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
+import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.servletsdaos.LoginDao;
+import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class LoginServlet extends HttpServlet {
 
@@ -25,6 +28,13 @@ public class LoginServlet extends HttpServlet {
         /*Mahmoud Shereif*/
 
         /*Amr El Kady*/
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        ResultDao resultDao = new ResultDao();
+        List<Category> mainCategories = resultDao.getMainCategories(session);
+        request.setAttribute("mainCategories", mainCategories);
+        session.getTransaction().commit();
+
 
         /*Alia Mahmoud*/
 

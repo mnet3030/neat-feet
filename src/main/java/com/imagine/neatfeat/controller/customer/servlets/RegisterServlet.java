@@ -2,10 +2,12 @@ package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.Convertors.UserConvertor;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
+import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Country;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
 import com.imagine.neatfeat.model.dal.servletsdaos.RegisterDao;
+import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,14 +41,20 @@ public class RegisterServlet extends HttpServlet {
         RegisterDao registerDao = new RegisterDao();
         List<Country> allCountries = registerDao.getAllCountries(session);
 
+
+
         request.setAttribute("allCountries" ,allCountries);
         request.getServletContext()
                 .getRequestDispatcher("/view/customer/jsp/register.jsp")
                 .include(request,response);
 
-        session.getTransaction().commit();
+
         /*Amr El Kady*/
 
+        ResultDao resultDao = new ResultDao();
+        List<Category> mainCategories = resultDao.getMainCategories(session);
+        request.setAttribute("mainCategories", mainCategories);
+        session.getTransaction().commit();
         /*Alia Mahmoud*/
 
         /*Amer Salah*/

@@ -62,7 +62,7 @@ public class ProductServlet extends HttpServlet {
 
 
         }
-        Session session = (Session)getServletContext().getAttribute("session");
+
         ResultDao resultDao = new ResultDao();
         List<Category> mainCategories = resultDao.getMainCategories(session);
         request.setAttribute("mainCategories", mainCategories);

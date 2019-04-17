@@ -57,13 +57,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <nav>
                     <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="404.html">Team</a></li>
-                        <li><a href="shop.html">Shop Now</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/home">Home</a><i></i></li>
+                        <c:if test="${requestScope.mainCategories != null}">
+                            <c:forEach items="${requestScope.mainCategories}" var="mainCategory">
+                                <li>
+                                    <a href = "${pageContext.request.contextPath}/result?cat=${mainCategory.id}">${mainCategory.description}</a>
+                                </li>
+                            </c:forEach>
+                        </c:if>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
+                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Logout</a></li>
+
                     </ul>
                 </nav>
+
             </div>
 
 
@@ -151,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h3>Chec<span>kout</span></h3>
 
             <div class="checkout-right">
-                <h4>Your shopping cart contains: <span>3 Products</span></h4>
+                <%--<h4>Your shopping cart contains: <span>3 Products</span></h4>--%>
 
 
                 <div class="Rtable Rtable--6cols Rtable--collapse">
@@ -472,7 +481,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="footer_inner_info_w3ls_agileits">
             <div class="col-md-3 footer-left">
                 <h2><a href="index.html"><span>N</span>eat Feat </a></h2>
-                <p>Lorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
+                <p>Best online Store.</p>
                 <ul class="social-nav model-3d-0 footer-social social two">
                     <li>
                         <a href="#" class="facebook">
@@ -505,11 +514,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-4 sign-gd">
                         <h4>Our <span>Information</span> </h4>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="404.html">Services</a></li>
-                            <li><a href="404.html">Short Codes</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+                            <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
+                            <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
                         </ul>
                     </div>
 
@@ -522,7 +529,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                                 <div class="address-right">
                                     <h6>Phone Number</h6>
-                                    <p>+1 234 567 8901</p>
+                                    <p>+20 111 753 8430</p>
                                 </div>
                                 <div class="clearfix"> </div>
                             </div>
@@ -532,7 +539,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                                 <div class="address-right">
                                     <h6>Email Address</h6>
-                                    <p>Email :<a href="mailto:example@email.com"> mail@example.com</a></p>
+                                    <p>Email :<a href="mailto:example@email.com"> mail@neatfeat.com</a></p>
                                 </div>
                                 <div class="clearfix"> </div>
                             </div>
@@ -542,7 +549,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                                 <div class="address-right">
                                     <h6>Location</h6>
-                                    <p>Broome St, NY 10002,California, USA.
+                                    <p>Smart Viallage , EGY.
 
                                     </p>
                                 </div>
@@ -553,15 +560,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-3 sign-gd flickr-post">
                         <h4>Flickr <span>Posts</span></h4>
                         <ul>
-                            <li><a href="single.html"><img src="${htmlFullPath}/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="${htmlFullPath}/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="${htmlFullPath}/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="${htmlFullPath}/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="${htmlFullPath}/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="${htmlFullPath}/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="${htmlFullPath}/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="${htmlFullPath}/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                            <li><a href="single.html"><img src="${htmlFullPath}/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+                            <li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
                         </ul>
                     </div>
                     <div class="clearfix"></div>
@@ -569,7 +576,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="clearfix"></div>
 
-            <p class="copy-right-w3ls-agileits">&copy 2018 Downy Shoes. All rights reserved | Design by <a href="http://w3layouts.com/">w3layouts</a></p>
+            <p class="copy-right-w3ls-agileits">&copy 2018 ITI | Design by <a href="http://w3layouts.com/">Java Track</a></p>
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
+import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.servletsdaos.CheckoutDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
@@ -35,21 +36,28 @@ public class CheckoutServlet extends HttpServlet {
 
         /*Amr El Kady*/
 
-        ResultDao resultDao = new ResultDao();
+       // ResultDao resultDao = new ResultDao();
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         CheckoutServices checkoutServices=new CheckoutServices(session);
+        ResultDao resultDao = new ResultDao();
+        List<Category> mainCategories = resultDao.getMainCategories(session);
+        request.setAttribute("mainCategories", mainCategories);
 
         HttpSession userSession=request.getSession(false);
         if(userSession!=null && userSession.getAttribute("user") != null) {
+           // session.getTransaction().commit();
             checkoutServices.getSessionAttr(request,response);
             request.getServletContext().getRequestDispatcher("/view/customer/jsp/checkout.jsp")
                     .forward(request, response);
+            session.getTransaction().commit();
         }else{
+
             request.getServletContext().getRequestDispatcher("/login")
                     .forward(request, response);
+            session.getTransaction().commit();
         }
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         /*Alia Mahmoud*/
 
         /*Amer Salah*/
