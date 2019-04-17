@@ -90,6 +90,7 @@ public class CheckoutServlet extends HttpServlet {
                 CheckoutServices checkoutServices = new CheckoutServices(session);
                 List<Item> cart = checkoutServices.getSessionAttr(request,response);
                 String action = request.getParameter("action");
+                System.out.println(action);
                 checkoutServices.doAction(request,response,cart,action);
 
                 tx.commit();

@@ -27,6 +27,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
+    <%-- alert fi--%>
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.min.css"/>
+
+    <!--
+        RTL version
+    -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.rtl.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.rtl.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.rtl.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.rtl.min.css"/>
+    <%--//alert--%>
+
+
+
+
+
     <!-- //custom-theme -->
     <link href="${htmlFullPath}/css/flextable.css" rel="stylesheet" type="text/css" media="all" />
     <link href="${htmlFullPath}/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
@@ -326,7 +355,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="col-md-8 address_form">
                     <h4>Add a new Details</h4>
-                    <form action="checkout?action=buy" method="post" class="creditly-card-form agileinfo_form">
+                    <div action="#" method="post" class="creditly-card-form agileinfo_form">
                         <section class="creditly-wrapper wrapper">
                             <div class="information-wrapper">
                                 <div class="first-row form-group">
@@ -363,10 +392,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </select>
                                     </div>
                                 </div>
-                                <button class="submit check_out">Delivery to this Address</button>
+                                <button  type="button" class="submit check_out" onclick="buy()" >Delivery to this Address</button>
                             </div>
                         </section>
-                    </form>
+                    </div>
                     <div class="checkout-right-basket">
                         <a href="payment.html">Make a Payment </a>
                     </div>
@@ -611,29 +640,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//search-bar-->
 <!--quantity-->
 <script>
-    $('.value-plus').on('click', function () {
-        var divUpd = $(this).parent().find('.value'),
-            newVal = parseInt(divUpd.val(), 10) + 1;
-        if(divUpd.attr("max")>=newVal) {
-            divUpd.val(newVal);
-            $(this).parents('tr').find('.quantityOfUnit').text(" * " +newVal);
-            var price=$(this).parents('tr').find('.priceOfUnit').text().split(" ");
-            $(this).parents('tr').find('.totalPriceOfUint').text("= " +(newVal*price[0])+" EGP");
-        }
 
-    });
 
-    $('.value-minus').on('click', function () {
-        var divUpd = $(this).parent().find('.value'),
-            newVal = parseInt(divUpd.val(), 10) - 1;
-        if (newVal >= 1) {
-            divUpd.val(newVal);
-            $(this).parents('tr').find('.quantityOfUnit').text(" * " +newVal)
-            var price=$(this).parents('tr').find('.priceOfUnit').text().split(" ");
-            $(this).parents('tr').find('.totalPriceOfUint').text("= " +(newVal*price[0])+" EGP");
-
-        }
-    });
 </script>
 <!--quantity-->
 <script>
