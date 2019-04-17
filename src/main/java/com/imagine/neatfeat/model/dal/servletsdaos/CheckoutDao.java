@@ -108,10 +108,10 @@ public class CheckoutDao {
         int i = 0;
         for (Item item : itemsToBeBuyed) {
             OrderProducts orderProduct = new OrderProducts();
-            orderProduct.setProduct(session.get(Product.class,products.get(0).getId()));
+            orderProduct.setProduct(session.get(Product.class,products.get(i).getId()));
             orderProduct.setDeliveryStatus(deliveryStatus);
             orderProduct.setQuantity(item.getQuantity());
-            orderProduct.setPriceBeforeDiscount(products.get(0).getPrice());
+            orderProduct.setPriceBeforeDiscount(products.get(i).getPrice());
             orderProduct.setTotalPrice(orderProduct.getQuantity() * orderProduct.getPriceBeforeDiscount());
             orderProducts.add(orderProduct);
             i++;
@@ -136,7 +136,7 @@ public class CheckoutDao {
     private boolean checkQuantity(List<Item> itemsToBeBuyed, List<Product> products) {
         int i = 0;
         for (Item itemToBeBuyed : itemsToBeBuyed) {
-            if(itemToBeBuyed.getQuantity() > products.get(i).getQuantity()){
+            if((itemToBeBuyed.getQuantity() > products.get(i).getQuantity())){
                 return false;
             }
             i++;
