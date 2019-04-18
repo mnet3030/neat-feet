@@ -1,5 +1,6 @@
 package com.imagine.neatfeat.controller.admin.servlets;
 
+import com.google.gson.Gson;
 import com.imagine.neatfeat.model.dal.Convertors.ProductConvertor;
 import com.imagine.neatfeat.model.dal.Convertors.UserConvertor;
 import com.imagine.neatfeat.model.dal.dao.BrandDAO;
@@ -19,15 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.overDao.FasadProductDao;
 import com.imagine.neatfeat.model.dal.servletDAO.ProductBean;
 import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
+import com.imagine.neatfeat.model.dal.servletsdaos.AdminProductDao;
 import com.imagine.neatfeat.model.dal.utility.ProductUtility;
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.Session;
@@ -48,6 +47,8 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //System.out.println("INNNNNNNNNNNNNNNN");
+
         PrintWriter out = response.getWriter();
 
 
@@ -59,10 +60,37 @@ public class ProductServlet extends HttpServlet {
             productDao.deleteProductByID(uuid);
 
         }
+        else if(action.equals("search"))
+        {
+            //System.out.println("Action = Search");
+            SessionFactory factory =  new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+            Session session = factory.openSession();
 
+            AdminProductDao productDAO = new AdminProductDao(session);
+            String productName = request.getParameter("productName");
+//            System.out.println(productName);
+//            Map<String , Object> columns = new HashMap<>();
+//            columns.put("description" , productName);
 
+            List<Product> results = productDAO.getProductsByName(productName);
 
+            if(results.size()>=1)
+            {
+                System.out.println(results.get(0).getDescription());
+                request.getSession().setAttribute("results",results);
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
+                dispatcher.forward(request, response);
 
+            }else{
+
+                ProductDAO dao = new ProductDAO(session);
+                List<Product> products = dao.getAll();
+                request.getSession().setAttribute("products",products);
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
+                dispatcher.forward(request, response);
+            }
+
+        }
 
     }
 

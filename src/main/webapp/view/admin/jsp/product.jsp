@@ -27,54 +27,115 @@
                 <div class="col-sm-6">
                     <h2>Manage <b>Employees</b></h2>
                 </div>
+
+
                 <div class="col-sm-6">
+                    <form method="post" action="productServlet">
+                         <input type="text" name="productName">
+                         <input type="hidden" name="action" value="search">
+                         <button class="btn btn-danger" type="submit" ><span>Search</span></button>
+                    </form>
                     <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                    <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+
                 </div>
             </div>
         </div>
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-                </th>
+                <%--<th>--%>
+							<%--<span class="custom-checkbox">--%>
+								<%--<input type="checkbox" id="selectAll">--%>
+								<%--<label for="selectAll"></label>--%>
+							<%--</span>--%>
+                <%--</th>--%>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>BuyingCount</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
 
-                <c:forEach items="${sessionScope.products}" var="product">
 
-                <tr>
-                    <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="${product.id}" name="options[]" value="1">
-								<label for="${product.id}"></label>
-							</span>
-                    </td>
-                    <td><c:out value="${product.description}"></c:out></td>
-                    <td><c:out value="${product.price}"></c:out></td>
-                    <td><c:out value="${product.quantity}"></c:out></td>
-                    <td><c:out value="${product.buyingCount}"></c:out></td>
-                    <td>
-                        <input type="hidden" name="productID" value="${product.id}">
-                        <button href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                        <button href="#deleteEmployeeModal"  onclick="deleteRowFromDB(this)"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
-                    </td>
-                </tr>
-                <tr>
 
-                </c:forEach>
+<c:choose>
+    <c:when test="${sessionScope.results != null}">
 
+        <c:forEach items="${sessionScope.results}" var="result">
+
+            <tr>
+                    <%--<td>--%>
+                    <%--<span class="custom-checkbox">--%>
+                    <%--<input type="checkbox" id="${product.id}" name="options[]" value="1">--%>
+                    <%--<label for="${product.id}"></label>--%>
+                    <%--</span>--%>
+                    <%--</td>--%>
+                <td><c:out value="${result.description}"></c:out></td>
+                <td><c:out value="${result.price}"></c:out></td>
+                <td><c:out value="${result.quantity}"></c:out></td>
+                <td><c:out value="${result.buyingCount}"></c:out></td>
+                <td><c:out value="${result.category.getDescription()}"></c:out></td>
+
+                <td>
+                    <input type="hidden" name="productID" value="${result.id}">
+                    <button href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
+                    <button href="#deleteEmployeeModal"  onclick="deleteRowFromDB(this)"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                </td>
+            </tr>
             <%--<tr>--%>
+
+        </c:forEach>
+
+
+    </c:when>
+    <c:otherwise>
+
+        <c:forEach items="${sessionScope.products}" var="product">
+
+            <tr>
+                    <%--<td>--%>
+                    <%--<span class="custom-checkbox">--%>
+                    <%--<input type="checkbox" id="${product.id}" name="options[]" value="1">--%>
+                    <%--<label for="${product.id}"></label>--%>
+                    <%--</span>--%>
+                    <%--</td>--%>
+                <td><c:out value="${product.description}"></c:out></td>
+                <td><c:out value="${product.price}"></c:out></td>
+                <td><c:out value="${product.quantity}"></c:out></td>
+                <td><c:out value="${product.buyingCount}"></c:out></td>
+                <td><c:out value="${product.category.getDescription()}"></c:out></td>
+
+                <td>
+                    <input type="hidden" name="productID" value="${product.id}">
+                    <button href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
+                    <button href="#deleteEmployeeModal"  onclick="deleteRowFromDB(this)"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                </td>
+            </tr>
+            <%--<tr>--%>
+
+        </c:forEach>
+
+
+
+    </c:otherwise>
+
+</c:choose>
+
+
+
+
+
+
+
+
+
+
+
+
+<%--<tr>--%>
                 <%--<td>--%>
 							<%--<span class="custom-checkbox">--%>
 								<%--<input type="checkbox" id="checkbox1" name="options[]" value="1">--%>
