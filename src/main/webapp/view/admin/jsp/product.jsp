@@ -27,11 +27,17 @@
                 <div class="col-sm-6">
                     <h2>Manage <b>Products</b></h2>
                 </div>
+
                 <div class="col-sm-6">
                     <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
                    <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>-->
                 </div>
+                <br><br>
+                <div class="form-group has-search col-sm-4">
+                    <input type="text" class="form-control" placeholder="Search" id="search">
+                </div>
             </div>
+
         </div>
 
         <table class="table table-striped table-hover">
@@ -68,7 +74,7 @@
 
             </tbody>
         </table>
-        <div class="clearfix">
+       <!-- <div class="clearfix">
             <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
             <ul class="pagination">
                 <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -79,6 +85,8 @@
                 <li class="page-item"><a href="#" class="page-link">5</a></li>
                 <li class="page-item"><a href="#" class="page-link">Next</a></li>
             </ul>
+        </div>-->
+        <div id="pagination-container" style="text-align: center;">
         </div>
     </div>
 </div>
@@ -234,7 +242,7 @@
         $.ajax({
             url:"productEdit?productid="+pid+"",
             type:"GET",
-            data: productid,
+            data: {productid:pid},
             dataType:'json',
             success: function (data) {
                 $('#description').val(data.description);
@@ -251,8 +259,49 @@
         });
 
     }
-
 </script>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
+        });
+        <c:if test="${requestScope.noOfPages != null && requestScope.noOfPages > 0}">
+        $('#pagination-container').pagination({
+            pages:${requestScope.noOfPages},
+            displayedPages:8,
+            cssStyle: 'light-theme',
+            ellipsePageSet:true,
+            currentPage:${requestScope.pageNo},
+            hrefTextPrefix:'',
+            selectOnClick:false,
+            onPageClick:function(pageNumber, event){
+                if(event != undefined) {
+                    event.preventDefault();
+                }
+                if (window.location.href.indexOf('&pageNo=') !== -1) {
+                    window.location.href = window.location.href.replace(new RegExp('pageNo=[0-9]+'), 'pageNo=' + pageNumber);
+                } else {
+                    window.location.href = window.location.href + '&pageNo=' + pageNumber;
+                }
 
+            }
+        });
+    </c:if>
+        $('#search').on("keypress", function (ev) {
+            if(ev.which == 13) {
+                var newHref = window.location.href.replace(new RegExp('\\?.+'), '');
+                window.location.href = newHref + '?search=' + $('#search').val();
+            }
+        });
+
+        $('#leftSearchBtn').on("click", function (ev) {
+            var newHref = window.location.href.replace(new RegExp('\\?.+'), '');
+            window.location.href = newHref + '?search=' + $('#leftSearch').val();
+        });
+    });
+</script>
 </body>
 </html>
