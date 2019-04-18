@@ -20,7 +20,8 @@ public interface DAO<T extends Entity> {
     public void persist(T entity) ;
     public T merge(T entity);
     public void update(T entity) ;
-    public void delete(Serializable primaryKey) ;
+    public void delete(Serializable primaryKey);
+    public int deleteByColumnName(String columnName, Object columnValue);
     public T getByPrimaryKey(Serializable primaryKey) ;
     public List<T> getAll() ;
     public List<T> getByColumnNames(Map<String, Object> columnsWithValues) ;

@@ -5,6 +5,7 @@ import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.criterion.*;
+import org.hibernate.query.Query;
 
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -41,6 +42,13 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
     public void delete(Serializable primaryKey) {
         T entityToBeDeleted = session.load(tClass, primaryKey);
         session.delete(entityToBeDeleted);
+    }
+
+    @Override
+    public int deleteByColumnName(String columnName, Object columnValue) {
+        Query query = session.createQuery("DELETE FROM " + tClass.getSimpleName() + " WHERE " + columnName + "=:columnValue");
+        query.setParameter("columnValue", columnValue);
+        return query.executeUpdate();
     }
 
     @Override

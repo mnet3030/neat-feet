@@ -4,8 +4,11 @@ import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.servletsdaos.LoginDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
+import com.imagine.neatfeat.model.dal.utility.CheckoutServices;
+import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -54,26 +57,45 @@ public class LoginServlet extends HttpServlet {
         /*Alia Mahmoud*/
 
         Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        //------------------------------------------------------------------
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        LoginDao dao = new LoginDao();
-        User user  = dao.AuthenticateUser(session, email, password);
-        session.getTransaction().commit();
-        if(user != null){
-            HttpSession userSession = request.getSession(true);
-            userSession.setAttribute("user", user);
-            response.sendRedirect("home");
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+
+            LoginDao dao = new LoginDao();
+            User user  = dao.AuthenticateUser(session, email, password);
+            if(user != null){
+
+                LoginDao loginDao = new LoginDao();
+                List<Item> cart = loginDao.getAndDeleteCartFromDatabase(session, user);
+
+                HttpSession userSession = request.getSession(true);
+                userSession.setAttribute("user", user);
+                userSession.setAttribute("cartProduct", cart);
+                tx.commit();
+                response.sendRedirect("home");
+            }
+            else{
+                request.setAttribute("mail",email);
+                request.setAttribute("invalid","invalid");
+                tx.commit();
+                request.getServletContext()
+                        .getRequestDispatcher("/view/customer/jsp/Login.jsp")
+                        .include(request,response);
+            }
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            tx.rollback();
         }
-        else{
-            request.setAttribute("mail",email);
-            request.setAttribute("invalid","invalid");
-            request.getServletContext()
-                    .getRequestDispatcher("/view/customer/jsp/Login.jsp")
-                    .include(request,response);
-        }
+
+        //------------------------------------------------------------------
+
+
+
 
         /*Amer Salah*/
 
