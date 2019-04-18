@@ -94,17 +94,18 @@ public class CheckoutServices {
 
                 break;
             case "buy":
+                response.setContentType("text/plain");
                 CheckoutDao checkoutDao=new CheckoutDao();
                 List<Item> mycart= (List<Item>) request.getSession(false).getAttribute("cartProduct");
                 User user= (User) request.getSession(false).getAttribute("user");
                 String result=checkoutDao.buyCart(mycart,session,user);
                 switch (result){
                     case "success":
-                        mycart=null;
+                        mycart.clear();
                         request.getSession(false).setAttribute("cartProduct", mycart);
                         request.getSession(false).setAttribute("sizeCart",new Integer(0));
-                        //response.getWriter().println("Done");
-                        request.getRequestDispatcher("home").forward(request,response);
+                        response.getWriter().println("success");
+                        //request.getRequestDispatcher("home").forward(request,response);
                         break;
                     case "Error in credit limit"   :
                         response.getWriter().println("Error in credit limit");

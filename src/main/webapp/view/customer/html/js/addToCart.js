@@ -11,10 +11,17 @@ function addItemToCart(node)
     }, function(data,state) {
 
         //do something
-
         $('.badge').text(data);
-       // items=(parseInt($('.badge').text())+1);
 
+    }).fail(function() {
+        alertify.error('error in connection....');
+        sleep(1500).then(() => {
+            location.reload(true);
+        });
     });
 
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
