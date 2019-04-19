@@ -222,12 +222,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li>
 							<p style="padding-left: 15px">${requestScope.categoryDetails['neededCategory'].description}</p>
 						</li>
-						<%--<c:forEach items="${requestScope.categoryDetails['childs']}" var="subCategory">--%>
-							<%--<li>--%>
-								<%--<a style="padding-left: 25px" href = "${pageContext.request.contextPath}${"/result?cat="}${subCategory.id}">${subCategory.description}</a>--%>
-							<%--</li>--%>
-						<%--</c:forEach>--%>
-
+						<c:forEach items="${requestScope.categoryDetails['childs']}" var="subCategory">
+							<li>
+								<a style="padding-left: 25px" href = "${pageContext.request.contextPath}${"/result?cat="}${subCategory.id}">${subCategory.description}</a>
+							</li>
+						</c:forEach>
 					</ul>
 
 				</div>
