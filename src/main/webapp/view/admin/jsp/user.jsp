@@ -69,7 +69,7 @@
 
                 <td>
 
-                    <button href="#editEmployeeModal" id="view-btn" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"  onclick=" getuserinfo('${user.id}')">list</i></button>
+                    <a href="#editEmployeeModal" id="view-btn" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"  onclick=" getuserinfo('${user.id}')">list</i></a>
               <!--  <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" id="view">list</i></a>-->
                     </td>
             </tr>

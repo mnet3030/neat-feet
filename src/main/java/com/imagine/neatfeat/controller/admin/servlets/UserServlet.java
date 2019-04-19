@@ -1,6 +1,8 @@
 package com.imagine.neatfeat.controller.admin.servlets;
 
 import com.google.gson.Gson;
+import com.imagine.neatfeat.model.dal.Convertors.CountryJson;
+import com.imagine.neatfeat.model.dal.Convertors.UserJson;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.entity.User;
@@ -80,11 +82,29 @@ public class UserServlet  extends HttpServlet {
 //        //consol.log(user.getUserByEmail("email"));
         System.out.println(email);
 //        PrintWriter out = response.getWriter();
-
-        UUID id =UUID.fromString(email);
+              UUID id =UUID.fromString(email);
         User userinfo=user.getByPrimaryKey(id);
-       System.out.println(userinfo.getName());
-     String u=new Gson().toJson(userinfo);
+        UserJson userJson = new UserJson();
+        CountryJson countryJson=new CountryJson();
+        countryJson.setId(userinfo.getCountry().getId());
+        countryJson.setName(userinfo.getCountry().getName());
+        userJson.setCountry(countryJson);
+        userJson.setAddress(userinfo.getAddress());
+        userJson.setBirthdate(userinfo.getBirthdate());
+        userJson.setJob(userinfo.getJob());
+        userJson.setName(userinfo.getName());
+        userJson.setEmail(userinfo.getEmail());
+        if(userinfo.isGender()){
+        userJson.setGender("Male");}
+        else{
+            userJson.setGender("Female");}
+        userJson.setCreditLimit(userinfo.getCreditLimit());
+        userJson.setPassword(userinfo.getPassword());
+        userJson.setPhone(userinfo.getPhone());
+        userJson.setPhotoUrl(userinfo.getPhotoUrl());
+      System.out.println(userinfo.getName());
+     String u=new Gson().toJson(userJson);
+
 
        response.getWriter().print(u);
 

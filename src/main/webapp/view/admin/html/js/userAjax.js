@@ -29,30 +29,44 @@ function getuserinfo(useremail) {
          $("#phone").val(data.phone);
 
         });
-
 }
-
 */
 function getuserinfo(pid){
-    console.log(pid);
-    alert(pid)
+   //
+    // console.log(pid);
+   // alert(pid)
     var productid = pid;
     $.ajax({
+
         url:"user",
         type:"POST",
         data: {'id':productid},
         dataType:'json',
         success: function (data) {
-            alert("ok");
+            // console.log("YARAB");
+            // alert("ok");
             $('#name').val(data.name);
             $('#email').val(data.email);
+            $('#address').val(data.address);
             $('#phone').val(data.phone);
-            $('#brand').val(data.brand);
-            $('#price').val(data.price);
-            $('#quantity').val(data.quantity);
-            $('#buyingCount').val(data.buyingCount);
+            $('#country').val(data.country.name);
+            $('#gender').val(data.gender);
+            // var term = val(data.gender);
+            // console.log(term);
+            // alert(term);
+            // if(term){
+            //     alert()
+            //     $('#gender').val('Male')
+            // }
+            // else{ $('#gender').val('Female');}
+
+            $('#password').val(data.password);
+            $('#birthdate').val(data.birthdate);
+            $('#job').val(data.job);
         },
         error: function (jqXHR, textStatus, errorThrown) {
+            console.log(textStatus);
+            console.log(jqXHR);
             console.log(errorThrown);
             alert("error")
         }
