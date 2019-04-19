@@ -25,29 +25,29 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Manage <b>Products</b></h2>
+                    <h2>Manage <b>Employees</b></h2>
                 </div>
 
 
                 <div class="col-sm-6">
-                    <form method="post" action="productServlet">
-                         <input type="text" name="productName">
-                         <input type="hidden" name="action" value="search">
-                         <button class="btn btn-danger" type="submit" ><span>Search</span></button>
+                    <form method="get" action="productServlet">
+                        <input type="text" name="productName" size="30px">
+                        <input type="hidden" name="action" value="search">
+                        <button class="btn btn-danger" type="submit" ><span>Search</span></button>
                     </form>
                     <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+
                 </div>
             </div>
         </div>
-
         <table class="table table-striped table-hover">
             <thead>
             <tr>
                 <%--<th>--%>
-							<%--<span class="custom-checkbox">--%>
-								<%--<input type="checkbox" id="selectAll">--%>
-								<%--<label for="selectAll"></label>--%>
-							<%--</span>--%>
+                <%--<span class="custom-checkbox">--%>
+                <%--<input type="checkbox" id="selectAll">--%>
+                <%--<label for="selectAll"></label>--%>
+                <%--</span>--%>
                 <%--</th>--%>
                 <th>Name</th>
                 <th>Price</th>
@@ -60,185 +60,23 @@
             <tbody>
 
 
-
-<c:choose>
-    <c:when test="${sessionScope.results != null}">
-
-        <c:forEach items="${sessionScope.results}" var="result">
-
-            <tr>
-                    <%--<td>--%>
-                    <%--<span class="custom-checkbox">--%>
-                    <%--<input type="checkbox" id="${product.id}" name="options[]" value="1">--%>
-                    <%--<label for="${product.id}"></label>--%>
-                    <%--</span>--%>
-                    <%--</td>--%>
-                <td><c:out value="${result.description}"></c:out></td>
-                <td><c:out value="${result.price}"></c:out></td>
-                <td><c:out value="${result.quantity}"></c:out></td>
-                <td><c:out value="${result.buyingCount}"></c:out></td>
-                <td><c:out value="${result.category.getDescription()}"></c:out></td>
-
-                <td>
-                    <input type="hidden" name="productID" value="${result.id}">
-                    <button href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                    <button href="#deleteEmployeeModal"  onclick="deleteRowFromDB(this)"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
-                </td>
-            </tr>
-            <%--<tr>--%>
-
-        </c:forEach>
-
-
-    </c:when>
-    <c:otherwise>
-
-        <c:forEach items="${sessionScope.products}" var="product">
-
-            <tr>
-                    <%--<td>--%>
-                    <%--<span class="custom-checkbox">--%>
-                    <%--<input type="checkbox" id="${product.id}" name="options[]" value="1">--%>
-                    <%--<label for="${product.id}"></label>--%>
-                    <%--</span>--%>
-                    <%--</td>--%>
-                <td><c:out value="${product.description}"></c:out></td>
-                <td><c:out value="${product.price}"></c:out></td>
-                <td><c:out value="${product.quantity}"></c:out></td>
-                <td><c:out value="${product.buyingCount}"></c:out></td>
-                <td><c:out value="${product.category.getDescription()}"></c:out></td>
-
-                <td>
-                    <input type="hidden" name="productID" value="${product.id}">
-                    <button href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                    <button href="#deleteEmployeeModal"  onclick="deleteRowFromDB(this)"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
-                </td>
-            </tr>
-            <%--<tr>--%>
-
-        </c:forEach>
-
-
-
-    </c:otherwise>
-
-</c:choose>
-
-
-
-
-
-
-
-
-
-
-
-
-<%--<tr>--%>
-                <%--<td>--%>
-							<%--<span class="custom-checkbox">--%>
-								<%--<input type="checkbox" id="checkbox1" name="options[]" value="1">--%>
-								<%--<label for="checkbox1"></label>--%>
-							<%--</span>--%>
-                <%--</td>--%>
-                <%--<td>Thomas Hardy</td>--%>
-                <%--<td>thomashardy@mail.com</td>--%>
-                <%--<td>89 Chiaroscuro Rd, Portland, USA</td>--%>
-                <%--<td>(171) 555-2222</td>--%>
-                <%--<td>--%>
-                    <%--<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>--%>
-                    <%--<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-							<%--<span class="custom-checkbox">--%>
-								<%--<input type="checkbox" id="checkbox2" name="options[]" value="1">--%>
-								<%--<label for="checkbox2"></label>--%>
-							<%--</span>--%>
-                <%--</td>--%>
-                <%--<td>Dominique Perrier</td>--%>
-                <%--<td>dominiqueperrier@mail.com</td>--%>
-                <%--<td>Obere Str. 57, Berlin, Germany</td>--%>
-                <%--<td>(313) 555-5735</td>--%>
-                <%--<td>--%>
-                    <%--<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>--%>
-                    <%--<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-							<%--<span class="custom-checkbox">--%>
-								<%--<input type="checkbox" id="checkbox3" name="options[]" value="1">--%>
-                                <%--<label for="checkbox3"></label>--%>
-                            <%--</span>--%>
-                <%--</td>--%>
-                <%--<td>Maria Anders</td>--%>
-                <%--<td>mariaanders@mail.com</td>--%>
-                <%--<td>25, rue Lauriston, Paris, France</td>--%>
-                <%--<td>(503) 555-9931</td>--%>
-                <%--<td>--%>
-                    <%--<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>--%>
-                    <%--<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-							<%--<span class="custom-checkbox">--%>
-								<%--<input type="checkbox" id="checkbox4" name="options[]" value="1">--%>
-								<%--<label for="checkbox4"></label>--%>
-							<%--</span>--%>
-                <%--</td>--%>
-                <%--<td>Fran Wilson</td>--%>
-                <%--<td>franwilson@mail.com</td>--%>
-                <%--<td>C/ Araquil, 67, Madrid, Spain</td>--%>
-                <%--<td>(204) 619-5731</td>--%>
-                <%--<td>--%>
-                    <%--<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>--%>
-                    <%--<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-							<%--<span class="custom-checkbox">--%>
-								<%--<input type="checkbox" id="checkbox5" name="options[]" value="1">--%>
-								<%--<label for="checkbox5"></label>--%>
-							<%--</span>--%>
-                <%--</td>--%>
-                <%--<td>Martin Blank</td>--%>
-                <%--<td>martinblank@mail.com</td>--%>
-                <%--<td>Via Monte Bianco 34, Turin, Italy</td>--%>
-                <%--<td>(480) 631-2097</td>--%>
-                <%--<td>--%>
-                    <%--<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>--%>
-                    <%--<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-=======
-                <c:forEach items="${sessionScope.products}" var="product">
+            <c:forEach items="${requestScope.products}" var="product">
                 <tr>
-                    <!--
-                    <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="${product.id}" name="options[]" value="1">
-								<label for="${product.id}"></label>
-							</span>
-                    </td> -->
                     <td><c:out value="${product.description}"></c:out></td>
                     <td><c:out value="${product.price}"></c:out></td>
                     <td><c:out value="${product.quantity}"></c:out></td>
                     <td><c:out value="${product.buyingCount}"></c:out></td>
-                    <td style="display:none;"> <c:out value="${product.id}"></c:out></td>
+                    <td><c:out value="${product.category.getDescription()}"></c:out></td>
                     <td>
-                        <button href="#editEmployeeModal" id="edit-btn" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" onclick="productId('${product.id}')">&#xE254;</i></button>
+                        <input type="hidden" name="productID" value="${product.id}">
+                        <button href="#editEmployeeModal" class="edit" data-toggle="modal" onclick="productId('${product.id}')"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
                         <button href="#deleteEmployeeModal"  onclick="deleteRowFromDB(this)"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
                     </td>
                 </tr>
+                <%--<tr>--%>
 
-                </c:forEach>
+            </c:forEach>
 
->>>>>>> 5cf886e8f45651009f627dc95ac04abb9b0553bd
             </tbody>
         </table>
         <div class="clearfix">
@@ -405,9 +243,9 @@
         console.log(pid);
         var productid = pid;
         $.ajax({
-            url:"productEdit?productid="+pid+"",
+            url:"${pageContext.request.contextPath}/productEdit",
             type:"GET",
-            data: productid,
+            data: {productid:pid},
             dataType:'json',
             success: function (data) {
                 $('#description').val(data.description);
@@ -424,8 +262,6 @@
         });
 
     }
-
 </script>
-
 </body>
 </html>
