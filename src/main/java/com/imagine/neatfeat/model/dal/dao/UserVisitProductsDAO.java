@@ -1,7 +1,7 @@
 package com.imagine.neatfeat.model.dal.dao;
 
-import com.imagine.neatfeat.model.dal.entity.OrderProducts;
 import com.imagine.neatfeat.model.dal.entity.Product;
+import com.imagine.neatfeat.model.dal.entity.UserVisitProducts;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -12,16 +12,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
-public class OrderProductsDAO extends GenericDAO<OrderProducts> {
-    public OrderProductsDAO(Session session) {
-        super(session, OrderProducts.class);
+public class UserVisitProductsDAO extends GenericDAO<UserVisitProducts> {
+    public UserVisitProductsDAO(Session session) {
+        super(session, UserVisitProducts.class);
     }
-
-    public Map<Product, Integer> getBestSoldProducts(Integer noOfRowsRequired) {
+    public Map<Product, Integer> getMostVisitedProducts(int noOfRowsRequired)
+    {
         Criteria criteria = session.createCriteria(tClass);
         criteria = criteria.setProjection(Projections.projectionList()
                 .add(Projections.groupProperty("product.id"))
-                .add(Projections.rowCount(),"rowCount")).addOrder(Order.desc("rowCount"));
+                .add(Projections.sum("visitCount"),"visitCount")).addOrder(Order.desc("visitCount"));
 
         if(noOfRowsRequired >= 0) {
             criteria = criteria.setFirstResult(0);
@@ -35,8 +35,8 @@ public class OrderProductsDAO extends GenericDAO<OrderProducts> {
             Object[] pair = (Object[]) pairs.next();
             UUID productid = (UUID) pair[0];
             Product product = productDAO.getByPrimaryKey(productid);
-            int count = ((Long) pair[1]).intValue();
-            resultMap.put(product, count);
+            int productSellCount = ((Long) pair[1]).intValue();
+            resultMap.put(product, productSellCount);
 
         }
         return resultMap;

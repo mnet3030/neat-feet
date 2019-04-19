@@ -1,5 +1,7 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
+import com.imagine.neatfeat.controller.services.BestSoldProducts;
+import com.imagine.neatfeat.controller.services.MostVisitedProducts;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.servletsdaos.HomeDao;
@@ -15,7 +17,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomeServlet extends HttpServlet {
 
@@ -44,6 +48,19 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("manProducts",manProduct);
         request.setAttribute("womanProducs",womanProduct);
 
+        MostVisitedProducts mostVisitedProducts = new MostVisitedProducts(session);
+        Map<String, Object> criteriaMap = new HashMap<>();
+        criteriaMap.put("NoOfRows", 20);
+        Map<Product, Integer> mostVisitedMap = mostVisitedProducts.getProducts(criteriaMap);
+
+        request.setAttribute("mostVisitedMap", mostVisitedMap);
+
+        BestSoldProducts bestSoldProducts = new BestSoldProducts(session);
+        criteriaMap = new HashMap<>();
+        criteriaMap.put("NoOfRows", 20);
+        Map<Product, Integer> bestSoldMap = bestSoldProducts.getProducts(criteriaMap);
+
+        request.setAttribute("bestSoldMap", bestSoldMap);
 
         List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
         CheckoutUtility checkoutUtility = new CheckoutUtility(session);
