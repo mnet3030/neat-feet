@@ -48,6 +48,8 @@ public class ResultDao {
         resultMap.put("ancestors", ancestorCategories);
         resultMap.put("childs", childCategories);
 
+        childCategories.forEach(m-> System.out.println(m.getDescription()));
+
         return resultMap;
     }
 

@@ -43,11 +43,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 	<!-- banner -->
-<div class="banner_top innerpage" id="home">
+	<div class="banner_top innerpage" id="home">
 		<div class="wrapper_top_w3layouts">
 			<div class="header_agileits">
 				<div class="logo inner_page_log">
-					<h1><a class="navbar-brand" href="index.jsp"><span>Neat</span> <i>Feet</i></a></h1>
+					<h1><a class="navbar-brand" href="${pageContext.request.contextPath}/home"><span>Neat</span> <i>Feet</i></a></h1>
 				</div>
 				<div class="overlay overlay-contentpush">
 					<button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -55,8 +55,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<nav>
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/home">Home</a><i></i></li>
-							<c:if test="${sessionScope.mainCategories != null}">
-								<c:forEach items="${sessionScope.mainCategories}" var="mainCategory">
+							<c:if test="${requestScope.mainCategories != null}">
+								<c:forEach items="${requestScope.mainCategories}" var="mainCategory">
 									<li>
 										<a href = "${pageContext.request.contextPath}/result?cat=${mainCategory.id}">${mainCategory.description}</a>
 									</li>
@@ -70,51 +70,81 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 					</nav>
 				</div>
-				<div class="mobile-nav-button">
-					<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
-				</div>
-				<div class="w3l_login">
-					<a href="Login.html" data-toggle="Login.html" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-				</div>
-				<!-- cart details -->
-				<div class="top_nav_right">
-					<div class="shoecart shoecart2 cart cart box_1">
-						<a href="checkout" class="notification">
-							<form action="checkout" method="post" class="last">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="display" value="1">
-								<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-							</form>
-							<span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
-						</a>
-					</div>
 
+				<!--Added By Mahmoud Shereif*/-->
+				<div class="search_w3ls_agileinfo">
+					<div class="cd-main-header">
+						<ul class="cd-header-buttons3">
+							<button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+						</ul>
+					</div>
+				</div>
+
+				<div class="search_w3ls_agileinfo">
+					<div class="cd-main-header">
+						<ul class="cd-header-buttons4">
+
+							<c:if test="${loggedin != null}">
+								<a href="${pageContext.request.contextPath}/showProfile">
+									<button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+								</a>
+							</c:if>
+							<c:if test="${loggedin == null}">
+								<a href="${pageContext.request.contextPath}/login">
+									<button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+								</a>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+
+				<!-- cart details -->
+
+				<div class="search_w3ls_agileinfo">
+					<div class="cd-main-header">
+						<ul class="cd-header-buttons1">
+							<a href="checkout" class="notification">
+								<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+								<span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
+							</a>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 		<!-- //cart details -->
+
 		<!-- search -->
 		<div class="search_w3ls_agileinfo">
 			<div class="cd-main-header">
-				<ul class="cd-header-buttons">
+				<ul class="cd-header-buttons2">
 					<li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
 				</ul>
 			</div>
-			<div id="cd-search" class="cd-search">
-				<form action="#" method="post">
-					<input name="Search" type="search" placeholder="Click enter after typing...">
-				</form>
-			</div>
+			<form action="#" method="post" id="main-search-form">
+				<div id="cd-search" class="cd-search">
+					<input name="search" type="text" id="search" placeholder="Click enter after typing..." required>
+					<button type="submit" style="visibility: hidden" id="mainSearchBtn"/>
+				</div>
+			</form>
 		</div>
 		<!-- //search -->
+
 		<div class="clearfix"></div>
 		<!-- /banner_inner -->
 		<div class="services-breadcrumb_w3ls_agileinfo">
 			<div class="inner_breadcrumb_agileits_w3">
-
 				<ul class="short">
-					<li><a href="index.jsp">Home</a><i>|</i></li>
-					<li>Contact</li>
+					<li><a href="${pageContext.request.contextPath}/home">Home</a><i>|</i></li>
+					<c:if test="${requestScope.mainCategories != null}">
+						<c:forEach items="${requestScope.mainCategories}" var="mainCategory">
+							<li>
+								<a href = "${pageContext.request.contextPath}/result?cat=${mainCategory.id}">${mainCategory.description}</a><i>|</i>
+							</li>
+						</c:forEach>
+					</c:if>
+
+					<!--<li>Shop</li>-->
 				</ul>
 			</div>
 		</div>
@@ -153,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
 							<h4>Visit us</h4>
-							<p>Parma Via Modena,BO, Italy</p>
+							<p>Smart Village, Giza</p>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -163,7 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
 							<h4>Mail us</h4>
-							<p><a href="mailto:info@example.com">info@example.com</a></p>
+							<p><a href="mailto:info@example.com">info@neatfeet.com</a></p>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -173,7 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
 							<h4>Call us</h4>
-							<p>+18044261149</p>
+							<p>+201117538430</p>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -183,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="col-md-10 col-sm-10 col-xs-10 contact-text">
 							<h4>Fax</h4>
-							<p>+1804426349</p>
+							<p>+201117538430</p>
 						</div>
 						<div class="clearfix"></div>
 					</div>
