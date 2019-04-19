@@ -25,7 +25,7 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Manage <b>Employees</b></h2>
+                    <h2>Manage <b>Products</b></h2>
                 </div>
 
 
@@ -36,10 +36,10 @@
                          <button class="btn btn-danger" type="submit" ><span>Search</span></button>
                     </form>
                     <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-
                 </div>
             </div>
         </div>
+
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -215,6 +215,30 @@
                     <%--<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>--%>
                 <%--</td>--%>
             <%--</tr>--%>
+=======
+                <c:forEach items="${sessionScope.products}" var="product">
+                <tr>
+                    <!--
+                    <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="${product.id}" name="options[]" value="1">
+								<label for="${product.id}"></label>
+							</span>
+                    </td> -->
+                    <td><c:out value="${product.description}"></c:out></td>
+                    <td><c:out value="${product.price}"></c:out></td>
+                    <td><c:out value="${product.quantity}"></c:out></td>
+                    <td><c:out value="${product.buyingCount}"></c:out></td>
+                    <td style="display:none;"> <c:out value="${product.id}"></c:out></td>
+                    <td>
+                        <button href="#editEmployeeModal" id="edit-btn" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" onclick="productId('${product.id}')">&#xE254;</i></button>
+                        <button href="#deleteEmployeeModal"  onclick="deleteRowFromDB(this)"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                    </td>
+                </tr>
+
+                </c:forEach>
+
+>>>>>>> 5cf886e8f45651009f627dc95ac04abb9b0553bd
             </tbody>
         </table>
         <div class="clearfix">
@@ -294,32 +318,60 @@
 <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form enctype="multipart/form-data" method="POST" action="productEdit">
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Employee</h4>
+                    <h4 class="modal-title">Edit Product</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" required>
+                        <label>Description</label>
+                        <input type="text" id="description" name="description" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required>
+                        <label>Detailed Description</label>
+                        <textarea id="detailedDescription" name="detailedDescription" class="form-control" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Address</label>
-                        <textarea class="form-control" required></textarea>
+                        <label>Category</label>
+                        <select name="category" class="form-control" id="category">
+                            <c:if test="${categories != null}">
+                                <c:forEach items="${categories}" var="current">
+                                    <option value="${current.id}"><c:out value="${current.description}"/></option>
+                                </c:forEach>
+                            </c:if>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" required>
+                        <label>Brand</label>
+                        <select name="brand" class="form-control" id="brand">
+                            <c:if test="${brands != null}">
+                                <c:forEach items="${brands}" var="current">
+                                    <option value="${current.id}"><c:out value="${current.description}"/></option>
+                                </c:forEach>
+                            </c:if>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="number" id="price" name="price" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="text" id="quantity" name="quantity" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Buying Count</label>
+                        <input type="text" id="buyingCount" name="buyingCount" class="form-control" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>photo</label>
+                        <input type="file" name="image" id="pimage" accept=".jpg,.png,.svg" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-info" value="Save">
+                    <input type="submit"  class="btn btn-success" value="Save">
                 </div>
             </form>
         </div>
@@ -348,5 +400,32 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/main.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/productManipulation.js"></script>
+<script>
+    function productId(pid){
+        console.log(pid);
+        var productid = pid;
+        $.ajax({
+            url:"productEdit?productid="+pid+"",
+            type:"GET",
+            data: productid,
+            dataType:'json',
+            success: function (data) {
+                $('#description').val(data.description);
+                $('#detailedDescription').val(data.detailedDescription);
+                $('#category').val(data.category);
+                $('#brand').val(data.brand);
+                $('#price').val(data.price);
+                $('#quantity').val(data.quantity);
+                $('#buyingCount').val(data.buyingCount);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+
+    }
+
+</script>
+
 </body>
 </html>
