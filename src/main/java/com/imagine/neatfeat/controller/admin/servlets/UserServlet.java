@@ -6,7 +6,7 @@ import com.imagine.neatfeat.model.dal.Convertors.UserJson;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.entity.User;
-import com.imagine.neatfeat.model.dal.utility.UserUtility;
+///import com.imagine.neatfeat.model.dal.utility.UserUtility;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -23,11 +23,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class UserServlet  extends HttpServlet {
-    UserUtility userUtility;
+   // UserUtility userUtility;
 
     @Override
     public void init() throws ServletException {
-        userUtility=new UserUtility();
+       // userUtility=new UserUtility();
     }
 
     @Override
@@ -44,17 +44,13 @@ public class UserServlet  extends HttpServlet {
         /*Nouran Habib*/
 
 
-
-        List<User> users=userUtility.getAll();
-        request.getSession().setAttribute("users",users);
-
         SessionFactory factory =  new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
         Session session = factory.openSession();
+        UserDAO dao = new UserDAO(session);
+        List<User> users=dao.getAll();
+        request.getSession().setAttribute("users",users);
         //request.getRequestDispatcher("view/admin/jsp/user.jsp").include(request, response);
-
-
         session.beginTransaction() ;
-
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/user.jsp");
         dispatcher.forward(request, response);
 
