@@ -43,10 +43,9 @@ public class HomeServlet extends HttpServlet {
 
         //for slider man and woman
         homeDao=new HomeDao(session);
-        List<Product> manProduct=homeDao.getProductMan();
-        List<Product> womanProduct=homeDao.getProductWoman();
-        request.setAttribute("manProducts",manProduct);
-        request.setAttribute("womanProducs",womanProduct);
+       Map<String,List<Product>> productOfCategory=homeDao.getCategoriesProduct();
+
+        request.setAttribute("categoryProducts",productOfCategory);
 
         MostVisitedProducts mostVisitedProducts = new MostVisitedProducts(session);
         Map<String, Object> criteriaMap = new HashMap<>();

@@ -5,7 +5,9 @@ import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import org.hibernate.Session;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomeDao {
     ResultDao resultDao;
@@ -19,28 +21,16 @@ public class HomeDao {
     }
 
 
-    public List<Product> getProductMan(){
-        List<Product> manProducts=null;
+    public  Map<String,List<Product>>  getCategoriesProduct(){
+        List<Product> Products=null;
         List<Category> mainCategories = resultDao.getMainCategories(session);
-        mainCategories.forEach(m-> System.out.println(m.getDescription()));
-        System.out.println(mainCategories.get(0).getId());
-        if(mainCategories.get(0).getDescription().equalsIgnoreCase("man")){
-            manProducts=productDao.getByColumnName("category.id",mainCategories.get(0).getId());
-        }else{
-            manProducts=productDao.getByColumnName("category.id",mainCategories.get(1).getId());
+        Map<String,List<Product>> allCategories=new HashMap<>();
+        for(Category category:mainCategories){
+            Products=productDao.getByColumnName("category.id",category.getId());
+            allCategories.put(category.getDescription(),Products);
         }
-        return manProducts;
-    }
-    public List<Product> getProductWoman(){
-        List<Product> manProducts=null;
-        List<Category> mainCategories = resultDao.getMainCategories(session);
-        if(mainCategories.get(0).getDescription().equalsIgnoreCase("woman")){
-            manProducts=productDao.getByColumnName("category.id",mainCategories.get(0).getId());
-        }else{
-            manProducts=productDao.getByColumnName("category.id",mainCategories.get(1).getId());
-        }
-        return manProducts;
-    }
 
+        return allCategories;
+    }
 
 }
