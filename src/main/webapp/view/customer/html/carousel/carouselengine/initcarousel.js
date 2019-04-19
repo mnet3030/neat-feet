@@ -41,7 +41,7 @@ jQuery(document).ready(function(){
         lightboxthumbwidth:80,
         imagefillcolor:"FFFFFF",
         showwatermark:false,
-        arrowwidth:36,
+        arrowwidth:32,
         transparent:true,
         continuousduration:2500,
         watermarkpositioncss:"display:block;position:absolute;bottom:8px;right:8px;",
@@ -50,15 +50,15 @@ jQuery(document).ready(function(){
         playvideoimage:"playvideo-64-64-0.png",
         usescreenquery:false,
         screenquery:{
-            tablet: {
-                screenwidth: 900,
-                visibleitems: 2
-            },
-            mobile: {
-                screenwidth: 600,
-                visibleitems: 1
-            }
-        },
+	tablet: {
+		screenwidth: 900,
+		visibleitems: 2
+	},
+	mobile: {
+		screenwidth: 600,
+		visibleitems: 1
+	}
+},
         navwidth:16,
         navheight:16,
         watermarkimage:"",
@@ -72,7 +72,7 @@ jQuery(document).ready(function(){
         navswitchonmouseover:false,
         showitembackgroundimage:false,
         watermarklink:"http://amazingcarousel.com?source=watermark",
-        arrowimage:"arrows-36-80-0.png",
+        arrowimage:"arrows-32-32-2.png",
         showbackgroundimage:false,
         spacing:18,
         scrollitems:1,
@@ -100,7 +100,7 @@ jQuery(document).ready(function(){
         arrowhideonmouseleave:1000,
         backgroundimagewidth:110,
         loop:0,
-        arrowheight:80,
+        arrowheight:32,
         bottomshadowimage:"bottomshadow-110-95-0.png",
         lightboxshowdescription:false,
         bottomshadowimagetop:95,
@@ -115,12 +115,12 @@ jQuery(document).ready(function(){
         backgroundimage:"",
         lightboxnogroup:false,
         navmode:"page",
-        interval:3000,
+        interval:6000,
         watermarktextcss:"font:12px Arial,Tahoma,Helvetica,sans-serif;color:#666;padding:2px 4px;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;background-color:#fff;opacity:0.9;filter:alpha(opacity=90);",
         itembottomshadowimagewidth:100,
         visibleitems:6,
-        imagewidth:240,
+        imagewidth:220,
         transitionduration:1000,
-        autoplay:false
+        autoplay:true
     });
 });
