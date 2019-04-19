@@ -17,10 +17,10 @@ public class CheckoutFilter extends HttpFilter {
         /*Amr El Kady*/
 
         HttpSession session=req.getSession(false);
-        if(session==null && session.getAttribute("user")!=null){
-            req.getRequestDispatcher("login").forward(req,res);
-        }else{
+        if(session!=null && session.getAttribute("user")!=null){
             chain.doFilter(req, res);
+        }else{
+            req.getRequestDispatcher("login").forward(req,res);
         }
 
 

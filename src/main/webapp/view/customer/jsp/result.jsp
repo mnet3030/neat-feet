@@ -92,7 +92,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
 						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
 						<li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Logout</a></li>
+						<c:if test="${requestScope.loggedIn == true}">
+							<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+						</c:if>
 
 					</ul>
 				</nav>
@@ -111,12 +113,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="cd-main-header">
 					<ul class="cd-header-buttons4">
 
-						<c:if test="${loggedin != null}">
+						<c:if test="${requestScope.loggedIn == true}">
 							<a href="${pageContext.request.contextPath}/showProfile">
 								<button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
 							</a>
 						</c:if>
-						<c:if test="${loggedin == null}">
+						<c:if test="${requestScope.loggedIn == false}">
 							<a href="${pageContext.request.contextPath}/login">
 								<button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
 							</a>
@@ -461,9 +463,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<input type="hidden" name="shoe_item" value="Bella Toes">
 													<input type="hidden" name="amount" value="675.00">
 													<c:choose>
-													<c:when test="${product.quantity == 0}">
-														<button type="submit" disabled="true" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-													</c:when>
+														<c:when test="${product.quantity == 0}">
+															<button type="submit" disabled="true" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+														</c:when>
 														<c:otherwise>
 															<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
