@@ -37,7 +37,10 @@ public class CheckoutServices {
         request.setAttribute("mainCategories", mainCategories);
 
         List<Item> cart = (List<Item>) request.getSession().getAttribute("cartProduct");
-        List<CheckoutProduct> checkoutProducts = getCheckoutProductsFromCart(cart);
+        List<CheckoutProduct> checkoutProducts =null;
+        if(cart!=null){
+            checkoutProducts = getCheckoutProductsFromCart(cart);
+        }
         request.setAttribute("products", checkoutProducts);
 
         int  newTotalPrice = checkoutUtility.totalPrice(cart, session);
@@ -87,7 +90,7 @@ public class CheckoutServices {
                 updateSessionAtt(request, response, newCart);
 
                 break;
-            case "delete":
+            case "deletep":
 
                 newCart = checkoutUtility.removeFromCart(request.getParameter("productid"), newCart);
                 updateSessionAtt(request, response, newCart);

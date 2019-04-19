@@ -1,6 +1,8 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.entity.Category;
+import com.imagine.neatfeat.model.dal.entity.Product;
+import com.imagine.neatfeat.model.dal.servletsdaos.HomeDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
@@ -18,6 +20,7 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
 
     SessionFactory sessionFactory;
+    HomeDao homeDao;
     @Override
     public void init() throws ServletException {
         sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
@@ -34,6 +37,13 @@ public class HomeServlet extends HttpServlet {
         List<Category> mainCategories = resultDao.getMainCategories(session);
         request.setAttribute("mainCategories", mainCategories);
 
+        //for slider man and woman
+        homeDao=new HomeDao(session);
+        List<Product> manProduct=homeDao.getProductMan();
+        List<Product> womanProduct=homeDao.getProductWoman();
+        request.setAttribute("manProducts",manProduct);
+        request.setAttribute("womanProducs",womanProduct);
+
 
         List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
         CheckoutUtility checkoutUtility = new CheckoutUtility(session);
@@ -49,7 +59,7 @@ public class HomeServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/index.jsp");
         dispatcher.include(request, response);
-
+        System.out.println("Hello Noran Habib");
 
 
         /*Alia Mahmoud*/

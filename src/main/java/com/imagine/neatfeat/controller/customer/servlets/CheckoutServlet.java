@@ -44,20 +44,18 @@ public class CheckoutServlet extends HttpServlet {
         List<Category> mainCategories = resultDao.getMainCategories(session);
         request.setAttribute("mainCategories", mainCategories);
 
+
         HttpSession userSession=request.getSession(false);
         if(userSession!=null && userSession.getAttribute("user") != null) {
-           // session.getTransaction().commit();
             checkoutServices.getSessionAttr(request,response);
+            session.getTransaction().commit();
             request.getServletContext().getRequestDispatcher("/view/customer/jsp/checkout.jsp")
                     .forward(request, response);
-            session.getTransaction().commit();
         }else{
-
+            session.getTransaction().commit();
             request.getServletContext().getRequestDispatcher("/login")
                     .forward(request, response);
-            session.getTransaction().commit();
         }
-        //session.getTransaction().commit();
         /*Alia Mahmoud*/
 
         /*Amer Salah*/

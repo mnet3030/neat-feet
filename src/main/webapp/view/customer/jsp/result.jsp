@@ -222,11 +222,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li>
 							<p style="padding-left: 15px">${requestScope.categoryDetails['neededCategory'].description}</p>
 						</li>
-						<c:forEach items="${requestScope.categoryDetails['childs']}" var="mainCategory">
-							<li>
-								<a style="padding-left: 25px" href = "${pageContext.request.contextPath}${"/result?cat="}${mainCategory.id}">${mainCategory.description}</a>
-							</li>
-						</c:forEach>
+						<%--<c:forEach items="${requestScope.categoryDetails['childs']}" var="subCategory">--%>
+							<%--<li>--%>
+								<%--<a style="padding-left: 25px" href = "${pageContext.request.contextPath}${"/result?cat="}${subCategory.id}">${subCategory.description}</a>--%>
+							<%--</li>--%>
+						<%--</c:forEach>--%>
 
 					</ul>
 
@@ -433,7 +433,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</div>
 										<div class="item-info-product">
 											<h4>
-												<a href="${pageContext.request.contextPath}/product?id=${product.id}">${product.getDescription()} </a>
+												<a href="${pageContext.request.contextPath}/product?id=${product.id}">${product.getDescription()}</a>
+												<c:if test="${product.quantity == 0}">
+													<p style="color: red">Out of Stock</p>
+												</c:if>
+
 											</h4>
 											<div class="info-product-price">
 												<div class="grid_meta">
@@ -457,8 +461,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<input type="hidden" name="add" value="1">
 													<input type="hidden" name="shoe_item" value="Bella Toes">
 													<input type="hidden" name="amount" value="675.00">
-													<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+													<c:choose>
+													<c:when test="${product.quantity == 0}">
+														<button type="submit" disabled="true" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+													</c:when>
+														<c:otherwise>
+															<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
+														</c:otherwise>
+													</c:choose>
 													<a href="#" data-toggle="modal" data-target="#myModal1"></a>
 													<!--</form>-->
 

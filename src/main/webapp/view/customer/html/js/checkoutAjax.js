@@ -2,7 +2,9 @@
 
 function pluse(btn) {
     var id=btn.previousElementSibling.previousElementSibling.previousElementSibling.value;
-    $.post("checkout?action=increase&productid="+id+"",
+    $.post("checkout",{
+            "action":'increase',
+            "productid":id},
         function (data,state) {
 
             var divUpd = $(btn).parent().find('.value'),
@@ -33,7 +35,7 @@ function pluse(btn) {
 function minus(btn) {
     var id=btn.previousElementSibling.value;
 
-    $.post("checkout?action=decrease&productid="+id+"",
+    $.post("checkout",{'action':'decrease','productid':id},
         function (data,state) {
 
 
@@ -70,7 +72,7 @@ function minus(btn) {
 
 function remove(id) {
 
-    $.post("checkout?action=delete&productid="+id+"",
+    $.post("checkout",{'action':'deletep', 'productid':id},
         function (data,state) {
 
             $("#totalprice").html(data.totalPrice+" EGP");
@@ -89,7 +91,8 @@ function remove(id) {
 }
 function buy() {
     // alert("here")
-    $.post("checkout?action=buy",
+    $("#buybutton").attr("disabled", true);
+    $.post("checkout",{'action':'buy'},
         function (data,state){
             if(data.localeCompare("success")){
                 setTimeout(function(){
@@ -107,6 +110,7 @@ function buy() {
                 setTimeout(function(){
 
                     alertify.error(data);
+                    $("#buybutton").attr("disabled", false);
                 }, 1000);
 
 
@@ -116,8 +120,6 @@ function buy() {
         sleep(1500).then(() => {
             location.reload(true);
         });
-
-
 
     });
 }

@@ -392,8 +392,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </select>
                                     </div>
                                 </div>
-                                <button  type="button" class="submit check_out" onclick="buy()" >Delivery to this Address</button>
-                            </div>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.sizeCart !=0}" >
+                                <button id="buybutton"  type="button" class="submit check_out" onclick="buy()" >Delivery to this Address</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button id="buybutton" disabled="true" type="button" class="submit check_out" onclick="buy()" >Delivery to this Address</button>
+
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
                         </section>
                     </div>
                     <div class="checkout-right-basket">
