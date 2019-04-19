@@ -25,56 +25,61 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Manage <b>Products</b></h2>
+                    <h2>Manage <b>Employees</b></h2>
                 </div>
+
 
                 <div class="col-sm-6">
-                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                   <!-- <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>-->
-                </div>
-                <br><br>
-                <div class="form-group has-search col-sm-4">
-                    <input type="text" class="form-control" placeholder="Search" id="search">
+                    <form method="get" action="productServlet">
+                        <input type="text" name="productName" size="30px">
+                        <input type="hidden" name="action" value="search">
+                        <button class="btn btn-danger" type="submit" ><span>Search</span></button>
+                    </form>
+                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+
                 </div>
             </div>
-
         </div>
-
         <table class="table table-striped table-hover">
             <thead>
             <tr>
+                <%--<th>--%>
+                <%--<span class="custom-checkbox">--%>
+                <%--<input type="checkbox" id="selectAll">--%>
+                <%--<label for="selectAll"></label>--%>
+                <%--</span>--%>
+                <%--</th>--%>
+                <th>Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>BuyingCount</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-                <c:forEach items="${sessionScope.products}" var="product">
+
+
+            <c:forEach items="${requestScope.products}" var="product">
                 <tr>
-                    <!--
-                    <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="${product.id}" name="options[]" value="1">
-								<label for="${product.id}"></label>
-							</span>
-                    </td> -->
                     <td><c:out value="${product.description}"></c:out></td>
                     <td><c:out value="${product.price}"></c:out></td>
                     <td><c:out value="${product.quantity}"></c:out></td>
                     <td><c:out value="${product.buyingCount}"></c:out></td>
-                    <td style="display:none;"> <c:out value="${product.id}"></c:out></td>
+                    <td><c:out value="${product.category.getDescription()}"></c:out></td>
                     <td>
-                        <button href="#editEmployeeModal" id="edit-btn" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" onclick="productId('${product.id}')">&#xE254;</i></button>
+                        <input type="hidden" name="productID" value="${product.id}">
+                        <button href="#editEmployeeModal" class="edit" data-toggle="modal" onclick="productId('${product.id}')"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
                         <button href="#deleteEmployeeModal"  onclick="deleteRowFromDB(this)"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
                     </td>
                 </tr>
+                <%--<tr>--%>
 
-                </c:forEach>
+            </c:forEach>
 
             </tbody>
         </table>
-       <!-- <div class="clearfix">
+        <div class="clearfix">
             <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
             <ul class="pagination">
                 <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -85,8 +90,6 @@
                 <li class="page-item"><a href="#" class="page-link">5</a></li>
                 <li class="page-item"><a href="#" class="page-link">Next</a></li>
             </ul>
-        </div>-->
-        <div id="pagination-container" style="text-align: center;">
         </div>
     </div>
 </div>
@@ -240,7 +243,7 @@
         console.log(pid);
         var productid = pid;
         $.ajax({
-            url:"productEdit?productid="+pid+"",
+            url:"${pageContext.request.contextPath}/productEdit",
             type:"GET",
             data: {productid:pid},
             dataType:'json',
@@ -259,49 +262,6 @@
         });
 
     }
-</script>
-<script>
-    jQuery(document).ready(function ($) {
-        $(".scroll").click(function (event) {
-            event.preventDefault();
-            $('html,body').animate({
-                scrollTop: $(this.hash).offset().top
-            }, 1000);
-        });
-        <c:if test="${requestScope.noOfPages != null && requestScope.noOfPages > 0}">
-        $('#pagination-container').pagination({
-            pages:${requestScope.noOfPages},
-            displayedPages:8,
-            cssStyle: 'light-theme',
-            ellipsePageSet:true,
-            currentPage:${requestScope.pageNo},
-            hrefTextPrefix:'',
-            selectOnClick:false,
-            onPageClick:function(pageNumber, event){
-                if(event != undefined) {
-                    event.preventDefault();
-                }
-                if (window.location.href.indexOf('&pageNo=') !== -1) {
-                    window.location.href = window.location.href.replace(new RegExp('pageNo=[0-9]+'), 'pageNo=' + pageNumber);
-                } else {
-                    window.location.href = window.location.href + '&pageNo=' + pageNumber;
-                }
-
-            }
-        });
-    </c:if>
-        $('#search').on("keypress", function (ev) {
-            if(ev.which == 13) {
-                var newHref = window.location.href.replace(new RegExp('\\?.+'), '');
-                window.location.href = newHref + '?search=' + $('#search').val();
-            }
-        });
-
-        $('#leftSearchBtn').on("click", function (ev) {
-            var newHref = window.location.href.replace(new RegExp('\\?.+'), '');
-            window.location.href = newHref + '?search=' + $('#leftSearch').val();
-        });
-    });
 </script>
 </body>
 </html>

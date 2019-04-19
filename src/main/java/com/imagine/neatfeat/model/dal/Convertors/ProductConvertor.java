@@ -62,4 +62,18 @@ public class ProductConvertor {
 
     }
 
+    public static ProductBean converProducttoProductBean(Product product) {
+
+        ProductBean bean = new ProductBean();
+
+        bean.setQuantity(product.getQuantity());
+        bean.setDescription(product.getDescription());
+        bean.setBuyingCount(product.getBuyingCount());
+        bean.setDetailedDescription(product.getDetailedDescription());
+        bean.setPrice(product.getPrice());
+        bean.setCategory(product.getCategory().getId().toString());
+        bean.setBrand(product.getBrand().getId().toString());
+        return bean;
+    }
+
 }

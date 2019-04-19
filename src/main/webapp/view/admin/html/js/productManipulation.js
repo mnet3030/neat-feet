@@ -62,7 +62,7 @@ function searchFun() {
     $.ajax({
 
         url: "productServlet",
-        type: "POST",
+        type: "GET",
         data: jsonOBJ,
         dataType: "text",
 
