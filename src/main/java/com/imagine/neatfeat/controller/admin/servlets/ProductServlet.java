@@ -1,5 +1,6 @@
 package com.imagine.neatfeat.controller.admin.servlets;
 
+import com.google.gson.Gson;
 import com.imagine.neatfeat.model.dal.Convertors.ProductConvertor;
 import com.imagine.neatfeat.model.dal.Convertors.UserConvertor;
 import com.imagine.neatfeat.model.dal.dao.BrandDAO;
@@ -19,15 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.overDao.FasadProductDao;
 import com.imagine.neatfeat.model.dal.servletDAO.ProductBean;
 import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
+import com.imagine.neatfeat.model.dal.servletsdaos.AdminProductDao;
 import com.imagine.neatfeat.model.dal.utility.ProductUtility;
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.Session;
@@ -40,56 +39,89 @@ public class ProductServlet extends HttpServlet {
 
     ProductUtility productUtility;
 
+
+
     @Override
     public void init() throws ServletException {
-        productUtility=new ProductUtility();
+        productUtility = new ProductUtility();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        SessionFactory factory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+        Session session = factory.openSession();
+
         PrintWriter out = response.getWriter();
 
 
         String action = request.getParameter("action");
-        if(action.equals("delete"))
-        {
-            UUID uuid  = UUID.fromString(request.getParameter("productID"));
+        if (action.equals("delete")) {
+            UUID uuid = UUID.fromString(request.getParameter("productID"));
             FasadProductDao productDao = new FasadProductDao();
             productDao.deleteProductByID(uuid);
 
         }
-
-
-
-
-
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Product> products=productUtility.getAll();
-        request.getSession().setAttribute("products",products);
-
-        SessionFactory factory =  new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+        SessionFactory factory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
         Session session = factory.openSession();
+        String action = request.getParameter("action");
+        if ((action!=null)&&(action.equals("search"))) {
 
-        session.beginTransaction() ;
-        CategoryDAO categoryDAO = new CategoryDAO(session);
-        List<Category> categories = categoryDAO.getAll();
-        request.setAttribute("categories" , categories);
+            AdminProductDao productDAO = new AdminProductDao(session);
+            String productName = request.getParameter("productName");
+            List<Product> products = productDAO.getProductsByName(productName);
 
-        BrandDAO brandDAO =new BrandDAO(session);
-        List<Brand> brands = brandDAO.getAll();
+            if (products.size() >= 1) {
+                System.out.println(products.get(0).getDescription());
+                request.setAttribute("products", products);
 
-        request.setAttribute("brands" , brands);
+                session.beginTransaction();
+                CategoryDAO categoryDAO = new CategoryDAO(session);
+                List<Category> categories = categoryDAO.getAll();
+                request.setAttribute("categories", categories);
 
-        session.getTransaction().commit();
-        session.close();
-        factory.close();
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
-        dispatcher.forward(request, response);
+                BrandDAO brandDAO = new BrandDAO(session);
+                List<Brand> brands = brandDAO.getAll();
 
+                request.setAttribute("brands", brands);
+
+                session.getTransaction().commit();
+                session.close();
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
+                dispatcher.forward(request, response);
+            }else{
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
+                dispatcher.forward(request, response);
+            }
+
+
+        } else {
+
+            ProductDAO dao = new ProductDAO(session);
+            List<Product> products = dao.getAll();
+            request.setAttribute("products", products);
+
+            session.beginTransaction();
+            CategoryDAO categoryDAO = new CategoryDAO(session);
+            List<Category> categories = categoryDAO.getAll();
+            request.setAttribute("categories", categories);
+
+            BrandDAO brandDAO = new BrandDAO(session);
+            List<Brand> brands = brandDAO.getAll();
+
+            request.setAttribute("brands", brands);
+
+            session.getTransaction().commit();
+            session.close();
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 }

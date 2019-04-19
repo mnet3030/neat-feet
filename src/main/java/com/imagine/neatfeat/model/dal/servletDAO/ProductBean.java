@@ -11,11 +11,6 @@ public class ProductBean {
     private String brand;
     private String category;
     private String description;
-    private String detailedDescription;
-    private int price;
-    private int quantity;
-    private int buyingCount ;
-
 
     public int getBuyingCount() {
         return buyingCount;
@@ -24,6 +19,11 @@ public class ProductBean {
     public void setBuyingCount(int buyingCount) {
         this.buyingCount = buyingCount;
     }
+
+    private String detailedDescription;
+    private int price;
+    private int quantity;
+    private int buyingCount;
 
     public String getBrand() {
         return brand;
