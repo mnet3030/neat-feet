@@ -51,10 +51,9 @@ public class HomeServlet extends HttpServlet {
 
         //for slider man and woman
         homeDao=new HomeDao(session);
-        List<Product> manProduct=homeDao.getProductMan();
-        List<Product> womanProduct=homeDao.getProductWoman();
-        request.setAttribute("manProducts",manProduct);
-        request.setAttribute("womanProducs",womanProduct);
+       Map<String,List<Product>> productOfCategory=homeDao.getCategoriesProduct();
+
+        request.setAttribute("categoryProducts",productOfCategory);
 
         MostVisitedProducts mostVisitedProducts = new MostVisitedProducts(session);
         Map<String, Object> criteriaMap = new HashMap<>();
@@ -67,6 +66,7 @@ public class HomeServlet extends HttpServlet {
         criteriaMap = new HashMap<>();
         criteriaMap.put("NoOfRows", 20);
         Map<Product, Integer> bestSoldMap = bestSoldProducts.getProducts(criteriaMap);
+
 
         request.setAttribute("bestSoldMap", bestSoldMap);
 
@@ -84,7 +84,7 @@ public class HomeServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/index.jsp");
         dispatcher.include(request, response);
-        System.out.println("Hello Noran Habib");
+//        System.out.println("cat");
 
 
         /*Alia Mahmoud*/

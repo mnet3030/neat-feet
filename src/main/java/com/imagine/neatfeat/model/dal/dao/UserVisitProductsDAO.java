@@ -35,6 +35,7 @@ public class UserVisitProductsDAO extends GenericDAO<UserVisitProducts> {
             Object[] pair = (Object[]) pairs.next();
             UUID productid = (UUID) pair[0];
             Product product = productDAO.getByPrimaryKey(productid);
+
             int productSellCount = ((Long) pair[1]).intValue();
             resultMap.put(product, productSellCount);
 
