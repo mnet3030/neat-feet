@@ -59,6 +59,7 @@ public class HomeServlet extends HttpServlet {
         criteriaMap.put("NoOfRows", 20);
         Map<Product, Integer> bestSoldMap = bestSoldProducts.getProducts(criteriaMap);
 
+
         request.setAttribute("bestSoldMap", bestSoldMap);
 
         List<Item> cart= (List<Item>) request.getSession().getAttribute("cartProduct");
@@ -75,7 +76,7 @@ public class HomeServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/index.jsp");
         dispatcher.include(request, response);
-        System.out.println("Hello Noran Habib");
+//        System.out.println("cat");
 
 
         /*Alia Mahmoud*/

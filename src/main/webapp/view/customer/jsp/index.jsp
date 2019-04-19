@@ -192,75 +192,79 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div style="margin:0px auto;">
 
 	<!-- Insert to your webpage where you want to display the carousel -->
+
 	<div class="amazingcarousel-container">
 		<div class="amazingcarousel" style="display:none;position:relative;width:100%;max-width:1320px;margin:0px auto 0px;">
 			<div class="amazingcarousel-list-container">
 				<ul class="amazingcarousel-list">
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
-							<div class="amazingcarousel-title">3</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d1.png"  alt="d1" /></div>
-							<div class="amazingcarousel-title">d1</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d2.png"  alt="d2" /></div>
-							<div class="amazingcarousel-title">d2</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d3.png"  alt="d3" /></div>
-							<div class="amazingcarousel-title">d3</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s1.png"  alt="s1" /></div>
-							<div class="amazingcarousel-title">s1</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s2.png"  alt="s2" /></div>
-							<div class="amazingcarousel-title">s2</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s3.png"  alt="s3" /></div>
-							<div class="amazingcarousel-title">s3</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s4.png"  alt="s4" /></div>
-							<div class="amazingcarousel-title">s4</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s5.png"  alt="s5" /></div>
-							<div class="amazingcarousel-title">s5</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s6.png"  alt="s6" /></div>
-							<div class="amazingcarousel-title">s6</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s7.png"  alt="s7" /></div>
-							<div class="amazingcarousel-title">s7</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s8.png"  alt="s8" /></div>
-							<div class="amazingcarousel-title">s8</div>                    </div>
-					</li>
-					<li class="amazingcarousel-item">
-						<div class="amazingcarousel-item-container">
-							<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s9.png"  alt="s9" /></div>
-							<div class="amazingcarousel-title">s9</div>                    </div>
-					</li>
+					<c:forEach items="${requestScope.mostVisitedMap}" var="most" >
+						<li class="amazingcarousel-item">
+							<div class="amazingcarousel-item-container">
+								<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
+								<div class="amazingcarousel-title"><c:out value="${most.key.id}" /> </div>
+							</div>
+						</li>
+					</c:forEach>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d1.png"  alt="d1" /></div>--%>
+					<%--<div class="amazingcarousel-title">d1</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d2.png"  alt="d2" /></div>--%>
+					<%--<div class="amazingcarousel-title">d2</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d3.png"  alt="d3" /></div>--%>
+					<%--<div class="amazingcarousel-title">d3</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s1.png"  alt="s1" /></div>--%>
+					<%--<div class="amazingcarousel-title">s1</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s2.png"  alt="s2" /></div>--%>
+					<%--<div class="amazingcarousel-title">s2</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s3.png"  alt="s3" /></div>--%>
+					<%--<div class="amazingcarousel-title">s3</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s4.png"  alt="s4" /></div>--%>
+					<%--<div class="amazingcarousel-title">s4</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s5.png"  alt="s5" /></div>--%>
+					<%--<div class="amazingcarousel-title">s5</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s6.png"  alt="s6" /></div>--%>
+					<%--<div class="amazingcarousel-title">s6</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s7.png"  alt="s7" /></div>--%>
+					<%--<div class="amazingcarousel-title">s7</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s8.png"  alt="s8" /></div>--%>
+					<%--<div class="amazingcarousel-title">s8</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s9.png"  alt="s9" /></div>--%>
+					<%--<div class="amazingcarousel-title">s9</div>                    </div>--%>
+					<%--</li>--%>
 				</ul>
 				<div class="amazingcarousel-prev"></div>
 				<div class="amazingcarousel-next"></div>
@@ -272,6 +276,179 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </div>
 
+<div style="margin:0px auto;">
+
+	<!-- Insert to your webpage where you want to display the carousel -->
+
+	<div class="amazingcarousel-container">
+		<div class="amazingcarousel" style="display:none;position:relative;width:100%;max-width:1320px;margin:0px auto 0px;">
+			<div class="amazingcarousel-list-container">
+				<ul class="amazingcarousel-list">
+					<c:forEach items="${requestScope.bestSoldMap}" var="theBest" >
+						<li class="amazingcarousel-item">
+							<div class="amazingcarousel-item-container">
+								<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
+								<div class="amazingcarousel-title"><c:out value="${theBest.key.id}" /> </div>
+							</div>
+						</li>
+					</c:forEach>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d1.png"  alt="d1" /></div>--%>
+					<%--<div class="amazingcarousel-title">d1</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d2.png"  alt="d2" /></div>--%>
+					<%--<div class="amazingcarousel-title">d2</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d3.png"  alt="d3" /></div>--%>
+					<%--<div class="amazingcarousel-title">d3</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s1.png"  alt="s1" /></div>--%>
+					<%--<div class="amazingcarousel-title">s1</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s2.png"  alt="s2" /></div>--%>
+					<%--<div class="amazingcarousel-title">s2</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s3.png"  alt="s3" /></div>--%>
+					<%--<div class="amazingcarousel-title">s3</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s4.png"  alt="s4" /></div>--%>
+					<%--<div class="amazingcarousel-title">s4</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s5.png"  alt="s5" /></div>--%>
+					<%--<div class="amazingcarousel-title">s5</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s6.png"  alt="s6" /></div>--%>
+					<%--<div class="amazingcarousel-title">s6</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s7.png"  alt="s7" /></div>--%>
+					<%--<div class="amazingcarousel-title">s7</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s8.png"  alt="s8" /></div>--%>
+					<%--<div class="amazingcarousel-title">s8</div>                    </div>--%>
+					<%--</li>--%>
+					<%--<li class="amazingcarousel-item">--%>
+					<%--<div class="amazingcarousel-item-container">--%>
+					<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s9.png"  alt="s9" /></div>--%>
+					<%--<div class="amazingcarousel-title">s9</div>                    </div>--%>
+					<%--</li>--%>
+				</ul>
+				<div class="amazingcarousel-prev"></div>
+				<div class="amazingcarousel-next"></div>
+			</div>
+			<div class="amazingcarousel-nav"></div>
+		</div>
+	</div>
+	<!-- End of body section HTML codes -->
+
+</div>
+
+<div style="margin:0px auto;">
+
+	<!-- Insert to your webpage where you want to display the carousel -->
+	<c:forEach items="${requestScope.categoryProducts}" var="category" >
+		<div class="amazingcarousel-container">
+			<div class="amazingcarousel" style="display:none;position:relative;width:100%;max-width:1320px;margin:0px auto 0px;">
+				<div class="amazingcarousel-list-container">
+					<ul class="amazingcarousel-list">
+						<c:forEach items="${category.value}" var="product" >
+							<li class="amazingcarousel-item">
+								<div class="amazingcarousel-item-container">
+									<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="${product.description}" /></div>
+									<div class="amazingcarousel-title"><c:out value="${product.description}" /></div>
+								</div>
+							</li>
+						</c:forEach>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d1.png"  alt="d1" /></div>--%>
+							<%--<div class="amazingcarousel-title">d1</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d2.png"  alt="d2" /></div>--%>
+							<%--<div class="amazingcarousel-title">d2</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/d3.png"  alt="d3" /></div>--%>
+							<%--<div class="amazingcarousel-title">d3</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s1.png"  alt="s1" /></div>--%>
+							<%--<div class="amazingcarousel-title">s1</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s2.png"  alt="s2" /></div>--%>
+							<%--<div class="amazingcarousel-title">s2</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s3.png"  alt="s3" /></div>--%>
+							<%--<div class="amazingcarousel-title">s3</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s4.png"  alt="s4" /></div>--%>
+							<%--<div class="amazingcarousel-title">s4</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s5.png"  alt="s5" /></div>--%>
+							<%--<div class="amazingcarousel-title">s5</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s6.png"  alt="s6" /></div>--%>
+							<%--<div class="amazingcarousel-title">s6</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s7.png"  alt="s7" /></div>--%>
+							<%--<div class="amazingcarousel-title">s7</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s8.png"  alt="s8" /></div>--%>
+							<%--<div class="amazingcarousel-title">s8</div>                    </div>--%>
+							<%--</li>--%>
+							<%--<li class="amazingcarousel-item">--%>
+							<%--<div class="amazingcarousel-item-container">--%>
+							<%--<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/s9.png"  alt="s9" /></div>--%>
+							<%--<div class="amazingcarousel-title">s9</div>                    </div>--%>
+							<%--</li>--%>
+					</ul>
+					<div class="amazingcarousel-prev"></div>
+					<div class="amazingcarousel-next"></div>
+				</div>
+				<div class="amazingcarousel-nav"></div>
+			</div>
+		</div>
+		<!-- End of body section HTML codes -->
+	</c:forEach>
+</div>
 <!-- End of body section HTML codes -->
 
 <!-- /Properties -->
@@ -369,6 +546,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="clearfix"> </div>
 </div>
+
+
+
 <!--//banner -->
 
 
