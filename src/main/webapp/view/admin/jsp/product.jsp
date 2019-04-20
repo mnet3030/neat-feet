@@ -30,20 +30,20 @@
 
 
                 <div class="col-sm-6">
-
-                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i>
+                    <br>
+                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons" style="margin-right:30px">&#xE147;</i>
                         <span>Add New Employee</span></a>
 
                 </div>
                 <form method="get" action="productServlet">
 
                     <div class="form-group has-search col-sm-4">
-                        <input name="productName" type="text" class="form-control" placeholder="Search" id="search" style="margin-right: 150px">
+                        <input name="productName" type="text" class="form-control" placeholder="Search" id="search">
                     </div>
 
                     <%--<input type="text" name="productName" size="30px">--%>
                     <input type="hidden" name="action" value="search">
-                    <button class="btn btn-danger" type="submit" ><span>Search</span></button>
+                    <button class="btn btn-danger" type="submit"  style="margin-right:650px"><span>Search</span></button>
                 </form>
             </div>
         </div>
