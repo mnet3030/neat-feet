@@ -30,14 +30,21 @@
 
 
                 <div class="col-sm-6">
-                    <form method="get" action="productServlet">
-                        <input type="text" name="productName" size="30px">
-                        <input type="hidden" name="action" value="search">
-                        <button class="btn btn-danger" type="submit" ><span>Search</span></button>
-                    </form>
-                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+
+                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i>
+                        <span>Add New Employee</span></a>
 
                 </div>
+                <form method="get" action="productServlet">
+
+                    <div class="form-group has-search col-sm-4">
+                        <input name="productName" type="text" class="form-control" placeholder="Search" id="search" style="margin-right: 150px">
+                    </div>
+
+                    <%--<input type="text" name="productName" size="30px">--%>
+                    <input type="hidden" name="action" value="search">
+                    <button class="btn btn-danger" type="submit" ><span>Search</span></button>
+                </form>
             </div>
         </div>
         <table class="table table-striped table-hover">
