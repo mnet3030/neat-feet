@@ -53,7 +53,7 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
     @Override
     public T getByPrimaryKey(Serializable primaryKey) {
-        T neededEntity = session.load(tClass, primaryKey);
+        T neededEntity = session.get(tClass, primaryKey);
         return neededEntity;
     }
 

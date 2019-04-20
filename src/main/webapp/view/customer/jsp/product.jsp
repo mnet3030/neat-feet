@@ -69,7 +69,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Logout</a></li>
+                        <c:if test="${requestScope.loggedIn == true}">
+                            <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                        </c:if>
 
                     </ul>
                 </nav>
