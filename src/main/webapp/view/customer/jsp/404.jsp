@@ -25,12 +25,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	</script>
 	<!-- //custom-theme -->
-	<link href="../html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link rel="stylesheet" href="../html/css/shop.css" type="text/css" media="screen" property="" />
-	<link href="../html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="../html/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/css/shop.css" type="text/css" media="screen" property="" />
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- font-awesome-icons -->
-	<link href="../html/css/font-awesome.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	    rel="stylesheet">
@@ -291,10 +291,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //footer -->
     <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	<!-- js -->
-	<script type="text/javascript" src="../html/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/jquery-2.1.4.min.js"></script>
 	<!-- //js -->
 	<!-- cart-js -->
-	<script src="../html/js/minicart.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/minicart.js"></script>
 	<script>
 		shoe.render();
 
@@ -310,12 +310,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<!-- //cart-js -->
 	<!-- /nav -->
-	<script src="../html/js/modernizr-2.6.2.min.js"></script>
-	<script src="../html/js/classie.js"></script>
-	<script src="../html/js/demo1.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/modernizr-2.6.2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/classie.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/demo1.js"></script>
 	<!-- //nav -->
 	<!-- script for responsive tabs -->
-	<script src="../html/js/easy-responsive-tabs.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/easy-responsive-tabs.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('#horizontalTab').easyResponsiveTabs({
@@ -341,11 +341,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	<!--search-bar-->
-	<script src="../html/js/search.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/search.js"></script>
 	<!--//search-bar-->
 	<!-- start-smoth-scrolling -->
-	<script type="text/javascript" src="../html/js/move-top.js"></script>
-	<script type="text/javascript" src="../html/js/easing.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/move-top.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/easing.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -357,7 +357,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	<!-- //end-smoth-scrolling -->
-	<script type="text/javascript" src="../html/js/bootstrap-3.1.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
 
 
 </body>

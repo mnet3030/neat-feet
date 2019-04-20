@@ -201,7 +201,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="amazingcarousel-item">
 							<div class="amazingcarousel-item-container">
 								<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
-								<div class="amazingcarousel-title"><c:out value="${most.key.id}" /> </div>
+								<div class="amazingcarousel-title"><c:out value="${most.key.description}" /> </div>
 							</div>
 						</li>
 					</c:forEach>
@@ -288,7 +288,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="amazingcarousel-item">
 							<div class="amazingcarousel-item-container">
 								<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
-								<div class="amazingcarousel-title"><c:out value="${theBest.key.id}" /> </div>
+								<div class="amazingcarousel-title"><c:out value="${theBest.key.getDescription()}" /> </div>
 							</div>
 						</li>
 					</c:forEach>
