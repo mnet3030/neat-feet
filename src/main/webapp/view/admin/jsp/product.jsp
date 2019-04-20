@@ -150,6 +150,20 @@
                         <label>photo</label>
                         <input type="file" name="image" id="image" accept=".jpg,.png,.svg" class="form-control">
                     </div>
+                    <div class="form-group">
+                        <label>photo</label>
+                        <input type="file" name="image1" id="image1" accept=".jpg,.png,.svg" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>photo</label>
+                        <input type="file" name="image2" id="image2" accept=".jpg,.png,.svg" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>photo</label>
+                        <input type="file" name="image3" id="image3" accept=".jpg,.png,.svg" class="form-control">
+                    </div>
+
+
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -212,6 +226,18 @@
                     <div class="form-group">
                         <label>photo</label>
                         <input type="file" name="image" id="pimage" accept=".jpg,.png,.svg" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>photo</label>
+                        <input type="file" name="image1" id="pimage1" accept=".jpg,.png,.svg" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>photo</label>
+                        <input type="file" name="image2" id="pimage2" accept=".jpg,.png,.svg" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>photo</label>
+                        <input type="file" name="image3" id="pimage3" accept=".jpg,.png,.svg" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
