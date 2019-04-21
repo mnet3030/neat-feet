@@ -26,14 +26,12 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Manage <b>Employees</b></h2>
+                    <h2>Manage <b>Products</b></h2>
                 </div>
-
-
                 <div class="col-sm-6">
                     <br>
                     <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons" style="margin-right:30px">&#xE147;</i>
-                        <span>Add New Employee</span></a>
+                        <span>Add New Product</span></a>
 
                 </div>
                 <form method="get" action="productServlet">
@@ -247,7 +245,7 @@
         <div class="modal-content">
             <form>
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete Employee</h4>
+                    <h4 class="modal-title">Delete Product</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">

@@ -30,11 +30,9 @@ import java.util.Map;
 import java.util.UUID;
 
 public class UserServlet extends HttpServlet {
-    // UserUtility userUtility;
 
     @Override
     public void init() throws ServletException {
-        // userUtility=new UserUtility();
     }
 
     @Override
@@ -55,7 +53,8 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("users", userPaginationMap.get("entities"));
             request.setAttribute("noOfPages", userPaginationMap.get("noOfPages"));
             request.setAttribute("pageNo", userPaginationMap.get("pageNumber"));
-
+            session.close();
+            factory.close();
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/user.jsp");
             dispatcher.forward(request, response);
 
@@ -64,15 +63,12 @@ public class UserServlet extends HttpServlet {
             String pageNo = request.getParameter("pageNo");
             PaginationService paginationService = new PaginationService();
             Map paginationMap = paginationService.getUsersByParameters(session, "", "", pageNo);
-
             request.setAttribute("users", paginationMap.get("entities"));
             request.setAttribute("noOfPages", paginationMap.get("noOfPages"));
             request.setAttribute("pageNo", paginationMap.get("pageNumber"));
-
-            //session.getTransaction().commit();
             session.close();
-
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
+            factory.close();
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/user.jsp");
             dispatcher.forward(request, response);
         }
 

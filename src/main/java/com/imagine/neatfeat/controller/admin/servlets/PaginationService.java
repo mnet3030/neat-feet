@@ -28,7 +28,7 @@ public class PaginationService {
 
         if(searchParam != null)
         {
-            resultMap = resultDao.getProductsPageBySearchString(session, searchParam, pageNumber, 10);
+            resultMap = resultDao.getProductsPageBySearchString(session, searchParam, pageNumber, 7);
         }
 
         return resultMap;
@@ -48,7 +48,7 @@ public class PaginationService {
 
         if(searchParam != null)
         {
-            resultMap = resultDao.getUsersPageBySearchString(session, searchParam, pageNumber, 10);
+            resultMap = resultDao.getUsersPageBySearchString(session, searchParam, pageNumber, 7);
         }
 
         return resultMap;
