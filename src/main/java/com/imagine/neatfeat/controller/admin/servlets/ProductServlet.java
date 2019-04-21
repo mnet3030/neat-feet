@@ -27,7 +27,9 @@ import com.imagine.neatfeat.model.dal.overDao.FasadProductDao;
 import com.imagine.neatfeat.model.dal.servletDAO.ProductBean;
 import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
 import com.imagine.neatfeat.model.dal.servletsdaos.AdminProductDao;
+import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.ProductUtility;
+import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -74,13 +76,14 @@ public class ProductServlet extends HttpServlet {
 
             AdminProductDao productDAO = new AdminProductDao(session);
             String productName = request.getParameter("productName");
-            List<Product> products = productDAO.getProductsByName(productName);
-
-            if (products.size() >= 1) {
-                System.out.println(products.get(0).getDescription());
-                request.setAttribute("products", products);
-
-                session.beginTransaction();
+            ResultDao resultDao = new ResultDao();
+            String pageNo = request.getParameter("pageNo");
+            PaginationService paginationService = new PaginationService();
+            Map paginationMap = paginationService.getProductsByParameters(session, productName, "", pageNo);
+            request.setAttribute("products", paginationMap.get("entities"));
+            request.setAttribute("noOfPages", paginationMap.get("noOfPages"));
+            request.setAttribute("pageNo", paginationMap.get("pageNumber"));
+            session.beginTransaction();
                 CategoryDAO categoryDAO = new CategoryDAO(session);
                 List<Category> categories = categoryDAO.getAll();
                 request.setAttribute("categories", categories);
@@ -95,27 +98,65 @@ public class ProductServlet extends HttpServlet {
 
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
                 dispatcher.forward(request, response);
-            }else{
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
-                dispatcher.forward(request, response);
-            }
+
+
+
+
+
+//            List<Product> products = productDAO.getProductsByName(productName);
+
+//            if (products.size() >= 1) {
+//                System.out.println(products.get(0).getDescription());
+//                request.setAttribute("products", products);
+//
+//                session.beginTransaction();
+//                CategoryDAO categoryDAO = new CategoryDAO(session);
+//                List<Category> categories = categoryDAO.getAll();
+//                request.setAttribute("categories", categories);
+//
+//                BrandDAO brandDAO = new BrandDAO(session);
+//                List<Brand> brands = brandDAO.getAll();
+//
+//                request.setAttribute("brands", brands);
+//
+//                session.getTransaction().commit();
+//                session.close();
+//
+//                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
+//                dispatcher.forward(request, response);
+//            }else{
+//                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
+//                dispatcher.forward(request, response);
+//            }
 
 
         } else {
 
-            ProductDAO dao = new ProductDAO(session);
-            List<Product> products = dao.getAll();
-            request.setAttribute("products", products);
+//            ProductDAO dao = new ProductDAO(session);
+//            List<Product> products = dao.getAll();
+//            request.setAttribute("products", products);
+
 
             session.beginTransaction();
+            BrandDAO brandDAO = new BrandDAO(session);
+            List<Brand> brands = brandDAO.getAll();
+            request.setAttribute("brands", brands);
+
             CategoryDAO categoryDAO = new CategoryDAO(session);
             List<Category> categories = categoryDAO.getAll();
             request.setAttribute("categories", categories);
 
-            BrandDAO brandDAO = new BrandDAO(session);
-            List<Brand> brands = brandDAO.getAll();
+            //-----------------------------------------------------------------
 
-            request.setAttribute("brands", brands);
+            ResultDao resultDao = new ResultDao();
+            String pageNo = request.getParameter("pageNo");
+            List<Category> mainCategories = resultDao.getMainCategories(session);
+            PaginationService paginationService = new PaginationService();
+            Map paginationMap = paginationService.getProductsByParameters(session, "", "", pageNo);
+
+            request.setAttribute("products", paginationMap.get("entities"));
+            request.setAttribute("noOfPages", paginationMap.get("noOfPages"));
+            request.setAttribute("pageNo", paginationMap.get("pageNumber"));
 
             session.getTransaction().commit();
             session.close();

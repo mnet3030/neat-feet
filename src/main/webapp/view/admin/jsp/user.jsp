@@ -15,10 +15,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/main.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/userAjax.js"></script>
-
+    <link href="${pageContext.request.contextPath}/view/admin/html/css/simplePagination.css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/view/admin/html/css/productTable.css" rel="stylesheet" type="text/css" media="all" />
     <%@page import="com.imagine.neatfeat.model.dal.entity.User"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -31,7 +30,15 @@
                 <div class="col-sm-6">
                     <h2>View <b>Customers</b></h2>
                 </div>
+                <form method="get" action="user">
 
+                    <div class="form-group has-search col-sm-4">
+                        <input name="userName" type="text" class="form-control" placeholder="Search" id="search">
+                    </div>
+                    <%--<input type="text" name="productName" size="30px">--%>
+                    <input type="hidden" name="action" value="search">
+                    <button class="btn btn-danger" type="submit"  style="margin-right:650px"><span>Search</span></button>
+                </form>
             </div>
         </div>
         <table class="table table-striped table-hover">
@@ -200,5 +207,42 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/simplePagination.js"></script>
+<script type="text/javascript">
+    console.log("nof of pages   "+${requestScope.noOfPages});
+    console.log("page no  "+${requestScope.pageNo});
+    <c:if test="${requestScope.noOfPages != null && requestScope.noOfPages > 0}">
+    $('#pagination-container').pagination({
+        pages:${requestScope.noOfPages},
+        displayedPages:8,
+        cssStyle: 'light-theme',
+        ellipsePageSet:true,
+        currentPage:${requestScope.pageNo},
+        hrefTextPrefix:'',
+        selectOnClick:false,
+        onPageClick:function(pageNumber, event){
+            if(event != undefined) {
+                event.preventDefault();
+            }
+            if (window.location.href.indexOf('&pageNo=') !== -1) {
+                window.location.href = window.location.href.replace(new RegExp('pageNo=[0-9]+'), 'pageNo=' + pageNumber);
+            } else {
+                if(window.location.href.indexOf('?userName=') == -1){
+                    if (window.location.href.indexOf('?pageNo=') == -1) {
+                        window.location.href = window.location.href + '?pageNo=' + pageNumber;
+                    }else{
+                        window.location.href = window.location.href.replace(new RegExp('pageNo=[0-9]+'), 'pageNo=' + pageNumber);
+                    }
+                }else{
+                    window.location.href = window.location.href + '&pageNo=' + pageNumber;
+                }
+            }
+
+        }
+    });
+    </c:if>
+
+</script>
 </body>
 </html>

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="${pageContext.request.contextPath}/view/admin/html/css/simplePagination.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -87,17 +88,9 @@
             </tbody>
         </table>
         <div class="clearfix">
-            <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-            <ul class="pagination">
-                <li class="page-item disabled"><a href="#">Previous</a></li>
-                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                <li class="page-item"><a href="#" class="page-link">Next</a></li>
-            </ul>
-        </div>
+            <div id="pagination-container">
+
+            </div>
     </div>
 </div>
 <!-- Edit Modal HTML -->
@@ -271,6 +264,42 @@
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/main.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/productManipulation.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/simplePagination.js"></script>
+<script type="text/javascript">
+    console.log("nof of pages   "+${requestScope.noOfPages});
+    console.log("page no  "+${requestScope.pageNo});
+    <c:if test="${requestScope.noOfPages != null && requestScope.noOfPages > 0}">
+    $('#pagination-container').pagination({
+        pages:${requestScope.noOfPages},
+        displayedPages:8,
+        cssStyle: 'light-theme',
+        ellipsePageSet:true,
+        currentPage:${requestScope.pageNo},
+        hrefTextPrefix:'',
+        selectOnClick:false,
+        onPageClick:function(pageNumber, event){
+            if(event != undefined) {
+                event.preventDefault();
+            }
+            if (window.location.href.indexOf('&pageNo=') !== -1) {
+                window.location.href = window.location.href.replace(new RegExp('pageNo=[0-9]+'), 'pageNo=' + pageNumber);
+            } else {
+                if(window.location.href.indexOf('?productName=') == -1){
+                    if (window.location.href.indexOf('?pageNo=') == -1) {
+                        window.location.href = window.location.href + '?pageNo=' + pageNumber;
+                    }else{
+                        window.location.href = window.location.href.replace(new RegExp('pageNo=[0-9]+'), 'pageNo=' + pageNumber);
+                    }
+                }else{
+                    window.location.href = window.location.href + '&pageNo=' + pageNumber;
+                }
+            }
+
+        }
+    });
+    </c:if>
+
+</script>
 <script>
     function productId(pid){
         console.log(pid);
