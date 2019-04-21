@@ -62,7 +62,7 @@
                     <td><c:out value="${user.phone}"></c:out></td>
                     <td>
                         <a href="#editEmployeeModal" id="view-btn" class="edit" data-toggle="modal"><i
-                                class="material-icons" data-toggle="tooltip" title="View User Details"
+                                class="material-icons" data-toggle="tooltip" title="View User Details "
                                 onclick=" getuserinfo('${user.id}')">list</i></a>
                         </td>
                 </tr>
