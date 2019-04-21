@@ -46,6 +46,7 @@ public class ProductAddition extends HttpServlet {
         Product product = ProductConvertor.converProductBeantoProduct(bean);
         //----------------------------------------------------------------------
         ProductDAO dao = new ProductDAO(session);
+        session.beginTransaction();
 
         Product addedProduct = dao.merge(product);
         //--------------------------------------------
@@ -55,8 +56,8 @@ public class ProductAddition extends HttpServlet {
                 .include(req,resp);
         //----------------------------------------------
         addedProduct = (Product) req.getAttribute("product");
-        dao.update(addedProduct);
 
+        session.getTransaction().commit();
         session.close();
         sessionFactory.close();
 

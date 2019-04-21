@@ -35,7 +35,10 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
     @Override
     public void update(T entity) {
+
+      session.beginTransaction();
         session.update(entity);
+        session.getTransaction().commit();
     }
 
     @Override
