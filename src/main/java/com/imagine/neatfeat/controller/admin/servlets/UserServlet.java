@@ -63,8 +63,8 @@ public class UserServlet extends HttpServlet {
             String pageNo = request.getParameter("pageNo");
             PaginationService paginationService = new PaginationService();
             Map paginationMap = paginationService.getUsersByParameters(session, "", "", pageNo);
-            request.setAttribute("users", paginationMap.get("entities"));
             request.setAttribute("noOfPages", paginationMap.get("noOfPages"));
+            request.setAttribute("users", paginationMap.get("entities"));
             request.setAttribute("pageNo", paginationMap.get("pageNumber"));
             session.close();
             factory.close();
@@ -104,13 +104,9 @@ public class UserServlet extends HttpServlet {
         /*Nouran Habib*/
 
         response.setContentType("application/json");
-
         Session session = (Session) request.getServletContext().getAttribute("session");
         UserDAO user = new UserDAO(session);
         String email = request.getParameter("id");
-//        //consol.log(user.getUserByEmail("email"));
-        System.out.println(email);
-//        PrintWriter out = response.getWriter();
         UUID id = UUID.fromString(email);
         User userinfo = user.getByPrimaryKey(id);
         UserJson userJson = new UserJson();
@@ -132,7 +128,6 @@ public class UserServlet extends HttpServlet {
         userJson.setPassword(userinfo.getPassword());
         userJson.setPhone(userinfo.getPhone());
         userJson.setPhotoUrl(userinfo.getPhotoUrl());
-        System.out.println(userinfo.getName());
         String u = new Gson().toJson(userJson);
         response.getWriter().print(u);
 

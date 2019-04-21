@@ -45,41 +45,27 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <!--<th>
-
-                    <!--<span class="custom-checkbox">
-                        <input type="checkbox" id="selectAll">
-                        <label for="selectAll"></label>
-                    </span>
-                </th>-->
                 <th>Name</th>
                 <th>Email</th>
                 <th>Address</th>
                 <th>Phone</th>
                 <th>Actions</th>
-
             </tr>
             </thead>
             <tbody>
 
             <c:forEach items="${requestScope.users}" var="user">
-
                 <tr>
                     <td><c:out value="${user.name}"></c:out></td>
                     <td><c:out value="${user.email}"></c:out></td>
                     <td><c:out value="${user.address}"></c:out></td>
                     <td><c:out value="${user.phone}"></c:out></td>
-
                     <td>
-
                         <a href="#editEmployeeModal" id="view-btn" class="edit" data-toggle="modal"><i
-                                class="material-icons" data-toggle="tooltip" title="Edit"
+                                class="material-icons" data-toggle="tooltip" title="View User Details"
                                 onclick=" getuserinfo('${user.id}')">list</i></a>
-                        <!--  <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" id="view">list</i></a>-->
-                    </td>
+                        </td>
                 </tr>
-
-
             </c:forEach>
             .
             <!-- <tr></tr>-->
