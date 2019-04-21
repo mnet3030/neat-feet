@@ -2,11 +2,10 @@ package com.imagine.neatfeat.model.dal.dao;
 
 import com.imagine.neatfeat.model.dal.entity.Entity;
 import org.hibernate.Criteria;
+import org.hibernate.LockMode;
 import org.hibernate.Session;
-import org.hibernate.criterion.Conjunction;
-import org.hibernate.criterion.Disjunction;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
+import org.hibernate.query.Query;
 
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -36,9 +35,7 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
     @Override
     public void update(T entity) {
-        session.beginTransaction();
         session.update(entity);
-        session.getTransaction().commit();
     }
 
     @Override
@@ -47,9 +44,16 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         session.delete(entityToBeDeleted);
     }
 
+
+    public int deleteByColumnName(String columnName, Object columnValue) {
+        Query query = session.createQuery("DELETE FROM " + tClass.getSimpleName() + " WHERE " + columnName + "=:columnValue");
+        query.setParameter("columnValue", columnValue);
+        return query.executeUpdate();
+    }
+
     @Override
     public T getByPrimaryKey(Serializable primaryKey) {
-        T neededEntity = session.load(tClass, primaryKey);
+        T neededEntity = session.get(tClass, primaryKey);
         return neededEntity;
     }
 
@@ -66,6 +70,14 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
             criteria = criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
         }
+        List<T> neededEntities = criteria.list();
+        return neededEntities;
+    }
+
+
+    public List<T> getByColumnName(String columnName, Object columnValue) {
+        Criteria criteria = session.createCriteria(tClass);
+        criteria = criteria.add(Restrictions.eq(columnName, columnValue));
         List<T> neededEntities = criteria.list();
         return neededEntities;
     }
@@ -123,8 +135,10 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
         noOfPages = (int)Math.ceil((totalNoOfItems/1.0) / (itemsPerPage/1.0));
 
-        if(pageNumber > noOfPages)
+        if(pageNumber > noOfPages) {
             firstItemInPage = (noOfPages - 1) * itemsPerPage;
+            pageNumber = noOfPages;
+        }
         else
             firstItemInPage = (pageNumber - 1) * itemsPerPage;
 
@@ -137,6 +151,7 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         Map<String, Object> entitiesWithNoOfPages = new HashMap<>();
         entitiesWithNoOfPages.put("entities", pageEntities);
         entitiesWithNoOfPages.put("noOfPages", noOfPages);
+        entitiesWithNoOfPages.put("pageNumber",pageNumber);
         return entitiesWithNoOfPages;
     }
 
@@ -159,8 +174,10 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
         noOfPages = (int)Math.ceil((totalNoOfItems/1.0) / (itemsPerPage/1.0));
 
-        if(pageNumber > noOfPages)
+        if(pageNumber > noOfPages) {
             firstItemInPage = (noOfPages - 1) * itemsPerPage;
+            pageNumber = noOfPages;
+        }
         else
             firstItemInPage = (pageNumber - 1) * itemsPerPage;
 
@@ -176,6 +193,7 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         Map<String, Object> entitiesWithNoOfPages = new HashMap<>();
         entitiesWithNoOfPages.put("entities", pageEntities);
         entitiesWithNoOfPages.put("noOfPages", noOfPages);
+        entitiesWithNoOfPages.put("pageNumber",pageNumber);
         return entitiesWithNoOfPages;
     }
 
@@ -198,8 +216,10 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
         noOfPages = (int)Math.ceil((totalNoOfItems/1.0) / (itemsPerPage/1.0));
 
-        if(pageNumber > noOfPages)
+        if(pageNumber > noOfPages) {
             firstItemInPage = (noOfPages - 1) * itemsPerPage;
+            pageNumber = noOfPages;
+        }
         else
             firstItemInPage = (pageNumber - 1) * itemsPerPage;
 
@@ -216,6 +236,9 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         Map<String, Object> entitiesWithNoOfPages = new HashMap<>();
         entitiesWithNoOfPages.put("entities", pageEntities);
         entitiesWithNoOfPages.put("noOfPages", noOfPages);
+        entitiesWithNoOfPages.put("pageNumber",pageNumber);
         return entitiesWithNoOfPages;
     }
+
+
 }
