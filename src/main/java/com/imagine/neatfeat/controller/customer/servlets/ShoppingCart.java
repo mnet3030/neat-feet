@@ -22,13 +22,15 @@ import java.util.UUID;
 
 
 
-@WebServlet("/cart")
 public class ShoppingCart extends HttpServlet {
     SessionFactory sessionFactory;
-    List<Item> cartProducts = new ArrayList<>();
+
+    String test="i am new user";
     @Override
     public void init() throws ServletException {
         sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+
+        System.out.println(test);
     }
 
 
@@ -40,7 +42,8 @@ public class ShoppingCart extends HttpServlet {
 
         boolean found = false;
         int quantity = 0;
-
+        HttpSession session = req.getSession(false);
+        List<Item> cartProducts= (List<Item>) session.getAttribute("cartProduct");
         Session sessionHib = sessionFactory.getCurrentSession();
         sessionHib.beginTransaction();
 
@@ -54,53 +57,51 @@ public class ShoppingCart extends HttpServlet {
 
         updateCartSize(req,resp,sessionHib);
 
-
-        for(int i=0 ; i<cartProducts.size() ; i++)
-        {
-            if(cartProducts.get(i).getProductId().equals(product.getId()))
+            for(int i=0 ; i<cartProducts.size() ; i++)
             {
-
-                if(cartProducts.get(i).getQuantity() >= product.getQuantity())
+                if(cartProducts.get(i).getProductId().equals(product.getId()))
                 {
-                    cartProducts.get(i).setQuantity(product.getQuantity());
-                    HttpSession session = req.getSession(false);
-                    session.setAttribute("cartProduct" , cartProducts);
-                    updateCartSize(req,resp,sessionHib);
-                    found=true;
-                    break;
-                }
 
-                else
-                {
-                    quantity = cartProducts.get(i).getQuantity()+1;
-                    cartProducts.get(i).setQuantity(quantity);
-                    HttpSession session = req.getSession(false);
-                    session.setAttribute("cartProduct" , cartProducts);
-                    updateCartSize(req,resp,sessionHib);
-                    found=true;
-                    break;
+                    if(cartProducts.get(i).getQuantity() >= product.getQuantity())
+                    {
+                        cartProducts.get(i).setQuantity(product.getQuantity());
+
+                        session.setAttribute("cartProduct" , cartProducts);
+                        updateCartSize(req,resp,sessionHib);
+                        found=true;
+                        break;
+                    }
+
+                    else
+                    {
+                        quantity = cartProducts.get(i).getQuantity()+1;
+                        cartProducts.get(i).setQuantity(quantity);
+                        session.setAttribute("cartProduct" , cartProducts);
+                        updateCartSize(req,resp,sessionHib);
+                        found=true;
+                        break;
+                    }
+
+
                 }
+            }
+
+
+            if(found==false)
+            {
+                cartProducts.add(new Item(productuuid , 1));
+
+                session.setAttribute("cartProduct" , cartProducts);
+                updateCartSize(req,resp,sessionHib);
 
 
             }
-        }
 
+            PrintWriter out = resp.getWriter();
+            out.print(req.getSession(false).getAttribute("sizeCart"));
 
-        if(found==false)
-        {
-            cartProducts.add(new Item(productuuid , 1));
-            HttpSession session = req.getSession(false);
-            session.setAttribute("cartProduct" , cartProducts);
-            updateCartSize(req,resp,sessionHib);
+            sessionHib.getTransaction().commit();}
 
-
-        }
-
-        PrintWriter out = resp.getWriter();
-        out.print(req.getSession(false).getAttribute("sizeCart"));
-
-        sessionHib.getTransaction().commit();
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

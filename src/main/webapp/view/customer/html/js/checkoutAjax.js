@@ -94,7 +94,8 @@ function buy() {
     $("#buybutton").attr("disabled", true);
     $.post("checkout",{'action':'buy'},
         function (data,state){
-            if(data.localeCompare("success")){
+            if(data.localeCompare("success")==0){
+                alert(data)
                 setTimeout(function(){
 
                     alertify.success('Successfull Operation.');

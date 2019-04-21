@@ -576,7 +576,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                                 <div class="address-right">
                                     <h6>Email Address</h6>
-                                    <p>Email :<a href="mailto:example@email.com"> mail@neatfeat.com</a></p>
+                                    <p>Email :<a href="mailto:mail@neatfeat.com"> mail@neatfeat.com</a></p>
                                 </div>
                                 <div class="clearfix"> </div>
                             </div>

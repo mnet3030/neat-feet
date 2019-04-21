@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginServlet extends HttpServlet {
@@ -75,9 +76,17 @@ public class LoginServlet extends HttpServlet {
 
                 HttpSession userSession = request.getSession(true);
                 userSession.setAttribute("user", user);
-                userSession.setAttribute("cartProduct", cart);
-                tx.commit();
-                response.sendRedirect("home");
+                if(cart==null){
+                    List<Item> emptyCart =new ArrayList<>();
+                    userSession.setAttribute("cartProduct", emptyCart);
+                    tx.commit();
+                    response.sendRedirect("home");
+
+                }else {
+                    userSession.setAttribute("cartProduct", cart);
+                    tx.commit();
+                    response.sendRedirect("home");
+                }
             }
             else{
                 request.setAttribute("mail",email);

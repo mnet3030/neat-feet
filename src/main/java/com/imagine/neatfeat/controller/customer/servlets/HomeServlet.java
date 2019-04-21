@@ -94,4 +94,9 @@ public class HomeServlet extends HttpServlet {
         /*Nouran Habib*/
 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req,resp);
+    }
 }

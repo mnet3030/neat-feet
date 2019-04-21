@@ -198,12 +198,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="amazingcarousel-list-container">
 				<ul class="amazingcarousel-list">
 					<c:forEach items="${requestScope.mostVisitedMap}" var="most" >
-						<li class="amazingcarousel-item">
-							<div class="amazingcarousel-item-container">
-								<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
-								<div class="amazingcarousel-title"><c:out value="${most.key.description}" /> </div>
-							</div>
-						</li>
+						<a href="${pageContext.request.contextPath}/product?id=${most.key.id}">
+							<li class="amazingcarousel-item">
+								<div class="amazingcarousel-item-container">
+									<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
+									<div class="amazingcarousel-title"><c:out value="${most.key.description}" /> </div>
+								</div>
+							</li>
+						</a>
 					</c:forEach>
 					<%--<li class="amazingcarousel-item">--%>
 					<%--<div class="amazingcarousel-item-container">--%>
@@ -285,12 +287,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="amazingcarousel-list-container">
 				<ul class="amazingcarousel-list">
 					<c:forEach items="${requestScope.bestSoldMap}" var="theBest" >
-						<li class="amazingcarousel-item">
-							<div class="amazingcarousel-item-container">
-								<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
-								<div class="amazingcarousel-title"><c:out value="${theBest.key.getDescription()}" /> </div>
-							</div>
-						</li>
+						<a href="${pageContext.request.contextPath}/product?id=${theBest.key.id}">
+							<li class="amazingcarousel-item">
+								<div class="amazingcarousel-item-container">
+									<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
+									<div class="amazingcarousel-title"><c:out value="${theBest.key.getDescription()}" /> </div>
+								</div>
+							</li>
+						</a>
 					</c:forEach>
 					<%--<li class="amazingcarousel-item">--%>
 					<%--<div class="amazingcarousel-item-container">--%>
@@ -372,12 +376,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="amazingcarousel-list-container">
 					<ul class="amazingcarousel-list">
 						<c:forEach items="${category.value}" var="product" >
-							<li class="amazingcarousel-item">
-								<div class="amazingcarousel-item-container">
-									<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="${product.description}" /></div>
-									<div class="amazingcarousel-title"><c:out value="${product.description}" /></div>
-								</div>
-							</li>
+							<a href="${pageContext.request.contextPath}/product?id=${product.id}">
+								<li class="amazingcarousel-item">
+									<div class="amazingcarousel-item-container">
+										<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="${product.description}" /></div>
+										<div class="amazingcarousel-title"><c:out value="${product.description}" /></div>
+									</div>
+								</li>
+							</a>
 						</c:forEach>
 							<%--<li class="amazingcarousel-item">--%>
 							<%--<div class="amazingcarousel-item-container">--%>
