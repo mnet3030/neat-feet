@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration/hibernate-configuration-3.0.dtd">
+<!--
+DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+
+Copyright (c) 2008, 2016 Oracle and/or its affiliates. All rights reserved.
+
+Oracle and Java are registered trademarks of Oracle and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+The contents of this file are subject to the terms of either the GNU
+General Public License Version 2 only ("GPL") or the Common
+Development and Distribution License("CDDL") (collectively, the
+"License"). You may not use this file except in compliance with the
+License. You can obtain a copy of the License at
+http://www.netbeans.org/cddl-gplv2.html
+or nbbuild/licenses/CDDL-GPL-2-CP. See the License for the
+specific language governing permissions and limitations under the
+License.  When distributing the software, include this License Header
+Notice in each file and include the License file at
+nbbuild/licenses/CDDL-GPL-2-CP.  Oracle designates this
+particular file as subject to the "Classpath" exception as provided
+by Oracle in the GPL Version 2 section of the License file that
+accompanied this code. If applicable, add the following below the
+License Header, with the fields enclosed by brackets [] replaced by
+your own identifying information:
+"Portions Copyrighted [year] [name of copyright owner]"
+
+If you wish your version of this file to be governed by only the CDDL
+or only the GPL Version 2, indicate your decision by adding
+"[Contributor] elects to include this software in this distribution
+under the [CDDL or GPL Version 2] license." If you do not indicate a
+single choice of license, a recipient has the option to distribute
+your version of this file under either the CDDL, the GPL Version 2 or
+to extend the choice of license to its licensees as provided above.
+However, if you add GPL Version 2 code and therefore, elected the GPL
+Version 2 license, then the option applies only if the new code is
+made subject to such option by the copyright holder.
+
+Contributor(s):
+-->
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/e-commerce</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">1234567890</property>
+
+    <property name="show_sql">true</property>
+    <property name="format_sql">true</property>
+    <property name="use_sql_comments">true</property>
+
+    <property name="hibernate.current_session_context_class">thread</property>
+
+    <property name="hibernate.connection.provider_class">org.hibernate.hikaricp.internal.HikariCPConnectionProvider</property>
+
+    <!-- Maximum waiting time for a connection from the pool -->
+    <property name="hibernate.hikari.connectionTimeout">10000</property>
+
+    <!-- Minimum number of ideal connections in the pool -->
+    <property name="hibernate.hikari.minimumIdle">20</property>
+
+    <!-- Maximum number of actual connection in the pool -->
+    <property name="hibernate.hikari.maximumPoolSize">300</property>
+
+    <!-- Maximum time that a connection is allowed to sit ideal in the pool -->
+    <property name="hibernate.hikari.idleTimeout">200000</property>
+
+    <property name="hibernate.hikari.dataSource.cachePrepStmts">true</property>
+    <property name="hibernate.hikari.dataSource.prepStmtCacheSize">250</property>
+    <property name="hibernate.hikari.dataSource.prepStmtCacheSqlLimit">2048</property>
+    <property name="hibernate.hikari.dataSource.useServerPrepStmts">true</property>
+
+
+    <mapping class="com.imagine.neatfeat.model.dal.entity.Brand"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.Country"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.UserReviews"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.Product"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.Coupon"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.UserVisitProducts"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.OrderProducts"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.ProductMedia"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.WishingListProducts"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.ShoppingCart"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.ShoppingCartProducts"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.DeliveryStatus"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.Category"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.User"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.UserOrders"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.WishingList"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.UserRoles"/>
+  </session-factory>
+</hibernate-configuration>
