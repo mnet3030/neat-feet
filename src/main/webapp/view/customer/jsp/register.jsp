@@ -80,8 +80,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                             </c:forEach>
                         </c:if>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/about">About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>

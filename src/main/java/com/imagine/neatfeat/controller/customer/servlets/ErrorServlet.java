@@ -11,14 +11,11 @@ import java.io.IOException;
 
 public class ErrorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/view/customer/jsp/404.jsp").forward(request,response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/404.jsp");
         dispatcher.include(request, response);
-        //        response.sendRedirect("view/customer/jsp/404.jsp");
-
-
     }
 }

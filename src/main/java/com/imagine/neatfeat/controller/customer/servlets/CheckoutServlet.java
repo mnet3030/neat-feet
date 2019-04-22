@@ -36,7 +36,6 @@ public class CheckoutServlet extends HttpServlet {
 
         /*Amr El Kady*/
 
-       // ResultDao resultDao = new ResultDao();
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
         CheckoutServices checkoutServices=new CheckoutServices(session);

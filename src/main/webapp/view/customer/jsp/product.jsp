@@ -70,8 +70,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                             </c:forEach>
                         </c:if>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/about">About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
                         <c:if test="${requestScope.loggedIn == true}">
                             <li><a href="${pageContext.request.contextPath}/profile">Edit Profile</a></li>
                             <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
@@ -95,12 +95,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         <c:if test="${requestScope.loggedIn == true}">
                             <a href="${pageContext.request.contextPath}/profile">
-                                <button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
+                                <button  class = "userIcon"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
                             </a>
                         </c:if>
                         <c:if test="${requestScope.loggedIn == false}">
-                            <a href="${pageContext.request.contextPath}/view/customer/jsp/Login.jsp">
-                                <button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+                            <a href="${pageContext.request.contextPath}/login">
+                                <button  class = "userIcon"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
                             </a>
                         </c:if>
                     </ul>
@@ -733,8 +733,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h4>Our <span>Information</span> </h4>
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/about">About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
                     </ul>
                 </div>
 

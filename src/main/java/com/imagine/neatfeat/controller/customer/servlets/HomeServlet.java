@@ -38,6 +38,11 @@ public class HomeServlet extends HttpServlet {
         if(httpSession!=null && httpSession.getAttribute("user")!=null){
             request.setAttribute("loggedIn", true);
             request.setAttribute("user", httpSession.getAttribute("user"));
+            if(httpSession.getAttribute("fromLogin")!= null)
+            {
+                httpSession.removeAttribute("fromLogin");
+                request.setAttribute("fromLogin", true);
+            }
         }else{
             request.setAttribute("loggedIn", false);
         }

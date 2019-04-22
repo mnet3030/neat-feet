@@ -27,34 +27,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
-    <%-- alert fi--%>
-    <!-- JavaScript -->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
-    <!-- Default theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
-    <!-- Semantic UI theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.min.css"/>
-    <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.min.css"/>
-
-    <!--
-        RTL version
-    -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.rtl.min.css"/>
-    <!-- Default theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.rtl.min.css"/>
-    <!-- Semantic UI theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.rtl.min.css"/>
-    <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.rtl.min.css"/>
-    <%--//alert--%>
-
-
-
-
 
     <!-- //custom-theme -->
     <link href="${htmlFullPath}/css/flextable.css" rel="stylesheet" type="text/css" media="all" />
@@ -97,8 +69,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                             </c:forEach>
                         </c:if>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
+                        <li><a href="${pageContext.request.contextPath}/about">About</a></li>
+                        <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
                         <c:if test="${requestScope.loggedIn == true}">
                             <li><a href="${pageContext.request.contextPath}/profile">Edit Profile</a></li>
                             <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
@@ -124,12 +96,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="cd-header-buttons4">
                         <c:if test="${requestScope.loggedIn == true}">
                             <a href="${pageContext.request.contextPath}/profile">
-                                <button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
+                                <button  class = "userIcon"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
                             </a>
                         </c:if>
                         <c:if test="${requestScope.loggedIn == false}">
                             <a href="${pageContext.request.contextPath}/login">
-                                <button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+                                <button  class = "userIcon"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
                             </a>
                         </c:if>
                     </ul>
@@ -473,8 +445,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <h4>Our <span>Information</span> </h4>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                            <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
-                            <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
+                            <li><a href="${pageContext.request.contextPath}/about">About</a></li>
+                            <li><a href="${pageContext.request.contextPath}/login">Contact</a></li>
                         </ul>
                     </div>
 

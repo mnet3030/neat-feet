@@ -76,6 +76,7 @@ public class LoginServlet extends HttpServlet {
 
                 HttpSession userSession = request.getSession(true);
                 userSession.setAttribute("user", user);
+                userSession.setAttribute("fromLogin", true);
                 if(cart==null){
                     List<Item> emptyCart =new ArrayList<>();
                     userSession.setAttribute("cartProduct", emptyCart);

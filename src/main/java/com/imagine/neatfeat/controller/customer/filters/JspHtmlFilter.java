@@ -12,7 +12,8 @@ public class JspHtmlFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         /*Mahmoud Shereif*/
-        chain.doFilter(req, res);
+        req.getRequestDispatcher("/view/customer/jsp/404.jsp").forward(req,res);
+
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/

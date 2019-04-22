@@ -23,7 +23,13 @@ function pluse(btn) {
 
 
         }).fail(function() {
-        alertify.error('error in connection....');
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href>Why do I have this issue?</a>',
+            allowOutsideClick:false
+        });
         sleep(1500).then(() => {
             location.reload(true);
         });
@@ -57,7 +63,13 @@ function minus(btn) {
             $('.badge').text(data.size);
 
         }).fail(function() {
-        alertify.error('error in connection....');
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href>Why do I have this issue?</a>',
+            allowOutsideClick:false
+        });
         sleep(1500).then(() => {
             location.reload(true);
         });
@@ -79,7 +91,13 @@ function remove(id) {
             $("#afterAddServices").html(data.totalPrice+" EGP");
             $('.badge').text(data.size);
         }).fail(function() {
-        alertify.error('error in connection....');
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href>Why do I have this issue?</a>',
+            allowOutsideClick:false
+        });
         sleep(1500).then(() => {
             location.reload(true);
         });
@@ -97,7 +115,12 @@ function buy() {
             if(data.localeCompare("success")==0){
                 setTimeout(function(){
 
-                    alertify.success('Successfull Operation.');
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Payment successful',
+                        text: 'Congratulations',
+                        allowOutsideClick:false
+                    });
                 }, 1000);
 
                 sleep(3000).then(() => {
@@ -109,14 +132,26 @@ function buy() {
 
                 setTimeout(function(){
 
-                    alertify.error(data);
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        footer: '<a href>Why do I have this issue?</a>',
+                        allowOutsideClick:false
+                    });
                     $("#buybutton").attr("disabled", false);
                 }, 1000);
 
 
             }
         }).fail(function() {
-        alertify.error('error in connection....');
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href>Why do I have this issue?</a>',
+            allowOutsideClick:false
+        });
         sleep(1500).then(() => {
             location.reload(true);
         });

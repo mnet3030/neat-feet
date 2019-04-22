@@ -26,6 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
+
 	</script>
 	<!-- //custom-theme -->
 	<link href="${htmlFullPath}/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
@@ -39,6 +40,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 		  rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 </head>
 
 <body style="background-color: #EAEDED">
@@ -63,13 +65,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</li>
 							</c:forEach>
 						</c:if>
-						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
+						<li><a href="${pageContext.request.contextPath}/about">About</a></li>
+						<li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
 						<c:if test="${requestScope.loggedIn == true}">
 							<li><a href="${pageContext.request.contextPath}/profile">Edit Profile</a></li>
 							<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
 						</c:if>
-
 					</ul>
 				</nav>
 
@@ -93,12 +94,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 						<c:if test="${requestScope.loggedIn == true}">
 							<a href="${pageContext.request.contextPath}/profile">
-								<button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
+								<button  class = "userIcon"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
 							</a>
 						</c:if>
 						<c:if test="${requestScope.loggedIn == false}">
 							<a href="${pageContext.request.contextPath}/login">
-								<button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+								<button  class = "userIcon"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
 							</a>
 						</c:if>
 					</ul>
@@ -434,8 +435,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h4>Our <span>Information</span> </h4>
 					<ul>
 						<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
+						<li><a href="${pageContext.request.contextPath}/about">About</a></li>
+						<li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
 					</ul>
 				</div>
 
@@ -546,6 +547,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				scrollTop: $(this.hash).offset().top
 			}, 1000);
 		});
+		<c:if test="${requestScope.fromLogin != null}">
+			const Toast = swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 3000
+			});
+
+			Toast.fire({
+				type: 'success',
+				title: 'Signed in successfully'
+			});
+		</c:if>
+
+
 	});
 </script>
 <!-- //end-smoth-scrolling -->
