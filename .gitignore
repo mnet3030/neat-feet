@@ -2,4 +2,3 @@ src/main/resources/cfg/hibernate.cfg.xml
 .idea/*
 target/*
 *.iml
-*web.xml

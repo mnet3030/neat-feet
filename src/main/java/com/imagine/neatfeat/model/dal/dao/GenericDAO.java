@@ -36,7 +36,8 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
     @Override
     public void update(T entity) {
-        session.update(entity);
+
+	session.update(entity);
     }
 
     @Override
@@ -256,4 +257,6 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         List<T> neededEntities = criteria.list();
         return neededEntities;
     }
+
+
 }

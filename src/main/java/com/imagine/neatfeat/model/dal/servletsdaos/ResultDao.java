@@ -2,6 +2,7 @@ package com.imagine.neatfeat.model.dal.servletsdaos;
 
 import com.imagine.neatfeat.model.dal.dao.CategoryDAO;
 import com.imagine.neatfeat.model.dal.dao.ProductDAO;
+import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
@@ -23,6 +24,16 @@ public class ResultDao {
         columnsNamesValues.put("detailedDescription", searchString);
 
         Map resultMap = productDAO.getPageByColumnNamesWithLike(columnsNamesValues, pageNumber, itemsPerPage);
+        return resultMap;
+    }
+    public Map<String, Object> getUsersPageBySearchString(Session session, String searchString, int pageNumber, int itemsPerPage){
+        UserDAO userDAO = new UserDAO(session);
+        Map<String, Object> columnsNamesValues = new HashMap<>();
+        columnsNamesValues.put("email", searchString);
+        columnsNamesValues.put("name", searchString);
+        columnsNamesValues.put("phone", searchString);
+
+        Map resultMap = userDAO.getPageByColumnNamesWithLike(columnsNamesValues, pageNumber, itemsPerPage);
         return resultMap;
     }
 

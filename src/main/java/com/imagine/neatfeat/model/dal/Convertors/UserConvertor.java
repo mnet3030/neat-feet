@@ -50,4 +50,24 @@ public class UserConvertor {
             user.setJob(bean.getJob());
         return user;
     }
+    public static UserBean covertUserToUserBean(User user) {
+
+        UserBean bean = new UserBean();
+        bean.setName(user.getName());
+        bean.setEmail(user.getEmail());
+        bean.setCreditLimit(user.getCreditLimit());
+        bean.setPhone(user.getPhone());
+        user.setGender(bean.isGender());
+        //-----------------------------------------------------------
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+        //---------------------------------------------------------
+        if (user.getAddress() != null)
+            bean.setAddress(user.getAddress());
+        if (user.getPhotoUrl() != null)
+            bean.setPhotoUrl(user.getPhotoUrl());
+        if (user.getJob() != null)
+            bean.setJob(user.getJob());
+
+        return bean;
+    }
 }
