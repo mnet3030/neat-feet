@@ -2,6 +2,7 @@ package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.controller.services.BestSoldProducts;
 import com.imagine.neatfeat.controller.services.MostVisitedProducts;
+import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.servletsdaos.HomeDao;
@@ -28,7 +29,7 @@ public class HomeServlet extends HttpServlet {
     HomeDao homeDao;
     @Override
     public void init() throws ServletException {
-        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+        sessionFactory = SingletonSessionFactory.getInstance();
     }
 
     @Override

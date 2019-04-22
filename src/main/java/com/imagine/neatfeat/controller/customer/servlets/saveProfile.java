@@ -1,5 +1,6 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
+import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.dto.UserBean;
@@ -21,7 +22,7 @@ public class saveProfile  extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+        sessionFactory = SingletonSessionFactory.getInstance();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

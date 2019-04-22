@@ -1,5 +1,6 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
+import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import org.hibernate.Session;
@@ -23,7 +24,7 @@ public class AboutServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+        sessionFactory = SingletonSessionFactory.getInstance();
 
     }
 

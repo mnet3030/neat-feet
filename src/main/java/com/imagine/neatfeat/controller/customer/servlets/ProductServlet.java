@@ -1,6 +1,7 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.dao.ProductDAO;
+import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.entity.User;
@@ -30,7 +31,7 @@ public class ProductServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         resultDao = new ResultDao();
-        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+        sessionFactory = SingletonSessionFactory.getInstance();
     }
 
     @Override

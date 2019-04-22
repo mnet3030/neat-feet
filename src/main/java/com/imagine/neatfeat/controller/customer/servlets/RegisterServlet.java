@@ -1,6 +1,7 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.Convertors.UserConvertor;
+import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Country;
@@ -26,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+        sessionFactory = SingletonSessionFactory.getInstance();
     }
 
     @Override

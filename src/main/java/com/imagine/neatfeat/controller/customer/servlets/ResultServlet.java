@@ -1,6 +1,7 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.controller.services.PaginationService;
+import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
@@ -25,7 +26,7 @@ public class ResultServlet extends HttpServlet {
     SessionFactory sessionFactory;
     @Override
     public void init() throws ServletException {
-        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+        sessionFactory = SingletonSessionFactory.getInstance();
     }
 
     @Override

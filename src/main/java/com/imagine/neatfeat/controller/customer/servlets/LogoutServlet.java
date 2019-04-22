@@ -3,6 +3,7 @@ package com.imagine.neatfeat.controller.customer.servlets;
 import com.imagine.neatfeat.model.dal.dao.ProductDAO;
 import com.imagine.neatfeat.model.dal.dao.ShoppingCartDAO;
 import com.imagine.neatfeat.model.dal.dao.ShoppingCartProductsDAO;
+import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.entity.ShoppingCart;
 import com.imagine.neatfeat.model.dal.entity.ShoppingCartProducts;
@@ -26,7 +27,7 @@ public class LogoutServlet extends HttpServlet {
     SessionFactory sessionFactory;
     @Override
     public void init() throws ServletException {
-        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+        sessionFactory = SingletonSessionFactory.getInstance();
     }
 
     @Override

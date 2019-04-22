@@ -12,8 +12,8 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         /*Mahmoud Shereif*/
-        SessionFactory sessionFactory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        servletContextEvent.getServletContext().setAttribute("sessionFactory", sessionFactory);
+       /* SessionFactory sessionFactory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+        servletContextEvent.getServletContext().setAttribute("sessionFactory", sessionFactory);*/
 
         /*Amr El Kady*/
 
