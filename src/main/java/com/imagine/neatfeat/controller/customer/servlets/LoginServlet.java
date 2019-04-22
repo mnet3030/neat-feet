@@ -18,13 +18,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LoginServlet extends HttpServlet {
 
     SessionFactory sessionFactory;
     @Override
     public void init() throws ServletException {
-         sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
     }
 
     @Override
@@ -70,24 +72,32 @@ public class LoginServlet extends HttpServlet {
             LoginDao dao = new LoginDao();
             User user  = dao.AuthenticateUser(session, email, password);
             if(user != null){
+                String pattern = "([aA-zZ]|[0-9])+@neatfeet.com";
+                // Create a Pattern object
+                Pattern r = Pattern.compile(pattern);
+                // Now create matcher object.
+                Matcher m = r.matcher(user.getEmail());
+                if(m.find()){
+                    response.sendRedirect("homeadmin");
+                }else{
 
-                LoginDao loginDao = new LoginDao();
-                List<Item> cart = loginDao.getAndDeleteCartFromDatabase(session, user);
+                    LoginDao loginDao = new LoginDao();
+                    List<Item> cart = loginDao.getAndDeleteCartFromDatabase(session, user);
 
-                HttpSession userSession = request.getSession(true);
-                userSession.setAttribute("user", user);
-                userSession.setAttribute("fromLogin", true);
-                if(cart==null){
-                    List<Item> emptyCart =new ArrayList<>();
-                    userSession.setAttribute("cartProduct", emptyCart);
-                    tx.commit();
-                    response.sendRedirect("home");
+                    HttpSession userSession = request.getSession(true);
+                    userSession.setAttribute("user", user);
+                    userSession.setAttribute("fromLogin", true);
+                    if(cart==null){
+                        List<Item> emptyCart =new ArrayList<>();
+                        userSession.setAttribute("cartProduct", emptyCart);
+                        tx.commit();
+                        response.sendRedirect("home");
 
-                }else {
-                    userSession.setAttribute("cartProduct", cart);
-                    tx.commit();
-                    response.sendRedirect("home");
-                }
+                    }else {
+                        userSession.setAttribute("cartProduct", cart);
+                        tx.commit();
+                        response.sendRedirect("home");
+                    }}
             }
             else{
                 request.setAttribute("mail",email);
@@ -97,6 +107,7 @@ public class LoginServlet extends HttpServlet {
                         .getRequestDispatcher("/view/customer/jsp/Login.jsp")
                         .include(request,response);
             }
+
         }catch (Exception ex) {
             ex.printStackTrace();
             tx.rollback();
