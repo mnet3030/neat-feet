@@ -1,8 +1,6 @@
 
 function addItemToCart(node)
 {
-
-
     var productid = node.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.value;
 
     $.post('cart', {
@@ -20,21 +18,35 @@ function addItemToCart(node)
 
             parent.append("<i class=\"fa fa-check-circle fa-2x\" aria-hidden=\"true\" style=\"color: limegreen;\"></i>")
         }else{
-            window.location.href = "http://localhost:8040/neat_feet_war_exploded/login";
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'You must be logged in first!',
+                footer: '<a href>Why do I have this issue?</a>',
+                allowOutsideClick:false
+            });
+            window.location.href = appContext + "/login";
         }
-    })
-
-}
-/**
- *
- *.fail(function() {
+    }).fail(function() {
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href>Why do I have this issue?</a>',
+            allowOutsideClick:false
+        });
+    });
+    /**
+     *
+     *.fail(function() {
         alertify.error('error in connection....');
         sleep(1500).then(() => {
             location.reload(true);
         });
     });
- * */
+     * */
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 }

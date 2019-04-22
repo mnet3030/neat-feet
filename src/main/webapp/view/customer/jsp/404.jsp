@@ -16,6 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script type="application/x-javascript">
+		var appContext = "${pageContext.request.contextPath}";
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
@@ -39,6 +40,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 	<!-- banner -->
+	<c:if test="${requestScope.loggedIn == true}">
+		<a href="${pageContext.request.contextPath}/profile" class="helloNonHome" style="color:white;">Hello, ${requestScope.user.name}</a>
+	</c:if>
 	<div class="banner_top innerpage" id="home">
 		<div class="wrapper_top_w3layouts">
 			<div class="header_agileits">
@@ -60,8 +64,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</c:if>
 							<li><a href="${pageContext.request.contextPath}/about">About</a></li>
 							<li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
-							<li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-							<li><a href="${pageContext.request.contextPath}/contact">Logout</a></li>
+							<c:if test="${requestScope.loggedIn == true}">
+								<li><a href="${pageContext.request.contextPath}/profile">Edit Profile</a></li>
+								<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+							</c:if>
 
 						</ul>
 					</nav>

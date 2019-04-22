@@ -112,9 +112,8 @@ function buy() {
     $("#buybutton").attr("disabled", true);
     $.post("checkout",{'action':'buy'},
         function (data,state){
-            if(data.localeCompare("success")==0){
+            if(data.match(new RegExp("\^success")) != null){
                 setTimeout(function(){
-
                     Swal.fire({
                         type: 'success',
                         title: 'Payment successful',
@@ -124,7 +123,7 @@ function buy() {
                 }, 1000);
 
                 sleep(3000).then(() => {
-                    window.location.href = "http://localhost:9050/neat_feet_war_exploded/home";
+                    window.location.href = appContext + "/home";
                 });
 
             }

@@ -90,8 +90,6 @@ public class HomeServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/index.jsp");
         dispatcher.include(request, response);
-//        System.out.println("cat");
-
 
         /*Alia Mahmoud*/
 
