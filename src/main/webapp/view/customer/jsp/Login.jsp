@@ -30,6 +30,7 @@
 
 	<!-- test bar  -->
 	<script type="application/x-javascript">
+		var appContext = "${pageContext.request.contextPath}";
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
@@ -48,6 +49,7 @@
 	<!-- font-awesome-icons -->
 	<link href="${htmlFullPath}/css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 		  rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">

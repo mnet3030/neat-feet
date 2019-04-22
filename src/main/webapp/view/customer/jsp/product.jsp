@@ -20,6 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript">
+        var appContext = "${pageContext.request.contextPath}";
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -40,6 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- font-awesome-icons -->
     <link href="${pageContext.request.contextPath}/view/customer/html/css/font-awesome.css" rel="stylesheet">
     <!-- //font-awesome-icons -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
           rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
@@ -48,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 
 <c:if test="${requestScope.loggedIn == true}">
-    <a href="${pageContext.request.contextPath}/profile" class="helloNonHome">Hello, ${requestScope.user.name}</a>
+    <a href="${pageContext.request.contextPath}/profile" class="helloNonHome" style="color:white;">Hello, ${requestScope.user.name}</a>
 </c:if>
 <!-- banner -->
 <div class="banner_top innerpage" id="home">

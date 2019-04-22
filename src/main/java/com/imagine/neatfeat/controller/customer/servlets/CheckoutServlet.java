@@ -76,33 +76,22 @@ public class CheckoutServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Session session = sessionFactory.getCurrentSession();
 
+        Transaction tx = null;
 
-        HttpSession userSession=request.getSession(false);
-        User user= (User) userSession.getAttribute("user");
-        if(userSession!=null &&  user!= null) {
+        try {
+            tx = session.beginTransaction();
 
-            Transaction tx = null;
+            CheckoutServices checkoutServices = new CheckoutServices(session);
+            List<Item> cart = checkoutServices.getSessionAttr(request,response);
+            String action = request.getParameter("action");
+            System.out.println(action);
+            checkoutServices.doAction(request,response,cart,action);
 
-            try {
-                tx = session.beginTransaction();
+            tx.commit();
 
-                CheckoutServices checkoutServices = new CheckoutServices(session);
-                List<Item> cart = checkoutServices.getSessionAttr(request,response);
-                String action = request.getParameter("action");
-                System.out.println(action);
-                checkoutServices.doAction(request,response,cart,action);
-
-                tx.commit();
-
-            }catch (Exception ex) {
-                ex.printStackTrace();
-                tx.rollback();
-            }
-
-
-
-        }else{
-            request.getRequestDispatcher("/login").forward(request,response);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            tx.rollback();
         }
 
 

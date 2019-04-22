@@ -37,13 +37,7 @@ public class RegisterServlet extends HttpServlet {
         RegisterDao registerDao = new RegisterDao();
         List<Country> allCountries = registerDao.getAllCountries(session);
 
-
-
         request.setAttribute("allCountries" ,allCountries);
-        request.getServletContext()
-                .getRequestDispatcher("/view/customer/jsp/register.jsp")
-                .include(request,response);
-
 
         /*Amr El Kady*/
 
@@ -51,6 +45,11 @@ public class RegisterServlet extends HttpServlet {
         List<Category> mainCategories = resultDao.getMainCategories(session);
         request.setAttribute("mainCategories", mainCategories);
         session.getTransaction().commit();
+
+        request.getServletContext()
+                .getRequestDispatcher("/view/customer/jsp/register.jsp")
+                .include(request,response);
+
         /*Alia Mahmoud*/
 
         /*Amer Salah*/
@@ -95,6 +94,7 @@ public class RegisterServlet extends HttpServlet {
             }else {
                 request.setAttribute("alreadyRegistered","true");
                 request.setAttribute("bean",bean);
+                session.getTransaction().commit();
                 request.getServletContext()
                         .getRequestDispatcher("/register")
                         .include(request,response);

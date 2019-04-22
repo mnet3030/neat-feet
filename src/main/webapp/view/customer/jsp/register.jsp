@@ -18,6 +18,8 @@
     <!-- STYLE CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/css/style_R.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 
     <!-- Amr Elkady -->
 
@@ -28,6 +30,7 @@
     <meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript">
+        var appContext = "${pageContext.request.contextPath}";
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);

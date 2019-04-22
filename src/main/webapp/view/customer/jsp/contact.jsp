@@ -5,7 +5,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
-
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <html lang="zxx">
@@ -18,6 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script type="application/x-javascript">
+		var appContext = "${pageContext.request.contextPath}";
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
@@ -27,15 +28,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	</script>
 	<!-- //custom-theme -->
-	<link href="../html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link rel="stylesheet" href="../html/css/shop.css" type="text/css" media="screen" property="" />
-	<link href="../html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/css/shop.css" type="text/css" media="screen" property="" />
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/style7.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- Owl-carousel-CSS -->
-	<link rel="stylesheet" type="text/css" href="../html/css/contact.css">
-	<link href="../html/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/css/contact.css">
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- font-awesome-icons -->
-	<link href="../html/css/font-awesome.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/view/customer/html/css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	    rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
@@ -43,6 +45,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 	<!-- banner -->
+	<c:if test="${requestScope.loggedIn == true}">
+		<a href="${pageContext.request.contextPath}/profile" class="helloNonHome" style="color:white;">Hello, ${requestScope.user.name}</a>
+	</c:if>
 	<div class="banner_top innerpage" id="home">
 		<div class="wrapper_top_w3layouts">
 			<div class="header_agileits">
@@ -68,7 +73,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="${pageContext.request.contextPath}/profile">Edit Profile</a></li>
 								<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
 							</c:if>
-
 						</ul>
 					</nav>
 				</div>
@@ -344,10 +348,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //footer -->
 
 	<!-- js -->
-	<script type="text/javascript" src="../html/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/jquery-2.1.4.min.js"></script>
 	<!-- //js -->
 	<!-- cart-js -->
-	<script src="../html/js/minicart.js"></script>
+	<!--<script src="../html/js/minicart.js"></script>
 	<script>
 		shoe.render();
 
@@ -360,19 +364,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				for (i = 0, len = items.length; i < len; i++) {}
 			}
 		});
-	</script>
+	</script>-->
 	<!-- //cart-js -->
 	<!-- /nav -->
-	<script src="../html/js/modernizr-2.6.2.min.js"></script>
-	<script src="../html/js/classie.js"></script>
-	<script src="../html/js/demo1.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/modernizr-2.6.2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/classie.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/demo1.js"></script>
 	<!-- //nav -->
 	<!-- script for responsive tabs -->
-	<script src="../html/js/easy-responsive-tabs.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/easy-responsive-tabs.js"></script>
+
 	<script>
 		$(document).ready(function () {
 			$('#horizontalTab').easyResponsiveTabs({
-				type: 'default', //Types: default, vertical, accordion           
+				type: 'default', //Types: default, vertical, accordion
 				width: 'auto', //auto or any width like 600px
 				fit: true, // 100% fit in a container
 				closed: 'accordion', // Start closed if in accordion view
@@ -392,11 +397,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	<!--search-bar-->
-	<script src="../html/js/search.js"></script>
+	<script src="${pageContext.request.contextPath}/view/customer/html/js/search.js"></script>
 	<!--//search-bar-->
 	<!-- start-smoth-scrolling -->
-	<script type="text/javascript" src="../html/js/move-top.js"></script>
-	<script type="text/javascript" src="../html/js/easing.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/move-top.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/easing.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -408,7 +413,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	<!-- //end-smoth-scrolling -->
-	<script type="text/javascript" src="../html/js/bootstrap-3.1.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/bootstrap-3.1.1.min.js"></script>
 
 
 </body>

@@ -19,6 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script type="application/x-javascript">
+		var appContext = "${pageContext.request.contextPath}";
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
@@ -88,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="search_w3ls_agileinfo">
 				<div class="cd-main-header">
 					<c:if test="${requestScope.loggedIn == true}">
-						<a href="${pageContext.request.contextPath}/profile" class="hello">Hello, ${requestScope.user.name}</a>
+						<a href="${pageContext.request.contextPath}/profile" class="hello" style="color:white;">Hello, ${requestScope.user.name}</a>
 					</c:if>
 					<ul class="cd-header-buttons4">
 
@@ -550,7 +551,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<c:if test="${requestScope.fromLogin != null}">
 			const Toast = swal.mixin({
 				toast: true,
-				position: 'top-end',
+				position: 'top',
 				showConfirmButton: false,
 				timer: 3000
 			});

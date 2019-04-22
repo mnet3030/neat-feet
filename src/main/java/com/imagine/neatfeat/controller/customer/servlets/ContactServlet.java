@@ -45,7 +45,7 @@ public class ContactServlet extends HttpServlet {
         ResultDao resultDao = new ResultDao();
         List<Category> mainCategories = resultDao.getMainCategories(session);
         request.setAttribute("mainCategories", mainCategories);
-
+        session.getTransaction().commit();
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/customer/jsp/contact.jsp");
         dispatcher.include(request, response);
     }
