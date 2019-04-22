@@ -12,6 +12,7 @@
 
     <link href="${pageContext.request.contextPath}/view/admin/html/css/simplePagination.css" rel="stylesheet"/>
 
+
     <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/images/apple-touch-icon.png">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/images/favicon.ico">
 
@@ -22,14 +23,7 @@
 
     <!-- Plugins -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/animsition/animsition.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/asscrollable/asScrollable.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/switchery/switchery.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/intro-js/introjs.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/slidepanel/slidePanel.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/flag-icon-css/flag-icon.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/chartist/chartist.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/jvectormap/jquery-jvectormap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/examples/css/dashboard/v1.css">
 
 
@@ -39,20 +33,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/admin/html/classic/global/fonts/brand-icons/brand-icons.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
-    <!--[if lt IE 9]-->
-    <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/html5shiv/html5shiv.min.js"></script>
-    <!--[endif]-->
-
-    <!--[if lt IE 10]>
-    <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/media-match/media.match.min.js"></script>
-    <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/respond/respond.min.js"></script>
-    <![endif]-->
-
     <!-- Scripts -->
-    <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/breakpoints/breakpoints.js"></script>
-    <script>
-        Breakpoints();
-    </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -428,7 +409,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Quantity</label>
-                                    <input type="text" name="quantity" class="form-control" required>
+                                    <input type="number" name="quantity" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>photo</label>
@@ -507,7 +488,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Quantity</label>
-                                    <input type="text" id="quantity" name="quantity" class="form-control" required>
+                                    <input type="number" id="quantity" name="quantity" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Buying Count</label>
@@ -575,10 +556,10 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group" id="imagesContainer">
-                                <img src="" onerror="this.src='${pageContext.request.contextPath}/ProductIamges/default.jpg'" id="firstPhoto" width="250" height="250"><br>
-                                <img src="" onerror="this.src='${pageContext.request.contextPath}/ProductIamges/default.jpg'" id="secondPhoto" width="250" height="250"><br>
-                                <img src="" onerror="this.src='${pageContext.request.contextPath}/ProductIamges/default.jpg'" id="thirdPhoto" width="250" height="250"><br>
-                                <img src="" onerror="this.src='${pageContext.request.contextPath}/ProductIamges/default.jpg'" id="fourthPhoto" width="250" height="250">
+                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" id="firstPhoto" width="250" height="250"><br>
+                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" id="secondPhoto" width="250" height="250"><br>
+                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" id="thirdPhoto" width="250" height="250"><br>
+                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" id="fourthPhoto" width="250" height="250">
 
                                 <%--${pageContext.request.contextPath}/NewUserIamges/${user.getPhotoUrl()}--%>
                             </div>
@@ -604,29 +585,16 @@
       Crafted with <i class="red-600 wb wb-heart"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
     </div> -->
 </footer>
+
+
 <!-- Core  -->
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/jquery/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/popper-js/umd/popper.min.js"></script>
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/bootstrap/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/animsition/animsition.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/mousewheel/jquery.mousewheel.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/asscrollbar/jquery-asScrollbar.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/asscrollable/jquery-asScrollable.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
 
 <!-- Plugins -->
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/switchery/switchery.js"></script>
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/intro-js/intro.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/screenfull/screenfull.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/slidepanel/jquery-slidePanel.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/skycons/skycons.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/chartist/chartist.min.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/aspieprogress/jquery-asPieProgress.min.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/jvectormap/jquery-jvectormap.min.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/jvectormap/maps/jquery-jvectormap-au-mill-en.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/vendor/matchheight/jquery.matchHeight-min.js"></script>
 
 <!-- Scripts -->
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/js/Component.js"></script>
@@ -634,29 +602,11 @@
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/js/Base.js"></script>
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/global/js/Config.js"></script>
 
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/js/Section/Menubar.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/js/Section/GridMenu.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/js/Section/Sidebar.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/js/Section/PageAside.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/js/Plugin/menu.js"></script>
-
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/base/global/js/config/colors.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/js/config/tour.js"></script>
 <script>Config.set('assets', '${pageContext.request.contextPath}/view/admin/html/classic/base/assets');</script>
 
 <!-- Page -->
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/js/Site.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/js/Plugin/asscrollable.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/js/Plugin/slidepanel.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/js/Plugin/switchery.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/js/Plugin/matchheight.js"></script>
-<script src="${pageContext.request.contextPath}/view/admin/html/classic/global/js/Plugin/jvectormap.js"></script>
-
 <script src="${pageContext.request.contextPath}/view/admin/html/classic/base/assets/examples/js/dashboard/v1.js"></script>
-
-
-<!-------------------------------------------------------------------------------------------------------------->
-
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/admin/html/js/main.js"></script>
 <script type="text/javascript"
