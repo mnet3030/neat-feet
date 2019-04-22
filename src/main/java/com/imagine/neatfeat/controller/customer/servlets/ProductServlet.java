@@ -85,12 +85,12 @@ public class ProductServlet extends HttpServlet {
                     request.setAttribute("mainCategories", mainCategories);
 
                     tx.commit();
-                    RequestDispatcher rd = request.getRequestDispatcher("/view/customer/jsp/product.jsp");
-                    rd.forward(request, response);
                 }
                 else{
                     // TODO: Error Page
                     tx.commit();
+                    response.sendRedirect("error");
+
                 }
             }catch (Exception ex) {
                 ex.printStackTrace();

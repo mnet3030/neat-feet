@@ -170,14 +170,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="flexslider">
 
                     <ul class="slides">
-                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/d2.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d2.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/ProductIamges/product${product.id}1.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/ProductIamges/product${product.id}1.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/d1.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d1.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/ProductIamges/product${product.id}2.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/ProductIamges/product${product.id}2.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="${pageContext.request.contextPath}/view/customer/html/images/d3.jpg">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/view/customer/html/images/d3.jpg" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/ProductIamges/product${product.id}3.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'">
+                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/ProductIamges/product${product.id}3.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
                     </ul>
                     <div class="clearfix"></div>

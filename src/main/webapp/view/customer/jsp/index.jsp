@@ -209,7 +209,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="amazingcarousel-item">
 							<div class="amazingcarousel-item-container">
 								<a href="${pageContext.request.contextPath}/product?id=${most.key.id}">
-									<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
+									<div class="amazingcarousel-image"><img src="${pageContext.request.contextPath}/ProductIamges/product${most.key.id}.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="3" /></div>
 									<div class="amazingcarousel-title"><c:out value="${most.key.description}" /> </div>
 								</a>
 							</div>
@@ -241,7 +241,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="amazingcarousel-item">
 							<div class="amazingcarousel-item-container">
 								<a href="${pageContext.request.contextPath}/product?id=${theBest.key.id}">
-									<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="3" /></div>
+									<div class="amazingcarousel-image"><img src="${pageContext.request.contextPath}/ProductIamges/product${theBest.key.id}.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="3" /></div>
 									<div class="amazingcarousel-title"><c:out value="${theBest.key.getDescription()}" /> </div>
 								</a>
 							</div>
@@ -272,7 +272,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="amazingcarousel-item">
 								<div class="amazingcarousel-item-container">
 									<a href="${pageContext.request.contextPath}/product?id=${productsMap.id}">
-										<div class="amazingcarousel-image"><img src="${htmlFullPath}/carousel/images/3.png"  alt="${productsMap.description}" /></div>
+										<div class="amazingcarousel-image"><img src="${pageContext.request.contextPath}/ProductIamges/product${productsMap.id}.jpg"  onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="${productsMap.description}"/></div>
 										<div class="amazingcarousel-title"><c:out value="${productsMap.description}" /></div>
 									</a>
 								</div>
@@ -480,15 +480,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 sign-gd flickr-post">
 					<h4>Flickr <span>Posts</span></h4>
 					<ul>
-						<li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-						<li><a href="single.html"><img src="${pageContext.request.contextPath}/view/customer/html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+						<li><a href="https://www.linkedin.com/in/amrelkady/" target="_blank"><img src="${pageContext.request.contextPath}/view/customer/html/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
+						<li><a href="single.html" target="_blank"><img src="${pageContext.request.contextPath}/view/customer/html/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
+						<li><a href="https://www.linkedin.com/in/aliahmahmoud/" target="_blank"><img src="${pageContext.request.contextPath}/view/customer/html/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
+						<li><a href="https://www.linkedin.com/in/amer-salah-4032a9102/" target="_blank"><img src="${pageContext.request.contextPath}/view/customer/html/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
+						<li><a href="https://www.linkedin.com/in/nouran-habib-b5aa7911b/" target="_blank"><img src="${pageContext.request.contextPath}/view/customer/html/images/t5.jpg" alt=" " class="img-responsive" /></a></li>
+
 					</ul>
 				</div>
 				<div class="clearfix"></div>

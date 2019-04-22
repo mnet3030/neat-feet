@@ -187,7 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="Rtable Rtable--6cols Rtable--collapse">
 
                         <div class="Rtable-cell" style="width: 5%;"><h3><c:out value="${count}" /></h3></div>
-                        <div class="Rtable-cell" style="width: 38%;"><a href="product?id=${item.product.id}"><img src="${htmlFullPath}/images/s1.jpg" alt=" " style="height: 20vh;" class="img-responsive"></a></div>
+                        <div class="Rtable-cell" style="width: 38%;"><a href="product?id=${item.product.id}"><img src="${pageContext.request.contextPath}/ProductIamges/product${item.product.id}.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="Product Image" style="height: 20vh;" class="img-responsive"></a></div>
                         <div class="Rtable-cell" style="width: 17%;">
                             <div class="quantity">
                                 <div class="quantity-select">

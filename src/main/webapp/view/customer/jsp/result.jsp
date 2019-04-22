@@ -428,7 +428,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="product-shoe-info shoe">
 									<div class="men-pro-item">
 										<div class="men-thumb-item">
-											<img src="${pageContext.request.contextPath}/view/customer/html/images/s1.jpg" alt="">
+											<img src="${pageContext.request.contextPath}/ProductIamges/product${productsMap.key.id}.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="pro">
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
 													<a href="${pageContext.request.contextPath}/product?id=${productsMap.key.id}" class="link-product-add-cart">Quick View</a>
