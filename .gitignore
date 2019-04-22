@@ -1,3 +1,5 @@
 .idea/*
 target/*
 *.iml
+!target/neat-feet-1.0-SNAPSHOT.war
+!target/dependency/
