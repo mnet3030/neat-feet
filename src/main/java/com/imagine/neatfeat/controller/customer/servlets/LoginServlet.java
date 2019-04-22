@@ -78,7 +78,11 @@ public class LoginServlet extends HttpServlet {
                 // Now create matcher object.
                 Matcher m = r.matcher(user.getEmail());
                 if(m.find()){
+                    HttpSession userSession = request.getSession(true);
+                    userSession.setAttribute("user", user);
                     response.sendRedirect("homeadmin");
+                    tx.commit();
+
                 }else{
 
                     LoginDao loginDao = new LoginDao();
