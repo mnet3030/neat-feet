@@ -4,6 +4,7 @@ import com.imagine.neatfeat.model.dal.dao.CategoryDAO;
 import com.imagine.neatfeat.model.dal.dao.ProductDAO;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
+import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
 
 import java.util.*;
@@ -60,5 +61,24 @@ public class ResultDao {
 
         List<Category> mainCategories = categoryDAO.getByColumnNamesWithNull(list);
         return mainCategories;
+    }
+
+    public Map<String, Object> getProductsPageBySearchStringWithUserCartCheck(Session session, String searchString, int pageNumber, int itemsPerPage, List<Item> cart){
+        ProductDAO productDAO = new ProductDAO(session);
+        Map<String, Object> columnsNamesValues = new HashMap<>();
+        columnsNamesValues.put("description", searchString);
+        columnsNamesValues.put("detailedDescription", searchString);
+
+        Map resultMap = productDAO.getPageByColumnNamesWithLikeWithUserCartCheck(columnsNamesValues, pageNumber, itemsPerPage, cart);
+        return resultMap;
+    }
+
+    public Map<String, Object> getProductsPageByCategoryWithUserCartCheck(Session session, String uuidString, int pageNumber, int itemsPerPage, List<Item> cart){
+        ProductDAO productDAO = new ProductDAO(session);
+        Map<String, Object> columnsNamesValues = new HashMap<>();
+        columnsNamesValues.put("category.id", UUID.fromString(uuidString));
+
+        Map resultMap = productDAO.getPageByColumnNamesWithUserCartCheck(columnsNamesValues, pageNumber, itemsPerPage, cart);
+        return resultMap;
     }
 }

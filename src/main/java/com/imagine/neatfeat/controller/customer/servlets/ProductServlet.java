@@ -40,6 +40,7 @@ public class ProductServlet extends HttpServlet {
         HttpSession httpSession=request.getSession(false);
         if(httpSession!=null && httpSession.getAttribute("user")!=null){
             request.setAttribute("loggedIn", true);
+            request.setAttribute("user", httpSession.getAttribute("user"));
         }else{
             request.setAttribute("loggedIn", false);
         }

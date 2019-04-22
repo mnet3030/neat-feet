@@ -11,11 +11,16 @@ function addItemToCart(node)
     }, function(data,state) {
 
         //do something
-        if(data.localeCompare("notlogged")==0){
-            window.location.href = "http://localhost:9050/neat_feet_war_exploded/login";
+        if(data.match(new RegExp("\^success")) != null){
+            var noOfItemsInCart = data.match(new RegExp("[0-9]+"))[0];
+            $('.badge').text(noOfItemsInCart);
+            var parent = $(node).parent();
+            $(node).prop('disabled', true);
+            $(node).remove();
+
+            parent.append("<i class=\"fa fa-check-circle fa-2x\" aria-hidden=\"true\" style=\"color: limegreen;\"></i>")
         }else{
-            $('.badge').text(data);
-            $(node).attr("disabled", true);
+            window.location.href = "http://localhost:8040/neat_feet_war_exploded/login";
         }
     })
 

@@ -25,12 +25,9 @@ import java.util.UUID;
 public class ShoppingCart extends HttpServlet {
     SessionFactory sessionFactory;
 
-    String test="i am new user";
     @Override
     public void init() throws ServletException {
         sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
-
-        System.out.println(test);
     }
 
 
@@ -38,8 +35,6 @@ public class ShoppingCart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
         boolean found = false;
         int quantity = 0;
         HttpSession session = req.getSession(false);
@@ -74,22 +69,25 @@ public class ShoppingCart extends HttpServlet {
 
                     else
                     {
-                        quantity = cartProducts.get(i).getQuantity()+1;
+                        if(product.getQuantity() == 0)
+                            quantity = 0;
+                        else
+                            quantity = cartProducts.get(i).getQuantity()+1;
                         cartProducts.get(i).setQuantity(quantity);
                         session.setAttribute("cartProduct" , cartProducts);
                         updateCartSize(req,resp,sessionHib);
                         found=true;
                         break;
                     }
-
-
                 }
             }
 
-
             if(found==false)
             {
-                cartProducts.add(new Item(productuuid , 1));
+                if(product.getQuantity() == 0)
+                    cartProducts.add(new Item(productuuid , 0));
+                else
+                    cartProducts.add(new Item(productuuid , 1));
 
                 session.setAttribute("cartProduct" , cartProducts);
                 updateCartSize(req,resp,sessionHib);
@@ -98,7 +96,7 @@ public class ShoppingCart extends HttpServlet {
             }
 
             PrintWriter out = resp.getWriter();
-            out.print(req.getSession(false).getAttribute("sizeCart"));
+            out.print("success: " + req.getSession(false).getAttribute("sizeCart"));
 
             sessionHib.getTransaction().commit();}
 
@@ -111,8 +109,6 @@ public class ShoppingCart extends HttpServlet {
     }
 
     public int updateCartSize(HttpServletRequest req, HttpServletResponse resp,Session sessionHib){
-
-
         List<Item> cart= (List<Item>) req.getSession().getAttribute("cartProduct");
         CheckoutUtility checkoutUtility=new CheckoutUtility(sessionHib);
         int sizeCart=checkoutUtility.sizeCart(cart);

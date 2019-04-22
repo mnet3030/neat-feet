@@ -1,7 +1,6 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.entity.User;
-import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

@@ -47,6 +47,8 @@ public class CheckoutServlet extends HttpServlet {
 
         HttpSession userSession=request.getSession(false);
         if(userSession!=null && userSession.getAttribute("user") != null) {
+            request.setAttribute("loggedIn", true);
+            request.setAttribute("user", request.getSession(false).getAttribute("user"));
             checkoutServices.getSessionAttr(request,response);
             session.getTransaction().commit();
             request.getServletContext().getRequestDispatcher("/view/customer/jsp/checkout.jsp")

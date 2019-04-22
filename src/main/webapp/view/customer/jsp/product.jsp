@@ -46,12 +46,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 
 <body>
+
+<c:if test="${requestScope.loggedIn == true}">
+    <a href="${pageContext.request.contextPath}/profile" class="helloNonHome">Hello, ${requestScope.user.name}</a>
+</c:if>
 <!-- banner -->
 <div class="banner_top innerpage" id="home">
     <div class="wrapper_top_w3layouts">
         <div class="header_agileits">
             <div class="logo inner_page_log">
-                <h1><a class="navbar-brand" href="index.html"><span>Neat</span> <i>Feat</i></a></h1>
+                <h1><a class="navbar-brand" href="${pageContext.request.contextPath}/home"><span>Neat</span> <i>Feat</i></a></h1>
             </div>
             <div class="overlay overlay-contentpush">
                 <button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -68,8 +72,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </c:if>
                         <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
                         <c:if test="${requestScope.loggedIn == true}">
+                            <li><a href="${pageContext.request.contextPath}/profile">Edit Profile</a></li>
                             <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
                         </c:if>
 
@@ -89,12 +93,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="cd-main-header">
                     <ul class="cd-header-buttons4">
 
-                        <c:if test="${loggedin != null}">
-                            <a href="${pageContext.request.contextPath}/showProfile">
-                                <button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+                        <c:if test="${requestScope.loggedIn == true}">
+                            <a href="${pageContext.request.contextPath}/profile">
+                                <button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
                             </a>
                         </c:if>
-                        <c:if test="${loggedin == null}">
+                        <c:if test="${requestScope.loggedIn == false}">
                             <a href="${pageContext.request.contextPath}/view/customer/jsp/Login.jsp">
                                 <button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
                             </a>
@@ -115,20 +119,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </div>
 
-            <!--Commented By Mahmoud Shereif*/-->
-            <!--<div class="top_nav_right">
-                <div class="shoecart shoecart2 cart cart box_1">
-                    <a href="checkout" class="notification">
-                        <form action="checkout" method="post" class="last">
-                            <input type="hidden" name="cmd" value="_cart">
-                            <input type="hidden" name="display" value="1">
-                            <button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-                        </form>
-                        <span class="badge"><c:out value="${sessionScope.sizeCart}"></c:out></span>
-                    </a>
-                </div>
-
-            </div>-->
         </div>
     </div>
     <!-- //cart details -->
@@ -148,30 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </form>
     </div>
-    <!--<div class="search_w3ls_agileinfo">
-        <div class="cd-main-header">
-            <ul class="cd-header-buttons2">
-                <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-            </ul>
-        </div>
-        <div id="cd-search" class="cd-search">
-                <input name="Search" type="search" id="search" placeholder="Click enter after typing...">
-        </div>
-    </div>-->
 
-    <!--Commented By Mahmoud Shereif*/-->
-    <!--<div class="search_w3ls_agileinfo">
-        <div class="cd-main-header">
-            <ul class="cd-header-buttons">
-                <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
-            </ul>
-        </div>
-        <div id="cd-search" class="cd-search">
-            <form action="#" method="post">
-                <input name="Search" type="search" placeholder="Click enter after typing...">
-            </form>
-        </div>
-    </div>-->
     <!-- //search -->
     <div class="clearfix"></div>
     <!-- /banner_inner -->
@@ -403,7 +370,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h3>Featured Products</h3>
             <!-- /womens -->
             <c:if test="${requestScope.allProducts != null}">
-                <c:forEach begin="1" end="4" var="product" items="${requestScope.allProducts}" >
+                <c:forEach begin="1" end="4" var="productsMap" items="${requestScope.allProducts}" >
                     <div class="col-md-3 product-men">
                         <div class="product-shoe-info shoe">
                             <div class="men-pro-item">
@@ -411,20 +378,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <img src="${pageContext.request.contextPath}/view/customer/html/images/s4.jpg" alt="">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
-                                            <a href="product?id=${product.id}" class="link-product-add-cart">Quick View</a>
+                                            <a href="product?id=${productsMap.id}" class="link-product-add-cart">Quick View</a>
                                         </div>
                                     </div>
                                     <span class="product-new-top">New</span>
                                 </div>
                                 <div class="item-info-product">
                                     <h4>
-                                        <a href="product?id=${product.id}">${product.description}</a>
+                                        <a href="product?id=${productsMap.id}">${productsMap.description}</a>
                                     </h4>
                                     <div class="info-product-price">
                                         <div class="grid_meta">
                                             <div class="product_price">
                                                 <div class="grid-price ">
-                                                    <span class="money ">EGP${product.price}</span>
+                                                    <span class="money ">EGP${productsMap.price}</span>
                                                 </div>
                                             </div>
                                             <ul class="stars">
@@ -438,7 +405,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="shoe single-item hvr-outline-out">
                                             <form action="#" method="post">
                                                 <input type="hidden" name="cmd" value="_cart">
-                                                <input type="hidden" name="productID" value="${product.id}">
+                                                <input type="hidden" name="productID" value="${productsMap.id}">
                                                 <input type="hidden" name="add" value="1">
                                                 <input type="hidden" name="shoe_item" value="Shuberry Heels">
                                                 <input type="hidden" name="amount" value="575.00">

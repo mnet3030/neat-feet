@@ -56,7 +56,6 @@ public class LogoutServlet extends HttpServlet {
                     shoppingCartProduct.setPriceBeforeDiscount(product.getPrice());
                     shoppingCartProduct.setQuantity(item.getQuantity());
                     shoppingCartProductsDAO.persist(shoppingCartProduct);
-                    request.getSession().setAttribute("cartProduct", null);
                 }
             }
             else
@@ -75,11 +74,11 @@ public class LogoutServlet extends HttpServlet {
                     shoppingCartProduct.setPriceBeforeDiscount(product.getPrice());
                     shoppingCartProduct.setQuantity(item.getQuantity());
                     shoppingCartProductsDAO.persist(shoppingCartProduct);
-                    request.getSession().setAttribute("cartProduct", null);
                 }
             }
-
+            request.getSession().invalidate();
             tx.commit();
+            response.sendRedirect("login");
         }catch (Exception ex) {
             ex.printStackTrace();
             tx.rollback();
@@ -99,7 +98,7 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request, response);
 
     }
 }

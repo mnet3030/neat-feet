@@ -69,6 +69,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 
 <body>
+
+<c:if test="${requestScope.loggedIn == true}">
+	<a href="${pageContext.request.contextPath}/profile" class="helloNonHome">Hello, ${requestScope.user.name}</a>
+</c:if>
 <!-- banner -->
 <div class="banner_top innerpage" id="home">
 	<div class="wrapper_top_w3layouts">
@@ -91,8 +95,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</c:if>
 						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
 						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
 						<c:if test="${requestScope.loggedIn == true}">
+							<li><a href="${pageContext.request.contextPath}/profile">Edit Profile</a></li>
 							<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
 						</c:if>
 
@@ -114,8 +118,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul class="cd-header-buttons4">
 
 						<c:if test="${requestScope.loggedIn == true}">
-							<a href="${pageContext.request.contextPath}/showProfile">
-								<button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+							<a href="${pageContext.request.contextPath}/profile">
+								<button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
 							</a>
 						</c:if>
 						<c:if test="${requestScope.loggedIn == false}">
@@ -419,7 +423,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="product-sec1">
 					<!--/mens-->
 					<c:if test="${requestScope.products != null}">
-						<c:forEach items="${requestScope.products}" var="product" >
+						<c:forEach items="${requestScope.products}" var="productsMap">
 							<div class="col-md-4 product-men">
 								<div class="product-shoe-info shoe">
 									<div class="men-pro-item">
@@ -427,24 +431,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<img src="${pageContext.request.contextPath}/view/customer/html/images/s1.jpg" alt="">
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
-													<a href="${pageContext.request.contextPath}/product?id=${product.id}" class="link-product-add-cart">Quick View</a>
+													<a href="${pageContext.request.contextPath}/product?id=${productsMap.key.id}" class="link-product-add-cart">Quick View</a>
 												</div>
 											</div>
 											<span class="product-new-top">New</span>
 										</div>
 										<div class="item-info-product">
 											<h4>
-												<a href="${pageContext.request.contextPath}/product?id=${product.id}">${product.getDescription()}</a>
-												<c:if test="${product.quantity == 0}">
-													<p style="color: red">Out of Stock</p>
-												</c:if>
-
+												<a href="${pageContext.request.contextPath}/product?id=${productsMap.key.id}">${productsMap.key.getDescription()}</a>
 											</h4>
 											<div class="info-product-price">
 												<div class="grid_meta">
 													<div class="product_price">
 														<div class="grid-price ">
-															<span class="money ">EGP${product.getPrice()}</span>
+															<span class="money ">EGP${productsMap.key.getPrice()}</span>
 														</div>
 													</div>
 													<ul class="stars">
@@ -458,19 +458,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="shoe single-item hvr-outline-out">
 													<!--<form action="#" method="post">-->
 													<input type="hidden" name="cmd" value="_cart">
-													<input type="hidden" name="productID" value="${product.id}">
+													<input type="hidden" name="productID" value="${productsMap.key.id}">
 													<input type="hidden" name="add" value="1">
 													<input type="hidden" name="shoe_item" value="Bella Toes">
 													<input type="hidden" name="amount" value="675.00">
-													<c:choose>
-														<c:when test="${product.quantity == 0}">
-															<button type="submit" disabled="true" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-														</c:when>
-														<c:otherwise>
-															<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-														</c:otherwise>
-													</c:choose>
+													<c:if test="${productsMap.value == false}">
+														<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+													</c:if>
+													<c:if test="${productsMap.value == true}">
+														<i class="fa fa-check-circle fa-2x" aria-hidden="true" style="color: limegreen"></i>
+													</c:if>
 													<a href="#" data-toggle="modal" data-target="#myModal1"></a>
 													<!--</form>-->
 
@@ -482,89 +479,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 							</div>
 						</c:forEach>
-					</c:if>
 
-					<div style="margin:0px auto;">
 
-						<!-- Insert to your webpage where you want to display the carousel -->
-						<div id="amazingcarousel-container-1">
-							<div id="amazingcarousel-1" style="display:none;position:relative;width:100%;max-width:1200px;margin:0px auto 0px;">
-								<div class="amazingcarousel-list-container">
-									<ul class="amazingcarousel-list">
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/3-lightbox.jpeg" title="3"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/3.png"  alt="3" /></a></div>
-												<div class="amazingcarousel-title">3</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/ab-lightbox.jpg" title="ab"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/ab.png"  alt="ab" /></a></div>
-												<div class="amazingcarousel-title">ab</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b1-lightbox.jpg" title="b1"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b1.png"  alt="b1" /></a></div>
-												<div class="amazingcarousel-title">b1</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b2-lightbox.jpg" title="b2"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b2.png"  alt="b2" /></a></div>
-												<div class="amazingcarousel-title">b2</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b3-lightbox.jpg" title="b3"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b3.png"  alt="b3" /></a></div>
-												<div class="amazingcarousel-title">b3</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b4-lightbox.jpg" title="b4"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/b4.png"  alt="b4" /></a></div>
-												<div class="amazingcarousel-title">b4</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner1-lightbox.jpg" title="banner1"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner1.png"  alt="banner1" /></a></div>
-												<div class="amazingcarousel-title">banner1</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner2-lightbox.jpg" title="banner2"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner2.png"  alt="banner2" /></a></div>
-												<div class="amazingcarousel-title">banner2</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner3-lightbox.jpg" title="banner3"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner3.png"  alt="banner3" /></a></div>
-												<div class="amazingcarousel-title">banner3</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-										<li class="amazingcarousel-item">
-											<div class="amazingcarousel-item-container">
-												<div class="amazingcarousel-image"><a href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner4-lightbox.jpg" title="banner4"  class="html5lightbox" data-group="amazingcarousel-1"><img src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/images/banner4.png"  alt="banner4" /></a></div>
-												<div class="amazingcarousel-title">banner4</div>
-												<div class="amazingcarousel-description"></div>                    </div>
-										</li>
-									</ul>
-									<div class="amazingcarousel-prev"></div>
-									<div class="amazingcarousel-next"></div>
-								</div>
-								<div class="amazingcarousel-nav"></div>
-							</div>
+						<div class="clearfix"></div>
+
+						<br>
+						<div id="pagination-container" style="text-align: center;">
 						</div>
-					</div>
-
-					<div class="clearfix"></div>
-
-					<br>
-					<div id="pagination-container" style="text-align: center;">
-					</div>
+					</c:if>
 
 				</div>
 
@@ -896,9 +818,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/result.js"></script>
 
 <!--<script src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/jquery.js"></script>-->
-<script src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/amazingcarousel.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/initcarousel.css">
-<script src="${pageContext.request.contextPath}/view/customer/html/js/carouselengine/initcarousel.js"></script>
 
 </body>
 

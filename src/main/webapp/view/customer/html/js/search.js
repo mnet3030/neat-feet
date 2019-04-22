@@ -93,6 +93,9 @@ jQuery(document).ready(function($){
 				page.off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove")
 			});
 			/*Added by Mahmoud Shereif*/
+            if(!$('.cd-search').hasClass('is-visible'))
+                $('#search').click();
+
 
 			//toggle search visibility
 			$('.cd-search').toggleClass('is-visible');

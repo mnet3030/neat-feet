@@ -75,11 +75,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 <!-- banner -->
+<c:if test="${requestScope.loggedIn == true}">
+    <a href="${pageContext.request.contextPath}/profile" class="helloNonHome">Hello, ${requestScope.user.name}</a>
+</c:if>
 <div class="banner_top innerpage" id="home">
     <div class="wrapper_top_w3layouts">
         <div class="header_agileits">
             <div class="logo inner_page_log">
-                <h1><a class="navbar-brand" href="index.html"><span>Neat</span> <i>Feat</i></a></h1>
+                <h1><a class="navbar-brand" href="${pageContext.request.contextPath}/home"><span>Neat</span> <i>Feat</i></a></h1>
             </div>
             <div class="overlay overlay-contentpush">
                 <button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -96,8 +99,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </c:if>
                         <li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
                         <li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
-                        <li><a href="${pageContext.request.contextPath}/view/customer/html/showProfile">Edit Profile</a></li>
-                        <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                        <c:if test="${requestScope.loggedIn == true}">
+                            <li><a href="${pageContext.request.contextPath}/profile">Edit Profile</a></li>
+                            <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                        </c:if>
 
                     </ul>
                 </nav>
@@ -117,13 +122,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="search_w3ls_agileinfo">
                 <div class="cd-main-header">
                     <ul class="cd-header-buttons4">
-
-                        <c:if test="${loggedin != null}">
-                            <a href="${pageContext.request.contextPath}/showProfile">
-                                <button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+                        <c:if test="${requestScope.loggedIn == true}">
+                            <a href="${pageContext.request.contextPath}/profile">
+                                <button  class = "userIcon" data-toggle="profile.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
                             </a>
                         </c:if>
-                        <c:if test="${loggedin == null}">
+                        <c:if test="${requestScope.loggedIn == false}">
                             <a href="${pageContext.request.contextPath}/login">
                                 <button  class = "userIcon" data-toggle="Login.jsp" data-target="#myModal88"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
                             </a>
@@ -254,89 +258,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 </c:forEach>
 
-
-                <!--<table class="timetable_sub">
-                    <thead>
-                    <tr>
-                        <th>SL No.</th>
-                        <th>Product</th>
-                        <th>Quality</th>
-                        <th>Product Name</th>
-
-                        <th>Price</th>
-                        <th>Remove</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="rem1">
-                        <td class="invert">1</td>
-                        <td class="invert-image"><a href="single.html"><img src="${htmlFullPath}/images/s1.jpg" alt=" " class="img-responsive"></a></td>
-                        <td class="invert">
-                            <div class="quantity">
-                                <div class="quantity-select">
-                                    <div class="entry value-minus">&nbsp;</div>
-                                    <div class="entry value"><span>1</span></div>
-                                    <div class="entry value-plus active">&nbsp;</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="invert">Bella Toes</td>
-
-                        <td class="invert">$675.00</td>
-                        <td class="invert">
-                            <div class="rem">
-                                <div class="close1"> </div>
-                            </div>
-
-                        </td>
-                    </tr>
-                    <tr class="rem2">
-                        <td class="invert">2</td>
-                        <td class="invert-image"><a href="single.html"><img src="${htmlFullPath}/images/s5.jpg" alt=" " class="img-responsive"></a></td>
-                        <td class="invert">
-                            <div class="quantity">
-                                <div class="quantity-select">
-                                    <div class="entry value-minus">&nbsp;</div>
-                                    <div class="entry value"><span>1</span></div>
-                                    <div class="entry value-plus active">&nbsp;</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="invert">Red Bellies</td>
-
-                        <td class="invert">$325.00</td>
-                        <td class="invert">
-                            <div class="rem">
-                                <div class="close2"> </div>
-                            </div>
-
-                        </td>
-                    </tr>
-                    <tr class="rem3">
-                        <td class="invert">3</td>
-                        <td class="invert-image"><a href="single.html"><img src="${htmlFullPath}/images/s2.jpg" alt=" " class="img-responsive"></a></td>
-                        <td class="invert">
-                            <div class="quantity">
-                                <div class="quantity-select">
-                                    <div class="entry value-minus">&nbsp;</div>
-                                    <div class="entry value"><span>1</span></div>
-                                    <div class="entry value-plus active">&nbsp;</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="invert">Chikku Loafers</td>
-
-                        <td class="invert">$405.00</td>
-                        <td class="invert">
-                            <div class="rem">
-                                <div class="close3"> </div>
-                            </div>
-
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>-->
             </div>
             <div class="checkout-left">
                 <div class="col-md-4 checkout-left-basket">

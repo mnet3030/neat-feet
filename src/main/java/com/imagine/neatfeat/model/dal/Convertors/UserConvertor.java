@@ -3,13 +3,10 @@ package com.imagine.neatfeat.model.dal.Convertors;
 import com.imagine.neatfeat.model.dal.entity.Country;
 import com.imagine.neatfeat.model.dal.entity.User;
 import com.imagine.neatfeat.model.dal.entity.UserRoles;
-import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
+import com.imagine.neatfeat.model.dal.dto.UserBean;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

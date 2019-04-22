@@ -2,6 +2,7 @@ package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.controller.services.PaginationService;
 import com.imagine.neatfeat.model.dal.entity.Category;
+import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,11 +33,6 @@ public class ResultServlet extends HttpServlet {
         /*Mahmoud Shereif*/
 
         HttpSession httpSession=request.getSession(false);
-        if(httpSession!=null && httpSession.getAttribute("user")!=null){
-            request.setAttribute("loggedIn", true);
-        }else{
-            request.setAttribute("loggedIn", false);
-        }
 
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
@@ -47,7 +45,24 @@ public class ResultServlet extends HttpServlet {
 
         List<Category> mainCategories = resultDao.getMainCategories(session);
         PaginationService paginationService = new PaginationService();
-        Map paginationMap = paginationService.getProductsByParameters(session, searchString, searchByCatString, pageNo);
+
+        Map paginationMap = null;
+
+        if(httpSession!=null && httpSession.getAttribute("user")!=null){
+            request.setAttribute("loggedIn", true);
+            request.setAttribute("user", httpSession.getAttribute("user"));
+            paginationMap = paginationService.getProductsByParameters(session, searchString, searchByCatString, pageNo, true, (List<Item>)request.getSession().getAttribute("cartProduct"));
+        }else{
+            request.setAttribute("loggedIn", false);
+            paginationMap = paginationService.getProductsByParameters(session, searchString, searchByCatString, pageNo, false, new ArrayList<Item>());
+
+            Map<Product, Boolean> productMap =new HashMap<>();
+
+            ((List<Product>)paginationMap.get("entities")).forEach((entity) -> {
+                productMap.put(entity, false);
+            });
+            paginationMap.put("entities", productMap);
+        }
 
         request.setAttribute("mainCategories", mainCategories);
         request.setAttribute("products", paginationMap.get("entities"));

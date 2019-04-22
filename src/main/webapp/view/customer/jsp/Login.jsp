@@ -70,7 +70,7 @@
 	<div class="wrapper_top_w3layouts">
 		<div class="header_agileits">
 			<div class="logo inner_page_log">
-				<h1><a class="navbar-brand" href="href="${pageContext.request.contextPath}/home"><span>Neat</span> <i>Feet</i></a></h1>
+				<h1><a class="navbar-brand" href="${pageContext.request.contextPath}/home"><span>Neat</span> <i>Feet</i></a></h1>
 			</div>
 
 			<div class="overlay overlay-contentpush">
@@ -88,8 +88,6 @@
                         </c:if>
 						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/about.jsp">About</a></li>
 						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Contact</a></li>
-						<li><a href="${htmlFullPath}/showProfile">Edit Profile</a></li>
-						<li><a href="${pageContext.request.contextPath}/view/customer/jsp/contact.jsp">Logout</a></li>
 
 					</ul>
 				</nav>

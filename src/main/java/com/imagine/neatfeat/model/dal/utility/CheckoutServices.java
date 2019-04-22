@@ -104,7 +104,6 @@ public class CheckoutServices {
                 String result=checkoutDao.buyCart(mycart,session,user);
                 switch (result){
                     case "success":
-                        mycart.clear();
                         request.getSession(false).setAttribute("cartProduct", mycart);
                         request.getSession(false).setAttribute("sizeCart",new Integer(0));
                         response.getWriter().println("success");

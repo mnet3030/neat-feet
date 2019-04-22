@@ -5,22 +5,21 @@ import com.imagine.neatfeat.model.dal.dto.CheckoutProduct;
 import com.imagine.neatfeat.model.dal.entity.*;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.stat.Statistics;
 
 import java.util.*;
 
 public class CheckoutDao {
-    private Session session;
     public String buyCart(List<Item> itemsToBeBuyed, Session session, User user)
     {
-        this.session = session;
         orderCartAsc(itemsToBeBuyed);
-        List<Product> products = selectProductsForUpdateOrdered(itemsToBeBuyed);
+        List<Product> products = selectProductsForUpdateOrdered(itemsToBeBuyed, session);
         String resultStatus = null;
-        if(checkQuantity(itemsToBeBuyed, products))
+        if(checkQuantity(itemsToBeBuyed, products, session))
         {
             int totalMoneyToBePayed = 0;
-            totalMoneyToBePayed = CheckCreditLimit(itemsToBeBuyed, user.getCreditLimit(), products);
+            totalMoneyToBePayed = CheckCreditLimit(itemsToBeBuyed, user, products, session);
 
             if(totalMoneyToBePayed != 0)
             {
@@ -31,20 +30,16 @@ public class CheckoutDao {
                 UserOrdersDAO ordersDAO = new UserOrdersDAO(session);
 
                 userOrder = ordersDAO.merge(userOrder);
-                addOrderProducts(itemsToBeBuyed, userOrder, products);
+                addOrderProducts(itemsToBeBuyed, userOrder, products, session);
                 user.setCreditLimit(user.getCreditLimit() - totalMoneyToBePayed);
 
                 UserDAO userDAO = new UserDAO(session);
 
                 userDAO.update(user);
 
-                //  SessionFactory sessionFactory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-                Statistics stats =  session.getSessionFactory().getStatistics();
-                stats.setStatisticsEnabled(true);
-                System.out.println(stats.getConnectCount());
 
-
-                updateProductQuantities(itemsToBeBuyed, products);
+                updateProductQuantities(itemsToBeBuyed, products, session);
+                itemsToBeBuyed.removeIf((item) -> item.getQuantity() > 0);
 
                 resultStatus = "success";
             }
@@ -64,7 +59,7 @@ public class CheckoutDao {
         itemsToBeBuyed.sort(Comparator.comparing(Item::getProductId));
     }
 
-    private List<Product> selectProductsForUpdateOrdered(List<Item> itemsToBeBuyed) {
+    private List<Product> selectProductsForUpdateOrdered(List<Item> itemsToBeBuyed, Session session) {
         ProductDAO productDAO = new ProductDAO(session);
         List<Object> uuids = new ArrayList<>();
         itemsToBeBuyed.forEach((item)->{
@@ -74,8 +69,8 @@ public class CheckoutDao {
         return productDAO.getWithInByIdAndLockForUpdateOrdered("id", uuids, true);
     }
 
-    private void addOrderProducts(List<Item> itemsToBeBuyed, UserOrders userOrder, List<Product> products) {
-        Set<OrderProducts> orderProducts = getOrderProductsFromItems(itemsToBeBuyed, products);
+    private void addOrderProducts(List<Item> itemsToBeBuyed, UserOrders userOrder, List<Product> products, Session session) {
+        Set<OrderProducts> orderProducts = getOrderProductsFromItems(itemsToBeBuyed, products, session);
         OrderProductsDAO orderProductsDAO = new OrderProductsDAO(session);
         for (OrderProducts orderProduct : orderProducts) {
             orderProduct.setUserOrders(userOrder);
@@ -84,7 +79,7 @@ public class CheckoutDao {
 
     }
 
-    private void updateProductQuantities(List<Item> itemsToBeBuyed, List<Product> products) {
+    private void updateProductQuantities(List<Item> itemsToBeBuyed, List<Product> products, Session session) {
         int i = 0;
         for (Item item : itemsToBeBuyed) {
 
@@ -98,7 +93,7 @@ public class CheckoutDao {
         }
     }
 
-    private Set<OrderProducts> getOrderProductsFromItems(List<Item> itemsToBeBuyed, List<Product> products) {
+    private Set<OrderProducts> getOrderProductsFromItems(List<Item> itemsToBeBuyed, List<Product> products, Session session) {
         DeliveryStatusDAO deliveryStatusDAO = new DeliveryStatusDAO(session);
         Map<String, Object> map = new HashMap<>();
         map.put("description","Ordered");
@@ -119,21 +114,22 @@ public class CheckoutDao {
         return orderProducts;
     }
 
-    private int CheckCreditLimit(List<Item> itemsToBeBuyed, int creditLimit, List<Product> products) {
+    private int CheckCreditLimit(List<Item> itemsToBeBuyed, User user, List<Product> products, Session session) {
         int totalPrice = 0;
         int i = 0;
         for (Item itemToBeBuyed : itemsToBeBuyed) {
             totalPrice += itemToBeBuyed.getQuantity() * products.get(i).getPrice();
             i++;
         }
-
-        if(totalPrice > creditLimit)
+        UserDAO userDAO = new UserDAO(session);
+        userDAO.refresh(user);
+        if(totalPrice > user.getCreditLimit())
             return 0;
         else
             return totalPrice;
     }
 
-    private boolean checkQuantity(List<Item> itemsToBeBuyed, List<Product> products) {
+    private boolean checkQuantity(List<Item> itemsToBeBuyed, List<Product> products, Session session) {
         int i = 0;
         for (Item itemToBeBuyed : itemsToBeBuyed) {
             if((itemToBeBuyed.getQuantity() > products.get(i).getQuantity())){
@@ -145,7 +141,6 @@ public class CheckoutDao {
     }
 
     public List<CheckoutProduct> getCheckoutProductsFromCart(Session session, List<Item> cart) {
-        this.session = session;
         List<CheckoutProduct> checkoutProducts = new ArrayList<>();
         ProductDAO productDAO = new ProductDAO(session);
         for (Item item : cart) {

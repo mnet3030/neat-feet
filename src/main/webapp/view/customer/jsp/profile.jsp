@@ -25,7 +25,7 @@
 
     <form class="form"
             <c:if test="${editProfile == 'false'}">
-                action="${pageContext.request.contextPath}/showProfile"
+                action="${pageContext.request.contextPath}/profile"
             </c:if>
 
             <c:if test="${editProfile == 'true'}">

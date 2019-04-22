@@ -1,6 +1,7 @@
 package com.imagine.neatfeat.model.dal.dao;
 
 import com.imagine.neatfeat.model.dal.entity.Entity;
+import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
@@ -55,6 +56,11 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
     public T getByPrimaryKey(Serializable primaryKey) {
         T neededEntity = session.get(tClass, primaryKey);
         return neededEntity;
+    }
+
+    @Override
+    public void refresh(T entity) {
+        session.refresh(entity);
     }
 
     @Override

@@ -24,5 +24,8 @@
 }
 
 .userIconColor{
-    color: white;
+     color: orange;
+ }
+.userIconColorLogged{
+    color: chartreuse;
 }

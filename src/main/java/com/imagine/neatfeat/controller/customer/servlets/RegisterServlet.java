@@ -5,23 +5,19 @@ import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Country;
 import com.imagine.neatfeat.model.dal.entity.User;
-import com.imagine.neatfeat.model.dal.servletDAO.UserBean;
+import com.imagine.neatfeat.model.dal.dto.UserBean;
 import com.imagine.neatfeat.model.dal.servletsdaos.RegisterDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
-import javax.servlet.Registration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @MultipartConfig

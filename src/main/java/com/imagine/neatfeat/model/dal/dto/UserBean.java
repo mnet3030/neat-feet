@@ -1,4 +1,4 @@
-package com.imagine.neatfeat.model.dal.servletDAO;
+package com.imagine.neatfeat.model.dal.dto;
 
 import com.imagine.neatfeat.model.dal.entity.Country;
 

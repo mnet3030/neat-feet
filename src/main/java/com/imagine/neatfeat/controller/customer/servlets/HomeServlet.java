@@ -37,6 +37,7 @@ public class HomeServlet extends HttpServlet {
         HttpSession httpSession=request.getSession(false);
         if(httpSession!=null && httpSession.getAttribute("user")!=null){
             request.setAttribute("loggedIn", true);
+            request.setAttribute("user", httpSession.getAttribute("user"));
         }else{
             request.setAttribute("loggedIn", false);
         }
@@ -51,7 +52,7 @@ public class HomeServlet extends HttpServlet {
 
         //for slider man and woman
         homeDao=new HomeDao(session);
-       Map<String,List<Product>> productOfCategory=homeDao.getCategoriesProduct();
+        Map<String,List<Product>> productOfCategory=homeDao.getCategoriesProduct();
 
         request.setAttribute("categoryProducts",productOfCategory);
 
