@@ -56,6 +56,7 @@ public class ProductConvertor {
         product.setBuyingCount(0);
         product.setDetailedDescription(bean.getDetailedDescription());
         product.setPrice(bean.getPrice());
+        product.setShortLinedDescription(bean.getShort_lined_description());
         product.setMainPhotoUrl(".jpg");
 
         return product;

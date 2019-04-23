@@ -411,6 +411,12 @@
                                     <label>Quantity</label>
                                     <input type="number" name="quantity" class="form-control" required>
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Short Description</label>
+                                    <input type="text" name="short_lined_description" class="form-control">
+                                </div>
+
                                 <div class="form-group">
                                     <label>photo</label>
                                     <input type="file" name="image" id="image" accept=".jpg,.png,.svg" class="form-control">
