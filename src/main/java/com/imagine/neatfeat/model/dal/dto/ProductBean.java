@@ -24,6 +24,7 @@ public class ProductBean {
     private int price;
     private int quantity;
     private int buyingCount;
+    private String short_lined_description;
 
     public String getBrand() {
         return brand;
@@ -73,4 +74,11 @@ public class ProductBean {
         this.quantity = quantity;
     }
 
+    public String getShort_lined_description() {
+        return short_lined_description;
+    }
+
+    public void setShort_lined_description(String short_lined_description) {
+        this.short_lined_description = short_lined_description;
+    }
 }
