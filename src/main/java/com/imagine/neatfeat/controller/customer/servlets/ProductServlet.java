@@ -84,6 +84,7 @@ public class ProductServlet extends HttpServlet {
                     ResultDao resultDao = new ResultDao();
                     List<Category> mainCategories = resultDao.getMainCategories(session);
                     request.setAttribute("mainCategories", mainCategories);
+                    request.getRequestDispatcher("/view/customer/jsp/product.jsp").forward(request,response);
 
                     tx.commit();
                 }
