@@ -35,12 +35,6 @@ public class LoginServlet extends HttpServlet {
         /*Mahmoud Shereif*/
 
         /*Amr El Kady*/
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        ResultDao resultDao = new ResultDao();
-        List<Category> mainCategories = resultDao.getMainCategories(session);
-        request.setAttribute("mainCategories", mainCategories);
-        session.getTransaction().commit();
 
 
         /*Alia Mahmoud*/
