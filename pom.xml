@@ -90,7 +90,7 @@
             <artifactId>hibernate-hikaricp</artifactId>
             <version>5.4.1.Final</version>
         </dependency>
-        
+
 
         <dependency>
             <groupId>com.zaxxer</groupId>
