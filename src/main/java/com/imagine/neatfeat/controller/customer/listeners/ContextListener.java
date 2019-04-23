@@ -19,7 +19,7 @@ public class ContextListener implements ServletContextListener {
        /* SessionFactory sessionFactory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
         servletContextEvent.getServletContext().setAttribute("sessionFactory", sessionFactory);*/
         Session session = SingletonSessionFactory.getInstance().openSession();
-        Category category = new Category();
+        /*Category category = new Category();
         category.setDescription("man");
         Category category1 = new Category();
         category1.setDescription("woman");
@@ -41,7 +41,7 @@ public class ContextListener implements ServletContextListener {
         session.persist(country1);
         session.getTransaction().commit();
 
-        session.close();
+        session.close();*/
 
         /*Amr El Kady*/
 
