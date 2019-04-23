@@ -53,6 +53,7 @@ public class ProductServlet extends HttpServlet {
             UUID uuid = UUID.fromString(request.getParameter("productID"));
             ProductDAO productDao = new ProductDAO(session);
             productDao.deleteByColumnName("id", uuid);
+            session.getTransaction().commit();
 
         }
     }

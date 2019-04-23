@@ -86,7 +86,9 @@ public class ProductEdit extends HttpServlet {
         product.setPrice(bean.getPrice());
         product.setQuantity(bean.getQuantity());
         product.setDescription(bean.getDescription());
+        product.setShortLinedDescription("test");
         //----------------------------------------------------------------------
+        session.beginTransaction();
         dao.update(product);
         //----------------------------------------------------------------------
         req.setAttribute("product" , product);
@@ -95,7 +97,9 @@ public class ProductEdit extends HttpServlet {
                 .include(req,resp);
         //----------------------------------------------
         product = (Product) req.getAttribute("product");
-        dao.update(product);
+        //dao.update(product);
+        session.getTransaction().commit();
+
         session.close();
         sessionFactory.close();
 
