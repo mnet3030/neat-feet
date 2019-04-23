@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LogoutServlet extends HttpServlet {
 
@@ -33,57 +35,70 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*Mahmoud Shereif*/
         User user = (User) request.getSession(false).getAttribute("user");
-        List<Item> cart = (List<Item>) request.getSession(false).getAttribute("cartProduct");
 
-        Session session = sessionFactory.getCurrentSession();
-
-        Transaction tx = null;
-
-        try {
-            tx = session.beginTransaction();
-            ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO(session);
-            List<ShoppingCart> shoppingCarts = shoppingCartDAO.getByColumnName("user.id", user.getId());
-            if(shoppingCarts.size() > 0)
-            {
-                ShoppingCart shoppingCart = shoppingCarts.get(0);
-                ShoppingCartProductsDAO shoppingCartProductsDAO = new ShoppingCartProductsDAO(session);
-                ProductDAO productDAO = new ProductDAO(session);
-                for (Item item : cart) {
-                    ShoppingCartProducts shoppingCartProduct = new ShoppingCartProducts();
-                    shoppingCartProduct.setShoppingCart(shoppingCart);
-                    Product product = productDAO.getByPrimaryKey(item.getProductId());
-                    shoppingCartProduct.setProduct(product);
-                    shoppingCartProduct.setPriceBeforeDiscount(product.getPrice());
-                    shoppingCartProduct.setQuantity(item.getQuantity());
-                    shoppingCartProductsDAO.persist(shoppingCartProduct);
-                }
-            }
-            else
-            {
-                ShoppingCart shoppingCart = new ShoppingCart();
-                shoppingCart.setUser(user);
-                shoppingCart = shoppingCartDAO.merge(shoppingCart);
-
-                ShoppingCartProductsDAO shoppingCartProductsDAO = new ShoppingCartProductsDAO(session);
-                ProductDAO productDAO = new ProductDAO(session);
-                for (Item item : cart) {
-                    ShoppingCartProducts shoppingCartProduct = new ShoppingCartProducts();
-                    shoppingCartProduct.setShoppingCart(shoppingCart);
-                    Product product = productDAO.getByPrimaryKey(item.getProductId());
-                    shoppingCartProduct.setProduct(product);
-                    shoppingCartProduct.setPriceBeforeDiscount(product.getPrice());
-                    shoppingCartProduct.setQuantity(item.getQuantity());
-                    shoppingCartProductsDAO.persist(shoppingCartProduct);
-                }
-            }
+        String pattern = "([aA-zZ]|[0-9])+@neatfeet.com";
+        // Create a Pattern object
+        Pattern r = Pattern.compile(pattern);
+        // Now create matcher object.
+        Matcher m = r.matcher(user.getEmail());
+        if(m.find()){
             request.getSession().invalidate();
-            tx.commit();
             response.sendRedirect("login");
-        }catch (Exception ex) {
-            ex.printStackTrace();
-            tx.rollback();
-        }
 
+        }else {
+            Session session = sessionFactory.getCurrentSession();
+
+
+            List<Item> cart = (List<Item>) request.getSession(false).getAttribute("cartProduct");
+
+
+
+            Transaction tx = null;
+
+            try {
+                tx = session.beginTransaction();
+                ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO(session);
+                List<ShoppingCart> shoppingCarts = shoppingCartDAO.getByColumnName("user.id", user.getId());
+                if (shoppingCarts.size() > 0) {
+                    ShoppingCart shoppingCart = shoppingCarts.get(0);
+                    ShoppingCartProductsDAO shoppingCartProductsDAO = new ShoppingCartProductsDAO(session);
+                    ProductDAO productDAO = new ProductDAO(session);
+                    for (Item item : cart) {
+                        ShoppingCartProducts shoppingCartProduct = new ShoppingCartProducts();
+                        shoppingCartProduct.setShoppingCart(shoppingCart);
+                        Product product = productDAO.getByPrimaryKey(item.getProductId());
+                        shoppingCartProduct.setProduct(product);
+                        shoppingCartProduct.setPriceBeforeDiscount(product.getPrice());
+                        shoppingCartProduct.setQuantity(item.getQuantity());
+                        shoppingCartProductsDAO.persist(shoppingCartProduct);
+                    }
+                } else {
+                    ShoppingCart shoppingCart = new ShoppingCart();
+                    shoppingCart.setUser(user);
+                    shoppingCart = shoppingCartDAO.merge(shoppingCart);
+
+                    ShoppingCartProductsDAO shoppingCartProductsDAO = new ShoppingCartProductsDAO(session);
+                    ProductDAO productDAO = new ProductDAO(session);
+                    for (Item item : cart) {
+                        ShoppingCartProducts shoppingCartProduct = new ShoppingCartProducts();
+                        shoppingCartProduct.setShoppingCart(shoppingCart);
+                        Product product = productDAO.getByPrimaryKey(item.getProductId());
+                        shoppingCartProduct.setProduct(product);
+                        shoppingCartProduct.setPriceBeforeDiscount(product.getPrice());
+                        shoppingCartProduct.setQuantity(item.getQuantity());
+                        shoppingCartProductsDAO.persist(shoppingCartProduct);
+                    }
+                }
+                request.getSession().invalidate();
+                tx.commit();
+                response.sendRedirect("login");
+
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                tx.rollback();
+            }
+        }
 
         /*Amr El Kady*/
 
