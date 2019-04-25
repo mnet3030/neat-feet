@@ -5,16 +5,16 @@
  */
 package com.imagine.neatfeat.model.dal.dao;
 
-import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.entity.Userrr;
 import org.hibernate.Session;
 
 /**
  *
  * @author Amer Salah
  */
-public class UserDAO extends GenericDAO<User>{
+public class UserDAO extends GenericDAO<Userrr>{
 
     public UserDAO(Session session) {
-        super(session, User.class);
+        super(session, Userrr.class);
     }
 }

@@ -1,9 +1,8 @@
 package com.imagine.neatfeat.model.dal.utility;
 
-import com.imagine.neatfeat.model.dal.dao.ProductDAO;
 import com.imagine.neatfeat.model.dal.dto.CheckoutProduct;
 import com.imagine.neatfeat.model.dal.entity.Category;
-import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.entity.Userrr;
 import com.imagine.neatfeat.model.dal.servletsdaos.CheckoutDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
@@ -100,8 +99,8 @@ public class CheckoutServices {
                 response.setContentType("text/plain");
                 CheckoutDao checkoutDao=new CheckoutDao();
                 List<Item> mycart= (List<Item>) request.getSession(false).getAttribute("cartProduct");
-                User user= (User) request.getSession(false).getAttribute("user");
-                String result=checkoutDao.buyCart(mycart,session,user);
+                Userrr userrr = (Userrr) request.getSession(false).getAttribute("userrr");
+                String result=checkoutDao.buyCart(mycart,session, userrr);
                 switch (result){
                     case "success":
                         request.getSession(false).setAttribute("cartProduct", mycart);

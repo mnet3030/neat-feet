@@ -22,7 +22,7 @@ public class ShoppingCart  implements com.imagine.neatfeat.model.dal.entity.Enti
 
 
     private UUID id;
-    private User user;
+    private Userrr userrr;
     private Set<ShoppingCartProducts> shoppingCartProductses = new HashSet<ShoppingCartProducts>(0);
 
     private UUID uuid;
@@ -31,13 +31,13 @@ public class ShoppingCart  implements com.imagine.neatfeat.model.dal.entity.Enti
     }
 
 
-    public ShoppingCart(UUID id, User user) {
+    public ShoppingCart(UUID id, Userrr userrr) {
         this.id = id;
-        this.user = user;
+        this.userrr = userrr;
     }
-    public ShoppingCart(UUID id, User user, Set<ShoppingCartProducts> shoppingCartProductses) {
+    public ShoppingCart(UUID id, Userrr userrr, Set<ShoppingCartProducts> shoppingCartProductses) {
         this.id = id;
-        this.user = user;
+        this.userrr = userrr;
         this.shoppingCartProductses = shoppingCartProductses;
     }
 
@@ -55,12 +55,12 @@ public class ShoppingCart  implements com.imagine.neatfeat.model.dal.entity.Enti
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", unique=true, nullable=false)
-    public User getUser() {
-        return this.user;
+    public Userrr getUserrr() {
+        return this.userrr;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserrr(Userrr userrr) {
+        this.userrr = userrr;
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="shoppingCart")

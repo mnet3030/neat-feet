@@ -3,10 +3,9 @@ package com.imagine.neatfeat.model.dal.servletsdaos;
 import com.imagine.neatfeat.model.dal.dao.ShoppingCartDAO;
 import com.imagine.neatfeat.model.dal.dao.ShoppingCartProductsDAO;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
-import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.entity.ShoppingCart;
 import com.imagine.neatfeat.model.dal.entity.ShoppingCartProducts;
-import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.entity.Userrr;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
 
@@ -16,24 +15,24 @@ import java.util.List;
 import java.util.Map;
 
 public class LoginDao {
-    public User AuthenticateUser(Session session, String userEmail, String password){
+    public Userrr AuthenticateUser(Session session, String userEmail, String password){
         UserDAO userDAO = new UserDAO(session);
         Map<String, Object> parametersMap = new HashMap<>();
         parametersMap.put("email", userEmail);
         parametersMap.put("password", password);
 
 
-        List<User> userList = userDAO.getByColumnNames(parametersMap);
-        if(userList.size() > 0)
-            return userList.get(0);
+        List<Userrr> userrrList = userDAO.getByColumnNames(parametersMap);
+        if(userrrList.size() > 0)
+            return userrrList.get(0);
         else
             return null;
     }
 
 
-    public List<Item> getAndDeleteCartFromDatabase(Session session, User user) {
+    public List<Item> getAndDeleteCartFromDatabase(Session session, Userrr userrr) {
         ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO(session);
-        List<ShoppingCart> shoppingCarts = shoppingCartDAO.getByColumnName("user.id", user.getId());
+        List<ShoppingCart> shoppingCarts = shoppingCartDAO.getByColumnName("userrr.id", userrr.getId());
         if(shoppingCarts.size() > 0)
         {
             ShoppingCart shoppingCart = shoppingCarts.get(0);

@@ -22,7 +22,7 @@ public class WishingList  implements com.imagine.neatfeat.model.dal.entity.Entit
 
 
     private UUID id;
-    private User user;
+    private Userrr userrr;
     private Set<WishingListProducts> wishingListProductses = new HashSet<WishingListProducts>(0);
 
 
@@ -33,13 +33,13 @@ public class WishingList  implements com.imagine.neatfeat.model.dal.entity.Entit
     }
 
 
-    public WishingList(UUID id, User user) {
+    public WishingList(UUID id, Userrr userrr) {
         this.id = id;
-        this.user = user;
+        this.userrr = userrr;
     }
-    public WishingList(UUID id, User user, Set<WishingListProducts> wishingListProductses) {
+    public WishingList(UUID id, Userrr userrr, Set<WishingListProducts> wishingListProductses) {
         this.id = id;
-        this.user = user;
+        this.userrr = userrr;
         this.wishingListProductses = wishingListProductses;
     }
 
@@ -57,12 +57,12 @@ public class WishingList  implements com.imagine.neatfeat.model.dal.entity.Entit
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", unique=true, nullable=false)
-    public User getUser() {
-        return this.user;
+    public Userrr getUserrr() {
+        return this.userrr;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserrr(Userrr userrr) {
+        this.userrr = userrr;
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="wishingList")

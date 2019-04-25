@@ -2,7 +2,7 @@ package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
-import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.entity.Userrr;
 import com.imagine.neatfeat.model.dal.dto.UserBean;
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.Session;
@@ -59,24 +59,24 @@ public class saveProfile  extends HttpServlet {
 
         //----------------------------------------------------------------------
         HttpSession userSession = request.getSession(true);
-        User user = (User)userSession.getAttribute("user");
+        Userrr userrr = (Userrr)userSession.getAttribute("userrr");
         //-----------------------------------------------------------------------
         UserDAO dao = new UserDAO(session);
         //-----------------------------------------------------------------------
 
-        user.setName(userDataBean.getName());
-        user.setCreditLimit(userDataBean.getCreditLimit());
-        user.setPhone(userDataBean.getPhone());
-        user.setAddress(userDataBean.getAddress());
-        user.setJob(userDataBean.getJob());
+        userrr.setName(userDataBean.getName());
+        userrr.setCreditLimit(userDataBean.getCreditLimit());
+        userrr.setPhone(userDataBean.getPhone());
+        userrr.setAddress(userDataBean.getAddress());
+        userrr.setJob(userDataBean.getJob());
         //----------------------------------------------------------------------
-        request.setAttribute("user" , user);
+        request.setAttribute("userrr" , userrr);
         request.getServletContext()
                 .getRequestDispatcher("/getimageurl")
                 .include(request,response);
         //----------------------------------------------
-        user = (User)request.getAttribute("user");
-        dao.update(user);
+        userrr = (Userrr)request.getAttribute("userrr");
+        dao.update(userrr);
         session.getTransaction().commit();
         //-----------------------------------------------------------------------
         response.sendRedirect(request.getContextPath()+"/profile");

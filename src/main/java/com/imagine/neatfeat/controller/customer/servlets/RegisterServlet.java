@@ -5,7 +5,7 @@ import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Country;
-import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.entity.Userrr;
 import com.imagine.neatfeat.model.dal.dto.UserBean;
 import com.imagine.neatfeat.model.dal.servletsdaos.RegisterDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
@@ -75,21 +75,21 @@ public class RegisterServlet extends HttpServlet {
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
             //----------------------------------------------------------------------
-            User user = UserConvertor.covertUserBeanToUser(bean, session);
+            Userrr userrr = UserConvertor.covertUserBeanToUser(bean, session);
             //----------------------------------------------------------------------
             RegisterDao registerDao = new RegisterDao();
-            User checkUser = registerDao.getUserByEmail(session, user.getEmail());
-            if(checkUser==null){
+            Userrr checkUserrr = registerDao.getUserByEmail(session, userrr.getEmail());
+            if(checkUserrr ==null){
                 UserDAO userDAO = new UserDAO(session);
-                User addedUser = userDAO.merge(user);
+                Userrr addedUserrr = userDAO.merge(userrr);
                 //--------------------------------------------
-                request.setAttribute("user" , addedUser);
+                request.setAttribute("userrr" , addedUserrr);
                 request.getServletContext()
                         .getRequestDispatcher("/getimageurl")
                         .include(request,response);
                 //----------------------------------------------
-                addedUser = (User)request.getAttribute("user");
-                userDAO.update(addedUser);
+                addedUserrr = (Userrr)request.getAttribute("userrr");
+                userDAO.update(addedUserrr);
                 session.getTransaction().commit();
                 response.sendRedirect( "login");
             }else {

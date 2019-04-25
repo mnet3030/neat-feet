@@ -1,7 +1,7 @@
 package com.imagine.neatfeat.model.dal.Convertors;
 
 import com.imagine.neatfeat.model.dal.entity.Country;
-import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.entity.Userrr;
 import com.imagine.neatfeat.model.dal.entity.UserRoles;
 import com.imagine.neatfeat.model.dal.dto.UserBean;
 import org.hibernate.Session;
@@ -13,60 +13,60 @@ import java.util.Date;
 
 public class UserConvertor {
 
-    public static User covertUserBeanToUser(UserBean bean, Session session) {
+    public static Userrr covertUserBeanToUser(UserBean bean, Session session) {
 
-        User user = new User();
-        user.setName(bean.getName());
-        user.setEmail(bean.getEmail());
-        user.setPassword(bean.getPassword());
-        user.setCreditLimit(bean.getCreditLimit());
-        user.setPhone(bean.getPhone());
-        user.setGender(bean.isGender());
+        Userrr userrr = new Userrr();
+        userrr.setName(bean.getName());
+        userrr.setEmail(bean.getEmail());
+        userrr.setPassword(bean.getPassword());
+        userrr.setCreditLimit(bean.getCreditLimit());
+        userrr.setPhone(bean.getPhone());
+        userrr.setGender(bean.isGender());
         //-----------------------------------------------------------
-        //--------user country--------------------------------------
+        //--------userrr country--------------------------------------
         String countryname = bean.getCountry();
         Country country = (Country) session.createCriteria(Country.class)
                 .add(Restrictions.eq("name", countryname)).uniqueResult();
-        user.setCountry(country);
-        //----------user role----------------------------------------
+        userrr.setCountry(country);
+        //----------userrr role----------------------------------------
         //String userRoleId = "69E5A108525F11E9A64054A050374DD2";
         UserRoles userRole = (UserRoles) session.createCriteria(UserRoles.class)
                 .add(Restrictions.eq("description", "customer")).uniqueResult();
-        user.setUserRoles(userRole);
+        userrr.setUserRoles(userRole);
         //------------------------------------------------------------
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
         try {
             Date bdate = formatter.parse(bean.getBirthdate());
-            user.setBirthdate(bdate);
+            userrr.setBirthdate(bdate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         //---------------------------------------------------------
         if (bean.getAddress() != null)
-            user.setAddress(bean.getAddress());
+            userrr.setAddress(bean.getAddress());
         if (bean.getPhotoUrl() != null)
-            user.setPhotoUrl(bean.getPhotoUrl());
+            userrr.setPhotoUrl(bean.getPhotoUrl());
         if (bean.getJob() != null)
-            user.setJob(bean.getJob());
-        return user;
+            userrr.setJob(bean.getJob());
+        return userrr;
     }
-    public static UserBean covertUserToUserBean(User user) {
+    public static UserBean covertUserToUserBean(Userrr userrr) {
 
         UserBean bean = new UserBean();
-        bean.setName(user.getName());
-        bean.setEmail(user.getEmail());
-        bean.setCreditLimit(user.getCreditLimit());
-        bean.setPhone(user.getPhone());
-        user.setGender(bean.isGender());
+        bean.setName(userrr.getName());
+        bean.setEmail(userrr.getEmail());
+        bean.setCreditLimit(userrr.getCreditLimit());
+        bean.setPhone(userrr.getPhone());
+        userrr.setGender(bean.isGender());
         //-----------------------------------------------------------
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
         //---------------------------------------------------------
-        if (user.getAddress() != null)
-            bean.setAddress(user.getAddress());
-        if (user.getPhotoUrl() != null)
-            bean.setPhotoUrl(user.getPhotoUrl());
-        if (user.getJob() != null)
-            bean.setJob(user.getJob());
+        if (userrr.getAddress() != null)
+            bean.setAddress(userrr.getAddress());
+        if (userrr.getPhotoUrl() != null)
+            bean.setPhotoUrl(userrr.getPhotoUrl());
+        if (userrr.getJob() != null)
+            bean.setJob(userrr.getJob());
 
         return bean;
     }

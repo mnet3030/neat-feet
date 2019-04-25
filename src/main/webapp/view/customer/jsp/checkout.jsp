@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!-- banner -->
 <c:if test="${requestScope.loggedIn == true}">
-    <a href="${pageContext.request.contextPath}/profile" class="helloNonHome" style="color:white;">Hello, ${requestScope.user.name}</a>
+    <a href="${pageContext.request.contextPath}/profile" class="helloNonHome" style="color:white;">Hello, ${requestScope.userrr.name}</a>
 </c:if>
 <div class="banner_top innerpage" id="home">
     <div class="wrapper_top_w3layouts">
@@ -98,12 +98,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="cd-header-buttons4">
                         <c:if test="${requestScope.loggedIn == true}">
                             <a href="${pageContext.request.contextPath}/profile">
-                                <button  class = "userIcon"><span class="glyphicon glyphicon-user userIconColorLogged" aria-hidden="true"></span></button>
+                                <button  class = "userIcon"><span class="glyphicon glyphicon-userrr userIconColorLogged" aria-hidden="true"></span></button>
                             </a>
                         </c:if>
                         <c:if test="${requestScope.loggedIn == false}">
                             <a href="${pageContext.request.contextPath}/login">
-                                <button  class = "userIcon"><span class="glyphicon glyphicon-user userIconColor" aria-hidden="true"></span></button>
+                                <button  class = "userIcon"><span class="glyphicon glyphicon-userrr userIconColor" aria-hidden="true"></span></button>
                             </a>
                         </c:if>
                     </ul>

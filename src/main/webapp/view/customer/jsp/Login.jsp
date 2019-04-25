@@ -133,7 +133,7 @@
 					>
 					<span class="focus-input100"></span>
 					<span class="symbol-input100">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-userrr"></i>
 						</span>
 				</div>
 

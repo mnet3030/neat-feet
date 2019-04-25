@@ -1,11 +1,8 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
-import com.imagine.neatfeat.model.dal.entity.Category;
-import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.entity.Userrr;
 import com.imagine.neatfeat.model.dal.servletsdaos.LoginDao;
-import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
-import com.imagine.neatfeat.model.dal.utility.CheckoutServices;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -65,22 +62,22 @@ public class LoginServlet extends HttpServlet {
             tx = session.beginTransaction();
 
             LoginDao dao = new LoginDao();
-            User user  = dao.AuthenticateUser(session, email, password);
-            if(user != null){
+            Userrr userrr = dao.AuthenticateUser(session, email, password);
+            if(userrr != null){
                 String pattern = "([aA-zZ]|[0-9])+@neatfeet.com";
                 // Create a Pattern object
                 Pattern r = Pattern.compile(pattern);
                 // Now create matcher object.
-                Matcher m = r.matcher(user.getEmail());
+                Matcher m = r.matcher(userrr.getEmail());
                 if(m.find()){
                     response.sendRedirect("homeadmin");
                 }else{
 
                     LoginDao loginDao = new LoginDao();
-                    List<Item> cart = loginDao.getAndDeleteCartFromDatabase(session, user);
+                    List<Item> cart = loginDao.getAndDeleteCartFromDatabase(session, userrr);
 
                     HttpSession userSession = request.getSession(true);
-                    userSession.setAttribute("user", user);
+                    userSession.setAttribute("user", userrr);
                     userSession.setAttribute("fromLogin", true);
                     if(cart==null){
                         List<Item> emptyCart =new ArrayList<>();

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, userrr-scalable=0, minimal-ui">
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
 
@@ -114,7 +114,7 @@
                 </span>
                     </a>
                     <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
+                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-userrr" aria-hidden="true"></i> Profile</a>
                         <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
                         <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
                         <div class="dropdown-divider" role="presentation"></div>
@@ -183,7 +183,7 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="${pageContext.request.contextPath}/user">
+                                <a class="animsition-link" href="${pageContext.request.contextPath}/userrr">
                                     <span class="site-menu-title">Users Table</span>
                                 </a>
                             </li>
@@ -238,7 +238,7 @@
                 </li>
                 <li>
                     <a href="apps/contacts/contacts.html">
-                        <i class="icon wb-user"></i>
+                        <i class="icon wb-userrr"></i>
                         <span>Contacts</span>
                     </a>
                 </li>
@@ -289,7 +289,7 @@
                             <div class="col-sm-6">
                                 <h2>View <b>Customers</b></h2>
                             </div><br><br><br>
-                            <form method="get" action="user">
+                            <form method="get" action="userrr">
 
                                 <div class="form-group has-search col-sm-4">
                                     <input name="userName" type="text" class="form-control" placeholder="Search" id="search">
@@ -312,16 +312,16 @@
                         </thead>
                         <tbody>
 
-                        <c:forEach items="${requestScope.users}" var="user">
+                        <c:forEach items="${requestScope.userrrs}" var="userrr">
                             <tr>
-                                <td><c:out value="${user.name}"></c:out></td>
-                                <td><c:out value="${user.email}"></c:out></td>
-                                <td><c:out value="${user.address}"></c:out></td>
-                                <td><c:out value="${user.phone}"></c:out></td>
+                                <td><c:out value="${userrr.name}"></c:out></td>
+                                <td><c:out value="${userrr.email}"></c:out></td>
+                                <td><c:out value="${userrr.address}"></c:out></td>
+                                <td><c:out value="${userrr.phone}"></c:out></td>
                                 <td>
                                     <a href="#editEmployeeModal" id="view-btn" class="edit" data-toggle="modal"><i
                                             class="material-icons" data-toggle="tooltip" title="View User Details "
-                                            onclick=" getuserinfo('${user.id}')">list</i></a>
+                                            onclick=" getuserinfo('${userrr.id}')">list</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -460,7 +460,7 @@
         <!-- <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Remark</a> -->
     </div>
     <!-- <div class="site-footer-right">
-      Crafted with <i class="red-600 wb wb-heart"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
+      Crafted with <i class="red-600 wb wb-heart"></i> by <a href="https://themeforest.net/userrr/creation-studio">Creation Studio</a>
     </div> -->
 </footer>
 <!-- Core  -->

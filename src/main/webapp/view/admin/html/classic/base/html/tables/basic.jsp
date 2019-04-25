@@ -1,13 +1,13 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="com.imagine.neatfeat.model.dal.entity.User"%>
+<%@page import="com.imagine.neatfeat.model.dal.entity.Userrr"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html class="no-js css-menubar" lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, userrr-scalable=0, minimal-ui">
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
     
@@ -191,7 +191,7 @@
                 </span>
               </a>
               <div class="dropdown-menu" role="menu">
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
+                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-userrr" aria-hidden="true"></i> Profile</a>
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
                 <div class="dropdown-divider" role="presentation"></div>
@@ -286,19 +286,19 @@
 
 
 
-              <c:forEach items="${sessionScope.users}" var="user">
+              <c:forEach items="${sessionScope.userrrs}" var="userrr">
 
                 <tr>
 
 
-                  <td><c:out value="${user.name}"></c:out></td>
-                  <td><c:out value="${user.email}"></c:out></td>
-                  <td><c:out value="${user.address}"></c:out></td>
-                  <td><c:out value="${user.phone}"></c:out></td>
+                  <td><c:out value="${userrr.name}"></c:out></td>
+                  <td><c:out value="${userrr.email}"></c:out></td>
+                  <td><c:out value="${userrr.address}"></c:out></td>
+                  <td><c:out value="${userrr.phone}"></c:out></td>
 
                   <td>
 
-                    <a href="#editEmployeeModal" id="view-btn" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"  onclick=" getuserinfo('${user.id}')">list</i></a>
+                    <a href="#editEmployeeModal" id="view-btn" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"  onclick=" getuserinfo('${userrr.id}')">list</i></a>
                     <!--  <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" id="view">list</i></a>-->
                   </td>
                 </tr>
@@ -418,7 +418,7 @@
          <!-- <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Remark</a> -->
       </div>
       <!-- <div class="site-footer-right">
-        Crafted with <i class="red-600 wb wb-heart"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
+        Crafted with <i class="red-600 wb wb-heart"></i> by <a href="https://themeforest.net/userrr/creation-studio">Creation Studio</a>
       </div> -->
     </footer>
     <!-- Core  -->

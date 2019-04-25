@@ -1,15 +1,10 @@
 package com.imagine.neatfeat.controller.admin.servlets;
 
-import com.google.gson.Gson;
-import com.imagine.neatfeat.model.dal.Convertors.ProductConvertor;
-import com.imagine.neatfeat.model.dal.Convertors.UserConvertor;
 import com.imagine.neatfeat.model.dal.dao.BrandDAO;
 import com.imagine.neatfeat.model.dal.dao.CategoryDAO;
 import com.imagine.neatfeat.model.dal.dao.ProductDAO;
-import com.imagine.neatfeat.model.dal.dao.UserDAO;
 import com.imagine.neatfeat.model.dal.entity.Brand;
 import com.imagine.neatfeat.model.dal.entity.Category;
-import com.imagine.neatfeat.model.dal.entity.Product;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,12 +17,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
-import com.imagine.neatfeat.model.dal.entity.User;
-import com.imagine.neatfeat.model.dal.servletDAO.ProductBean;
 import com.imagine.neatfeat.model.dal.servletsdaos.AdminProductDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
-import com.imagine.neatfeat.model.dal.utilityPojos.Item;
-import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

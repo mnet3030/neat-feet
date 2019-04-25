@@ -22,7 +22,7 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
 
 
     private UUID id;
-    private User user;
+    private Userrr userrr;
     private Date datePurchased;
     private Set<OrderProducts> orderProductses = new HashSet<OrderProducts>(0);
     private Set<UserReviews> userReviewses = new HashSet<UserReviews>(0);
@@ -35,14 +35,14 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
     }
 
 
-    public UserOrders(UUID id, User user, Date datePurchased) {
+    public UserOrders(UUID id, Userrr userrr, Date datePurchased) {
         this.id = id;
-        this.user = user;
+        this.userrr = userrr;
         this.datePurchased = datePurchased;
     }
-    public UserOrders(UUID id, User user, Date datePurchased, Set<OrderProducts> orderProductses, Set<UserReviews> userReviewses) {
+    public UserOrders(UUID id, Userrr userrr, Date datePurchased, Set<OrderProducts> orderProductses, Set<UserReviews> userReviewses) {
         this.id = id;
-        this.user = user;
+        this.userrr = userrr;
         this.datePurchased = datePurchased;
         this.orderProductses = orderProductses;
         this.userReviewses = userReviewses;
@@ -62,12 +62,12 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
-    public User getUser() {
-        return this.user;
+    public Userrr getUserrr() {
+        return this.userrr;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserrr(Userrr userrr) {
+        this.userrr = userrr;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

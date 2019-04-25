@@ -21,7 +21,7 @@ public class UserVisitProducts  implements com.imagine.neatfeat.model.dal.entity
 
     private UUID id;
     private Product product;
-    private User user;
+    private Userrr userrr;
     private int visitCount;
 
     private UUID uuid;
@@ -29,10 +29,10 @@ public class UserVisitProducts  implements com.imagine.neatfeat.model.dal.entity
     public UserVisitProducts() {
     }
 
-    public UserVisitProducts(UUID id, Product product, User user, int visitCount) {
+    public UserVisitProducts(UUID id, Product product, Userrr userrr, int visitCount) {
         this.id = id;
         this.product = product;
-        this.user = user;
+        this.userrr = userrr;
         this.visitCount = visitCount;
     }
 
@@ -60,12 +60,12 @@ public class UserVisitProducts  implements com.imagine.neatfeat.model.dal.entity
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
-    public User getUser() {
-        return this.user;
+    public Userrr getUserrr() {
+        return this.userrr;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserrr(Userrr userrr) {
+        this.userrr = userrr;
     }
 
 
