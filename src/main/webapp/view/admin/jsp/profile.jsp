@@ -110,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //banner -->
 <div class="container bootstrap snippet">
     <div class="row">
-        <div class="col-sm-10"><h1> ${userrr.getName()}</h1></div>
+        <div class="col-sm-10"><h1> ${user.getName()}</h1></div>
     </div>
     <form class="form" style="    margin-top: 60px;"
             <c:if test="${editProfile == 'false'}">
@@ -123,12 +123,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="row">
             <div class="col-sm-3"><!--left col-->
                 <div class="text-center">
-                    <c:if test="${userrr.getPhotoUrl() == null}">
+                    <c:if test="${user.getPhotoUrl() == null}">
                         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
                              class="avatar img-circle img-thumbnail" alt="avatar">
                     </c:if>
-                    <c:if test="${userrr.getPhotoUrl() != null}">
-                        <img src="${pageContext.request.contextPath}/NewUserIamges/${userrr.getPhotoUrl()}"
+                    <c:if test="${user.getPhotoUrl() != null}">
+                        <img src="${pageContext.request.contextPath}/NewUserIamges/${user.getPhotoUrl()}"
                              class="avatar img-circle img-thumbnail" alt="avatar">
                     </c:if>
                     <c:if test="${editProfile == 'true'}">
@@ -149,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-xs-6">
                                 <label for="name"><h4>Name</h4></label>
                                 <input type="text" class="form-control" name="name" id="name"
-                                       value="${userrr.getName()}"
+                                       value="${user.getName()}"
                                 <c:if test="${editProfile == 'false'}">
                                        disabled="true"
                                 </c:if>
@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-xs-6">
                                 <label for="email"><h4>Email</h4></label>
                                 <input type="text" class="form-control" name="email" id="email"
-                                       value="${userrr.getEmail()}"
+                                       value="${user.getEmail()}"
                                        disabled="true"
                                 >
                             </div>
@@ -170,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-xs-6">
                                 <label for="phone"><h4>Phone</h4></label>
                                 <input type="number" class="form-control" name="phone" id="phone"
-                                       value="${userrr.getPhone()}"
+                                       value="${user.getPhone()}"
                                 <c:if test="${editProfile == 'false'}">
                                        disabled="true"
                                 </c:if>
@@ -181,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-xs-6">
                                 <label for="creditLimit"><h4>Credit Limit</h4></label>
                                 <input type="text" class="form-control" name="creditLimit" id="creditLimit"
-                                       value="${userrr.getCreditLimit()}"
+                                       value="${user.getCreditLimit()}"
                                 <c:if test="${editProfile == 'false'}">
                                        disabled="true"
                                 </c:if>
@@ -193,7 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-xs-6">
                                 <label for="address"><h4>Address</h4></label>
                                 <input type="text" class="form-control" id="address" name="address"
-                                       value="${userrr.getAddress()}"
+                                       value="${user.getAddress()}"
                                 <c:if test="${editProfile == 'false'}">
                                        disabled="true"
                                 </c:if>
@@ -205,7 +205,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-xs-6">
                                 <label for="job"><h4>Job</h4></label>
                                 <input type="text" class="form-control" id="job" name="job"
-                                       value="${userrr.getJob()}"
+                                       value="${user.getJob()}"
                                 <c:if test="${editProfile == 'false'}">
                                        disabled="true"
                                 </c:if>

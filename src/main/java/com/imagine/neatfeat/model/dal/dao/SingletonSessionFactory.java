@@ -36,7 +36,10 @@ public final class SingletonSessionFactory {
                         .setProperty("hibernate.dialect",
                                 "org.hibernate.dialect.PostgreSQLDialect");
             }
-            return cfg.buildSessionFactory();
+            SessionFactory sessionFactory = cfg.buildSessionFactory();
+            
+
+            return sessionFactory;
         } catch (URISyntaxException ex) {
             return null;
         }

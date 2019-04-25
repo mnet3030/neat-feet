@@ -86,7 +86,7 @@ Contributor(s):
     <mapping class="com.imagine.neatfeat.model.dal.entity.ShoppingCartProducts"/>
     <mapping class="com.imagine.neatfeat.model.dal.entity.DeliveryStatus"/>
     <mapping class="com.imagine.neatfeat.model.dal.entity.Category"/>
-    <mapping class="com.imagine.neatfeat.model.dal.entity.Userrr"/>
+    <mapping class="com.imagine.neatfeat.model.dal.entity.User"/>
     <mapping class="com.imagine.neatfeat.model.dal.entity.UserOrders"/>
     <mapping class="com.imagine.neatfeat.model.dal.entity.WishingList"/>
     <mapping class="com.imagine.neatfeat.model.dal.entity.UserRoles"/>

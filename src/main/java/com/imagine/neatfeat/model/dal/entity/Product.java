@@ -75,7 +75,7 @@ public class Product  implements com.imagine.neatfeat.model.dal.entity.Entity {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
+    @Column(columnDefinition = "uuid", name="id", unique=true, nullable=false)
     public UUID getId() {
         return this.id;
     }

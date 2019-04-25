@@ -7,7 +7,8 @@ import com.imagine.neatfeat.model.dal.dao.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.entity.ShoppingCart;
 import com.imagine.neatfeat.model.dal.entity.ShoppingCartProducts;
-import com.imagine.neatfeat.model.dal.entity.Userrr;
+import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.servletsdaos.LoginDao;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*Mahmoud Shereif*/
-        Userrr userrr = (Userrr) request.getSession(false).getAttribute("userrr");
+        User user = (User) request.getSession(false).getAttribute("user");
         List<Item> cart = (List<Item>) request.getSession(false).getAttribute("cartProduct");
 
         Session session = sessionFactory.getCurrentSession();
@@ -41,7 +43,7 @@ public class LogoutServlet extends HttpServlet {
         try {
             tx = session.beginTransaction();
             ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO(session);
-            List<ShoppingCart> shoppingCarts = shoppingCartDAO.getByColumnName("userrr.id", userrr.getId());
+            List<ShoppingCart> shoppingCarts = shoppingCartDAO.getByColumnName("user.id", user.getId());
             if(shoppingCarts.size() > 0)
             {
                 ShoppingCart shoppingCart = shoppingCarts.get(0);
@@ -60,7 +62,7 @@ public class LogoutServlet extends HttpServlet {
             else
             {
                 ShoppingCart shoppingCart = new ShoppingCart();
-                shoppingCart.setUserrr(userrr);
+                shoppingCart.setUser(user);
                 shoppingCart = shoppingCartDAO.merge(shoppingCart);
 
                 ShoppingCartProductsDAO shoppingCartProductsDAO = new ShoppingCartProductsDAO(session);

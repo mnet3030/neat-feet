@@ -1,6 +1,6 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
-import com.imagine.neatfeat.model.dal.entity.Userrr;
+import com.imagine.neatfeat.model.dal.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -20,12 +20,12 @@ public class ImageSaving extends HttpServlet {
         final Part imagePart = req.getPart("image");
 
         if (imagePart.getSize() > 0) {
-            //-----------get userrr to get userrr ID --------------------------
+            //-----------get user to get user ID --------------------------
             //--------to be used as image name-----------------------------
-            Userrr userrr = (Userrr) req.getAttribute("userrr");
-            UUID userUUID = userrr.getId();
+            User user = (User) req.getAttribute("user");
+            UUID userUUID = user.getId();
             String userID = userUUID.toString();
-            String imageName = "userrr" + userID + ".jpg";
+            String imageName = "user" + userID + ".jpg";
             //---------define path where images will be saved--------------
 
             String appPath = req.getServletContext().getRealPath("");
@@ -46,8 +46,8 @@ public class ImageSaving extends HttpServlet {
                 while ((read = imageContent.read(bytes)) != -1) {
                     out.write(bytes, 0, read);
                 }
-                userrr.setPhotoUrl(imageName);
-                req.setAttribute("userrr", userrr);
+                user.setPhotoUrl(imageName);
+                req.setAttribute("user", user);
             } catch (FileNotFoundException fne) {
                 fne.printStackTrace();
             } finally {

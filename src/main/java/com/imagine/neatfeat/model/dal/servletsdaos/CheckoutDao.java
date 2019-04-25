@@ -5,11 +5,13 @@ import com.imagine.neatfeat.model.dal.dto.CheckoutProduct;
 import com.imagine.neatfeat.model.dal.entity.*;
 import com.imagine.neatfeat.model.dal.utilityPojos.Item;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.stat.Statistics;
 
 import java.util.*;
 
 public class CheckoutDao {
-    public String buyCart(List<Item> itemsToBeBuyed, Session session, Userrr userrr)
+    public String buyCart(List<Item> itemsToBeBuyed, Session session, User user)
     {
         orderCartAsc(itemsToBeBuyed);
         List<Product> products = selectProductsForUpdateOrdered(itemsToBeBuyed, session);
@@ -17,23 +19,23 @@ public class CheckoutDao {
         if(checkQuantity(itemsToBeBuyed, products, session))
         {
             int totalMoneyToBePayed = 0;
-            totalMoneyToBePayed = CheckCreditLimit(itemsToBeBuyed, userrr, products, session);
+            totalMoneyToBePayed = CheckCreditLimit(itemsToBeBuyed, user, products, session);
 
             if(totalMoneyToBePayed != 0)
             {
 
                 UserOrders userOrder = new UserOrders();
-                userOrder.setUserrr(userrr);
+                userOrder.setUser(user);
                 userOrder.setDatePurchased(new Date());
                 UserOrdersDAO ordersDAO = new UserOrdersDAO(session);
 
                 userOrder = ordersDAO.merge(userOrder);
                 addOrderProducts(itemsToBeBuyed, userOrder, products, session);
-                userrr.setCreditLimit(userrr.getCreditLimit() - totalMoneyToBePayed);
+                user.setCreditLimit(user.getCreditLimit() - totalMoneyToBePayed);
 
                 UserDAO userDAO = new UserDAO(session);
 
-                userDAO.update(userrr);
+                userDAO.update(user);
 
 
                 updateProductQuantities(itemsToBeBuyed, products, session);
@@ -112,7 +114,7 @@ public class CheckoutDao {
         return orderProducts;
     }
 
-    private int CheckCreditLimit(List<Item> itemsToBeBuyed, Userrr userrr, List<Product> products, Session session) {
+    private int CheckCreditLimit(List<Item> itemsToBeBuyed, User user, List<Product> products, Session session) {
         int totalPrice = 0;
         int i = 0;
         for (Item itemToBeBuyed : itemsToBeBuyed) {
@@ -120,8 +122,8 @@ public class CheckoutDao {
             i++;
         }
         UserDAO userDAO = new UserDAO(session);
-        userDAO.refresh(userrr);
-        if(totalPrice > userrr.getCreditLimit())
+        userDAO.refresh(user);
+        if(totalPrice > user.getCreditLimit())
             return 0;
         else
             return totalPrice;

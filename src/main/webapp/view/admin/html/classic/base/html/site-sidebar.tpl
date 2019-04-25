@@ -7,7 +7,7 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#sidebar-activity" role="tab">
-      <i class="icon wb-userrr" aria-hidden="true"></i>
+      <i class="icon wb-user" aria-hidden="true"></i>
     </a>
   </li>
   <li class="nav-item">

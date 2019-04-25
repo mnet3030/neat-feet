@@ -1,8 +1,9 @@
 package com.imagine.neatfeat.controller.customer.filters;
 
-import com.imagine.neatfeat.model.dal.entity.Userrr;
+import com.imagine.neatfeat.model.dal.entity.User;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,9 +22,9 @@ public class CartFilter implements Filter {
 
         System.out.println("Hello from filter ");
         HttpSession session=request.getSession();
-        Userrr userrr = (Userrr) session.getAttribute("userrr");
+        User user= (User) session.getAttribute("user");
 
-        if(userrr == null){
+        if(user== null){
             responce.getWriter().print("notlogged");
         }else{
             chain.doFilter(req,resp);

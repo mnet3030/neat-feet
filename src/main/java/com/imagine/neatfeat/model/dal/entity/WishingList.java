@@ -22,7 +22,7 @@ public class WishingList  implements com.imagine.neatfeat.model.dal.entity.Entit
 
 
     private UUID id;
-    private Userrr userrr;
+    private User user;
     private Set<WishingListProducts> wishingListProductses = new HashSet<WishingListProducts>(0);
 
 
@@ -33,20 +33,20 @@ public class WishingList  implements com.imagine.neatfeat.model.dal.entity.Entit
     }
 
 
-    public WishingList(UUID id, Userrr userrr) {
+    public WishingList(UUID id, User user) {
         this.id = id;
-        this.userrr = userrr;
+        this.user = user;
     }
-    public WishingList(UUID id, Userrr userrr, Set<WishingListProducts> wishingListProductses) {
+    public WishingList(UUID id, User user, Set<WishingListProducts> wishingListProductses) {
         this.id = id;
-        this.userrr = userrr;
+        this.user = user;
         this.wishingListProductses = wishingListProductses;
     }
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
+    @Column(columnDefinition = "uuid", name="id", unique=true, nullable=false)
     public UUID getId() {
         return this.id;
     }
@@ -57,12 +57,12 @@ public class WishingList  implements com.imagine.neatfeat.model.dal.entity.Entit
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", unique=true, nullable=false)
-    public Userrr getUserrr() {
-        return this.userrr;
+    public User getUser() {
+        return this.user;
     }
 
-    public void setUserrr(Userrr userrr) {
-        this.userrr = userrr;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="wishingList")

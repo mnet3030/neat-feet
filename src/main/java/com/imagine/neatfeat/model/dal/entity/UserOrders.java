@@ -22,7 +22,7 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
 
 
     private UUID id;
-    private Userrr userrr;
+    private User user;
     private Date datePurchased;
     private Set<OrderProducts> orderProductses = new HashSet<OrderProducts>(0);
     private Set<UserReviews> userReviewses = new HashSet<UserReviews>(0);
@@ -35,14 +35,14 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
     }
 
 
-    public UserOrders(UUID id, Userrr userrr, Date datePurchased) {
+    public UserOrders(UUID id, User user, Date datePurchased) {
         this.id = id;
-        this.userrr = userrr;
+        this.user = user;
         this.datePurchased = datePurchased;
     }
-    public UserOrders(UUID id, Userrr userrr, Date datePurchased, Set<OrderProducts> orderProductses, Set<UserReviews> userReviewses) {
+    public UserOrders(UUID id, User user, Date datePurchased, Set<OrderProducts> orderProductses, Set<UserReviews> userReviewses) {
         this.id = id;
-        this.userrr = userrr;
+        this.user = user;
         this.datePurchased = datePurchased;
         this.orderProductses = orderProductses;
         this.userReviewses = userReviewses;
@@ -51,7 +51,7 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
+    @Column(columnDefinition = "uuid", name="id", unique=true, nullable=false)
     public UUID getId() {
         return this.id;
     }
@@ -62,12 +62,12 @@ public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
-    public Userrr getUserrr() {
-        return this.userrr;
+    public User getUser() {
+        return this.user;
     }
 
-    public void setUserrr(Userrr userrr) {
-        this.userrr = userrr;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

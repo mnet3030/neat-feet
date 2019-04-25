@@ -23,7 +23,7 @@ public class Country  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
     private UUID id;
     private String name;
-    private Set<Userrr> userrrs = new HashSet<Userrr>(0);
+    private Set<User> users = new HashSet<User>(0);
 
 
     private UUID uuid;
@@ -36,16 +36,16 @@ public class Country  implements com.imagine.neatfeat.model.dal.entity.Entity {
         this.id = id;
         this.name = name;
     }
-    public Country(UUID id, String name, Set<Userrr> userrrs) {
+    public Country(UUID id, String name, Set<User> users) {
         this.id = id;
         this.name = name;
-        this.userrrs = userrrs;
+        this.users = users;
     }
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
+    @Column(columnDefinition = "uuid", name="id", unique=true, nullable=false)
     public UUID getId() {
         return this.id;
     }
@@ -65,12 +65,12 @@ public class Country  implements com.imagine.neatfeat.model.dal.entity.Entity {
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="country")
-    public Set<Userrr> getUserrrs() {
-        return this.userrrs;
+    public Set<User> getUsers() {
+        return this.users;
     }
 
-    public void setUserrrs(Set<Userrr> userrrs) {
-        this.userrrs = userrrs;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 

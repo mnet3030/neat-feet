@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, userrr-scalable=0, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
     
@@ -112,7 +112,7 @@
                 </span>
               </a>
               <div class="dropdown-menu" role="menu">
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-userrr" aria-hidden="true"></i> Profile</a>
+                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
                 <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
                 <div class="dropdown-divider" role="presentation"></div>
@@ -180,7 +180,7 @@
                     </a>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="${pageContext.request.contextPath}/userrr">
+                    <a class="animsition-link" href="${pageContext.request.contextPath}/user">
                       <span class="site-menu-title">Users Table</span>
                     </a>
                   </li>
@@ -235,7 +235,7 @@
             </li>
             <li>
               <a href="apps/contacts/contacts.html">
-                <i class="icon wb-userrr"></i>
+                <i class="icon wb-user"></i>
                 <span>Contacts</span>
               </a>
             </li>
@@ -392,7 +392,7 @@
         <!-- <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Remark</a> -->
       </div>
       <!-- <div class="site-footer-right">
-        Crafted with <i class="red-600 wb wb-heart"></i> by <a href="https://themeforest.net/userrr/creation-studio">Creation Studio</a>
+        Crafted with <i class="red-600 wb wb-heart"></i> by <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
       </div> -->
     </footer>
     <!-- Core  -->

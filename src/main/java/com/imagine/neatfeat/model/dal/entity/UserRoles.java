@@ -23,7 +23,7 @@ public class UserRoles  implements java.io.Serializable {
 
     private UUID id;
     private String description;
-    private Set<Userrr> userrrs = new HashSet<Userrr>(0);
+    private Set<User> users = new HashSet<User>(0);
 
     private UUID uuid;
 
@@ -35,16 +35,16 @@ public class UserRoles  implements java.io.Serializable {
         this.id = id;
         this.description = description;
     }
-    public UserRoles(UUID id, String description, Set<Userrr> userrrs) {
+    public UserRoles(UUID id, String description, Set<User> users) {
         this.id = id;
         this.description = description;
-        this.userrrs = userrrs;
+        this.users = users;
     }
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)", name="id", unique=true, nullable=false)
+    @Column(columnDefinition = "uuid", name="id", unique=true, nullable=false)
     public UUID getId() {
         return this.id;
     }
@@ -64,12 +64,12 @@ public class UserRoles  implements java.io.Serializable {
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="userRoles")
-    public Set<Userrr> getUserrrs() {
-        return this.userrrs;
+    public Set<User> getUsers() {
+        return this.users;
     }
 
-    public void setUserrrs(Set<Userrr> userrrs) {
-        this.userrrs = userrrs;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 }
