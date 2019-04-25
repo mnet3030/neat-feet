@@ -15,13 +15,13 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="category"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
 )
 public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
 
     private UUID id;
-    private Category category;
+    private Category categoryy;
     private String description;
     private Set<Category> categories = new HashSet<Category>(0);
     private Set<Product> products = new HashSet<Product>(0);
@@ -38,7 +38,7 @@ public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
     }
     public Category(UUID id, Category category, String description, Set<Category> categories, Set<Product> products) {
         this.id = id;
-        this.category = category;
+        this.categoryy = category;
         this.description = description;
         this.categories = categories;
         this.products = products;
@@ -59,11 +59,11 @@ public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="category_id")
     public Category getCategory() {
-        return this.category;
+        return this.categoryy;
     }
 
     public void setCategory(Category category) {
-        this.category = category;
+        this.categoryy = category;
     }
 
 

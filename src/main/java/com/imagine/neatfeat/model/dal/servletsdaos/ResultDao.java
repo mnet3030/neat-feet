@@ -68,7 +68,7 @@ public class ResultDao {
     public List<Category> getMainCategories(Session session){
         CategoryDAO categoryDAO = new CategoryDAO(session);
         List<String> list = new ArrayList<>();
-        list.add("category");
+        list.add("categoryy");
 
         List<Category> mainCategories = categoryDAO.getByColumnNamesWithNull(list);
         return mainCategories;

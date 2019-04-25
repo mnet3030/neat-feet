@@ -16,7 +16,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="user_orders"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
 )
 public class UserOrders  implements com.imagine.neatfeat.model.dal.entity.Entity {
 

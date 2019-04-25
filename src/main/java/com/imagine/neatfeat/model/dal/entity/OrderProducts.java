@@ -15,7 +15,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @Table(name="order_products"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
         ,uniqueConstraints = @UniqueConstraint(columnNames={"user_orders_id", "product_id"})
 )
 public class OrderProducts  implements com.imagine.neatfeat.model.dal.entity.Entity {

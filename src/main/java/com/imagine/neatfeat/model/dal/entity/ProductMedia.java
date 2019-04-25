@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="product_media"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
 )
 public class ProductMedia  implements com.imagine.neatfeat.model.dal.entity.Entity {
 

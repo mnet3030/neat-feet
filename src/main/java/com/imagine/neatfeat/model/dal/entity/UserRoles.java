@@ -15,7 +15,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @Table(name="user_roles"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
         , uniqueConstraints = @UniqueConstraint(columnNames="description")
 )
 public class UserRoles  implements java.io.Serializable {

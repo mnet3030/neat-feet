@@ -15,7 +15,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @Table(name="product"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
 )
 public class Product  implements com.imagine.neatfeat.model.dal.entity.Entity {
 
