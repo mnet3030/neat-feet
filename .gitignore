@@ -1,4 +1,5 @@
 .idea/*
 target/*
 *.iml
-/src/main/resources/cfg/hibernate.cfg.xml
+!target/*.war
+!target/dependency/

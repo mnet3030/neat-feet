@@ -1,5 +1,6 @@
 package com.imagine.neatfeat.model.dal.Convertors;
 
+import com.imagine.neatfeat.model.dal.cfg.SingletonSessionFactory;
 import com.imagine.neatfeat.model.dal.dao.BrandDAO;
 import com.imagine.neatfeat.model.dal.dao.CategoryDAO;
 import com.imagine.neatfeat.model.dal.entity.Brand;
@@ -18,8 +19,7 @@ public class ProductConvertor {
 
     public static Product converProductBeantoProduct(ProductBean bean)
     {
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
+        SessionFactory sessionFactory = SingletonSessionFactory.getInstance();
         Session session = sessionFactory.openSession();
 
 
