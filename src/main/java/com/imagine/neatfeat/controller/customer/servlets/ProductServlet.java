@@ -1,9 +1,11 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.model.dal.dao.ProductDAO;
+import com.imagine.neatfeat.model.dal.dao.UserVisitProductsDAO;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.entity.User;
+import com.imagine.neatfeat.model.dal.entity.UserVisitProducts;
 import com.imagine.neatfeat.model.dal.servletsdaos.LoginDao;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
 import com.imagine.neatfeat.model.dal.utility.CheckoutUtility;
@@ -19,10 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class ProductServlet extends HttpServlet {
     ResultDao resultDao;
@@ -63,12 +62,50 @@ public class ProductServlet extends HttpServlet {
                 Product product = new Product();
                 ProductDAO productDao = new ProductDAO(session);
 
+                Map allPaged = productDao.getAllPaged(1, 4);
+                request.setAttribute("allProducts", allPaged.get("entities"));
 
                 UUID uuid = UUID.fromString(productId);
-                product = productDao.getByPrimaryKey(uuid);
+
+                if(httpSession!=null && httpSession.getAttribute("user")!=null) {
+                    Map map = productDao.getByPrimaryKeyWithUserCartCheck(uuid, (List<Item>) request.getSession(false).getAttribute("cartProduct"));
+                    product = (Product)map.keySet().toArray()[0];
+                    request.setAttribute("inCart", (boolean)map.values().toArray()[0]);
+                }
+                else
+                {
+                    product = productDao.getByPrimaryKey(uuid);
+                }
 
                 if(product != null){
+
                     request.setAttribute("product", product);
+                    User user = (User)httpSession.getAttribute("user");
+
+                    if(user != null) {
+                        UserVisitProductsDAO userVisitProductsDAO = new UserVisitProductsDAO(session);
+
+                        Map<String, Object> stringObjectMap = new HashMap<>();
+                        stringObjectMap.put("product.id", product.getId());
+                        stringObjectMap.put("user.id", user.getId());
+
+                        List<UserVisitProducts> userVisitProductsList = userVisitProductsDAO.getByColumnNames(stringObjectMap);
+
+                        if (userVisitProductsList.size() > 0) {
+                            UserVisitProducts userVisitProducts = userVisitProductsList.get(0);
+                            userVisitProducts.setVisitCount(userVisitProducts.getVisitCount() + 1);
+
+                            session.merge(userVisitProducts);
+                        } else {
+                            UserVisitProducts userVisitProduct = new UserVisitProducts();
+                            userVisitProduct.setProduct(product);
+                            userVisitProduct.setUser(user);
+                            userVisitProduct.setVisitCount(1);
+
+                            userVisitProductsDAO.persist(userVisitProduct);
+                        }
+                    }
+
 
                     List<Item> cart= (List<Item>) request.getSession(false).getAttribute("cartProduct");
                     CheckoutUtility checkoutUtility=new CheckoutUtility(session);
@@ -88,10 +125,7 @@ public class ProductServlet extends HttpServlet {
                     tx.commit();
                 }
                 else{
-                    // TODO: Error Page
-                    tx.commit();
-                   // response.sendRedirect("error");
-
+                   response.sendRedirect("error");
                 }
             }catch (Exception ex) {
                 ex.printStackTrace();

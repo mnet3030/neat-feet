@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="delivery_status"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
         , uniqueConstraints = @UniqueConstraint(columnNames="description")
 )
 public class DeliveryStatus  implements com.imagine.neatfeat.model.dal.entity.Entity {

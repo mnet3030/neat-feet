@@ -20,9 +20,23 @@
         <url-pattern>/cart</url-pattern>
         <url-pattern>/saveProfile</url-pattern>
         <url-pattern>/logout</url-pattern>
-        <url-pattern>/homeadmin</url-pattern>
         <url-pattern>/user</url-pattern>
-        <url-pattern>/productServlet</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>AdminMustLoggedFilter</filter-name>
+        <filter-class>com.imagine.neatfeat.controller.admin.filters.MustLoggedFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminMustLoggedFilter</filter-name>
+        <url-pattern>/adminhome</url-pattern>
+        <url-pattern>/user</url-pattern>
+        <url-pattern>/adminproduct</url-pattern>
+        <url-pattern>/saveproductimg</url-pattern>
+        <url-pattern>/addition</url-pattern>
+        <url-pattern>/productEdit</url-pattern>
+
     </filter-mapping>
 
 
@@ -115,7 +129,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeServletAdmin</servlet-name>
-        <url-pattern>/homeadmin</url-pattern>
+        <url-pattern>/adminhome</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>

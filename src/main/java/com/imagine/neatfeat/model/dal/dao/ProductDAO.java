@@ -9,6 +9,7 @@ import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,43 +36,40 @@ public class ProductDAO extends GenericDAO<Product> {
 
         totalNoOfItems = Integer.parseInt(rowCountCriteria.list().get(0).toString());
 
-        noOfPages = (int)Math.ceil((totalNoOfItems/1.0) / (itemsPerPage/1.0));
+        noOfPages = (int) Math.ceil((totalNoOfItems / 1.0) / (itemsPerPage / 1.0));
 
-        if(pageNumber > noOfPages) {
+        if (pageNumber > noOfPages) {
             firstItemInPage = (noOfPages - 1) * itemsPerPage;
             pageNumber = noOfPages;
-        }
-        else
+        } else
             firstItemInPage = (pageNumber - 1) * itemsPerPage;
 
         Criteria resultCriteria = session.createCriteria(tClass)
                 .add(disjunction);
 
-        if(firstItemInPage > 0)
+        if (firstItemInPage > 0)
             resultCriteria.setFirstResult(firstItemInPage);
         else
             resultCriteria.setFirstResult(0);
 
         resultCriteria.setMaxResults(itemsPerPage);
         List<Product> pageEntities = resultCriteria.list();
-        Map<Product, Boolean> productMap =new HashMap<>();
-
-        pageEntities.forEach((entity) -> {
-            if(cart.stream().anyMatch((item) -> item.getProductId().equals(entity.getId())))
-            {
-                productMap.put(entity, true);
-            }
-            else
-            {
-                productMap.put(entity, false);
-            }
-        });
+        Map<Product, Boolean> productMap = new HashMap<>();
+        if (pageEntities != null) {
+            pageEntities.forEach((entity) -> {
+                if (cart.stream().anyMatch((item) -> item.getProductId().equals(entity.getId()))) {
+                    productMap.put(entity, true);
+                } else {
+                    productMap.put(entity, false);
+                }
+            });
+        }
 
 
         Map<String, Object> entitiesWithNoOfPages = new HashMap<>();
         entitiesWithNoOfPages.put("entities", productMap);
         entitiesWithNoOfPages.put("noOfPages", noOfPages);
-        entitiesWithNoOfPages.put("pageNumber",pageNumber);
+        entitiesWithNoOfPages.put("pageNumber", pageNumber);
         return entitiesWithNoOfPages;
     }
 
@@ -91,43 +89,52 @@ public class ProductDAO extends GenericDAO<Product> {
 
         totalNoOfItems = Integer.parseInt(rowCountCriteria.list().get(0).toString());
 
-        noOfPages = (int)Math.ceil((totalNoOfItems/1.0) / (itemsPerPage/1.0));
+        noOfPages = (int) Math.ceil((totalNoOfItems / 1.0) / (itemsPerPage / 1.0));
 
-        if(pageNumber > noOfPages) {
+        if (pageNumber > noOfPages) {
             firstItemInPage = (noOfPages - 1) * itemsPerPage;
             pageNumber = noOfPages;
-        }
-        else
+        } else
             firstItemInPage = (pageNumber - 1) * itemsPerPage;
 
         Criteria resultCriteria = session.createCriteria(tClass)
                 .add(conjunction);
-        if(firstItemInPage > 0)
+        if (firstItemInPage > 0)
             resultCriteria.setFirstResult(firstItemInPage);
         else
             resultCriteria.setFirstResult(0);
         resultCriteria.setMaxResults(itemsPerPage);
         List<Product> pageEntities = resultCriteria.list();
 
-        Map<Product, Boolean> productMap =new HashMap<>();
+        Map<Product, Boolean> productMap = new HashMap<>();
 
         pageEntities.forEach((entity) -> {
-            if(cart.stream().anyMatch((item) -> item.getProductId().equals(entity.getId())))
-            {
+            if (cart.stream().anyMatch((item) -> item.getProductId().equals(entity.getId()))) {
                 productMap.put(entity, true);
-            }
-            else
-            {
+            } else {
                 productMap.put(entity, false);
             }
         });
 
 
-
         Map<String, Object> entitiesWithNoOfPages = new HashMap<>();
         entitiesWithNoOfPages.put("entities", productMap);
         entitiesWithNoOfPages.put("noOfPages", noOfPages);
-        entitiesWithNoOfPages.put("pageNumber",pageNumber);
+        entitiesWithNoOfPages.put("pageNumber", pageNumber);
         return entitiesWithNoOfPages;
+    }
+
+
+    public Map<Product, Boolean> getByPrimaryKeyWithUserCartCheck(Serializable primaryKey, List<Item> cart) {
+        Product neededEntity = session.get(tClass, primaryKey);
+        Map<Product, Boolean> map = new HashMap<>();
+
+        if (cart.stream().anyMatch((item) -> item.getProductId().equals(neededEntity.getId()))) {
+            map.put(neededEntity, true);
+        } else {
+            map.put(neededEntity, false);
+        }
+
+        return map;
     }
 }

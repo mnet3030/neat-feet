@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Registration</title>
+    <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- LINEARICONS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/fonts/linearicons/style.css">
@@ -120,6 +120,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h2>Create a new account</h2>
             <c:if test="${alreadyRegistered != null}">
                 <font color="red" size="5">THIS EMAIL IS ALREADY REGISTERED</font>
+            </c:if>
+            <c:if test="${NotAllowed != null}">
+                <font color="red" size="5">NOT ALLOWED</font>
             </c:if>
             <!--==================================================================================-->
             <div class="form-row">

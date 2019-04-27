@@ -56,7 +56,7 @@
 </head>
 <body class="animsition dashboard">
 <!--[if lt IE 8]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
@@ -160,7 +160,7 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item active">
-                                <a class="animsition-link" href="${pageContext.request.contextPath}/view/admin/html/classic/base/html/index.jsp">
+                                <a class="animsition-link" href="${pageContext.request.contextPath}/adminhome">
                                     <span class="site-menu-title">Dashboard v1</span>
                                 </a>
                             </li>
@@ -189,7 +189,7 @@
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="${pageContext.request.contextPath}/productServlet">
+                                <a class="animsition-link" href="${pageContext.request.contextPath}/adminproduct">
                                     <span class="site-menu-title">Product Table</span>
                                 </a>
                             </li>
@@ -296,7 +296,7 @@
                                     <span>Add New Product</span></a>
 
                             </div>
-                            <form method="get" action="productServlet" style="margin-left: 100px; ">
+                            <form method="get" action="adminproduct" style="margin-left: 100px; ">
 
                                 <div class="form-group has-search col-sm-4">
                                     <input name="productName" type="text" class="form-control" placeholder="Search" id="search">
@@ -327,33 +327,39 @@
                         </thead>
                         <tbody>
 
+                        <c:if test="${requestScope.products != null}">
+                            <c:forEach items="${requestScope.products}" var="product">
+                                <tr>
+                                    <td><c:out value="${product.description}"></c:out></td>
+                                    <td><c:out value="${product.price}"></c:out></td>
+                                    <td><c:out value="${product.quantity}"></c:out></td>
+                                    <td><c:out value="${product.buyingCount}"></c:out></td>
+                                    <td><c:out value="${product.category.getDescription()}"></c:out></td>
+                                    <td>
+                                        <input type="hidden" name="productID" value="${product.id}">
+                                        <button href="#editEmployeeModal" class="edit" data-toggle="modal"
+                                                onclick="productId('${product.id}')"><i class="material-icons" data-toggle="tooltip"
+                                                                                        title="Edit">&#xE254;</i></button>
+                                        <button href="#deleteEmployeeModal" onclick="deleteRowFromDB(this)" class="delete"
+                                                data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                        </button>
+                                        <button href="#viewProductPhotos" id="view-btn" class="edit" data-toggle="modal"><i
+                                                class="material-icons" data-toggle="tooltip" title="View Photos"
+                                                onclick="showProductImage('${product.id}')">list</i></button>
+                                    </td>
+                                </tr>
+                                <%--<tr>--%>
 
-                        <c:forEach items="${requestScope.products}" var="product">
-                            <tr>
-                                <td><c:out value="${product.description}"></c:out></td>
-                                <td><c:out value="${product.price}"></c:out></td>
-                                <td><c:out value="${product.quantity}"></c:out></td>
-                                <td><c:out value="${product.buyingCount}"></c:out></td>
-                                <td><c:out value="${product.category.getDescription()}"></c:out></td>
-                                <td>
-                                    <input type="hidden" name="productID" value="${product.id}">
-                                    <button href="#editEmployeeModal" class="edit" data-toggle="modal"
-                                            onclick="productId('${product.id}')"><i class="material-icons" data-toggle="tooltip"
-                                                                                    title="Edit">&#xE254;</i></button>
-                                    <button href="#deleteEmployeeModal" onclick="deleteRowFromDB(this)" class="delete"
-                                            data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                                    </button>
-                                    <button href="#viewProductPhotos" id="view-btn" class="edit" data-toggle="modal"><i
-                                            class="material-icons" data-toggle="tooltip" title="View Photos"
-                                            onclick="showProductImage('${product.id}')">list</i></button>
-                                </td>
-                            </tr>
-                            <%--<tr>--%>
-
-                        </c:forEach>
+                            </c:forEach>
+                        </c:if>
 
                         </tbody>
                     </table>
+
+                    <c:if test="${requestScope.products == null || requestScope.products.size() == 0}">
+                        <h3>No products match your search</h3>
+                    </c:if>
+
                     <div class="clearfix">
                         <div id="pagination-container">
 
@@ -377,6 +383,12 @@
                                     <label>Description</label>
                                     <input type="text" name="description" class="form-control" required>
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Short Description</label>
+                                    <input type="text" name="short_lined_description" class="form-control" required>
+                                </div>
+
                                 <div class="form-group">
                                     <label>Detailed Description</label>
                                     <textarea name="detailedDescription" class="form-control" required></textarea>
@@ -410,11 +422,6 @@
                                 <div class="form-group">
                                     <label>Quantity</label>
                                     <input type="number" name="quantity" class="form-control" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Short Description</label>
-                                    <input type="text" name="short_lined_description" class="form-control">
                                 </div>
 
                                 <div class="form-group">
@@ -461,6 +468,12 @@
                                     <label>Description</label>
                                     <input type="text" id="description" name="description" class="form-control" required>
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Short Description</label>
+                                    <input type="text" id="short_lined_description" name="short_lined_description" class="form-control" required>
+                                </div>
+
                                 <div class="form-group">
                                     <label>Detailed Description</label>
                                     <textarea id="detailedDescription" name="detailedDescription" class="form-control"
@@ -562,10 +575,10 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group" id="imagesContainer">
-                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" id="firstPhoto" width="250" height="250"><br>
-                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" id="secondPhoto" width="250" height="250"><br>
-                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" id="thirdPhoto" width="250" height="250"><br>
-                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" id="fourthPhoto" width="250" height="250">
+                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'" id="firstPhoto" width="250" height="250"><br>
+                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'" id="secondPhoto" width="250" height="250"><br>
+                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'" id="thirdPhoto" width="250" height="250"><br>
+                                <img src="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'" id="fourthPhoto" width="250" height="250">
 
                                 <%--${pageContext.request.contextPath}/NewUserIamges/${user.getPhotoUrl()}--%>
                             </div>
@@ -666,6 +679,7 @@
             success: function (data) {
                 $('#description').val(data.description);
                 $('#detailedDescription').val(data.detailedDescription);
+                $('#short_lined_description').val(data.short_lined_description);
                 $('#category').val(data.category);
                 $('#brand').val(data.brand);
                 $('#price').val(data.price);
@@ -680,10 +694,10 @@
 </script>
 <script>
     function showProductImage(pid) {
-        $('#firstPhoto').attr("src","${pageContext.request.contextPath}/ProductIamges/product"+pid+".jpg");
-        $('#secondPhoto').attr("src","${pageContext.request.contextPath}/ProductIamges/product"+pid+"1.jpg");
-        $('#thirdPhoto').attr("src","${pageContext.request.contextPath}/ProductIamges/product"+pid+"2.jpg");
-        $('#fourthPhoto').attr("src","${pageContext.request.contextPath}/ProductIamges/product"+pid+"3.jpg");
+        $('#firstPhoto').attr("src","${pageContext.request.contextPath}/ProductImages/"+pid+".png");
+        $('#secondPhoto').attr("src","${pageContext.request.contextPath}/ProductImages/"+pid+"1.png");
+        $('#thirdPhoto').attr("src","${pageContext.request.contextPath}/ProductImages/"+pid+"2.png");
+        $('#fourthPhoto').attr("src","${pageContext.request.contextPath}/ProductImages/"+pid+"3.png");
     }
 </script>
 

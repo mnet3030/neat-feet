@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="wishing_list_products"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
         , uniqueConstraints = @UniqueConstraint(columnNames={"wishing_list_id", "product_id"})
 )
 public class WishingListProducts  implements com.imagine.neatfeat.model.dal.entity.Entity {

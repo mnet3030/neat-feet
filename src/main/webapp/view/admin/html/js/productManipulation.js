@@ -7,7 +7,7 @@ function deleteRowFromDB(node)
 
     $.ajax({
 
-        url:"productServlet",
+        url:"adminproduct",
         type:"POST",
         data: jsonOBJ,
         dataType: 'text',
@@ -33,7 +33,7 @@ function addRowToDB()
 
     $.ajax({
 
-        url:"productServlet",
+        url:"adminproduct",
         type:'POST',
         data: jsonOBJ,
         //dataType: 'text',
@@ -61,7 +61,7 @@ function searchFun() {
     alert(productName);
     $.ajax({
 
-        url: "productServlet",
+        url: "adminproduct",
         type: "GET",
         data: jsonOBJ,
         dataType: "text",
@@ -89,7 +89,7 @@ function searchFun() {
 //
 //     $.ajax({
 //
-//         url:"productServlet",
+//         url:"adminproduct",
 //         type:"POST",
 //         data: jsonOBJ,
 //         dataType: 'text',

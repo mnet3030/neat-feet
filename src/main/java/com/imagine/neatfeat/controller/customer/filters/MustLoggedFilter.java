@@ -11,6 +11,10 @@ import java.io.IOException;
 
 public class MustLoggedFilter extends HttpFilter {
     @Override
+    public void init() throws ServletException {
+    }
+
+    @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         /*Mahmoud Shereif*/
 

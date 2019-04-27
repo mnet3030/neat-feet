@@ -32,11 +32,11 @@ public class ImageSaving extends HttpServlet {
             Product product = (Product) req.getAttribute("product");
             UUID productUUID = product.getId();
             String productID = productUUID.toString();
-            String imageName = "product" + productID + ".jpg";
+            String imageName = productID + ".png";
             //---------define path where images will be saved--------------
 
             String appPath = req.getServletContext().getRealPath("");
-            String savePath = appPath + File.separator + "ProductIamges";
+            String savePath = appPath + File.separator + "ProductImages";
             //--------------------------------------------------------------
             OutputStream out = null;
             InputStream imageContent = null;
@@ -75,11 +75,11 @@ public class ImageSaving extends HttpServlet {
             Product product = (Product) req.getAttribute("product");
             UUID productUUID = product.getId();
             String productID = productUUID.toString();
-            String imageName = "product" + productID + "1.jpg";
+            String imageName = productID + "1.png";
             //---------define path where images will be saved--------------
 
             String appPath = req.getServletContext().getRealPath("");
-            String savePath = appPath + File.separator + "ProductIamges";
+            String savePath = appPath + File.separator + "ProductImages";
             //--------------------------------------------------------------
             OutputStream out = null;
             InputStream imageContent = null;
@@ -117,11 +117,11 @@ public class ImageSaving extends HttpServlet {
             Product product = (Product) req.getAttribute("product");
             UUID productUUID = product.getId();
             String productID = productUUID.toString();
-            String imageName = "product" + productID + "2.jpg";
+            String imageName = productID + "2.png";
             //---------define path where images will be saved--------------
 
             String appPath = req.getServletContext().getRealPath("");
-            String savePath = appPath + File.separator + "ProductIamges";
+            String savePath = appPath + File.separator + "ProductImages";
             //--------------------------------------------------------------
             OutputStream out = null;
             InputStream imageContent = null;
@@ -159,11 +159,11 @@ public class ImageSaving extends HttpServlet {
             Product product = (Product) req.getAttribute("product");
             UUID productUUID = product.getId();
             String productID = productUUID.toString();
-            String imageName = "product" + productID + "3.jpg";
+            String imageName = productID + "3.png";
             //---------define path where images will be saved--------------
 
             String appPath = req.getServletContext().getRealPath("");
-            String savePath = appPath + File.separator + "ProductIamges";
+            String savePath = appPath + File.separator + "ProductImages";
             //--------------------------------------------------------------
             OutputStream out = null;
             InputStream imageContent = null;

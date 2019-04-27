@@ -150,8 +150,11 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
             firstItemInPage = (pageNumber - 1) * itemsPerPage;
 
         Criteria resultCriteria = session.createCriteria(tClass);
+        if(firstItemInPage > 0)
+            resultCriteria.setFirstResult(firstItemInPage);
+        else
+            resultCriteria.setFirstResult(0);
 
-        resultCriteria.setFirstResult(firstItemInPage);
         resultCriteria.setMaxResults(itemsPerPage);
         List<T> pageEntities = resultCriteria.list();
 

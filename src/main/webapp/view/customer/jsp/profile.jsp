@@ -184,8 +184,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                              class="avatar img-circle img-thumbnail" alt="avatar">
                     </c:if>
                     <c:if test="${user.getPhotoUrl() != null}">
-                        <img src="${pageContext.request.contextPath}/NewUserIamges/${user.getPhotoUrl()}"
-                             class="avatar img-circle img-thumbnail" alt="avatar">
+                        <img src="${pageContext.request.contextPath}/UserImages/${user.id}.png"
+                             class="avatar img-circle img-thumbnail" alt="avatar" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/defaultProfilePhoto.png'">
                     </c:if>
                     <c:if test="${editProfile == 'true'}">
                         <h6>Upload a different photo...</h6>

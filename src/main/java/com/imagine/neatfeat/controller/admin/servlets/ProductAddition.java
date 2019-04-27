@@ -22,6 +22,13 @@ import java.io.IOException;
 @MultipartConfig
 public class ProductAddition extends HttpServlet {
 
+
+    SessionFactory sessionFactory;
+    @Override
+    public void init() throws ServletException {
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -39,9 +46,7 @@ public class ProductAddition extends HttpServlet {
             e.printStackTrace();
         }
         //----------------------------------------------------------------------
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         //----------------------------------------------------------------------
         Product product = ProductConvertor.converProductBeantoProduct(bean);
         //----------------------------------------------------------------------
@@ -58,10 +63,8 @@ public class ProductAddition extends HttpServlet {
         addedProduct = (Product) req.getAttribute("product");
 
         session.getTransaction().commit();
-        session.close();
-        sessionFactory.close();
 
-        resp.sendRedirect("productServlet");
+        resp.sendRedirect("adminproduct");
 
 
     }

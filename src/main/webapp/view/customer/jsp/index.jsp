@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-	<title>Neat - Feet| Home :: w3layouts</title>
+	<title>Home</title>
 	<!-- custom-theme -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -210,7 +210,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="amazingcarousel-item">
 							<div class="amazingcarousel-item-container">
 								<a href="${pageContext.request.contextPath}/product?id=${most.key.id}">
-									<div class="amazingcarousel-image"><img src="${pageContext.request.contextPath}/ProductIamges/product${most.key.id}.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="3" /></div>
+									<div class="amazingcarousel-image"><img src="${pageContext.request.contextPath}/ProductImages/${most.key.id}.png" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'" alt="3" /></div>
 									<div class="amazingcarousel-title"><c:out value="${most.key.description}" /> </div>
 								</a>
 							</div>
@@ -242,7 +242,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="amazingcarousel-item">
 							<div class="amazingcarousel-item-container">
 								<a href="${pageContext.request.contextPath}/product?id=${theBest.key.id}">
-									<div class="amazingcarousel-image"><img src="${pageContext.request.contextPath}/ProductIamges/product${theBest.key.id}.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="3" /></div>
+									<div class="amazingcarousel-image"><img src="${pageContext.request.contextPath}/ProductImages/${theBest.key.id}.png" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'" alt="3" /></div>
 									<div class="amazingcarousel-title"><c:out value="${theBest.key.getDescription()}" /> </div>
 								</a>
 							</div>
@@ -273,7 +273,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="amazingcarousel-item">
 								<div class="amazingcarousel-item-container">
 									<a href="${pageContext.request.contextPath}/product?id=${productsMap.id}">
-										<div class="amazingcarousel-image"><img src="${pageContext.request.contextPath}/ProductIamges/product${productsMap.id}.jpg"  onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="${productsMap.description}"/></div>
+										<div class="amazingcarousel-image"><img src="${pageContext.request.contextPath}/ProductImages/${productsMap.id}.png"  onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'" alt="${productsMap.description}"/></div>
 										<div class="amazingcarousel-title"><c:out value="${productsMap.description}" /></div>
 									</a>
 								</div>

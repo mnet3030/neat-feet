@@ -30,9 +30,10 @@ import java.util.Map;
 import java.util.UUID;
 
 public class UserServlet extends HttpServlet {
-
+    SessionFactory sessionFactory;
     @Override
     public void init() throws ServletException {
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
     }
 
     @Override
@@ -42,8 +43,8 @@ public class UserServlet extends HttpServlet {
         /*Amr El Kady*/
 
         /*Alia Mahmoud*/
-        SessionFactory factory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = factory.openSession();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         String action = request.getParameter("action");
         if ((action!=null)&&(action.equals("search"))) {
             String userName = request.getParameter("userName");
@@ -53,8 +54,8 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("users", userPaginationMap.get("entities"));
             request.setAttribute("noOfPages", userPaginationMap.get("noOfPages"));
             request.setAttribute("pageNo", userPaginationMap.get("pageNumber"));
-            session.close();
-            factory.close();
+            session.getTransaction().commit();
+
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/user.jsp");
             dispatcher.forward(request, response);
 
@@ -66,8 +67,8 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("noOfPages", paginationMap.get("noOfPages"));
             request.setAttribute("users", paginationMap.get("entities"));
             request.setAttribute("pageNo", paginationMap.get("pageNumber"));
-            session.close();
-            factory.close();
+            session.getTransaction().commit();
+
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/user.jsp");
             dispatcher.forward(request, response);
         }
@@ -76,18 +77,6 @@ public class UserServlet extends HttpServlet {
         /*Amer Salah*/
 
         /*Nouran Habib*/
-
-
-//        SessionFactory factory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-//        Session session = factory.openSession();
-//        UserDAO dao = new UserDAO(session);
-//        List<User> users = dao.getAll();
-//        request.getSession().setAttribute("users", users);
-//        //request.getRequestDispatcher("view/admin/jsp/user.jsp").include(request, response);
-//        session.beginTransaction();
-//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/user.jsp");
-//        dispatcher.forward(request, response);
-
 
     }
 
@@ -104,7 +93,8 @@ public class UserServlet extends HttpServlet {
         /*Nouran Habib*/
 
         response.setContentType("application/json");
-        Session session = (Session) request.getServletContext().getAttribute("session");
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         UserDAO user = new UserDAO(session);
         String email = request.getParameter("id");
         UUID id = UUID.fromString(email);
@@ -129,6 +119,8 @@ public class UserServlet extends HttpServlet {
         userJson.setPhone(userinfo.getPhone());
         userJson.setPhotoUrl(userinfo.getPhotoUrl());
         String u = new Gson().toJson(userJson);
+        session.getTransaction().commit();
+
         response.getWriter().print(u);
 
 
