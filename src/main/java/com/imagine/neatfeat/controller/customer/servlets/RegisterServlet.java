@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @MultipartConfig
 public class RegisterServlet extends HttpServlet {
@@ -79,24 +81,40 @@ public class RegisterServlet extends HttpServlet {
             RegisterDao registerDao = new RegisterDao();
             User checkUser = registerDao.getUserByEmail(session, user.getEmail());
             if(checkUser==null){
-                UserDAO userDAO = new UserDAO(session);
-                User addedUser = userDAO.merge(user);
-                //--------------------------------------------
-                request.setAttribute("user" , addedUser);
-                request.getServletContext()
-                        .getRequestDispatcher("/getimageurl")
-                        .include(request,response);
-                //----------------------------------------------
-                addedUser = (User)request.getAttribute("user");
-                userDAO.update(addedUser);
-                session.getTransaction().commit();
-                response.sendRedirect( "login");
+                String pattern = "[a-zA-Z]([a-zA-Z]|[0-9])+@neatfeet\\.com";
+                // Create a Pattern object
+                Pattern r = Pattern.compile(pattern);
+                // Now create matcher object.
+                Matcher m = r.matcher(user.getEmail());
+                if(m.find()){
+                    request.setAttribute("NotAllowed","true");
+                    request.setAttribute("bean",bean);
+                    session.getTransaction().commit();
+                    request.getServletContext()
+                            .getRequestDispatcher("/view/customer/jsp/register.jsp")
+                            .include(request,response);
+                }
+                else
+                {
+                    UserDAO userDAO = new UserDAO(session);
+                    User addedUser = userDAO.merge(user);
+                    //--------------------------------------------
+                    request.setAttribute("user" , addedUser);
+                    request.getServletContext()
+                            .getRequestDispatcher("/getimageurl")
+                            .include(request,response);
+                    //----------------------------------------------
+                    addedUser = (User)request.getAttribute("user");
+                    userDAO.update(addedUser);
+                    session.getTransaction().commit();
+                    response.sendRedirect( "login");
+                }
             }else {
                 request.setAttribute("alreadyRegistered","true");
                 request.setAttribute("bean",bean);
                 session.getTransaction().commit();
                 request.getServletContext()
-                        .getRequestDispatcher("/register")
+                        .getRequestDispatcher("/view/customer/jsp/register.jsp")
                         .include(request,response);
             }
         }catch(Exception e)

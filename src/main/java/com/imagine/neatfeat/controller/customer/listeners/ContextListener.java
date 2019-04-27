@@ -5,7 +5,6 @@ import com.imagine.neatfeat.model.dal.dao.*;
 import com.imagine.neatfeat.model.dal.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -175,7 +174,7 @@ public class ContextListener implements ServletContextListener {
         userCustomer = userDAO.merge(userCustomer);
 
         /*------------------------Products-----------------------------------*/
-        persistProductsFromShoeFolder(session, brands, servletContextEvent.getServletContext().getRealPath(""));
+        persistProductsFromShoeFolder(session, brands, servletContextEvent.getServletContext().getRealPath(""), categories);
 
         session.getTransaction().commit();
 
@@ -268,7 +267,7 @@ public class ContextListener implements ServletContextListener {
     }
 
 
-    private void persistProductsFromShoeFolder(Session session, List<Brand> brands, String appPath)
+    private void persistProductsFromShoeFolder(Session session, List<Brand> brands, String appPath, List<Category> categories)
     {
         ProductDAO productDAO = new ProductDAO(session);
         CategoryDAO categoryDAO = new CategoryDAO(session);
@@ -289,11 +288,15 @@ public class ContextListener implements ServletContextListener {
                 String catName = catFile.getName();
                 File[] catProductsFolder = catFile.listFiles();
                 session.flush();
-                Category currentCategory = categoryDAO.getByColumnName("description", catName).get(0);
+                System.out.println(catName);
+                Category currentCategory = (Category)categories.stream().filter((category) -> {
+                    System.out.println(category.getDescription());
+                    return category.getDescription().equals(catName);
+
+                }).toArray()[0];
 
                 for (File productFolder : catProductsFolder) {
-                    int indexOfDash = productFolder.getName().indexOf("-");
-                    String productDescription = productFolder.getName().substring(indexOfDash + 1);
+                    String productDescription = productFolder.getName();
                     File[] images = productFolder.listFiles();
 
                     Product product = new Product();
@@ -310,7 +313,7 @@ public class ContextListener implements ServletContextListener {
                     product.setDiscount((short)0);
                     product = productDAO.merge(product);
 
-                    for(int i = 0; i <= 2; i++) {
+                    for(int i = 0; i < images.length; i++) {
 
                         String productId = product.getId().toString();
                         String imageName = productId;

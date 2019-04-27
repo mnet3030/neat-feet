@@ -121,6 +121,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <c:if test="${alreadyRegistered != null}">
                 <font color="red" size="5">THIS EMAIL IS ALREADY REGISTERED</font>
             </c:if>
+            <c:if test="${NotAllowed != null}">
+                <font color="red" size="5">NOT ALLOWED</font>
+            </c:if>
             <!--==================================================================================-->
             <div class="form-row">
                 <div class="form-wrapper validate-input" data-validate="Name is required">

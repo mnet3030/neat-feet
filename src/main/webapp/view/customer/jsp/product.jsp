@@ -198,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-8 single-right-left simpleCart_shelfItem">
             <h3>${product.description}</h3>
             <p><span class="item_price">EGP${product.price}</span>
-                <del>EGP${product.price - 50}</del>
+                <del>EGP${product.price + 50}</del>
             </p>
 
             <!--Added By Mahmoud Shereif-->
