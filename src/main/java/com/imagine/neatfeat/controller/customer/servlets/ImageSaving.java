@@ -25,11 +25,11 @@ public class ImageSaving extends HttpServlet {
             User user = (User) req.getAttribute("user");
             UUID userUUID = user.getId();
             String userID = userUUID.toString();
-            String imageName = "user" + userID + ".jpg";
+            String imageName = userID + ".png";
             //---------define path where images will be saved--------------
 
             String appPath = req.getServletContext().getRealPath("");
-            String savePath = appPath + File.separator + "NewUserIamges";
+            String savePath = appPath + File.separator + "UserImages";
             //--------------------------------------------------------------
             OutputStream out = null;
             InputStream imageContent = null;

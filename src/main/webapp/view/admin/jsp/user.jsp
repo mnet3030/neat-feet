@@ -159,7 +159,7 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item active">
-                                <a class="animsition-link" href="${pageContext.request.contextPath}/view/admin/html/classic/base/html/index.jsp">
+                                <a class="animsition-link" href="${pageContext.request.contextPath}/adminhome">
                                     <span class="site-menu-title">Dashboard v1</span>
                                 </a>
                             </li>
@@ -188,7 +188,7 @@
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="${pageContext.request.contextPath}/productServlet">
+                                <a class="animsition-link" href="${pageContext.request.contextPath}/adminproduct">
                                     <span class="site-menu-title">Product Table</span>
                                 </a>
                             </li>

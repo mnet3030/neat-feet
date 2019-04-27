@@ -91,7 +91,7 @@ public class LogoutServlet extends HttpServlet {
                 }
                 request.getSession().invalidate();
                 tx.commit();
-                response.sendRedirect("login");
+                response.sendRedirect("home");
 
 
             } catch (Exception ex) {

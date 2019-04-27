@@ -32,18 +32,18 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-@WebServlet("/productServlet")
 @MultipartConfig
 public class ProductServlet extends HttpServlet {
+    SessionFactory sessionFactory;
     @Override
     public void init() throws ServletException {
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        SessionFactory factory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = factory.openSession();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
 
         PrintWriter out = response.getWriter();
 
@@ -53,20 +53,19 @@ public class ProductServlet extends HttpServlet {
             UUID uuid = UUID.fromString(request.getParameter("productID"));
             ProductDAO productDao = new ProductDAO(session);
             productDao.deleteByColumnName("id", uuid);
-            session.getTransaction().commit();
-
         }
+        session.getTransaction().commit();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        SessionFactory factory = new Configuration().configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = factory.openSession();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         String action = request.getParameter("action");
         if ((action!=null)&&(action.equals("search"))) {
 
             AdminProductDao productDAO = new AdminProductDao(session);
+
             String productName = request.getParameter("productName");
             ResultDao resultDao = new ResultDao();
             String pageNo = request.getParameter("pageNo");
@@ -75,61 +74,20 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("products", paginationMap.get("entities"));
             request.setAttribute("noOfPages", paginationMap.get("noOfPages"));
             request.setAttribute("pageNo", paginationMap.get("pageNumber"));
-            session.beginTransaction();
-                CategoryDAO categoryDAO = new CategoryDAO(session);
-                List<Category> categories = categoryDAO.getAll();
-                request.setAttribute("categories", categories);
+            CategoryDAO categoryDAO = new CategoryDAO(session);
+            List<Category> categories = categoryDAO.getAll();
+            request.setAttribute("categories", categories);
 
-                BrandDAO brandDAO = new BrandDAO(session);
-                List<Brand> brands = brandDAO.getAll();
+            BrandDAO brandDAO = new BrandDAO(session);
+            List<Brand> brands = brandDAO.getAll();
 
-                request.setAttribute("brands", brands);
+            request.setAttribute("brands", brands);
 
-                session.getTransaction().commit();
-                session.close();
+            session.getTransaction().commit();
 
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
-                dispatcher.forward(request, response);
-
-
-
-
-
-//            List<Product> products = productDAO.getProductsByName(productName);
-
-//            if (products.size() >= 1) {
-//                System.out.println(products.get(0).getDescription());
-//                request.setAttribute("products", products);
-//
-//                session.beginTransaction();
-//                CategoryDAO categoryDAO = new CategoryDAO(session);
-//                List<Category> categories = categoryDAO.getAll();
-//                request.setAttribute("categories", categories);
-//
-//                BrandDAO brandDAO = new BrandDAO(session);
-//                List<Brand> brands = brandDAO.getAll();
-//
-//                request.setAttribute("brands", brands);
-//
-//                session.getTransaction().commit();
-//                session.close();
-//
-//                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
-//                dispatcher.forward(request, response);
-//            }else{
-//                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
-//                dispatcher.forward(request, response);
-//            }
-
-
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
+            dispatcher.forward(request, response);
         } else {
-
-//            ProductDAO dao = new ProductDAO(session);
-//            List<Product> products = dao.getAll();
-//            request.setAttribute("products", products);
-
-
-            session.beginTransaction();
             BrandDAO brandDAO = new BrandDAO(session);
             List<Brand> brands = brandDAO.getAll();
             request.setAttribute("brands", brands);
@@ -151,7 +109,6 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("pageNo", paginationMap.get("pageNumber"));
 
             session.getTransaction().commit();
-            session.close();
 
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/admin/jsp/product.jsp");
             dispatcher.forward(request, response);

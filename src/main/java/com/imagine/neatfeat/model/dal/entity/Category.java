@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="category"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
 )
 public class Category  implements com.imagine.neatfeat.model.dal.entity.Entity {
 

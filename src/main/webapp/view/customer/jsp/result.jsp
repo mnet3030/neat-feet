@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-	<title>Neat - Feet | Shop :: w3layouts</title>
+	<title>Shop</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -328,56 +328,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- deals -->
 			<div class="deal-leftmk left-side">
 				<h3 class="agileits-sear-head">Special Deals</h3>
-				<div class="special-sec1">
-					<div class="col-xs-4 img-deals">
-						<img src="${pageContext.request.contextPath}/view/customer/html/images/s4.jpg" alt="">
-					</div>
-					<div class="col-xs-8 img-deal1">
-						<h3>Shuberry Heels</h3>
-						<a href="single.html">$180.00</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="special-sec1">
-					<div class="col-xs-4 img-deals">
-						<img src="${pageContext.request.contextPath}/view/customer/html/images/s2.jpg" alt="">
-					</div>
-					<div class="col-xs-8 img-deal1">
-						<h3>Chikku Loafers</h3>
-						<a href="single.html">$99.00</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="special-sec1">
-					<div class="col-xs-4 img-deals">
-						<img src="${pageContext.request.contextPath}/view/customer/html/images/s1.jpg" alt="">
-					</div>
-					<div class="col-xs-8 img-deal1">
-						<h3>Bella Toes</h3>
-						<a href="single.html">$165.00</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="special-sec1">
-					<div class="col-xs-4 img-deals">
-						<img src="${pageContext.request.contextPath}/view/customer/html/images/s5.jpg" alt="">
-					</div>
-					<div class="col-xs-8 img-deal1">
-						<h3>Red Bellies</h3>
-						<a href="single.html">$225.00</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="special-sec1">
-					<div class="col-xs-4 img-deals">
-						<img src="${pageContext.request.contextPath}/view/customer/html/images/s3.jpg" alt="">
-					</div>
-					<div class="col-xs-8 img-deal1">
-						<h3>(SRV) Sneakers</h3>
-						<a href="single.html">$169.00</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
+
+				<c:if test="${requestScope.allProducts != null}">
+					<c:forEach begin="0" end="3" var="productsMap" items="${requestScope.allProducts}" >
+						<div class="special-sec1">
+							<div class="col-xs-4 img-deals">
+								<img src="${pageContext.request.contextPath}/ProductImages/${productsMap.id}.png" alt="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'">
+							</div>
+							<div class="col-xs-8 img-deal1">
+								<h3>${productsMap.description}</h3>
+								<a href="${pageContext.request.contextPath}/product?id=${productsMap.id}">EGP${productsMap.price}</a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</c:forEach>
+				</c:if>
+
 			</div>
 			<!-- //deals -->
 
@@ -404,7 +370,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="product-shoe-info shoe">
 									<div class="men-pro-item">
 										<div class="men-thumb-item">
-											<img src="${pageContext.request.contextPath}/ProductIamges/product${productsMap.key.id}.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="pro">
+											<img src="${pageContext.request.contextPath}/ProductImages/${productsMap.key.id}.png" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'" alt="pro">
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
 													<a href="${pageContext.request.contextPath}/product?id=${productsMap.key.id}" class="link-product-add-cart">Quick View</a>
@@ -455,6 +421,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 							</div>
 						</c:forEach>
+
+						<c:if test="${requestScope.products == null || requestScope.products.size() == 0}">
+							<h3>No products match your search</h3>
+						</c:if>
 
 
 						<div class="clearfix"></div>

@@ -1,6 +1,7 @@
 package com.imagine.neatfeat.controller.customer.servlets;
 
 import com.imagine.neatfeat.controller.services.PaginationService;
+import com.imagine.neatfeat.model.dal.dao.ProductDAO;
 import com.imagine.neatfeat.model.dal.entity.Category;
 import com.imagine.neatfeat.model.dal.entity.Product;
 import com.imagine.neatfeat.model.dal.servletsdaos.ResultDao;
@@ -45,6 +46,10 @@ public class ResultServlet extends HttpServlet {
 
         List<Category> mainCategories = resultDao.getMainCategories(session);
         PaginationService paginationService = new PaginationService();
+
+        ProductDAO productDAO1 = new ProductDAO(session);
+        Map allPaged = productDAO1.getAllPaged(1, 4);
+        request.setAttribute("allProducts", allPaged.get("entities"));
 
         Map paginationMap = null;
 

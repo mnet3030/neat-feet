@@ -22,6 +22,8 @@ public class ResultDao {
         Map<String, Object> columnsNamesValues = new HashMap<>();
         columnsNamesValues.put("description", searchString);
         columnsNamesValues.put("detailedDescription", searchString);
+        columnsNamesValues.put("shortLinedDescription", searchString);
+
 
         Map resultMap = productDAO.getPageByColumnNamesWithLike(columnsNamesValues, pageNumber, itemsPerPage);
         return resultMap;
@@ -79,6 +81,7 @@ public class ResultDao {
         Map<String, Object> columnsNamesValues = new HashMap<>();
         columnsNamesValues.put("description", searchString);
         columnsNamesValues.put("detailedDescription", searchString);
+        columnsNamesValues.put("shortLinedDescription", searchString);
 
         Map resultMap = productDAO.getPageByColumnNamesWithLikeWithUserCartCheck(columnsNamesValues, pageNumber, itemsPerPage, cart);
         return resultMap;

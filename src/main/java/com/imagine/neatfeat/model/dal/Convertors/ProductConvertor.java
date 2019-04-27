@@ -74,6 +74,7 @@ public class ProductConvertor {
         bean.setPrice(product.getPrice());
         bean.setCategory(product.getCategory().getId().toString());
         bean.setBrand(product.getBrand().getId().toString());
+        bean.setShort_lined_description(product.getShortLinedDescription());
         return bean;
     }
 

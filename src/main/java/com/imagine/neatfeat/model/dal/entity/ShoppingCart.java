@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="shopping_cart"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
         , uniqueConstraints = @UniqueConstraint(columnNames="user_id")
 )
 public class ShoppingCart  implements com.imagine.neatfeat.model.dal.entity.Entity {

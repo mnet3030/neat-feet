@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
             LoginDao dao = new LoginDao();
             User user  = dao.AuthenticateUser(session, email, password);
             if(user != null){
-                String pattern = "([aA-zZ]|[0-9])+@neatfeet.com";
+                String pattern = "[a-zA-Z]([a-zA-Z]|[0-9])+@neatfeet\\.com";
                 // Create a Pattern object
                 Pattern r = Pattern.compile(pattern);
                 // Now create matcher object.
@@ -80,8 +80,10 @@ public class LoginServlet extends HttpServlet {
                 if(m.find()){
                     HttpSession userSession = request.getSession(true);
                     userSession.setAttribute("user", user);
-                    response.sendRedirect("homeadmin");
+                    List<Item> emptyCart =new ArrayList<>();
+                    userSession.setAttribute("cartProduct", emptyCart);
                     tx.commit();
+                    response.sendRedirect("adminhome");
 
                 }else{
 
@@ -95,13 +97,20 @@ public class LoginServlet extends HttpServlet {
                         List<Item> emptyCart =new ArrayList<>();
                         userSession.setAttribute("cartProduct", emptyCart);
                         tx.commit();
+
                         response.sendRedirect("home");
 
-                    }else {
-                        userSession.setAttribute("cartProduct", cart);
+                    }
+                    else
+                    {
                         tx.commit();
+
+                        userSession.setAttribute("cartProduct", cart);
                         response.sendRedirect("home");
-                    }}
+                    }
+
+                }
+
             }
             else{
                 request.setAttribute("mail",email);

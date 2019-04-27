@@ -25,7 +25,10 @@ function addItemToCart(node)
                 footer: '<a href>Why do I have this issue?</a>',
                 allowOutsideClick:false
             });
-            window.location.href = appContext + "/login";
+            setTimeout(function(){
+                window.location.href = appContext + "/login";
+            }, 2000);
+
         }
     }).fail(function() {
         Swal.fire({

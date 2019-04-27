@@ -29,15 +29,19 @@ import java.util.UUID;
 @WebServlet("/productEdit")
 @MultipartConfig
 public class ProductEdit extends HttpServlet {
+    SessionFactory sessionFactory;
+    @Override
+    public void init() throws ServletException {
+        sessionFactory = (SessionFactory) getServletContext().getAttribute("sessionFactory");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String productID = req.getParameter("productid");
         //------------------------------------------------------------------
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         ProductDAO dao = new ProductDAO(session);
         Product editableProduct = dao.getByPrimaryKey(UUID.fromString(productID));
         ProductBean bean = ProductConvertor.converProducttoProductBean(editableProduct);
@@ -45,10 +49,8 @@ public class ProductEdit extends HttpServlet {
         HttpSession userSession = req.getSession(false);
         userSession.setAttribute("editableProduct" ,editableProduct);
         PrintWriter out = resp.getWriter();
+        session.getTransaction().commit();
         out.print(new Gson().toJson(bean));
-        session.close();
-        sessionFactory.close();
-
     }
 
     @Override
@@ -63,9 +65,8 @@ public class ProductEdit extends HttpServlet {
             e.printStackTrace();
         }
         //----------------------------------------------------------------------
-        SessionFactory sessionFactory = new Configuration()
-                .configure("cfg/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
         //----------------------------------------------------------------------
         ProductDAO dao = new ProductDAO(session);
         //----------------------------------------------------------------------
@@ -86,9 +87,8 @@ public class ProductEdit extends HttpServlet {
         product.setPrice(bean.getPrice());
         product.setQuantity(bean.getQuantity());
         product.setDescription(bean.getDescription());
-        product.setShortLinedDescription("test");
+        product.setShortLinedDescription(bean.getShort_lined_description());
         //----------------------------------------------------------------------
-        session.beginTransaction();
         dao.update(product);
         //----------------------------------------------------------------------
         req.setAttribute("product" , product);
@@ -100,10 +100,7 @@ public class ProductEdit extends HttpServlet {
         //dao.update(product);
         session.getTransaction().commit();
 
-        session.close();
-        sessionFactory.close();
-
-        resp.sendRedirect("productServlet");
+        resp.sendRedirect("adminproduct");
 
 
     }

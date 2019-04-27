@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-    <title>Neat - Feet | Product </title>
+    <title>Product </title>
     <link href="${pageContext.request.contextPath}/view/customer/html/css/notifi.css" rel="stylesheet" type="text/css" media="all" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +28,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         function hideURLbar() {
             window.scrollTo(0, 1);
         }
+
+
     </script>
     <!-- //custom-theme -->
     <link href="${pageContext.request.contextPath}/view/customer/html/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -45,6 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
           rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+
 </head>
 
 <body>
@@ -172,14 +175,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="flexslider">
 
                     <ul class="slides">
-                        <li data-thumb="${pageContext.request.contextPath}/ProductIamges/product${product.id}1.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/ProductIamges/product${product.id}1.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/ProductImages/${product.id}.png">
+                            <div class="thumb-image">
+                                <img class="img-slider" src="${pageContext.request.contextPath}/ProductImages/${product.id}.png" data-imagezoom="true" class="img-responsive">
+                            </div>
                         </li>
-                        <li data-thumb="${pageContext.request.contextPath}/ProductIamges/product${product.id}2.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/ProductIamges/product${product.id}2.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/ProductImages/${product.id}1.png" >
+                            <div class="thumb-image">
+                                <img class="img-slider" src="${pageContext.request.contextPath}/ProductImages/${product.id}1.png" data-imagezoom="true" class="img-responsive">
+                            </div>
                         </li>
-                        <li data-thumb="${pageContext.request.contextPath}/ProductIamges/product${product.id}3.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'">
-                            <div class="thumb-image"> <img src="${pageContext.request.contextPath}/ProductIamges/product${product.id}3.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="${pageContext.request.contextPath}/ProductImages/${product.id}2.png" >
+                            <div class="thumb-image">
+                                <img class="img-slider" src="${pageContext.request.contextPath}/ProductImages/${product.id}2.png" data-imagezoom="true" class="img-responsive">
+                            </div>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -189,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-8 single-right-left simpleCart_shelfItem">
             <h3>${product.description}</h3>
             <p><span class="item_price">EGP${product.price}</span>
-                <del>EGP1,199</del>
+                <del>EGP${product.price - 50}</del>
             </p>
 
             <!--Added By Mahmoud Shereif-->
@@ -246,14 +255,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="occasion-cart">
                 <div class="shoe single-item single_page_b">
                     <!--<form action="#" method="post">-->
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="productID" value="${product.id}">
-                        <input type="hidden" name="add" value="1">
-                        <input type="hidden" name="shoe_item" value="Chikku Loafers">
-                        <input type="hidden" name="amount" value="405.00">
+                    <input type="hidden" name="cmd" value="_cart">
+                    <input type="hidden" name="productID" value="${product.id}">
+                    <input type="hidden" name="add" value="1">
+                    <input type="hidden" name="shoe_item" value="Chikku Loafers">
+                    <input type="hidden" name="amount" value="405.00">
+                    <c:if test="${requestScope.inCart == false || requestScope.inCart == null}">
                         <input type="submit" name="submit" onclick="addItemToCart(this)" value="Add to cart" class="button add">
+                    </c:if>
+                    <c:if test="${requestScope.inCart == true}">
+                        <i class="fa fa-check-circle fa-2x" aria-hidden="true" style="color: limegreen"></i>
+                    </c:if>
 
-                        <a href="#" data-toggle="modal" data-target="#myModal1"></a>
+                    <a href="#" data-toggle="modal" data-target="#myModal1"></a>
                     <!--</form>-->
 
                 </div>
@@ -372,12 +386,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h3>Featured Products</h3>
             <!-- /womens -->
             <c:if test="${requestScope.allProducts != null}">
-                <c:forEach begin="1" end="4" var="productsMap" items="${requestScope.allProducts}" >
+                <c:forEach begin="0" end="3" var="productsMap" items="${requestScope.allProducts}" >
                     <div class="col-md-3 product-men">
                         <div class="product-shoe-info shoe">
                             <div class="men-pro-item">
                                 <div class="men-thumb-item">
-                                    <img src="${pageContext.request.contextPath}/view/customer/html/images/s4.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/ProductImages/${productsMap.id}.png" alt="" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="product?id=${productsMap.id}" class="link-product-add-cart">Quick View</a>
@@ -411,7 +425,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <input type="hidden" name="add" value="1">
                                                 <input type="hidden" name="shoe_item" value="Shuberry Heels">
                                                 <input type="hidden" name="amount" value="575.00">
-                                                <button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                                    <%--<button type="submit" class="shoe-cart pshoe-cart" onclick="addItemToCart(this)"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>--%>
 
                                                 <a href="#" data-toggle="modal" data-target="#myModal1"></a>
                                             </form>
@@ -424,155 +438,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </c:forEach>
             </c:if>
-
-            <!--Commented By Mahmoud Shereif-->
-            <!--<div class="col-md-3 product-men women_two">
-                <div class="product-shoe-info shoe">
-                    <div class="men-pro-item">
-                        <div class="men-thumb-item">
-                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s5.jpg" alt="">
-                            <div class="men-cart-pro">
-                                <div class="inner-men-cart-pro">
-                                    <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                </div>
-                            </div>
-                            <span class="product-new-top">New</span>
-                        </div>
-                        <div class="item-info-product">
-                            <h4>
-                                <a href="single.html">Red Bellies </a>
-                            </h4>
-                            <div class="info-product-price">
-                                <div class="grid_meta">
-                                    <div class="product_price">
-                                        <div class="grid-price ">
-                                            <span class="money ">$325.00</span>
-                                        </div>
-                                    </div>
-                                    <ul class="stars">
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="shoe single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="cmd" value="_cart">
-                                        <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="shoe_item" value="Red Bellies">
-                                        <input type="hidden" name="amount" value="325.00">
-                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-                                        <a href="#" data-toggle="modal" data-target="#myModal1"></a>
-                                    </form>
-
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men women_two">
-                <div class="product-shoe-info shoe">
-                    <div class="men-pro-item">
-                        <div class="men-thumb-item">
-                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s7.jpg" alt="">
-                            <div class="men-cart-pro">
-                                <div class="inner-men-cart-pro">
-                                    <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                </div>
-                            </div>
-                            <span class="product-new-top">New</span>
-                        </div>
-                        <div class="item-info-product">
-                            <h4>
-                                <a href="single.html">Running Shoes</a>
-                            </h4>
-                            <div class="info-product-price">
-                                <div class="grid_meta">
-                                    <div class="product_price">
-                                        <div class="grid-price ">
-                                            <span class="money ">$875.00</span>
-                                        </div>
-                                    </div>
-                                    <ul class="stars">
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="shoe single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="cmd" value="_cart">
-                                        <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="shoe_item" value="Running Shoes">
-                                        <input type="hidden" name="amount" value="875.00">
-                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-                                        <a href="#" data-toggle="modal" data-target="#myModal1"></a>
-                                    </form>
-
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 product-men women_two">
-                <div class="product-shoe-info shoe">
-                    <div class="men-pro-item">
-                        <div class="men-thumb-item">
-                            <img src="${pageContext.request.contextPath}/view/customer/html/images/s8.jpg" alt="">
-                            <div class="men-cart-pro">
-                                <div class="inner-men-cart-pro">
-                                    <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                </div>
-                            </div>
-                            <span class="product-new-top">New</span>
-                        </div>
-                        <div class="item-info-product">
-                            <h4>
-                                <a href="single.html">Sukun Casuals</a>
-                            </h4>
-                            <div class="info-product-price">
-                                <div class="grid_meta">
-                                    <div class="product_price">
-                                        <div class="grid-price ">
-                                            <span class="money ">$505.00</span>
-                                        </div>
-                                    </div>
-                                    <ul class="stars">
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="shoe single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="cmd" value="_cart">
-                                        <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="shoe_item" value="Sukun Casuals">
-                                        <input type="hidden" name="amount" value="505.00">
-                                        <button type="submit" class="shoe-cart pshoe-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-
-                                        <a href="#" data-toggle="modal" data-target="#myModal1"></a>
-                                    </form>
-
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
 
             <!-- //womens -->
             <div class="clearfix"></div>
@@ -804,22 +669,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- js -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/view/customer/html/js/jquery-2.1.4.min.js"></script>
+<script>
+    $('.img-slider').on("error",function () {
+        $(this).attr('src','${pageContext.request.contextPath}/view/customer/html/images/default.png');
+        $(this).parent().parent().attr("data-thumb",'${pageContext.request.contextPath}/view/customer/html/images/default.png');
+    });
+</script>
+
 <!-- //js -->
 <!-- cart-js -->
 <!--<script src="<%--${pageContext.request.contextPath}--%>/view/customer/html/js/minicart.js"></script>-->
-<script>
-    shoe.render();
+<%--<script>--%>
+<%--shoe.render();--%>
 
-    shoe.cart.on('shoe_checkout', function (evt) {
-        var items, len, i;
+<%--shoe.cart.on('shoe_checkout', function (evt) {--%>
+<%--var items, len, i;--%>
 
-        if (this.subtotal() > 0) {
-            items = this.items();
+<%--if (this.subtotal() > 0) {--%>
+<%--items = this.items();--%>
 
-            for (i = 0, len = items.length; i < len; i++) {}
-        }
-    });
-</script>
+<%--for (i = 0, len = items.length; i < len; i++) {}--%>
+<%--}--%>
+<%--});--%>
+<%--</script>--%>
 <!-- //cart-js -->
 <!-- /nav -->
 <script src="${pageContext.request.contextPath}/view/customer/html/js/modernizr-2.6.2.min.js"></script>
@@ -858,6 +730,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
     // Can also be used with $(document).ready()
     $(window).load(function () {
+
         $('.flexslider').flexslider({
             animation: "slide",
             controlNav: "thumbnails"

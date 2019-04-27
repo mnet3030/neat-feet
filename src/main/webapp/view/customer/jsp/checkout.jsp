@@ -13,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-    <title>Downy Shoes an Ecommerce Category Bootstrap Responsive Website Template | Check Out :: w3layouts</title>
+    <title>checkout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -188,8 +188,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <div class="Rtable Rtable--6cols Rtable--collapse">
 
-                        <div class="Rtable-cell" style="width: 5%;"><h3><c:out value="${count}" /></h3></div>
-                        <div class="Rtable-cell" style="width: 38%;"><a href="product?id=${item.product.id}"><img src="${pageContext.request.contextPath}/ProductIamges/product${item.product.id}.jpg" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.jpg'" alt="Product Image" style="height: 20vh;" class="img-responsive"></a></div>
+                        <div class="Rtable-cell grey" style="width: 5%;"><h3><c:out value="${count}" /></h3></div>
+                        <div class="Rtable-cell" style="width: 38%;"><a href="product?id=${item.product.id}"><img src="${pageContext.request.contextPath}/ProductImages/${item.product.id}.png" onerror="this.src='${pageContext.request.contextPath}/view/customer/html/images/default.png'" alt="Product Image" style="height: 20vh;" class="img-responsive"></a></div>
                         <div class="Rtable-cell" style="width: 17%;">
                             <div class="quantity">
                                 <div class="quantity-select">
@@ -235,7 +235,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="checkout-left">
                 <div class="col-md-4 checkout-left-basket">
-                    <h4>Continue to basket</h4>
+                    <h4>Total</h4>
                     <ul>
                         <!--<li>Product1 <i>-</i> <span>$675.00 </span></li>
                         <li>Product2 <i>-</i> <span>$325.00 </span></li>
@@ -279,7 +279,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                     <div class="controls">
                                         <label class="control-label">Address type: </label>
-                                        <select class="form-control option-w3ls">
+                                        <select class="form-control option-w3ls" style="height: 5vh">
                                             <option>Office</option>
                                             <option>Home</option>
                                             <option>Commercial</option>
@@ -287,21 +287,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </select>
                                     </div>
                                 </div>
-                                    <c:choose>
-                                        <c:when test="${sessionScope.sizeCart !=0}" >
-                                <button id="buybutton"  type="button" class="submit check_out" onclick="buy()" >Delivery to this Address</button>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <button id="buybutton" disabled="true" type="button" class="submit check_out" onclick="buy()" >Delivery to this Address</button>
-
-                                        </c:otherwise>
-                                    </c:choose>
-                                </div>
+                                <c:choose>
+                                    <c:when test="${sessionScope.sizeCart !=0}" >
+                                        <button id="buybutton"  type="button" class="submit check_out" onclick="buy()" >Delivery to this Address</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button id="buybutton" disabled="true" type="button" class="submit check_out" onclick="buy()" >Delivery to this Address</button>
+                                    </c:otherwise>
+                                </c:choose>
+                                <br/>
+                            </div>
                         </section>
                     </div>
-                    <div class="checkout-right-basket">
-                        <a href="payment.html">Make a Payment </a>
-                    </div>
+                    <%--<div class="checkout-right-basket">--%>
+                    <%--<a href="payment.html">Make a Payment </a>--%>
+                    <%--</div>--%>
                 </div>
 
                 <div class="clearfix"> </div>

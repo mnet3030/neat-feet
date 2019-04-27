@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Registration</title>
+    <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- LINEARICONS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/customer/html/fonts/linearicons/style.css">

@@ -16,7 +16,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @Table(name="user"
-        ,catalog="\"e-commerce\""
+        ,catalog="\"ecommerce\""
         , uniqueConstraints = @UniqueConstraint(columnNames="email")
 )
 public class User  implements com.imagine.neatfeat.model.dal.entity.Entity {

@@ -311,6 +311,8 @@ p.sbmincart-empty-text {
 .img-deals img {
     width: 100%;
     border: 1px solid #ddd;
+
+	height: 10vh;
 }
 .men-cart-pro {
 	bottom: 0;
@@ -815,6 +817,7 @@ span.item_price {
 }
 .product-men img {
     width: 100%;
+	height: 25vh;
 }
 .grid_meta {
     float: left;
