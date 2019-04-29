@@ -134,7 +134,7 @@ function buy() {
                     Swal.fire({
                         type: 'error',
                         title: 'Oops...',
-                        text: 'Something went wrong!',
+                        text: data,
                         footer: '<a href>Why do I have this issue?</a>',
                         allowOutsideClick:false
                     });
@@ -147,7 +147,7 @@ function buy() {
         Swal.fire({
             type: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!',
+            text: 'Server Not Connected!',
             footer: '<a href>Why do I have this issue?</a>',
             allowOutsideClick:false
         });

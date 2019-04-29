@@ -21,7 +21,7 @@ public class AdminProductDao {
     {
         List<Product> products;
         Criteria criteria = session.createCriteria(Product.class);
-        criteria.add(Restrictions.like("description" , "%" + productName+"%"));
+        criteria.add(Restrictions.like("description" , "%" + productName+"%").ignoreCase());
         products = criteria.list();
         return products;
 

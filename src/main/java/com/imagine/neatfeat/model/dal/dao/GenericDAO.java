@@ -124,7 +124,7 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
         Criteria criteria = session.createCriteria(tClass);
         Disjunction disjunction = Restrictions.or();
         for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
-            disjunction.add(Restrictions.like(entry.getKey(), "%" + entry.getValue() + "%"));
+            disjunction.add(Restrictions.like(entry.getKey(), "%" + entry.getValue() + "%").ignoreCase());
         }
         criteria = criteria.add(disjunction);
         List<T> neededEntities = criteria.list();
@@ -215,7 +215,7 @@ public class GenericDAO<T extends Entity> implements DAO<T> {
 
         Disjunction disjunction = Restrictions.or();
         for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
-            disjunction.add(Restrictions.like(entry.getKey(), "%" + entry.getValue() + "%"));
+            disjunction.add(Restrictions.like(entry.getKey(), "%" + entry.getValue() + "%").ignoreCase());
         }
 
         Criteria rowCountCriteria = session.createCriteria(tClass)

@@ -56,7 +56,7 @@ public class ContextListener implements ServletContextListener {
         womenCategory.setDescription("Women");
 
         Category kidzCategory = new Category();
-        kidzCategory.setDescription("Kidz");
+        kidzCategory.setDescription("kidz");
 
         CategoryDAO categoryDAO = new CategoryDAO(session);
         manCategory = categoryDAO.merge(manCategory);

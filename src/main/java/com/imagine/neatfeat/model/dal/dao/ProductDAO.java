@@ -27,7 +27,7 @@ public class ProductDAO extends GenericDAO<Product> {
 
         Disjunction disjunction = Restrictions.or();
         for (Map.Entry<String, Object> entry : columnsWithValues.entrySet()) {
-            disjunction.add(Restrictions.like(entry.getKey(), "%" + entry.getValue() + "%"));
+            disjunction.add(Restrictions.like(entry.getKey(), "%" + entry.getValue() + "%").ignoreCase());
         }
 
         Criteria rowCountCriteria = session.createCriteria(tClass)
